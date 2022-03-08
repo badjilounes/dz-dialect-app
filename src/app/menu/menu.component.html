@@ -28,5 +28,14 @@
       <span>dz-dialect-app</span>
     </mat-toolbar>
     <!-- Add Content Here -->
+
+    <mat-card>
+      <button mat-raised-button color="primary" (click)="generate()">Generate</button>
+    </mat-card>
+
+    <mat-card *ngFor="let sentence of sentences$ | async">
+      {{ sentence.frValue }}
+      {{ sentence.dzValue }}
+    </mat-card>
   </mat-sidenav-content>
 </mat-sidenav-container>

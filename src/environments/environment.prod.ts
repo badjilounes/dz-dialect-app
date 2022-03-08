@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'https://us-central1-dz-dialect-api.cloudfunctions.net/generate-sentence',
 };
