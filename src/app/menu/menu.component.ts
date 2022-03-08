@@ -1,6 +1,7 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { catchError, EMPTY, Observable, of } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { DefaultService, ResponseSentences } from 'src/api';
 
@@ -18,11 +19,18 @@ export class MenuComponent {
   );
 
   constructor(
-    private breakpointObserver: BreakpointObserver,
+    private readonly breakpointObserver: BreakpointObserver,
     private readonly api: DefaultService,
+    private readonly snackBar: MatSnackBar,
   ) {}
 
   generate(): void {
-    this.sentences$ = this.api.sentenceGenerateGet().pipe(map((response) => response.sentences));
+    this.sentences$ = this.api.sentenceGenerateGet().pipe(
+      map((response) => response.sentences),
+      catchError((error) => {
+        this.snackBar.open(error.message, 'OK', { duration: 3000 });
+        return EMPTY;
+      }),
+    );
   }
 }
