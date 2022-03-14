@@ -11,6 +11,6 @@
  */
 
 export interface ResponseSentences { 
-    frValue?: string;
-    dzValue?: string;
+    fr_value?: string;
+    dz_value?: string;
 }

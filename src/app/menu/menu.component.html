@@ -9,9 +9,8 @@
   >
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <a mat-list-item href="#">Noms</a>
+      <a mat-list-item href="#">Verbe</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -25,17 +24,26 @@
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>dz-dialect-app</span>
+      <span>Générateur FR - DZ</span>
     </mat-toolbar>
     <!-- Add Content Here -->
 
-    <mat-card>
-      <button mat-raised-button color="primary" (click)="generate()">Generate</button>
-    </mat-card>
-
-    <mat-card *ngFor="let sentence of sentences$ | async">
-      {{ sentence.frValue }}
-      {{ sentence.dzValue }}
-    </mat-card>
+    <div class="app-content" [ngClass]="{ handset: isHandset$ | async }">
+      <mat-card>
+        <mat-card-title>Apprenez l'arabe facilement</mat-card-title>
+        <mat-card-content>
+          <p>Générer une phrase française aléatoirement et consulter sa traduction en arabe. </p>
+          <button mat-raised-button color="primary" (click)="generate()">Générer</button>
+        </mat-card-content>
+      </mat-card>
+  
+      <mat-card *ngFor="let sentence of sentences$ | async">
+        <mat-card-content>
+          <p>{{ sentence.fr_value | capitalize }}</p>
+          <p>{{ sentence.dz_value | capitalize }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    
   </mat-sidenav-content>
 </mat-sidenav-container>

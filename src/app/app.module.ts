@@ -1,4 +1,5 @@
 import { LayoutModule } from '@angular/cdk/layout';
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,6 +15,7 @@ import { ApiModule, Configuration, ConfigurationParameters } from 'src/api';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CapitalizePipe } from './capitalize/capitalize.pipe';
 import { MenuComponent } from './menu/menu.component';
 
 export function apiConfigFactory(): Configuration {
@@ -24,9 +26,10 @@ export function apiConfigFactory(): Configuration {
 }
 
 @NgModule({
-  declarations: [AppComponent, MenuComponent],
+  declarations: [AppComponent, MenuComponent, CapitalizePipe],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
