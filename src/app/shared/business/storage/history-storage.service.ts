@@ -6,11 +6,11 @@ import { StorageService } from 'src/app/shared/technical/storage/storage.service
 @Injectable({
   providedIn: 'root',
 })
-export class RandomStorageService {
+export class HistoryStorageService {
   private static SENTENCE_HISTORY_KEY = 'sentence-history';
 
   history$: BehaviorSubject<ResponseSentences[]> = new BehaviorSubject<ResponseSentences[]>(
-    this.storage.tryGet(RandomStorageService.SENTENCE_HISTORY_KEY) || [],
+    this.storage.tryGet(HistoryStorageService.SENTENCE_HISTORY_KEY) || [],
   );
 
   constructor(private readonly storage: StorageService) {}
@@ -20,7 +20,7 @@ export class RandomStorageService {
       const history = this.history$.value;
       const newHistory = [...history, sentence];
       this.history$.next(newHistory);
-      this.storage.set(RandomStorageService.SENTENCE_HISTORY_KEY, newHistory);
+      this.storage.set(HistoryStorageService.SENTENCE_HISTORY_KEY, newHistory);
     }
   }
 

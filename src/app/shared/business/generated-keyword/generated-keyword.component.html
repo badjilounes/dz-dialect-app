@@ -1,0 +1,16 @@
+<mat-card [ngClass]="{ handset }">
+
+<mat-card-content>
+  <textarea
+    matInput
+    [value]="sentences?.fr_value || '' | capitalize"
+    placeholder="..."
+    disabled></textarea>
+    <textarea
+      matInput
+      [value]="sentences?.dz_value || '' | capitalize"
+      placeholder="..."
+      disabled></textarea>
+  </mat-card-content>
+</mat-card>
+

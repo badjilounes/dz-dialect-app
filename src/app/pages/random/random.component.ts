@@ -1,9 +1,10 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { catchError, EMPTY, map, Observable, of, shareReplay, tap } from 'rxjs';
-import { DefaultService, ResponseSentences } from 'src/api';
-import { RandomStorageService } from './random-storage.service';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {Component} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {catchError, EMPTY, map, Observable, of, shareReplay, tap} from 'rxjs';
+import {DefaultService, ResponseSentences} from 'src/api';
+import {HistoryStorageService} from "../../shared/business/storage/history-storage.service";
+
 
 @Component({
   selector: 'app-random',
@@ -24,7 +25,7 @@ export class RandomComponent {
     private readonly breakpointObserver: BreakpointObserver,
     private readonly api: DefaultService,
     private readonly snackBar: MatSnackBar,
-    private readonly storage: RandomStorageService,
+    private readonly storage: HistoryStorageService,
   ) {
     this.storage.clear();
   }
