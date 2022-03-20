@@ -30,7 +30,7 @@ export class KeywordComponent implements OnInit {
 
 
   generate(): void {
-    this.sentences$ = this.api.sentenceGenerateGet().pipe(
+    this.sentences$ = this.api.sentenceGenerateGet(5,undefined,undefined,undefined,Array("keyword")).pipe(
       map((response) => response.sentences?.[0]),
       tap((sentence) => this.storage.add(sentence)),
       catchError((error) => {
