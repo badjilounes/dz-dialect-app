@@ -1,48 +1,15 @@
-import { LayoutModule } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ApiModule, Configuration, ConfigurationParameters } from 'src/api';
-import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CapitalizePipe } from './capitalize/capitalize.pipe';
-import { MenuComponent } from './menu/menu.component';
-
-export function apiConfigFactory(): Configuration {
-  const params: ConfigurationParameters = {
-    basePath: environment.apiUrl,
-  };
-  return new Configuration(params);
-}
+import { CoreModule } from './core/core.module';
+import { KeywordModule } from './pages/keyword/keyword.module';
+import { RandomModule } from './pages/random/random.module';
 
 @NgModule({
-  declarations: [AppComponent, MenuComponent, CapitalizePipe],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatCardModule,
-    ApiModule.forRoot(apiConfigFactory),
-    HttpClientModule,
-    MatSnackBarModule,
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, CommonModule, CoreModule, KeywordModule, RandomModule, AppRoutingModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,17 @@
+<div class="app-content" [ngClass]="{ handset: isHandset$ | async }">
+  <mat-card>
+    <mat-card-title>{{ 'random.explanation.title' | translate }}</mat-card-title>
+    <mat-card-content>
+      <p>{{ 'random.explanation.content' | translate }}</p>
+      <button mat-raised-button color="primary" (click)="generate()">
+        {{ 'random.generate-button' | translate }}
+      </button>
+    </mat-card-content>
+  </mat-card>
+
+  <app-generated-sentence
+    *ngFor="let sentence of sentences$ | async"
+    [sentence]="sentence"
+    [handset]="(isHandset$ | async) === true"
+  ></app-generated-sentence>
+</div>

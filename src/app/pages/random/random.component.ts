@@ -1,16 +1,15 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { catchError, EMPTY, Observable, of } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { catchError, EMPTY, map, Observable, of, shareReplay } from 'rxjs';
 import { DefaultService, ResponseSentences } from 'src/api';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss'],
+  selector: 'app-random',
+  templateUrl: './random.component.html',
+  styleUrls: ['./random.component.scss'],
 })
-export class MenuComponent {
+export class RandomComponent {
   sentences$: Observable<ResponseSentences[] | undefined> = of();
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
