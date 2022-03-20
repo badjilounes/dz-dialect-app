@@ -7,7 +7,7 @@ import { ResponseSentences } from 'src/api';
   styleUrls: ['./generated-sentence.component.scss'],
 })
 export class GeneratedSentenceComponent {
-  @Input() sentence!: ResponseSentences;
+  @Input() sentence?: ResponseSentences | null;
   @Input() handset!: boolean;
 
   sourceLanguage = { value: 'fr-FR', label: 'generated-sentence.source-language.fr-fr' };

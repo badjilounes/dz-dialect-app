@@ -5,7 +5,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { AppTranslateModule } from 'src/app/core/translate/translate.module';
-import { CapitalizeModule } from '../capitalize/capitalize.module';
+import { CapitalizeModule } from '../../technical/capitalize/capitalize.module';
 import { GeneratedSentenceComponent } from './generated-sentence.component';
 
 @NgModule({

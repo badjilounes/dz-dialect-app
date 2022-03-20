@@ -34,7 +34,12 @@
 .mat-card {
   .mat-card-title {
     display: grid;
-    grid-template-columns: auto 2rem auto;
+    grid-template-columns: auto 3rem auto;
+    align-items: center;
+
+    .mat-icon {
+      justify-self: center;
+    }
   }
 
   &.handset .mat-card-content {
@@ -47,7 +52,7 @@
   &:not(.handset) .mat-card-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 2rem;
+    column-gap: 3rem;
   }
 }
 

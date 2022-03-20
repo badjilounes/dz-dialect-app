@@ -6,7 +6,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-icon [svgIcon]="'arrow-right'"></mat-icon>
+    <mat-icon>swap_horiz</mat-icon>
 
     <mat-form-field appearance="outline">
       <mat-select [value]="targetLanguage">
@@ -16,7 +16,17 @@
   </mat-card-title>
   <mat-divider *ngIf="handset"></mat-divider>
   <mat-card-content>
-    <textarea matInput [value]="sentence.fr_value | capitalize" disabled></textarea>
-    <textarea matInput [value]="sentence.dz_value | capitalize" disabled></textarea>
+    <textarea
+      matInput
+      [value]="sentence?.fr_value || '' | capitalize"
+      placeholder="..."
+      disabled
+    ></textarea>
+    <textarea
+      matInput
+      [value]="sentence?.dz_value || '' | capitalize"
+      placeholder="..."
+      disabled
+    ></textarea>
   </mat-card-content>
 </mat-card>
