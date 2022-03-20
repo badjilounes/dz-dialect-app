@@ -21,7 +21,5 @@ export class MenuComponent {
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
     private readonly routing: RoutingService,
-  ) {
-    console.log(this.routing.getAllRoutes());
-  }
+  ) {}
 }
