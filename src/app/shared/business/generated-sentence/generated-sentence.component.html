@@ -28,5 +28,6 @@
       placeholder="..."
       disabled
     ></textarea>
+    <button mat-icon-button [cdkCopyToClipboard]="sentence?.dz_value || ''"><mat-icon>content_copy</mat-icon></button>
   </mat-card-content>
 </mat-card>

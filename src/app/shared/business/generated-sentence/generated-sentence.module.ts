@@ -7,6 +7,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { AppTranslateModule } from 'src/app/core/translate/translate.module';
 import { CapitalizeModule } from '../../technical/capitalize/capitalize.module';
 import { GeneratedSentenceComponent } from './generated-sentence.component';
+import {MatButtonModule} from "@angular/material/button";
+import {ClipboardModule} from "@angular/cdk/clipboard";
 
 @NgModule({
   declarations: [GeneratedSentenceComponent],
@@ -18,6 +20,8 @@ import { GeneratedSentenceComponent } from './generated-sentence.component';
     MatIconModule,
     MatSelectModule,
     MatDividerModule,
+    MatButtonModule,
+    ClipboardModule,
   ],
   exports: [GeneratedSentenceComponent],
 })
