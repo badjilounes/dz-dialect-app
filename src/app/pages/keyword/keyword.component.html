@@ -1,1 +1,21 @@
-<p>keyword works!</p>
+<div class="app-content" [ngClass]="{ handset: isHandset$ | async }">
+  <mat-card>
+    <mat-card-title>{{ 'keyword.menu.title' | translate }}</mat-card-title>
+    <mat-card-content>
+      <p>{{ 'keyword.explanation.content' | translate }}</p>
+      <mat-form-field class="example-form-field" appearance="fill">
+        <mat-label>{{ 'keyword.input.placeholder' | translate }}</mat-label>
+        <input matInput [(ngModel)]="keyword">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="generate()">
+        {{ 'random.generate-button' | translate }}
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<app-generated-keyword
+  *ngIf="(sentences$ | async)"
+  [sentences]="sentences$ | async"
+  [handset]="(isHandset$ | async) === true"
+></app-generated-keyword>
