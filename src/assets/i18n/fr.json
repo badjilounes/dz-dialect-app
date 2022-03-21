@@ -1,6 +1,7 @@
 {
   "generated-sentence.source-language.fr-fr": "Français",
   "generated-sentence.source-language.dz-al": "Arabe dialectal",
+  "generated-sentence.copied-to-clipboard": "Copié dans le presse-papier",
   "keyword.menu.title": "Par verbe",
   "keyword.input.label": "Verbe (à l'infinitif)",
   "keyword.explanation.content": "Entrer un verbe français à l'infinitif et consulter 5 phrases qui utilisent ce verbe en arabe dialectal.",
