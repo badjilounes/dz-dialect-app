@@ -3,19 +3,27 @@
     <mat-card-title>{{ 'keyword.menu.title' | translate }}</mat-card-title>
     <mat-card-content>
       <p>{{ 'keyword.explanation.content' | translate }}</p>
-      <mat-form-field class="example-form-field" appearance="fill">
-        <mat-label>{{ 'keyword.input.placeholder' | translate }}</mat-label>
-        <input matInput [(ngModel)]="keyword">
+
+      <mat-form-field class="example-form-field" appearance="outline">
+        <mat-label>{{ 'keyword.input.label' | translate }}</mat-label>
+        <input matInput [formControl]="verbControl" required />
+        <mat-error>Le verbe est obligatoire</mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary" (click)="generate()">
+
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="generate()"
+        [disabled]="verbControl.invalid"
+      >
         {{ 'random.generate-button' | translate }}
       </button>
     </mat-card-content>
   </mat-card>
-</div>
 
-<app-generated-keyword
-  *ngIf="(sentences$ | async)"
-  [sentences]="sentences$ | async"
-  [handset]="(isHandset$ | async) === true"
-></app-generated-keyword>
+  <app-generated-keyword
+    *ngIf="(sentences$ | async) || (history$ | async)?.length"
+    [sentences]="sentences$ | async"
+    [handset]="(isHandset$ | async) === true"
+  ></app-generated-keyword>
+</div>

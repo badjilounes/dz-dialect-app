@@ -1,9 +1,9 @@
 {
   "generated-sentence.source-language.fr-fr": "Français",
   "generated-sentence.source-language.dz-al": "Arabe dialectal",
-  "keyword.menu.title": "Par mot clef",
-  "keyword.input.placeholder": "Mot clef",
-  "keyword.explanation.content": "Entrer un mot en français et consulter toutes les propositions en arabe dialectal.",
+  "keyword.menu.title": "Par verbe",
+  "keyword.input.label": "Verbe (à l'infinitif)",
+  "keyword.explanation.content": "Entrer un verbe français à l'infinitif et consulter 5 phrases qui utilisent ce verbe en arabe dialectal.",
   "random.explanation.content": "Générer une phrase française aléatoirement et consulter sa traduction en arabe dialectal.",
   "random.explanation.title": "Apprenez l'arabe dialectal facilement",
   "random.generate-button": "Générer",

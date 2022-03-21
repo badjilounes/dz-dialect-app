@@ -1,14 +1,13 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ResponseSentences} from "../../../../api";
+import { Component, Input, OnInit } from '@angular/core';
+import { ResponseSentences } from '../../../../api';
 
 @Component({
   selector: 'app-generated-keyword',
   templateUrl: './generated-keyword.component.html',
-  styleUrls: ['./generated-keyword.component.scss']
+  styleUrls: ['./generated-keyword.component.scss'],
 })
 export class GeneratedKeywordComponent implements OnInit {
-
-  @Input() sentences?: ResponseSentences | null;
+  @Input() sentences?: ResponseSentences[] | null;
   @Input() handset!: boolean;
 
   sourceLanguage = { value: 'fr-FR', label: 'generated-sentence.source-language.fr-fr' };
@@ -16,9 +15,7 @@ export class GeneratedKeywordComponent implements OnInit {
   keyword: any;
   description: any;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
