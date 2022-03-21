@@ -19,7 +19,6 @@ import { RandomComponent } from './random.component';
     MatCardModule,
     MatButtonModule,
     MatSnackBarModule,
-    GeneratedSentenceModule,
     CapitalizeModule,
   ],
 })

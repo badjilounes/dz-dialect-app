@@ -1,0 +1,16 @@
+<mat-card [ngClass]="{ handset }" *ngFor="let sentence of sentences">
+  <mat-card-content>
+    <textarea
+      matInput
+      [value]="sentence?.fr_value || '' | capitalize"
+      placeholder="..."
+      disabled
+    ></textarea>
+    <textarea
+      matInput
+      [value]="sentence?.dz_value || '' | capitalize"
+      placeholder="..."
+      disabled
+    ></textarea>
+  </mat-card-content>
+</mat-card>
