@@ -32,8 +32,9 @@
 }
 
 .mat-icon-button {
-  width: fit-content;
-  justify-self: flex-end;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
 }
 
 .mat-card {
