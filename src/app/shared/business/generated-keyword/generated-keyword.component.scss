@@ -1,4 +1,8 @@
 :host {
+  display: grid;
+  grid-template-rows: 1fr;
+  row-gap: 0.5rem;
+
   .mat-form-field-appearance-outline {
     font-size: 0.9rem;
 
