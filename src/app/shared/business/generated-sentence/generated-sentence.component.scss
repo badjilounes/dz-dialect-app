@@ -31,6 +31,11 @@
   width: 100%;
 }
 
+.mat-icon-button {
+  width: fit-content;
+  justify-self: flex-end;
+}
+
 .mat-card {
   .mat-card-title {
     display: grid;

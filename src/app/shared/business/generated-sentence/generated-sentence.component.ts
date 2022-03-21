@@ -12,4 +12,5 @@ export class GeneratedSentenceComponent {
 
   sourceLanguage = { value: 'fr-FR', label: 'generated-sentence.source-language.fr-fr' };
   targetLanguage = { value: 'dz-AL', label: 'generated-sentence.source-language.dz-al' };
+
 }
