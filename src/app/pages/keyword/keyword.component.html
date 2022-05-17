@@ -1,29 +1,37 @@
 <div class="app-content" [ngClass]="{ handset: isHandset$ | async }">
   <mat-card>
     <mat-card-title>{{ 'keyword.menu.title' | translate }}</mat-card-title>
-    <mat-card-content>
+
+    <form mat-card-content (ngSubmit)="generate()">
       <p>{{ 'keyword.explanation.content' | translate }}</p>
 
-      <mat-form-field class="example-form-field" appearance="outline">
+      <mat-form-field appearance="outline">
         <mat-label>{{ 'keyword.input.label' | translate }}</mat-label>
-        <input matInput [formControl]="verbControl" required />
-        <mat-error>Le verbe est obligatoire</mat-error>
+        <input
+          type="text"
+          placeholder="Sélectionnez un verbe"
+          aria-label="Verb"
+          matInput
+          [formControl]="verbControl"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions$ | async" [value]="option | capitalize">
+            {{ option | capitalize }}
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
 
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="generate()"
-        [disabled]="verbControl.invalid"
-      >
+      <button mat-raised-button color="primary" [disabled]="verbControl.invalid">
         {{ 'random.generate-button' | translate }}
       </button>
-    </mat-card-content>
+    </form>
   </mat-card>
 
-  <app-generated-keyword
-    *ngIf="(sentences$ | async) || (history$ | async)?.length"
-    [sentences]="sentences$ | async"
-    [handset]="(isHandset$ | async) === true"
-  ></app-generated-keyword>
+  <div *ngIf="(sentences$ | async) || (history$ | async)?.length" class="translations-container">
+    <app-translation-bloc
+      *ngFor="let sentence of sentences$ | async"
+      [sentence]="sentence"
+    ></app-translation-bloc>
+  </div>
 </div>

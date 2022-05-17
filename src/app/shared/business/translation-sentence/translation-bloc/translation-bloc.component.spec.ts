@@ -1,20 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { GeneratedSentenceComponent } from './generated-sentence.component';
+import { TranslationBlocComponent } from './translation-bloc.component';
 
 describe('GeneratedSentenceComponent', () => {
-  let component: GeneratedSentenceComponent;
-  let fixture: ComponentFixture<GeneratedSentenceComponent>;
+  let component: TranslationBlocComponent;
+  let fixture: ComponentFixture<TranslationBlocComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GeneratedSentenceComponent ]
-    })
-    .compileComponents();
+      declarations: [TranslationBlocComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GeneratedSentenceComponent);
+    fixture = TestBed.createComponent(TranslationBlocComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
