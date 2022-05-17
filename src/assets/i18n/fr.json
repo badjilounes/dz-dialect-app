@@ -1,6 +1,6 @@
 {
-  "generated-sentence.source-language.fr-fr": "Français",
-  "generated-sentence.source-language.dz-al": "Arabe dialectal",
+  "generated-sentence.source-language.fr_value": "Français",
+  "generated-sentence.source-language.dz_value": "Arabe dialectal",
   "generated-sentence.copied-to-clipboard": "Copié dans le presse-papier",
   "keyword.menu.title": "Par verbe",
   "keyword.input.label": "Verbe (à l'infinitif)",

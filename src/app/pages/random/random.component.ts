@@ -1,10 +1,9 @@
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {Component} from '@angular/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {catchError, EMPTY, map, Observable, of, shareReplay, tap} from 'rxjs';
-import {DefaultService, ResponseSentences} from 'src/api';
-import {HistoryStorageService} from "../../shared/business/storage/history-storage.service";
-
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { catchError, EMPTY, map, Observable, of, shareReplay, tap } from 'rxjs';
+import { DefaultService, ResponseSentences } from 'src/api';
+import { HistoryStorageService } from '../../shared/business/storage/history-storage.service';
 
 @Component({
   selector: 'app-random',
@@ -31,7 +30,7 @@ export class RandomComponent {
   }
 
   generate(): void {
-    this.sentence$ = this.api.sentenceGenerateGet().pipe(
+    this.sentence$ = this.api.generateSentenceGet().pipe(
       map((response) => response.sentences?.[0]),
       tap((sentence) => this.storage.add(sentence)),
       catchError((error) => {

@@ -26,7 +26,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class DefaultService {
 
-    protected basePath = 'https://us-central1-dz-dialect-api.cloudfunctions.net/generate-sentence';
+    protected basePath = 'https://us-central1-dz-dialect-api.cloudfunctions.net';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -63,14 +63,14 @@ export class DefaultService {
      * @param verbs verbs to be used
      * @param adjectives adjectives to be used
      * @param nouns nouns to be used
-     * @param types types of sentences to be generated
+     * @param schemas types of sentences to be generated
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sentenceGenerateGet(count?: number, tenses?: Array<string>, verbs?: Array<string>, adjectives?: Array<string>, nouns?: Array<string>, types?: Array<string>, observe?: 'body', reportProgress?: boolean): Observable<Response>;
-    public sentenceGenerateGet(count?: number, tenses?: Array<string>, verbs?: Array<string>, adjectives?: Array<string>, nouns?: Array<string>, types?: Array<string>, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Response>>;
-    public sentenceGenerateGet(count?: number, tenses?: Array<string>, verbs?: Array<string>, adjectives?: Array<string>, nouns?: Array<string>, types?: Array<string>, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Response>>;
-    public sentenceGenerateGet(count?: number, tenses?: Array<string>, verbs?: Array<string>, adjectives?: Array<string>, nouns?: Array<string>, types?: Array<string>, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public generateSentenceGet(count?: number, tenses?: Array<string>, verbs?: Array<string>, adjectives?: Array<string>, nouns?: Array<string>, schemas?: Array<string>, observe?: 'body', reportProgress?: boolean): Observable<Response>;
+    public generateSentenceGet(count?: number, tenses?: Array<string>, verbs?: Array<string>, adjectives?: Array<string>, nouns?: Array<string>, schemas?: Array<string>, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Response>>;
+    public generateSentenceGet(count?: number, tenses?: Array<string>, verbs?: Array<string>, adjectives?: Array<string>, nouns?: Array<string>, schemas?: Array<string>, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Response>>;
+    public generateSentenceGet(count?: number, tenses?: Array<string>, verbs?: Array<string>, adjectives?: Array<string>, nouns?: Array<string>, schemas?: Array<string>, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
 
@@ -102,9 +102,9 @@ export class DefaultService {
                 queryParameters = queryParameters.append('nouns', <any>element);
             })
         }
-        if (types) {
-            types.forEach((element) => {
-                queryParameters = queryParameters.append('types', <any>element);
+        if (schemas) {
+            schemas.forEach((element) => {
+                queryParameters = queryParameters.append('schemas', <any>element);
             })
         }
 
@@ -123,9 +123,44 @@ export class DefaultService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<Response>('get',`${this.basePath}/sentence/generate`,
+        return this.httpClient.request<Response>('get',`${this.basePath}/generate-sentence`,
             {
                 params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * get elements
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getElementsGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public getElementsGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public getElementsGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public getElementsGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get',`${this.basePath}/get-elements`,
+            {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

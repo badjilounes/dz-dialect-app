@@ -1,0 +1,17 @@
+<div class="container" [ngClass]="{ handset: isHandset$ | async }">
+  <mat-form-field appearance="outline">
+    <mat-select [value]="sourceLanguage.value" [compareWith]="compareWithValue">
+      <mat-option [value]="sourceLanguage.value">{{ sourceLanguage.label | translate }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-icon-button (click)="swapLanguages()" [ngClass]="{ handset: isHandset$ | async }">
+    <mat-icon>swap_horiz</mat-icon>
+  </button>
+
+  <mat-form-field appearance="outline">
+    <mat-select [value]="targetLanguage.value" [compareWith]="compareWithValue">
+      <mat-option [value]="targetLanguage.value">{{ targetLanguage.label | translate }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

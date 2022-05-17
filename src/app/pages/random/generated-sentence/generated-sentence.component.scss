@@ -1,0 +1,14 @@
+.mat-card {
+  &.handset .mat-card-content {
+    display: grid;
+    grid-template-rows: max-content;
+    margin-top: 1rem;
+    row-gap: 0.5rem;
+  }
+
+  &:not(.handset) .mat-card-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3rem;
+  }
+}

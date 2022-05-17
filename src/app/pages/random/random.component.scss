@@ -10,6 +10,10 @@
 
 .mat-card {
   margin-bottom: 1.5rem;
+
+  .mat-card-title {
+    line-height: 28px;
+  }
 }
 
 .mat-card-content {

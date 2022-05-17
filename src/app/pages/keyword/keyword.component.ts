@@ -33,7 +33,7 @@ export class KeywordComponent implements OnInit {
 
   generate(): void {
     if (this.verbControl.valid) {
-      this.sentences$ = this.api.sentenceGenerateGet(5, undefined, [this.verbControl.value]).pipe(
+      this.sentences$ = this.api.generateSentenceGet(5, undefined, [this.verbControl.value]).pipe(
         map((response) => response.sentences),
         tap((sentences) => (sentences || []).forEach((sentence) => this.storage.add(sentence))),
         catchError((error) => {
