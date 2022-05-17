@@ -1,13 +1,12 @@
-import {NgModule} from '@angular/core';
-import {KeywordComponent} from './keyword.component';
-import {MatCardModule} from "@angular/material/card";
-import {GeneratedSentenceModule} from "../../shared/business/generated-sentence/generated-sentence.module";
-import {CommonModule} from "@angular/common";
-import {TranslateModule} from "@ngx-translate/core";
-import {MatButtonModule} from "@angular/material/button";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatInputModule} from "@angular/material/input";
-import {GeneratedKeywordModule} from "../../shared/business/generated-keyword/generated-keyword.module";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { TranslateModule } from '@ngx-translate/core';
+import { GeneratedKeywordModule } from '../../shared/business/generated-keyword/generated-keyword.module';
+import { KeywordComponent } from './keyword.component';
 
 @NgModule({
   declarations: [KeywordComponent],
@@ -19,7 +18,7 @@ import {GeneratedKeywordModule} from "../../shared/business/generated-keyword/ge
     ReactiveFormsModule,
     MatInputModule,
     FormsModule,
-    GeneratedKeywordModule
-  ]
+    GeneratedKeywordModule,
+  ],
 })
 export class KeywordModule {}

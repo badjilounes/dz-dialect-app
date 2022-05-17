@@ -1,0 +1,5 @@
+<textarea matInput [value]="content | capitalize" placeholder="..." disabled></textarea>
+
+<button mat-icon-button (click)="copyToClipboard()" [ngClass]="{ handset: isHandset$ | async }">
+  <mat-icon>content_copy</mat-icon>
+</button>

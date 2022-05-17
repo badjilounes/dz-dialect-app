@@ -1,17 +1,17 @@
+import { ClipboardModule } from '@angular/cdk/clipboard';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { AppTranslateModule } from 'src/app/core/translate/translate.module';
 import { CapitalizeModule } from '../../technical/capitalize/capitalize.module';
-import { GeneratedSentenceComponent } from './generated-sentence.component';
-import {MatButtonModule} from "@angular/material/button";
-import {ClipboardModule} from "@angular/cdk/clipboard";
+import { TranslationContentComponent } from './translation-content/translation-content.component';
+import { TranslationHeaderComponent } from './translation-header/translation-header.component';
 
 @NgModule({
-  declarations: [GeneratedSentenceComponent],
+  declarations: [TranslationHeaderComponent, TranslationContentComponent],
   imports: [
     CommonModule,
     AppTranslateModule,
@@ -19,10 +19,9 @@ import {ClipboardModule} from "@angular/cdk/clipboard";
     MatCardModule,
     MatIconModule,
     MatSelectModule,
-    MatDividerModule,
     MatButtonModule,
     ClipboardModule,
   ],
-  exports: [GeneratedSentenceComponent],
+  exports: [TranslationHeaderComponent, TranslationContentComponent],
 })
-export class GeneratedSentenceModule {}
+export class TranslationSentenceModule {}

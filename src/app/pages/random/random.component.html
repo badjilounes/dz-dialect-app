@@ -12,6 +12,5 @@
   <app-generated-sentence
     *ngIf="(sentence$ | async) || (history$ | async)?.length"
     [sentence]="sentence$ | async"
-    [handset]="(isHandset$ | async) === true"
   ></app-generated-sentence>
 </div>
