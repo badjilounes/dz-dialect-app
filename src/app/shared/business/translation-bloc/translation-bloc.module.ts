@@ -25,6 +25,6 @@ import { TranslationHeaderComponent } from './translation-header/translation-hea
     MatDividerModule,
     ClipboardModule,
   ],
-  exports: [TranslationHeaderComponent, TranslationContentComponent, TranslationBlocComponent],
+  exports: [TranslationBlocComponent],
 })
 export class TranslationSentenceModule {}

@@ -2,7 +2,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, Input } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
 import { ResponseSentences } from 'src/api';
-import { Language } from 'src/app/shared/business/translation-sentence/translation-header/translation-header.component';
+import { Language } from '../translation-header/translation-header.component';
 
 @Component({
   selector: 'app-translation-bloc',
