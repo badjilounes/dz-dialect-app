@@ -2,7 +2,17 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { catchError, EMPTY, map, Observable, of, shareReplay, tap } from 'rxjs';
+import {
+  catchError,
+  EMPTY,
+  map,
+  Observable,
+  of,
+  shareReplay,
+  startWith,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { DefaultService, ResponseSentences } from '../../../api';
 import { HistoryStorageService } from '../../shared/business/storage/history-storage.service';
 
@@ -12,10 +22,19 @@ import { HistoryStorageService } from '../../shared/business/storage/history-sto
   styleUrls: ['./keyword.component.scss'],
 })
 export class KeywordComponent implements OnInit {
-  verbControl = new FormControl('', [Validators.required]);
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+    map((result) => result.matches),
+    shareReplay(),
+  );
 
   sentences$: Observable<ResponseSentences[] | undefined> = of();
   history$: Observable<ResponseSentences[]> = this.storage.history$;
+
+  verbControl = new FormControl('', [Validators.required]);
+  filteredOptions$: Observable<string[]> = of([]);
+  verbOptions$: Observable<string[]> = this.api
+    .getElementsGet()
+    .pipe(map((response) => response.verbs));
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
@@ -24,23 +43,33 @@ export class KeywordComponent implements OnInit {
     private readonly snackBar: MatSnackBar,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.filteredOptions$ = this.verbControl.valueChanges.pipe(
+      startWith(''),
+      switchMap((filter) =>
+        this.verbOptions$.pipe(map((options) => this._filter(options, filter))),
+      ),
+    );
+  }
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map((result) => result.matches),
-    shareReplay(),
-  );
+  private _filter(options: string[], value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return options.filter((option) => option.toLowerCase().includes(filterValue));
+  }
 
   generate(): void {
     if (this.verbControl.valid) {
-      this.sentences$ = this.api.generateSentenceGet(5, undefined, [this.verbControl.value]).pipe(
-        map((response) => response.sentences),
-        tap((sentences) => (sentences || []).forEach((sentence) => this.storage.add(sentence))),
-        catchError((error) => {
-          this.snackBar.open(error.message, 'OK', { duration: 3000 });
-          return EMPTY;
-        }),
-      );
+      this.sentences$ = this.api
+        .generateSentenceGet(5, undefined, [this.verbControl.value.toLowerCase()])
+        .pipe(
+          map((response) => response.sentences),
+          tap((sentences) => (sentences || []).forEach((sentence) => this.storage.add(sentence))),
+          catchError((error) => {
+            this.snackBar.open(error.message, 'OK', { duration: 3000 });
+            return EMPTY;
+          }),
+        );
     }
   }
 }
