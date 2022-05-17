@@ -6,8 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { TranslateModule } from '@ngx-translate/core';
+import { TranslationSentenceModule } from 'src/app/shared/business/translation-sentence/translation-sentence.module';
 import { CapitalizeModule } from 'src/app/shared/technical/capitalize/capitalize.module';
-import { GeneratedKeywordModule } from '../../shared/business/generated-keyword/generated-keyword.module';
 import { KeywordComponent } from './keyword.component';
 
 @NgModule({
@@ -17,12 +17,12 @@ import { KeywordComponent } from './keyword.component';
     TranslateModule,
     ReactiveFormsModule,
     FormsModule,
-    GeneratedKeywordModule,
     MatAutocompleteModule,
     MatCardModule,
     MatButtonModule,
     MatInputModule,
     CapitalizeModule,
+    TranslationSentenceModule,
   ],
 })
 export class KeywordModule {}

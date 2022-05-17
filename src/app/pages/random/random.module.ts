@@ -9,11 +9,10 @@ import { AppTranslateModule } from 'src/app/core/translate/translate.module';
 import { TranslationSentenceModule } from 'src/app/shared/business/translation-sentence/translation-sentence.module';
 import { CapitalizeModule } from 'src/app/shared/technical/capitalize/capitalize.module';
 import { StorageModule } from 'src/app/shared/technical/storage/storage.module';
-import { GeneratedSentenceComponent } from './generated-sentence/generated-sentence.component';
 import { RandomComponent } from './random.component';
 
 @NgModule({
-  declarations: [RandomComponent, GeneratedSentenceComponent],
+  declarations: [RandomComponent],
   imports: [
     CommonModule,
     StorageModule,

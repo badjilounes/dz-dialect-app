@@ -9,8 +9,8 @@
     </mat-card-content>
   </mat-card>
 
-  <app-generated-sentence
+  <app-translation-bloc
     *ngIf="(sentence$ | async) || (history$ | async)?.length"
     [sentence]="sentence$ | async"
-  ></app-generated-sentence>
+  ></app-translation-bloc>
 </div>

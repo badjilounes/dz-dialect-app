@@ -5,11 +5,11 @@ import { ResponseSentences } from 'src/api';
 import { Language } from 'src/app/shared/business/translation-sentence/translation-header/translation-header.component';
 
 @Component({
-  selector: 'app-generated-sentence',
-  templateUrl: './generated-sentence.component.html',
-  styleUrls: ['./generated-sentence.component.scss'],
+  selector: 'app-translation-bloc',
+  templateUrl: './translation-bloc.component.html',
+  styleUrls: ['./translation-bloc.component.scss'],
 })
-export class GeneratedSentenceComponent {
+export class TranslationBlocComponent {
   @Input() sentence?: ResponseSentences | null;
 
   private _sourceLanguage: Language = {
