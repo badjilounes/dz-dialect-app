@@ -1,12 +1,12 @@
 {
   "generated-sentence.source-language.fr_value": "Français",
-  "generated-sentence.source-language.dz_value": "Arabe dialectal",
+  "generated-sentence.source-language.dz_value": "Dialecte algérien",
   "generated-sentence.copied-to-clipboard": "Copié dans le presse-papier",
   "keyword.menu.title": "Par verbe",
   "keyword.input.label": "Verbe (à l'infinitif)",
-  "keyword.explanation.content": "Entrer un verbe français à l'infinitif et consulter 5 phrases qui utilisent ce verbe en arabe dialectal.",
-  "random.explanation.content": "Générer une phrase française aléatoirement et consulter sa traduction en arabe dialectal.",
-  "random.explanation.title": "Apprenez l'arabe dialectal facilement",
+  "keyword.explanation.content": "Entrer un verbe français à l'infinitif et consulter 5 phrases qui utilisent ce verbe en dialecte algérien.",
+  "random.explanation.content": "Générer une phrase française aléatoirement et consulter sa traduction en dialecte algérien.",
+  "random.explanation.title": "Apprenez le dialecte algérien facilement",
   "random.generate-button": "Générer",
   "random.menu.title": "Aléatoire",
   "title": "Générateur de phrases"
