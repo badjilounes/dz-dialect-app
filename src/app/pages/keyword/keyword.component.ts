@@ -31,6 +31,9 @@ export class KeywordComponent implements OnInit {
   history$: Observable<ResponseSentences[]> = this.storage.history$;
 
   verbControl = new FormControl('', [Validators.required]);
+  tensesControl = new FormControl([]);
+  tenses = ['PAST', 'PRESENT', 'FUTURE', 'IMPERATIVE'];
+
   filteredOptions$: Observable<string[]> = of([]);
   verbOptions$: Observable<string[]> = this.api
     .getElementsGet()
@@ -61,7 +64,7 @@ export class KeywordComponent implements OnInit {
   generate(): void {
     if (this.verbControl.valid) {
       this.sentences$ = this.api
-        .generateSentenceGet(5, undefined, [this.verbControl.value.toLowerCase()])
+        .generateSentenceGet(5, this.tensesControl.value, [this.verbControl.value.toLowerCase()])
         .pipe(
           map((response) => response.sentences),
           tap((sentences) => (sentences || []).forEach((sentence) => this.storage.add(sentence))),

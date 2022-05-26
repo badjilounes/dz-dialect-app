@@ -5,22 +5,47 @@
     <form mat-card-content (ngSubmit)="generate()">
       <p>{{ 'keyword.explanation.content' | translate }}</p>
 
-      <mat-form-field appearance="outline">
-        <mat-label>{{ 'keyword.input.label' | translate }}</mat-label>
-        <input
-          type="text"
-          placeholder="Sélectionnez un verbe"
-          aria-label="Verb"
-          matInput
-          [formControl]="verbControl"
-          [matAutocomplete]="auto"
-        />
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-          <mat-option *ngFor="let option of filteredOptions$ | async" [value]="option | capitalize">
-            {{ option | capitalize }}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
+      <div class="form-fields-container">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'keyword.input.label' | translate }}</mat-label>
+          <input
+            type="text"
+            [placeholder]="'keyword.input.placeholder' | translate"
+            aria-label="Verb"
+            matInput
+            [formControl]="verbControl"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option
+              *ngFor="let option of filteredOptions$ | async"
+              [value]="option | capitalize"
+            >
+              {{ option | capitalize }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-select
+            [formControl]="tensesControl"
+            multiple
+            [placeholder]="'keyword.tense.placeholder' | translate"
+          >
+            <mat-select-trigger>
+              {{ 'keyword.tense.' + tensesControl.value[0] | translate }}
+
+              <span *ngIf="tensesControl.value?.length > 1">
+                (+{{ tensesControl.value.length - 1 }}
+                {{ tensesControl.value?.length === 2 ? 'autre' : 'autres' }})
+              </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let tense of tenses" [value]="tense">{{
+              'keyword.tense.' + tense | translate
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
       <button mat-raised-button color="primary" [disabled]="verbControl.invalid">
         {{ 'random.generate-button' | translate }}
@@ -28,7 +53,7 @@
     </form>
   </mat-card>
 
-  <div *ngIf="(sentences$ | async) || (history$ | async)?.length" class="translations-container">
+  <div class="translations-container">
     <app-translation-bloc
       *ngFor="let sentence of sentences$ | async"
       [sentence]="sentence"

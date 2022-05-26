@@ -5,6 +5,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationSentenceModule } from 'src/app/shared/business/translation-bloc/translation-bloc.module';
 import { CapitalizeModule } from 'src/app/shared/technical/capitalize/capitalize.module';
@@ -21,6 +22,7 @@ import { KeywordComponent } from './keyword.component';
     MatCardModule,
     MatButtonModule,
     MatInputModule,
+    MatSelectModule,
     CapitalizeModule,
     TranslationSentenceModule,
   ],
