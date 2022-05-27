@@ -16,5 +16,6 @@
   "random.generate-button": "Générer",
   "random.menu.title": "Aléatoire",
   "test.menu.title": "Test",
+  "test.question.instruction": "Écris ceci en français",
   "title": "Générateur de phrases"
 }

@@ -1,4 +1,7 @@
-<app-test-progress></app-test-progress>
-<app-test-question></app-test-question>
-<app-test-response></app-test-response>
-<app-test-bottom-sheet></app-test-bottom-sheet>
+<div class="app-content" [ngClass]="{ handset: isHandset$ | async }">
+  <app-test-progress></app-test-progress>
+  <app-test-question></app-test-question>
+  <app-test-response></app-test-response>
+  <mat-divider></mat-divider>
+  <app-test-bottom-sheet></app-test-bottom-sheet>
+</div>

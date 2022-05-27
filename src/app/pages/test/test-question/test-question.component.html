@@ -1,1 +1,7 @@
-<p>test-question works!</p>
+<div class="question-container" [ngClass]="{ handset: isHandset$ | async }">
+  <h1>{{ 'test.question.instruction' | translate }}</h1>
+
+  <mat-chip-list aria-label="sentence to translate">
+    <mat-chip [selectable]="false" [disableRipple]="true">{{ sentence }}</mat-chip>
+  </mat-chip-list>
+</div>
