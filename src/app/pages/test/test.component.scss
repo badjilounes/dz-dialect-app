@@ -1,0 +1,13 @@
+
+:host{
+  display: grid;
+}
+
+.app-content {
+  display: grid;
+  grid-template-rows: auto min-content 1fr auto;
+
+  .mat-divider {
+    width: 100%;
+  }
+}

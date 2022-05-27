@@ -14,4 +14,6 @@ export interface ResponseSentences {
   fr_value?: string;
   dz_value?: string;
   dz_value_ar?: string;
+  additional_information?: any;
+  word_propositions?: Array<string>;
 }
