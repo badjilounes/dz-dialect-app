@@ -22,8 +22,14 @@
 
   .mat-progress-bar {
     height: 18px;
-    border-radius: 18px;
   }
+
+  .mat-progress-bar,
+  .mat-progress-bar .mat-progress-bar-fill::after {
+    border-radius: 18px;
+    -webkit-border-radius: 18px;
+  }
+
 }
 
 
