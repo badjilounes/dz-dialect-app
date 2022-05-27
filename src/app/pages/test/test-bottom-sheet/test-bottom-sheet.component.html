@@ -1,7 +1,9 @@
-<div class="bottom-sheet-container" [ngClass]="{ handset: isHandset$ | async }">
-  <button mat-stroked-button color="accent" class="skip-button" (click)="nextStep()">PASSER</button>
+<div class="bottom-sheet-container validate" [ngClass]="{ handset: isHandset$ | async }">
+  <button mat-stroked-button color="accent" class="skip-button" (click)="getResult()">
+    PASSER
+  </button>
 
-  <button mat-raised-button color="primary" class="validate-button" (click)="nextStep()">
+  <button mat-raised-button color="primary" class="validate-button" (click)="getResult()">
     VALIDER
   </button>
 </div>

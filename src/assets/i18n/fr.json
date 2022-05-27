@@ -1,4 +1,7 @@
 {
+  "bottom-sheet.next-button": "CONTINUER",
+  "bottom-sheet.success.false.title": "La bonne réponse est :",
+  "bottom-sheet.success.true.title": "Excellent! Ça signifie :",
   "generated-sentence.source-language.fr_value": "Français",
   "generated-sentence.copied-to-clipboard": "Copié dans le presse-papier",
   "generated-sentence.source-language.dz_value": "Dialecte algérien",

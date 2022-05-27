@@ -1,7 +1,9 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { map, Observable, shareReplay } from 'rxjs';
-import { TestService } from '../test.service';
+import { TestBottomSheetResultComponent } from '../test-bottom-sheet-result/test-bottom-sheet-result.component';
+import { StepResult, TestService } from '../test.service';
 
 @Component({
   selector: 'app-test-bottom-sheet',
@@ -14,12 +16,24 @@ export class TestBottomSheetComponent implements OnInit {
     shareReplay(),
   );
 
+  stepResult: StepResult | undefined;
+
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
     private readonly testService: TestService,
+    private readonly bottomSheet: MatBottomSheet,
   ) {}
 
   ngOnInit(): void {}
+
+  getResult() {
+    this.stepResult = this.testService.getResult();
+
+    this.bottomSheet.open(TestBottomSheetResultComponent, {
+      disableClose: true,
+      panelClass: ['step-result', this.stepResult?.success ? 'success' : 'failure'],
+    });
+  }
 
   nextStep() {
     this.testService.nextStep();

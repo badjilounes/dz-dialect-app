@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ResponseSentences } from 'src/api';
 
-type StepResponse = {
+export type StepResponse = {
   step: number;
   responses: string[];
+};
+
+export type StepResult = {
+  success: boolean;
+  answer: string;
 };
 
 @Injectable({
@@ -17,6 +22,17 @@ export class TestService {
   responses: StepResponse[] = [];
 
   constructor() {}
+
+  getResult(): StepResult | undefined {
+    const success =
+      this.sentences[this.step].fr_value?.replace(/ /g, '') ===
+      this.responses[this.step]?.responses.join().replace(/,/g, '');
+
+    return {
+      success,
+      answer: this.sentences[this.step].fr_value ?? '',
+    };
+  }
 
   nextStep() {
     this.step++;
