@@ -1,0 +1,29 @@
+
+@use '@angular/material' as mat;
+@import "../variables.scss";
+
+
+.mat-bottom-sheet-container.step-result {
+  padding: 24px;
+  min-width: 100vw;
+
+  &.failure {
+    background-color: $dz-dialect-app-error-bg;
+    color: $dz-dialect-app-error-color;
+
+    .mat-raised-button {
+      background-color: $dz-dialect-app-error-color;
+      color: mat.get-color-from-palette(mat.$grey-palette, A100)
+    }
+  }
+
+  &.success {
+    background-color: $dz-dialect-app-success-bg;
+    color: $dz-dialect-app-success-color;
+
+    .mat-raised-button {
+      background-color: $dz-dialect-app-success-color;
+      color: mat.get-color-from-palette(mat.$grey-palette, A100)
+    }
+  }
+}

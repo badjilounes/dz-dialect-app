@@ -1,7 +1,5 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use 'sass:map';
-
 @use '@angular/material' as mat;
 // Plus imports for other components in your app.
 
@@ -37,6 +35,9 @@ $dz-dialect-app-theme: mat.define-light-theme(
 @include mat.all-component-themes($dz-dialect-app-theme);
 
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/styles/material/bottom-sheet.scss";
+@import "./assets/styles/material/overlay.scss";
+
 
 html,
 body {
@@ -48,31 +49,3 @@ body {
   touch-action: pan-x pan-y;
 }
 
-.cdk-overlay-container {
-  z-index: 10000;
-}
-
-.mat-bottom-sheet-container.step-result {
-  padding: 24px;
-  min-width: 100vw;
-
-  &.failure {
-    background-color: #ffdfe0;
-    color: #ea2b2b;
-
-    .mat-raised-button {
-      background-color: #ea2b2b;
-      color: #fff;
-    }
-  }
-
-  &.success {
-    background-color: #d7ffb8;
-    color: #58a700;
-
-    .mat-raised-button {
-      background-color: #58a700;
-      color: #fff;
-    }
-  }
-}
