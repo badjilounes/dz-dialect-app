@@ -45,6 +45,7 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+  touch-action: pan-x pan-y;
 }
 
 .cdk-overlay-container {
