@@ -26,7 +26,8 @@
 
 
   .mat-progress-bar,
-  .mat-progress-bar ::ng-deep .mat-progress-bar-background,
+  .mat-progress-bar::-webkit-progress-bar,
+  .mat-progress-bar .mat-progress-bar-fill,
   .mat-progress-bar .mat-progress-bar-fill::after {
     border-radius: 18px;
     -webkit-border-radius: 18px;
