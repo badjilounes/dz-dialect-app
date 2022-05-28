@@ -1,6 +1,6 @@
-<div class="error-container" [ngClass]="{ handset: isHandset$ | async }">
-  <h3>{{ 'bottom-sheet.success.' + result?.success + '.title' | translate }}</h3>
-  <p>{{ result?.answer }}</p>
+<div class="error-container">
+  <h3>{{ 'bottom-sheet.success.' + result.success + '.title' | translate }}</h3>
+  <p>{{ result.answer }}</p>
   <button mat-raised-button (click)="nextStep()">
     {{ 'bottom-sheet.next-button' | translate }}
   </button>

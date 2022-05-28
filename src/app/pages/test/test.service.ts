@@ -21,20 +21,22 @@ export class TestService {
   sentences: ResponseSentences[] = [];
   responses: StepResponse[] = [];
 
-  constructor() {}
-
-  getResult(): StepResult | undefined {
-    const success =
+  get success(): boolean {
+    return (
       this.sentences[this.step].fr_value?.replace(/ /g, '') ===
-      this.responses[this.step]?.responses.join().replace(/,/g, '');
-
-    return {
-      success,
-      answer: this.sentences[this.step].fr_value ?? '',
-    };
+      this.responses[this.step]?.responses.join().replace(/,/g, '')
+    );
   }
 
+  get answer(): string {
+    return this.sentences[this.step].fr_value ?? '';
+  }
+
+  constructor() {}
+
   nextStep() {
-    this.step++;
+    if (this.step < this.nbSteps - 1) {
+      this.step++;
+    }
   }
 }

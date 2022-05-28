@@ -26,16 +26,19 @@ export class TestBottomSheetComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getResult() {
-    this.stepResult = this.testService.getResult();
+  showResult() {
+    this.stepResult = {
+      success: this.testService.success,
+      answer: this.testService.answer,
+    };
 
-    this.bottomSheet.open(TestBottomSheetResultComponent, {
+    const bottomSheetRef = this.bottomSheet.open(TestBottomSheetResultComponent, {
       disableClose: true,
       panelClass: ['step-result', this.stepResult?.success ? 'success' : 'failure'],
     });
-  }
 
-  nextStep() {
-    this.testService.nextStep();
+    bottomSheetRef.afterDismissed().subscribe(() => {
+      this.testService.nextStep();
+    });
   }
 }
