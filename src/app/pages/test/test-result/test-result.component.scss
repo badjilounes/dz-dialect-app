@@ -102,10 +102,6 @@
       border-color: mat.get-color-from-palette($primary, 50);
     }
 
-    .test-result-description h1 {
-      color: mat.get-color-from-palette($primary, 50);
-    }
-
     .mat-progress-spinner circle, .mat-spinner circle {
       stroke: mat.get-color-from-palette($primary, 50);
     }
