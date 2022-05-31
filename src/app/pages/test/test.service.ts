@@ -31,13 +31,13 @@ export class TestService {
 
   get success(): boolean {
     return (
-      this.sentences[this.step].fr_value?.replace(/ /g, '') ===
-      this.responses[this.step]?.responses.join().replace(/,/g, '')
+      this.sentences[this.step]?.fr_value?.replace(/ /g, '') ===
+      this.responses[this.step]?.responses?.join().replace(/,/g, '')
     );
   }
 
   get answer(): string {
-    return this.sentences[this.step].fr_value ?? '';
+    return this.sentences[this.step]?.fr_value ?? '';
   }
 
   get isLastStep(): boolean {

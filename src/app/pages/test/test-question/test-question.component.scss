@@ -28,10 +28,16 @@
   width: fit-content;
   padding: 12px 24px;
   height: 68px;
-  border: 2px solid map.get(mat.$grey-palette, A400);
+  border: 2px solid;
 }
 
-.mat-standard-chip,
-.mat-standard-chip::after {
-  background: map.get(mat.$grey-palette, 50);
+@mixin test-question-theme($theme) {
+  $foreground: map-get($theme, foreground);
+
+  app-test-question .question-container {
+    .mat-standard-chip{
+      border-color: mat.get-color-from-palette($foreground, divider);
+      box-shadow: 0 2px 0 mat.get-color-from-palette($foreground, divider);
+    }
+  }
 }

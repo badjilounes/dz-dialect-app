@@ -6,24 +6,34 @@
 .mat-bottom-sheet-container.step-result {
   padding: 24px;
   min-width: 100vw;
+}
 
-  &.failure {
-    background-color: $dz-dialect-app-error-bg;
-    color: $dz-dialect-app-error-color;
 
-    .mat-raised-button {
-      background-color: $dz-dialect-app-error-color;
-      color: mat.get-color-from-palette(mat.$grey-palette, A100)
+@mixin bottom-sheet-theme($theme) {
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+
+
+  .mat-bottom-sheet-container.step-result {
+
+    &.failure {
+      background-color: mat.get-color-from-palette($warn, 200);
+      color: mat.get-color-from-palette($warn, 800);
+
+      .mat-raised-button {
+        background-color: mat.get-color-from-palette($warn, 800);
+        color: mat.get-color-from-palette($warn, 200);
+      }
     }
-  }
 
-  &.success {
-    background-color: $dz-dialect-app-success-bg;
-    color: $dz-dialect-app-success-color;
+    &.success {
+      background-color: mat.get-color-from-palette($primary, 200);
+      color: mat.get-color-from-palette($primary, 800);
 
-    .mat-raised-button {
-      background-color: $dz-dialect-app-success-color;
-      color: mat.get-color-from-palette(mat.$grey-palette, A100)
+      .mat-raised-button {
+        background-color: mat.get-color-from-palette($primary, 800);
+        color: mat.get-color-from-palette($primary, 200);
+      }
     }
   }
 }
