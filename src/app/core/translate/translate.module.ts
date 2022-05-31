@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppMissingTranslationHandler } from './missing-translation-handler';
@@ -20,4 +20,18 @@ import { AppMissingTranslationHandler } from './missing-translation-handler';
   ],
   exports: [TranslateModule],
 })
-export class AppTranslateModule {}
+export class AppTranslateModule {
+  static forChild(): ModuleWithProviders<TranslateModule> {
+    return TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (httpClient: HttpClient) => new TranslateHttpLoader(httpClient),
+        deps: [HttpClient],
+      },
+      missingTranslationHandler: {
+        provide: MissingTranslationHandler,
+        useClass: AppMissingTranslationHandler,
+      },
+    });
+  }
+}

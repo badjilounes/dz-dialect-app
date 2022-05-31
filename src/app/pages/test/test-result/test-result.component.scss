@@ -1,0 +1,121 @@
+:host{
+  display: grid;
+  grid-template-columns: 1fr;
+
+  .restart-test-button ::ng-deep .mat-button-wrapper {
+    display: flex;
+    place-content: center;
+  }
+}
+
+
+.test-result-container {
+  display: grid;
+  background-image: url(/assets/svg/star.svg);
+
+  &.handset {
+    place-items: center;
+
+    .test-result-content {
+      display: grid;
+      grid-template-rows: min-content min-content;
+      row-gap: 4.25rem;
+      place-items: center;
+      padding: 0 24px;
+      margin-bottom: 70px;
+
+      .flag {
+        width: 120px;
+        border-radius: 30px;
+        border-width: 4px;
+        border-style: solid;
+      }
+
+      h1 {
+        margin-bottom: 50px;
+      }
+    }
+  }
+
+  &:not(.handset) {
+
+    .test-result-content {
+      display: grid;
+      grid-template-columns: min-content auto;
+      place-items: center;
+      padding: 0 60px;
+      max-width: 65vw;
+      margin: 0 auto;
+
+      .flag {
+        width: 280px;
+        border-radius: 30px;
+        border-width: 4px;
+        border-style: solid;
+      }
+
+      .test-result-description {
+        margin: auto 60px;
+      }
+    }
+  }
+
+  .test-result-description {
+    text-align: center;
+
+    h1 {
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 38px;
+      margin-bottom: 40px;
+    }
+
+    button {
+      height: 50px;
+      width: 320px;
+      border-radius: 16px;
+
+      .mat-spinner {
+        height: 38px;
+        width: 38px;
+      }
+    }
+
+    .test-result-score {
+      display: block;
+      margin: 100px 0;
+      font-size: 80px;
+    }
+  }
+
+}
+
+
+@mixin test-result-theme($theme) {
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+
+  app-test-result .test-result-container {
+    background-color: mat.get-color-from-palette($primary, 500);
+
+    .flag {
+      border-color: mat.get-color-from-palette($primary, 50);
+    }
+
+    .test-result-description h1 {
+      color: mat.get-color-from-palette($primary, 50);
+    }
+
+    .mat-progress-spinner circle, .mat-spinner circle {
+      stroke: mat.get-color-from-palette($primary, 50);
+    }
+
+    .test-result-score.error {
+      color: mat.get-color-from-palette($warn, 600);
+    }
+
+    .test-result-score.success {
+      color: mat.get-color-from-palette($warn, 600);
+    }
+  }
+}

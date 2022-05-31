@@ -38,6 +38,11 @@ $dz-dialect-app-theme: mat.define-light-theme(
 @import "./assets/styles/material/bottom-sheet.scss";
 @import "./assets/styles/material/overlay.scss";
 
+@import "app/pages/test/test-home/test-home.component.scss";
+@import "app/pages/test/test-result/test-result.component.scss";
+
+@include test-home-theme($dz-dialect-app-theme);
+@include test-result-theme($dz-dialect-app-theme);
 
 html,
 body {

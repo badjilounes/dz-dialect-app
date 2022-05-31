@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { StepResult, TestService } from '../test.service';
+import { Component, Inject } from '@angular/core';
+import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
+import { StepResult } from '../test.service';
 
 @Component({
   selector: 'app-test-bottom-sheet-result',
@@ -8,16 +8,9 @@ import { StepResult, TestService } from '../test.service';
   styleUrls: ['./test-bottom-sheet-result.component.scss'],
 })
 export class TestBottomSheetResultComponent {
-  get result(): StepResult {
-    return {
-      success: this.testService.success,
-      answer: this.testService.answer,
-    };
-  }
-
   constructor(
-    private readonly testService: TestService,
     private readonly bottomSheet: MatBottomSheetRef,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public result: StepResult,
   ) {}
 
   nextStep(): void {

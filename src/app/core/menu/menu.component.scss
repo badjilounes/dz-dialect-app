@@ -18,5 +18,11 @@
 
 .mat-sidenav-content {
   display: grid;
-  grid-template-rows: 64px max-content;
+  grid-template-rows: min-content min-content auto;
+}
+
+.toolbar-title.handset {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }

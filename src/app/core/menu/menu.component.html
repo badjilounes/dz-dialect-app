@@ -30,7 +30,9 @@
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Générateur de phrases</span>
+      <span class="toolbar-title" [ngClass]="{ handset: isHandset$ | async }">{{
+        routeTitle
+      }}</span>
     </mat-toolbar>
 
     <!-- Add Content Here -->

@@ -1,0 +1,12 @@
+<div class="test-home-container" [ngClass]="{ handset: isHandset$ | async }">
+  <div class="test-home-content">
+    <img src="assets/svg/flag-algeria.svg" class="flag" />
+    <div class="test-home-description">
+      <h1>{{ 'test.home.description' | translate }}</h1>
+      <button mat-raised-button class="start-test-button" color="accent" (click)="startTraining()">
+        <span *ngIf="(loading$ | async) === false">{{ 'test.home.start-button' | translate }}</span>
+        <mat-spinner *ngIf="(loading$ | async) === true" [diameter]="30"></mat-spinner>
+      </button>
+    </div>
+  </div>
+</div>

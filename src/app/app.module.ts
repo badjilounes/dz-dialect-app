@@ -6,19 +6,10 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { KeywordModule } from './pages/keyword/keyword.module';
 import { RandomModule } from './pages/random/random.module';
-import { TestModule } from './pages/test/test.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    CoreModule,
-    KeywordModule,
-    RandomModule,
-    TestModule,
-    AppRoutingModule,
-  ],
+  imports: [BrowserModule, CommonModule, CoreModule, KeywordModule, RandomModule, AppRoutingModule],
   bootstrap: [AppComponent],
   exports: [],
 })

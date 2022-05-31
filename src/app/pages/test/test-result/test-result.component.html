@@ -1,0 +1,24 @@
+<div class="test-result-container" [ngClass]="{ handset: isHandset$ | async }">
+  <div class="test-result-content">
+    <div class="test-result-description">
+      <h1>
+        <span>{{ 'test.result.description.prefix' | translate }}</span>
+        <span class="test-result-score" [ngClass]="{ error: score < total / 2 }">
+          {{ score }} / {{ total }}</span
+        >
+        <span>{{ 'test.result.description.suffix' | translate }}</span>
+      </h1>
+      <button
+        mat-raised-button
+        class="restart-test-button"
+        color="accent"
+        (click)="restartTraining()"
+      >
+        <span *ngIf="(loading$ | async) === false">{{
+          'test.result.restart-button' | translate
+        }}</span>
+        <mat-spinner *ngIf="(loading$ | async) === true" [diameter]="30"></mat-spinner>
+      </button>
+    </div>
+  </div>
+</div>

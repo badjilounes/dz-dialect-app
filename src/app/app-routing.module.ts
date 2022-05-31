@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { MenuComponent } from './core/menu/menu.component';
 import { KeywordComponent } from './pages/keyword/keyword.component';
 import { RandomComponent } from './pages/random/random.component';
-import { TestComponent } from './pages/test/test.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'random', pathMatch: 'full' },
@@ -24,7 +23,7 @@ const routes: Routes = [
       },
       {
         path: 'test',
-        component: TestComponent,
+        loadChildren: () => import('./pages/test/test.module').then((m) => m.TestModule),
         data: { menu: true, title: 'test.menu.title' },
       },
     ],

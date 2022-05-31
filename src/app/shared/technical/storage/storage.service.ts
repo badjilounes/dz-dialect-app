@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class StorageService {
-  constructor() {}
-
   tryGet<T>(key: string): T | undefined {
     let value: T | undefined;
     const stored = sessionStorage.getItem(key);

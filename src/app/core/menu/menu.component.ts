@@ -1,5 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AppRoute } from '../../core/routing/app-route.interface';
@@ -18,8 +19,14 @@ export class MenuComponent {
     shareReplay(),
   );
 
+  get routeTitle() {
+    const [, routeTitle] = this.title.getTitle().split(' - ');
+    return routeTitle;
+  }
+
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
     private readonly routing: RoutingService,
+    private readonly title: Title,
   ) {}
 }
