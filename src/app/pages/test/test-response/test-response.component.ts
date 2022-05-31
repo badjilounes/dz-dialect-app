@@ -32,22 +32,12 @@ export class TestResponseComponent implements OnInit {
   ngOnInit(): void {}
 
   addToResponse(word: string) {
-    const response = this.response;
-    response.push(word);
-
-    this.testService.responses[this.testService.step] = {
-      step: this.testService.step,
-      responses: response,
-    };
+    this.testService.setStepResponses([...this.response, word]);
   }
 
   removeToResponse(word: string) {
-    const response = this.response;
-    response.splice(response.indexOf(word), 1);
+    const responses = this.response.filter((response) => response !== word);
 
-    this.testService.responses[this.testService.step] = {
-      step: this.testService.step,
-      responses: response,
-    };
+    this.testService.setStepResponses(responses);
   }
 }

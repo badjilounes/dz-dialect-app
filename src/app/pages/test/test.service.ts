@@ -68,4 +68,15 @@ export class TestService {
       }
     }
   }
+
+  setStepResponses(responses: string[]) {
+    const allResponses = this.responses;
+
+    allResponses[this.step] = {
+      step: this.step,
+      responses,
+    };
+
+    this.responses = allResponses;
+  }
 }
