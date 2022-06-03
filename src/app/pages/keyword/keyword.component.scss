@@ -1,3 +1,10 @@
+:host {
+  .generate-button ::ng-deep .mat-button-wrapper {
+    display: flex;
+    place-content: center;
+  }
+}
+
 .app-content {
   padding: 1.5rem;
 
@@ -27,8 +34,9 @@
   display: grid;
   grid-template-rows: auto min-content;
 
-  button {
-    width: fit-content;
+  .generate-button {
+    width: 82px;
+    height: 36px;
     justify-self: flex-end;
   }
 }
@@ -39,4 +47,16 @@
 .translations-container {
   display: grid;
   gap: 1.5rem;
+}
+
+
+
+@mixin keyword-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  app-keyword .app-content {
+    .mat-progress-spinner circle, .mat-spinner circle {
+      stroke: mat.get-color-from-palette($primary, 50);
+    }
+  }
 }

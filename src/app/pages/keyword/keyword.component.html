@@ -47,8 +47,14 @@
         </mat-form-field>
       </div>
 
-      <button mat-raised-button color="primary" [disabled]="verbControl.invalid">
-        {{ 'random.generate-button' | translate }}
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="verbControl.invalid"
+        class="generate-button"
+      >
+        <span *ngIf="(loading$ | async) === false">{{ 'random.generate-button' | translate }}</span>
+        <mat-spinner *ngIf="(loading$ | async) === true" [diameter]="20"></mat-spinner>
       </button>
     </form>
   </mat-card>

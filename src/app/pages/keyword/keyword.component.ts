@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
+  BehaviorSubject,
   catchError,
   EMPTY,
   map,
@@ -22,6 +23,8 @@ import { HistoryStorageService } from '../../shared/business/storage/history-sto
   styleUrls: ['./keyword.component.scss'],
 })
 export class KeywordComponent implements OnInit {
+  loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map((result) => result.matches),
     shareReplay(),
@@ -63,11 +66,14 @@ export class KeywordComponent implements OnInit {
 
   generate(): void {
     if (this.verbControl.valid) {
+      this.loading$.next(true);
+
       this.sentences$ = this.api
         .generateSentenceGet(5, this.tensesControl.value, [this.verbControl.value.toLowerCase()])
         .pipe(
           map((response) => response.sentences),
           tap((sentences) => (sentences || []).forEach((sentence) => this.storage.add(sentence))),
+          tap(() => this.loading$.next(false)),
           catchError((error) => {
             this.snackBar.open(error.message, 'OK', { duration: 3000 });
             return EMPTY;

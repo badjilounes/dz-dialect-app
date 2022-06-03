@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppTranslateModule } from 'src/app/core/translate/translate.module';
 import { TranslationSentenceModule } from 'src/app/shared/business/translation-bloc/translation-bloc.module';
@@ -24,6 +25,7 @@ import { RandomComponent } from './random.component';
     MatButtonModule,
     MatSnackBarModule,
     CapitalizeModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class RandomModule {}
