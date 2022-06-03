@@ -1,7 +1,7 @@
 {
-  "name": "dz-dialect-app",
-  "short_name": "dz-dialect-app",
-  "theme_color": "#1976d2",
+  "name": "DZDialect",
+  "short_name": "DZDialect",
+  "theme_color": "#8bc34a",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
