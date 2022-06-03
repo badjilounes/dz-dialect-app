@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { AppRoute } from '../../core/routing/app-route.interface';
 import { RoutingService } from '../../core/routing/routing.service';
+import { ThemeService } from '../theme/theme.service';
 
 @Component({
   selector: 'app-menu',
@@ -28,5 +29,10 @@ export class MenuComponent {
     private readonly breakpointObserver: BreakpointObserver,
     private readonly routing: RoutingService,
     private readonly title: Title,
+    private readonly theme: ThemeService,
   ) {}
+
+  toggleThemeMode(): void {
+    this.theme.toggleThemeMode();
+  }
 }

@@ -8,12 +8,10 @@ textarea {
   height: 7rem;
   padding: 0.625rem 0.5rem;
   font-size: 1.125rem;
-  color: #202124;
-  -webkit-text-fill-color: #202124;
+
   opacity: 1;
   border-color: transparent;
   border-radius: 0.375rem;
-  background-color: #f8f9fa;
 
   &:hover + :not(.handset).mat-icon-button {
     display: block;

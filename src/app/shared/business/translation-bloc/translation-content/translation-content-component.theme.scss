@@ -1,0 +1,27 @@
+
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+
+
+@mixin translation-content-theme($theme) {
+  $color-config:    mat.get-color-config($theme);
+  $is-dark-theme:   map.get($color-config, 'is-dark');
+
+  app-translation-content {
+
+    textarea {
+      @if $is-dark-theme == false {
+        background-color: #f8f9fa;
+        color: #202124;
+        -webkit-text-fill-color: #202124;
+      }
+
+      @if $is-dark-theme == true {
+        background-color: #616161;
+        color: #f8f9fa;
+        -webkit-text-fill-color: #f8f9fa;
+      }
+    }
+  }
+}

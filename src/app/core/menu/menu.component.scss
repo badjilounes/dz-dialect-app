@@ -1,3 +1,22 @@
+:host{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+
+  ::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) {
+
+    .mat-slide-toggle-bar {
+      background-color: rgb(255, 191, 0) ;
+    }
+
+    .mat-slide-toggle-thumb {
+      background-color: rgb(255, 221, 0) ;
+    }
+  }
+}
+
 .sidenav-container {
   height: 100%;
 }
@@ -14,6 +33,9 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  display: grid;
+  grid-template-columns: min-content auto;
+  justify-items: flex-end;
 }
 
 .mat-sidenav-content {
@@ -25,4 +47,8 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.dark-mode {
+  color:rgb(255, 221, 0);
 }

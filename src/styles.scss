@@ -29,31 +29,63 @@ $dz-dialect-app-theme: mat.define-light-theme(
   )
 );
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
 @include mat.all-component-themes($dz-dialect-app-theme);
 
+
 /* You can add global styles to this file, and also import other style files */
+/* material components */
 @import "./assets/styles/material/bottom-sheet.scss";
 @import "./assets/styles/material/overlay.scss";
 
-@include bottom-sheet-theme($dz-dialect-app-theme);
-
-
+/* app components */
 @import "app/pages/test/test-home/test-home.component.scss";
 @import "app/pages/test/test-result/test-result.component.scss";
 @import "app/pages/test/test-question/test-question.component.scss";
 @import "app/pages/test/test-response/test-response.component.scss";
 @import "app/pages/keyword/keyword.component.scss";
 @import "app/pages/random/random.component.scss";
+@import "app/shared/business/translation-bloc/translation-content/translation-content-component.theme.scss";
 
+/* material theme */
+@include bottom-sheet-theme($dz-dialect-app-theme);
+
+/* component theme */
 @include test-home-theme($dz-dialect-app-theme);
 @include test-result-theme($dz-dialect-app-theme);
 @include test-question-theme($dz-dialect-app-theme);
 @include test-response-theme($dz-dialect-app-theme);
 @include keyword-theme($dz-dialect-app-theme);
 @include random-theme($dz-dialect-app-theme);
+@include translation-content-theme($dz-dialect-app-theme);
+
+.darkMode {
+  // Include theme styles for core and each component used in your app.
+  // Alternatively, you can import and @include the theme mixins for each component
+  // that you are using.
+  $dz-dialect-dark-app-theme: mat.define-dark-theme(
+    (
+      color: (
+        primary: $dz-dialect-app-primary,
+        accent: $dz-dialect-app-accent,
+        warn: $dz-dialect-app-warn,
+      ),
+    )
+  );
+
+  @include mat.all-component-themes($dz-dialect-dark-app-theme);
+
+  /* material theme */
+  @include bottom-sheet-theme($dz-dialect-dark-app-theme);
+
+  /* component theme */
+  @include test-home-theme($dz-dialect-dark-app-theme);
+  @include test-result-theme($dz-dialect-dark-app-theme);
+  @include test-question-theme($dz-dialect-dark-app-theme);
+  @include test-response-theme($dz-dialect-dark-app-theme);
+  @include keyword-theme($dz-dialect-dark-app-theme);
+  @include random-theme($dz-dialect-dark-app-theme);
+  @include translation-content-theme($dz-dialect-dark-app-theme);
+}
 
 html,
 body {

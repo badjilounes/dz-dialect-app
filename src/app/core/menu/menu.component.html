@@ -33,6 +33,16 @@
       <span class="toolbar-title" [ngClass]="{ handset: isHandset$ | async }">{{
         routeTitle
       }}</span>
+
+      <mat-slide-toggle
+        type="button"
+        aria-label="Toggle theme mode"
+        mat-icon-button
+        (click)="toggleThemeMode()"
+        #slideToggle
+      >
+        <mat-icon [class]="slideToggle.checked ? 'dark-mode' : ''">bedtime</mat-icon>
+      </mat-slide-toggle>
     </mat-toolbar>
 
     <!-- Add Content Here -->
