@@ -62,10 +62,8 @@ export class TestService {
 
   nextStep() {
     if (this.step < this.nbSteps - 1) {
+      this.score = this.score + (this.success ? 1 : 0);
       this.step++;
-      if (this.success) {
-        this.score++;
-      }
     }
   }
 
