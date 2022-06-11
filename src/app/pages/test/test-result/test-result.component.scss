@@ -90,28 +90,3 @@
 
 }
 
-
-@mixin test-result-theme($theme) {
-  $primary: map-get($theme, primary);
-  $warn: map-get($theme, warn);
-
-  app-test-result .test-result-container {
-    background-color: mat.get-color-from-palette($primary, 500);
-
-    .flag {
-      border-color: mat.get-color-from-palette($primary, 50);
-    }
-
-    .mat-progress-spinner circle, .mat-spinner circle {
-      stroke: mat.get-color-from-palette($primary, 50);
-    }
-
-    .test-result-score.error {
-      color: mat.get-color-from-palette($warn, 600);
-    }
-
-    .test-result-score.success {
-      color: mat.get-color-from-palette($warn, 600);
-    }
-  }
-}
