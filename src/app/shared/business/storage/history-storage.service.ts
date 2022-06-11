@@ -26,6 +26,6 @@ export class HistoryStorageService {
 
   clear() {
     this.history$.next([]);
-    this.storage.clear();
+    this.storage.set(HistoryStorageService.SENTENCE_HISTORY_KEY, []);
   }
 }

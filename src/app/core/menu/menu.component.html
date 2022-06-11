@@ -38,7 +38,8 @@
         type="button"
         aria-label="Toggle theme mode"
         mat-icon-button
-        (click)="toggleThemeMode()"
+        [checked]="(isDarkMode$ | async) === true"
+        (toggleChange)="toggleThemeMode()"
         #slideToggle
       >
         <mat-icon [class]="slideToggle.checked ? 'dark-mode' : ''">bedtime</mat-icon>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { SessionStorage } from 'src/app/shared/technical/storage/storage.decorator';
 
 type ThemeMode = 'light' | 'dark';
 
@@ -7,12 +8,24 @@ type ThemeMode = 'light' | 'dark';
   providedIn: 'root',
 })
 export class ThemeService {
-  themeMode$: BehaviorSubject<ThemeMode> = new BehaviorSubject<ThemeMode>('light');
+  private static DEFAULT_THEME: ThemeMode = 'light';
 
-  constructor() {}
+  themeMode$!: BehaviorSubject<ThemeMode>;
+
+  @SessionStorage()
+  private themeMode!: ThemeMode;
+
+  constructor() {
+    if (!this.themeMode) {
+      this.themeMode = ThemeService.DEFAULT_THEME;
+    }
+
+    this.themeMode$ = new BehaviorSubject<ThemeMode>(this.themeMode);
+  }
 
   toggleThemeMode() {
-    const mode = this.themeMode$.getValue() === 'light' ? 'dark' : 'light';
-    this.themeMode$.next(mode);
+    const themeMode = this.themeMode$.getValue() === 'light' ? 'dark' : 'light';
+    this.themeMode = themeMode;
+    this.themeMode$.next(themeMode);
   }
 }

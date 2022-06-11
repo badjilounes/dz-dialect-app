@@ -20,6 +20,8 @@ export class MenuComponent {
     shareReplay(),
   );
 
+  isDarkMode$ = this.theme.themeMode$.pipe(map((themeMode) => themeMode === 'dark'));
+
   get routeTitle() {
     const [, routeTitle] = this.title.getTitle().split(' - ');
     return routeTitle;
