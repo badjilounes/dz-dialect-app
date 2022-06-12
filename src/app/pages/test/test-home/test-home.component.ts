@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, map, Observable, shareReplay, tap } from 'rxjs';
-import { DefaultService } from 'src/api';
+import { SentenceControllerHttpService } from 'src/clients/dz-dialect-api';
 import { TestService } from '../test.service';
 
 @Component({
@@ -23,16 +23,15 @@ export class TestHomeComponent {
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
     private readonly router: Router,
-    private readonly api: DefaultService,
+    private readonly api: SentenceControllerHttpService,
     private readonly testService: TestService,
   ) {}
 
   startTraining(): void {
     this.loading$.next(true);
     this.api
-      .generateSentenceGet(this.testService.nbSteps)
+      .generateRandomSentence(this.testService.nbSteps)
       .pipe(
-        map((response) => response.sentences || []),
         tap((sentences) => this.testService.init(sentences)),
         tap(() => this.loading$.next(false)),
         tap(() => this.router.navigate(['/test/start'])),

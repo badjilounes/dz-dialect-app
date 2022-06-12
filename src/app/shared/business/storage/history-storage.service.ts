@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ResponseSentences } from 'src/api';
 import { StorageService } from 'src/app/shared/technical/storage/storage.service';
+import { SentenceDTO } from 'src/clients/dz-dialect-api';
 
 @Injectable({
   providedIn: 'root',
@@ -9,13 +9,13 @@ import { StorageService } from 'src/app/shared/technical/storage/storage.service
 export class HistoryStorageService {
   private static SENTENCE_HISTORY_KEY = 'sentence-history';
 
-  history$: BehaviorSubject<ResponseSentences[]> = new BehaviorSubject<ResponseSentences[]>(
+  history$: BehaviorSubject<SentenceDTO[]> = new BehaviorSubject<SentenceDTO[]>(
     this.storage.tryGet(HistoryStorageService.SENTENCE_HISTORY_KEY) || [],
   );
 
   constructor(private readonly storage: StorageService) {}
 
-  add(sentence: ResponseSentences | undefined): void {
+  add(sentence: SentenceDTO | undefined): void {
     if (sentence) {
       const history = this.history$.value;
       const newHistory = [...history, sentence];

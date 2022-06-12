@@ -1,9 +1,8 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
-import { ResponseSentences } from 'src/api';
 
-export type Language = { value: keyof ResponseSentences; label: string };
+export type Language = { value: 'dz' | 'fr' | 'dz_ar'; label: string };
 
 @Component({
   selector: 'app-translation-header',

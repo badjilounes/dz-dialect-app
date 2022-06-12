@@ -12,9 +12,13 @@ import {
   shareReplay,
   startWith,
   switchMap,
-  tap
+  tap,
 } from 'rxjs';
-import { DefaultService, ResponseSentences } from '../../../api';
+import {
+  SentenceControllerHttpService,
+  SentenceDTO,
+  VerbControllerHttpService,
+} from 'src/clients/dz-dialect-api';
 import { HistoryStorageService } from '../../shared/business/storage/history-storage.service';
 
 @Component({
@@ -30,8 +34,8 @@ export class KeywordComponent implements OnInit {
     shareReplay(),
   );
 
-  sentences$: Observable<ResponseSentences[] | undefined> = of();
-  history$: Observable<ResponseSentences[]> = this.storage.history$;
+  sentences$: Observable<SentenceDTO[] | undefined> = of();
+  history$: Observable<SentenceDTO[]> = this.storage.history$;
 
   verbControl = new FormControl<string>('', [Validators.required]);
   tensesControl = new FormControl<string[]>([]);
@@ -46,13 +50,14 @@ export class KeywordComponent implements OnInit {
   }
 
   filteredOptions$: Observable<string[]> = of([]);
-  verbOptions$: Observable<string[]> = this.api
-    .getElementsGet()
-    .pipe(map((response: { verbs: string[] }) => response.verbs));
+  verbOptions$: Observable<string[]> = this.verbsApi
+    .getAllVerbIds()
+    .pipe(map((verbsSet) => Array.from(verbsSet)));
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
-    private readonly api: DefaultService,
+    private readonly verbsApi: VerbControllerHttpService,
+    private readonly sentenceApi: SentenceControllerHttpService,
     private readonly storage: HistoryStorageService,
     private readonly snackBar: MatSnackBar,
   ) {}
@@ -61,7 +66,9 @@ export class KeywordComponent implements OnInit {
     this.filteredOptions$ = this.verbControl.valueChanges.pipe(
       startWith(null),
       switchMap((filter: string | null) =>
-        this.verbOptions$.pipe(map((options: string[]) => this._filter(options ?? [], filter ?? ''))),
+        this.verbOptions$.pipe(
+          map((options: string[]) => this._filter(options ?? [], filter ?? '')),
+        ),
       ),
     );
   }
@@ -76,17 +83,21 @@ export class KeywordComponent implements OnInit {
     if (this.verbControl.valid) {
       this.loading$.next(true);
 
-      const verb = this.verbControl.value?.toLowerCase() || '';
-      const tenses = this.tensesControl.value ?? undefined;
-      this.sentences$ = this.api.generateSentenceGet(5, tenses, [verb]).pipe(
-        map((response) => response.sentences),
-        tap((sentences) => (sentences || []).forEach((sentence) => this.storage.add(sentence))),
-        tap(() => this.loading$.next(false)),
-        catchError((error) => {
-          this.snackBar.open(error.message, 'OK', { duration: 3000 });
-          return EMPTY;
-        }),
-      );
+      this.sentences$ = this.sentenceApi
+        .generateRandomSentence(
+          5,
+          undefined,
+          this.verbControl.value?.toLowerCase(),
+          this.tensesControl.value?.join(','),
+        )
+        .pipe(
+          tap((sentences) => sentences.forEach((sentence) => this.storage.add(sentence))),
+          tap(() => this.loading$.next(false)),
+          catchError((error) => {
+            this.snackBar.open(error.message, 'OK', { duration: 3000 });
+            return EMPTY;
+          }),
+        );
     }
   }
 }

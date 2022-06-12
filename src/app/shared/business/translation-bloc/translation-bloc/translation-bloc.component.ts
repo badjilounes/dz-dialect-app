@@ -1,7 +1,7 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, Input } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
-import { ResponseSentences } from 'src/api';
+import { SentenceDTO } from 'src/clients/dz-dialect-api';
 import { Language } from '../translation-header/translation-header.component';
 
 @Component({
@@ -10,10 +10,10 @@ import { Language } from '../translation-header/translation-header.component';
   styleUrls: ['./translation-bloc.component.scss'],
 })
 export class TranslationBlocComponent {
-  @Input() sentence?: ResponseSentences | null;
+  @Input() sentence?: SentenceDTO | null;
 
   private _sourceLanguage: Language = {
-    value: 'dz_value',
+    value: 'dz',
     label: 'generated-sentence.source-language.dz_value',
   };
   get sourceLanguage(): Language {
@@ -21,7 +21,7 @@ export class TranslationBlocComponent {
   }
 
   private _targetLanguage: Language = {
-    value: 'fr_value',
+    value: 'fr',
     label: 'generated-sentence.source-language.fr_value',
   };
   get targetLanguage(): Language {

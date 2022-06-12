@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build --configuration=production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "generate:api": "node ./bin/generate_client_api.js ./src/clients/dz-dialect-api"
   },
   "private": true,
   "dependencies": {
@@ -36,6 +37,7 @@
     "@angular/compiler-cli": "^14.0.1",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
+    "chmodr": "^1.2.0",
     "jasmine-core": "~3.10.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",

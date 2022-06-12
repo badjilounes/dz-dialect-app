@@ -1,0 +1,13 @@
+export * from './adjective-controller.service';
+import { AdjectiveControllerHttpService } from './adjective-controller.service';
+export * from './adverb-controller.service';
+import { AdverbControllerHttpService } from './adverb-controller.service';
+export * from './pronouns-controller.service';
+import { PronounsControllerHttpService } from './pronouns-controller.service';
+export * from './questions-controller.service';
+import { QuestionsControllerHttpService } from './questions-controller.service';
+export * from './sentence-controller.service';
+import { SentenceControllerHttpService } from './sentence-controller.service';
+export * from './verb-controller.service';
+import { VerbControllerHttpService } from './verb-controller.service';
+export const APIS = [AdjectiveControllerHttpService, AdverbControllerHttpService, PronounsControllerHttpService, QuestionsControllerHttpService, SentenceControllerHttpService, VerbControllerHttpService];
