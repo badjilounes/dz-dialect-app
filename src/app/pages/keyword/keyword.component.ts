@@ -33,8 +33,8 @@ export class KeywordComponent implements OnInit {
   sentences$: Observable<ResponseSentences[] | undefined> = of();
   history$: Observable<ResponseSentences[]> = this.storage.history$;
 
-  verbControl = new FormControl('', [Validators.required]);
-  tensesControl = new FormControl([]);
+  verbControl = new FormControl<string>('', [Validators.required]);
+  tensesControl = new FormControl<string[]>([]);
   tenses = ['PAST', 'PRESENT', 'FUTURE', 'IMPERATIVE'];
 
   filteredOptions$: Observable<string[]> = of([]);
@@ -68,17 +68,17 @@ export class KeywordComponent implements OnInit {
     if (this.verbControl.valid) {
       this.loading$.next(true);
 
-      this.sentences$ = this.api
-        .generateSentenceGet(5, this.tensesControl.value, [this.verbControl.value.toLowerCase()])
-        .pipe(
-          map((response) => response.sentences),
-          tap((sentences) => (sentences || []).forEach((sentence) => this.storage.add(sentence))),
-          tap(() => this.loading$.next(false)),
-          catchError((error) => {
-            this.snackBar.open(error.message, 'OK', { duration: 3000 });
-            return EMPTY;
-          }),
-        );
+      const verb = this.verbControl.value?.toLowerCase() || '';
+      const tenses = this.tensesControl.value ?? undefined;
+      this.sentences$ = this.api.generateSentenceGet(5, tenses, [verb]).pipe(
+        map((response) => response.sentences),
+        tap((sentences) => (sentences || []).forEach((sentence) => this.storage.add(sentence))),
+        tap(() => this.loading$.next(false)),
+        catchError((error) => {
+          this.snackBar.open(error.message, 'OK', { duration: 3000 });
+          return EMPTY;
+        }),
+      );
     }
   }
 }
