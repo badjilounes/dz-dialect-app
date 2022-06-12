@@ -8,6 +8,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { ReactiveComponentModule } from '@ngrx/component';
 import { AppTranslateModule } from '../translate/translate.module';
 import { MenuComponent } from './menu.component';
 
@@ -24,6 +25,7 @@ import { MenuComponent } from './menu.component';
     MatIconModule,
     MatListModule,
     MatSlideToggleModule,
+    ReactiveComponentModule,
   ],
   exports: [MenuComponent],
 })
