@@ -33,11 +33,11 @@
             [placeholder]="'keyword.tense.placeholder' | translate"
           >
             <mat-select-trigger>
-              {{ 'keyword.tense.' + tensesControl.value[0] | translate }}
+              {{ 'keyword.tense.' + firstTenseSelected | translate }}
 
-              <span *ngIf="tensesControl.value?.length > 1">
-                (+{{ tensesControl.value.length - 1 }}
-                {{ tensesControl.value?.length === 2 ? 'autre' : 'autres' }})
+              <span *ngIf="selectedTenses.length > 1">
+                (+{{ selectedTenses.length - 1 }}
+                {{ selectedTenses.length === 2 ? 'autre' : 'autres' }})
               </span>
             </mat-select-trigger>
             <mat-option *ngFor="let tense of tenses" [value]="tense">{{
@@ -52,16 +52,17 @@
         color="primary"
         [disabled]="verbControl.invalid"
         class="generate-button"
+        *ngrxLet="loading$; let isLoading"
       >
-        <span *ngIf="(loading$ | async) === false">{{ 'random.generate-button' | translate }}</span>
-        <mat-spinner *ngIf="(loading$ | async) === true" [diameter]="20"></mat-spinner>
+        <span *ngIf="!isLoading">{{ 'random.generate-button' | translate }}</span>
+        <mat-spinner *ngIf="isLoading" [diameter]="20"></mat-spinner>
       </button>
     </form>
   </mat-card>
 
-  <div class="translations-container">
+  <div class="translations-container" *ngrxLet="sentences$; let sentences">
     <app-translation-bloc
-      *ngFor="let sentence of sentences$ | async"
+      *ngFor="let sentence of sentences"
       [sentence]="sentence"
     ></app-translation-bloc>
   </div>

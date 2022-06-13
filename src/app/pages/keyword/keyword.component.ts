@@ -12,7 +12,7 @@ import {
   shareReplay,
   startWith,
   switchMap,
-  tap,
+  tap
 } from 'rxjs';
 import { DefaultService, ResponseSentences } from '../../../api';
 import { HistoryStorageService } from '../../shared/business/storage/history-storage.service';
@@ -37,10 +37,18 @@ export class KeywordComponent implements OnInit {
   tensesControl = new FormControl<string[]>([]);
   tenses = ['PAST', 'PRESENT', 'FUTURE', 'IMPERATIVE'];
 
+  get selectedTenses(): string[] {
+    return this.tensesControl.value ?? [];
+  }
+
+  get firstTenseSelected(): string {
+    return this.selectedTenses[0] ? this.selectedTenses[0] : '';
+  }
+
   filteredOptions$: Observable<string[]> = of([]);
   verbOptions$: Observable<string[]> = this.api
     .getElementsGet()
-    .pipe(map((response) => response.verbs));
+    .pipe(map((response: { verbs: string[] }) => response.verbs));
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
@@ -51,9 +59,9 @@ export class KeywordComponent implements OnInit {
 
   ngOnInit() {
     this.filteredOptions$ = this.verbControl.valueChanges.pipe(
-      startWith(''),
-      switchMap((filter) =>
-        this.verbOptions$.pipe(map((options) => this._filter(options, filter))),
+      startWith(null),
+      switchMap((filter: string | null) =>
+        this.verbOptions$.pipe(map((options: string[]) => this._filter(options ?? [], filter ?? ''))),
       ),
     );
   }
