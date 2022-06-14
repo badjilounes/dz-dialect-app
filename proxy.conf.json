@@ -1,0 +1,11 @@
+{
+  "/proxy": {
+    "target": "https://dz-dialect-api.ew.r.appspot.com",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "info",
+    "pathRewrite": {
+      "^/proxy": ""
+    }
+  }
+}
