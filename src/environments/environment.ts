@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://us-central1-dz-dialect-api.cloudfunctions.net',
+  apiUrl: '/proxy',
 };
 
 /*

@@ -2,15 +2,18 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
-
-import { DefaultService } from './api/default.service';
+import { AdjectiveControllerHttpService } from './api/adjective-controller.service';
+import { AdverbControllerHttpService } from './api/adverb-controller.service';
+import { PronounsControllerHttpService } from './api/pronouns-controller.service';
+import { QuestionsControllerHttpService } from './api/questions-controller.service';
+import { SentenceControllerHttpService } from './api/sentence-controller.service';
+import { VerbControllerHttpService } from './api/verb-controller.service';
 
 @NgModule({
   imports:      [],
   declarations: [],
   exports:      [],
-  providers: [
-    DefaultService ]
+  providers: []
 })
 export class ApiModule {
     public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<ApiModule> {

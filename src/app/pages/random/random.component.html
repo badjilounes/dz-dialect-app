@@ -11,7 +11,8 @@
   </mat-card>
 
   <app-translation-bloc
-    *ngIf="(sentence$ | async) || (history$ | async)?.length"
-    [sentence]="sentence$ | async"
+    *ngrxLet="sentence$; let sentence"
+    [hidden]="!sentence && !(loading$ | async)"
+    [sentence]="sentence"
   ></app-translation-bloc>
 </div>

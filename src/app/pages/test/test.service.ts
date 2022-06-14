@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ResponseSentences } from 'src/api';
 import { SessionStorage } from 'src/app/shared/technical/storage/storage.decorator';
+import { SentenceDTO } from 'src/clients/dz-dialect-api';
 
 export type StepResponse = {
   step: number;
@@ -21,7 +21,7 @@ export class TestService {
   step!: number;
 
   @SessionStorage()
-  sentences!: ResponseSentences[];
+  sentences!: SentenceDTO[];
 
   @SessionStorage()
   responses!: StepResponse[];
@@ -31,13 +31,13 @@ export class TestService {
 
   get success(): boolean {
     return (
-      this.sentences[this.step]?.fr_value?.replace(/ /g, '') ===
+      this.sentences[this.step]?.fr?.replace(/ /g, '') ===
       this.responses[this.step]?.responses?.join().replace(/,/g, '')
     );
   }
 
   get answer(): string {
-    return this.sentences[this.step]?.fr_value ?? '';
+    return this.sentences[this.step]?.fr ?? '';
   }
 
   get isLastStep(): boolean {
@@ -52,7 +52,7 @@ export class TestService {
     this.score = this.score ?? 0;
   }
 
-  init(sentences: ResponseSentences[]): void {
+  init(sentences: SentenceDTO[]): void {
     this.nbSteps = 10;
     this.step = 0;
     this.sentences = sentences;

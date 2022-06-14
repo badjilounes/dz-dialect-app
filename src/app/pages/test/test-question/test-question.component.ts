@@ -15,7 +15,7 @@ export class TestQuestionComponent implements OnInit {
   );
 
   get sentence(): string {
-    return this.testService.sentences?.[this.testService.step]?.dz_value || '';
+    return this.testService.sentences?.[this.testService.step]?.dz || '';
   }
 
   constructor(
