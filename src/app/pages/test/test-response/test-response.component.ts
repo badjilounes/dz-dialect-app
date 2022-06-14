@@ -20,7 +20,7 @@ export class TestResponseComponent implements OnInit {
 
   get propositions(): string[] {
     const allPropositions =
-      this.testService.sentences?.[this.testService.step]?.word_propositions?.dz || [];
+      this.testService.sentences?.[this.testService.step]?.word_propositions?.fr || [];
     return allPropositions.filter((proposition) => !this.response.includes(proposition));
   }
 
