@@ -7,7 +7,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AppTranslateModule } from 'src/app/core/translate/translate.module';
-import { TestBottomSheetResultComponent } from './test-bottom-sheet-result/test-bottom-sheet-result.component';
 import { TestBottomSheetValidateComponent } from './test-bottom-sheet-validate/test-bottom-sheet-validate.component';
 import { TestHomeComponent } from './test-home/test-home.component';
 import { TestProgressComponent } from './test-progress/test-progress.component';
@@ -25,7 +24,6 @@ import { TestService } from './test.service';
     TestBottomSheetValidateComponent,
     TestQuestionComponent,
     TestResponseComponent,
-    TestBottomSheetResultComponent,
     TestHomeComponent,
     TestResultComponent,
   ],
