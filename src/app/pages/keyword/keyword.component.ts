@@ -19,7 +19,6 @@ import {
   SentenceDTO,
   VerbControllerHttpService,
 } from 'src/clients/dz-dialect-api';
-import { HistoryStorageService } from '../../shared/business/storage/history-storage.service';
 
 @Component({
   selector: 'app-keyword',
@@ -27,17 +26,18 @@ import { HistoryStorageService } from '../../shared/business/storage/history-sto
   styleUrls: ['./keyword.component.scss'],
 })
 export class KeywordComponent implements OnInit {
-  loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map((result) => result.matches),
     shareReplay(),
   );
 
+  loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   sentences$: Observable<SentenceDTO[] | undefined> = of();
-  history$: Observable<SentenceDTO[]> = this.storage.history$;
+  filteredOptions$: Observable<string[]> = of([]);
 
   verbControl = new FormControl<string>('', [Validators.required]);
+  verbOptions: string[] = [];
+
   tensesControl = new FormControl<string[]>([]);
   tenses = ['PAST', 'PRESENT', 'FUTURE', 'IMPERATIVE'];
 
@@ -49,25 +49,21 @@ export class KeywordComponent implements OnInit {
     return this.selectedTenses[0] ? this.selectedTenses[0] : '';
   }
 
-  filteredOptions$: Observable<string[]> = of([]);
-  verbOptions$: Observable<string[]> = this.verbsApi
-    .getAllVerbIds()
-    .pipe(map((verbsSet) => Array.from(verbsSet)));
-
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
     private readonly verbsApi: VerbControllerHttpService,
     private readonly sentenceApi: SentenceControllerHttpService,
-    private readonly storage: HistoryStorageService,
     private readonly snackBar: MatSnackBar,
   ) {}
 
   ngOnInit() {
-    this.filteredOptions$ = this.verbControl.valueChanges.pipe(
-      startWith(null),
-      switchMap((filter: string | null) =>
-        this.verbOptions$.pipe(
-          map((options: string[]) => this._filter(options ?? [], filter ?? '')),
+    this.filteredOptions$ = this.verbsApi.getAllVerbIds().pipe(
+      map((verbsSet) => Array.from(verbsSet)),
+      tap((verbs) => (this.verbOptions = verbs)),
+      switchMap((verbs) =>
+        this.verbControl.valueChanges.pipe(
+          startWith(''),
+          map((value) => this._filter(verbs, value ?? '')),
         ),
       ),
     );
@@ -91,9 +87,9 @@ export class KeywordComponent implements OnInit {
           this.tensesControl.value?.join(','),
         )
         .pipe(
-          tap((sentences) => sentences.forEach((sentence) => this.storage.add(sentence))),
           tap(() => this.loading$.next(false)),
           catchError((error) => {
+            this.loading$.next(false);
             this.snackBar.open(error.message, 'OK', { duration: 3000 });
             return EMPTY;
           }),
