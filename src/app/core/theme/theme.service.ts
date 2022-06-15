@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { SessionStorage } from 'src/app/shared/technical/storage/storage.decorator';
+import { LocaleStorage } from 'src/app/shared/technical/storage/storage.decorator';
 
 type ThemeMode = 'light' | 'dark';
 
@@ -12,7 +12,7 @@ export class ThemeService {
 
   themeMode$!: BehaviorSubject<ThemeMode>;
 
-  @SessionStorage()
+  @LocaleStorage()
   private themeMode!: ThemeMode;
 
   constructor() {

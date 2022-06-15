@@ -1,6 +1,6 @@
 import { StorageService } from './storage.service';
 
-export function SessionStorage() {
+export function LocaleStorage() {
   return function (target: Object, propertyDescription: string) {
     const key = propertyDescription;
     const service: StorageService = new StorageService();

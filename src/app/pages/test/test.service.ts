@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SessionStorage } from 'src/app/shared/technical/storage/storage.decorator';
+import { LocaleStorage } from 'src/app/shared/technical/storage/storage.decorator';
 import { SentenceDTO } from 'src/clients/dz-dialect-api';
 
 export type StepResponse = {
@@ -14,19 +14,19 @@ export type StepResult = {
 
 @Injectable()
 export class TestService {
-  @SessionStorage()
+  @LocaleStorage()
   nbSteps!: number;
 
-  @SessionStorage()
+  @LocaleStorage()
   step!: number;
 
-  @SessionStorage()
+  @LocaleStorage()
   sentences!: SentenceDTO[];
 
-  @SessionStorage()
+  @LocaleStorage()
   responses!: StepResponse[];
 
-  @SessionStorage()
+  @LocaleStorage()
   score!: number;
 
   get success(): boolean {

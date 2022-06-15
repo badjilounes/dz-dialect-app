@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class StorageService {
   tryGet<T>(key: string): T | undefined {
     let value: T | undefined;
-    const stored = sessionStorage.getItem(key);
+    const stored = localStorage.getItem(key);
 
     if (stored) {
       try {
@@ -18,10 +18,10 @@ export class StorageService {
   }
 
   set<T>(key: string, value: T): void {
-    sessionStorage.setItem(key, JSON.stringify(value));
+    localStorage.setItem(key, JSON.stringify(value));
   }
 
   clear() {
-    sessionStorage.clear();
+    localStorage.clear();
   }
 }
