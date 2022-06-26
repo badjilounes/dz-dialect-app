@@ -23,8 +23,8 @@ const routes: Routes = [
       },
       {
         path: 'test',
-        loadChildren: () => import('./pages/test/test.module').then((m) => m.TestModule),
-        data: { menu: true, title: 'test.menu.title' },
+        loadChildren: () => import('./pages/training/training.module').then((m) => m.TrainingModule),
+        data: { menu: true, title: 'training.menu.title' },
       },
     ],
   },

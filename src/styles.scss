@@ -38,10 +38,10 @@ $dz-dialect-app-theme: mat.define-light-theme(
 @import "./assets/styles/material/overlay.scss";
 
 /* app components */
-@import "app/pages/test/test-home/test-home-component.theme.scss";
-@import "app/pages/test/test-result/test-result-component.theme.scss";
-@import "app/pages/test/test-question/test-question.component.scss";
-@import "app/pages/test/test-response/test-response.component.scss";
+@import "app/pages/training/pages/training-home/training-home-component.theme.scss";
+@import "app/pages/training/pages/training-result/training-result-component.theme.scss";
+@import "app/pages/training/components/training-question/training-question.component.scss";
+@import "app/pages/training/components/training-response/training-response.component.scss";
 @import "app/pages/keyword/keyword.component.scss";
 @import "app/pages/random/random.component.scss";
 @import "app/shared/business/translation-bloc/translation-content/translation-content-component.theme.scss";
@@ -50,10 +50,10 @@ $dz-dialect-app-theme: mat.define-light-theme(
 @include bottom-sheet-theme($dz-dialect-app-theme);
 
 /* component theme */
-@include test-home-theme($dz-dialect-app-theme);
-@include test-result-theme($dz-dialect-app-theme);
-@include test-question-theme($dz-dialect-app-theme);
-@include test-response-theme($dz-dialect-app-theme);
+@include training-home-theme($dz-dialect-app-theme);
+@include training-result-theme($dz-dialect-app-theme);
+@include training-question-theme($dz-dialect-app-theme);
+@include training-response-theme($dz-dialect-app-theme);
 @include keyword-theme($dz-dialect-app-theme);
 @include random-theme($dz-dialect-app-theme);
 @include translation-content-theme($dz-dialect-app-theme);
@@ -78,10 +78,10 @@ $dz-dialect-app-theme: mat.define-light-theme(
   @include bottom-sheet-theme($dz-dialect-dark-app-theme);
 
   /* component theme */
-  @include test-home-theme($dz-dialect-dark-app-theme);
-  @include test-result-theme($dz-dialect-dark-app-theme);
-  @include test-question-theme($dz-dialect-dark-app-theme);
-  @include test-response-theme($dz-dialect-dark-app-theme);
+  @include training-home-theme($dz-dialect-dark-app-theme);
+  @include training-result-theme($dz-dialect-dark-app-theme);
+  @include training-question-theme($dz-dialect-dark-app-theme);
+  @include training-response-theme($dz-dialect-dark-app-theme);
   @include keyword-theme($dz-dialect-dark-app-theme);
   @include random-theme($dz-dialect-dark-app-theme);
   @include translation-content-theme($dz-dialect-dark-app-theme);
