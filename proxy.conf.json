@@ -1,6 +1,6 @@
 {
   "/proxy": {
-    "target": "https://dz-dialect-api.ew.r.appspot.com",
+    "target": "https://evening-meadow-36429.herokuapp.com",
     "secure": true,
     "changeOrigin": true,
     "logLevel": "info",

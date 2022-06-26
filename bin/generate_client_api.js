@@ -28,7 +28,7 @@ async function main() {
     -v "${SOURCE_PATH}:/local" \
     -v "${resolve(TARGET_PATH)}:/gen" \
     openapitools/openapi-generator-cli:v5.3.0 \
-    generate -i "https://dz-dialect-api.ew.r.appspot.com/v3/api-docs" -g typescript-angular --additional-properties=enumPropertyNaming=UPPERCASE,serviceSuffix=HttpService,fileNaming=kebab-case -o /gen`,
+    generate -i "https://evening-meadow-36429.herokuapp.com/v3/api-docs" -g typescript-angular --additional-properties=enumPropertyNaming=UPPERCASE,serviceSuffix=HttpService,fileNaming=kebab-case -o /gen`,
   );
   if (stderr) {
     console.error(stderr);

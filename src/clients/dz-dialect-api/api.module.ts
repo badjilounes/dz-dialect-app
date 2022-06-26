@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { AdjectiveControllerHttpService } from './api/adjective-controller.service';
 import { AdverbControllerHttpService } from './api/adverb-controller.service';
+import { DzDialectApiSpringApplicationHttpService } from './api/dz-dialect-api-spring-application.service';
+import { NounControllerHttpService } from './api/noun-controller.service';
 import { PronounsControllerHttpService } from './api/pronouns-controller.service';
 import { QuestionsControllerHttpService } from './api/questions-controller.service';
 import { SentenceControllerHttpService } from './api/sentence-controller.service';

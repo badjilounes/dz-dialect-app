@@ -30,7 +30,7 @@ import { Configuration }                                     from '../configurat
 })
 export class AdverbControllerHttpService {
 
-    protected basePath = 'https://dz-dialect-api.ew.r.appspot.com';
+    protected basePath = 'https://evening-meadow-36429.herokuapp.com';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;

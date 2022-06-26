@@ -5,6 +5,8 @@ api.module.ts
 api/adjective-controller.service.ts
 api/adverb-controller.service.ts
 api/api.ts
+api/dz-dialect-api-spring-application.service.ts
+api/noun-controller.service.ts
 api/pronouns-controller.service.ts
 api/questions-controller.service.ts
 api/sentence-controller.service.ts
@@ -13,8 +15,12 @@ configuration.ts
 encoder.ts
 git_push.sh
 index.ts
+model/contribution-sentence-dto.ts
+model/contribution-sentence.ts
 model/models.ts
 model/sentence-content-dto.ts
 model/sentence-dto.ts
+model/translation.ts
+model/word-dto.ts
 model/word-propositions-dto.ts
 variables.ts
