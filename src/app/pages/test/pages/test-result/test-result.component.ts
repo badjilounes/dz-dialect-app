@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, catchError, EMPTY, map, Observable, shareReplay, tap } from 'rxjs';
 import { SentenceControllerHttpService } from 'src/clients/dz-dialect-api';
-import { TestService } from '../test.service';
+import { TestService } from '../../test.service';
 
 @Component({
   selector: 'app-test-result',

@@ -4,8 +4,8 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { map, Observable, shareReplay } from 'rxjs';
+import { StepResult, TestService } from '../../test.service';
 import { TestBottomSheetResultComponent } from '../test-bottom-sheet-result/test-bottom-sheet-result.component';
-import { StepResult, TestService } from '../test.service';
 
 @Component({
   selector: 'app-test-bottom-sheet-validate',

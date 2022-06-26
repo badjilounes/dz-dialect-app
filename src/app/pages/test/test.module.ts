@@ -7,14 +7,15 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AppTranslateModule } from 'src/app/core/translate/translate.module';
-import { TestBottomSheetValidateComponent } from './test-bottom-sheet-validate/test-bottom-sheet-validate.component';
-import { TestHomeComponent } from './test-home/test-home.component';
-import { TestProgressComponent } from './test-progress/test-progress.component';
-import { TestQuestionComponent } from './test-question/test-question.component';
-import { TestResponseComponent } from './test-response/test-response.component';
-import { TestResultComponent } from './test-result/test-result.component';
+import { TestBottomSheetValidateComponent } from './components/test-bottom-sheet-validate/test-bottom-sheet-validate.component';
+import { TestProgressComponent } from './components/test-progress/test-progress.component';
+import { TestQuestionComponent } from './components/test-question/test-question.component';
+import { TestResponseComponent } from './components/test-response/test-response.component';
+import { TestHomeComponent } from './pages/test-home/test-home.component';
+import { TestResultComponent } from './pages/test-result/test-result.component';
+import { TestComponent } from './pages/test/test.component';
+
 import { TestRoutingModule } from './test-routing.module';
-import { TestComponent } from './test.component';
 import { TestService } from './test.service';
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
-import { TestService } from '../test.service';
+import { TestService } from '../../test.service';
 
 @Component({
   selector: 'app-test-response',
