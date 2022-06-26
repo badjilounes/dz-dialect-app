@@ -1,7 +1,11 @@
-<div class="training-result-container" [ngClass]="{ handset: isHandset$ | async }">
+<div
+  class="training-result-container"
+  *ngrxLet="isHandset$; let isHandset"
+  [ngClass]="{ handset: isHandset }"
+>
   <div class="training-result-content">
-    <div class="training-result-description">
-      <h1>
+    <div class="training-result-description" *ngrxLet="nbSteps$; let total">
+      <h1 *ngrxLet="score$; let score">
         <span>{{ 'training.result.description.prefix' | translate }}</span>
         <span class="training-result-score" [ngClass]="{ error: score < total / 2 }">
           {{ score }} / {{ total }}</span

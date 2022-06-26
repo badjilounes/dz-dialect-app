@@ -3,7 +3,7 @@ import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bott
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 import { CapitalizeModule } from 'src/app/shared/technical/capitalize/capitalize.module';
-import { StepResult } from '../../training.service';
+import { StepResult } from '../../store/training.store';
 
 @Component({
   selector: 'app-training-bottom-sheet-result',

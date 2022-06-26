@@ -1,6 +1,6 @@
 <div class="response-container" [ngClass]="{ handset: isHandset$ | async }">
   <div class="given-response-container">
-    <mat-chip-list aria-label="given response">
+    <mat-chip-list aria-label="given response" *ngrxLet="response$; let response">
       <mat-chip *ngFor="let word of response" (click)="removeToResponse(word)">
         {{ word }}
       </mat-chip>
@@ -8,7 +8,7 @@
   </div>
 
   <div class="propositions-container">
-    <mat-chip-list aria-label="word propositions">
+    <mat-chip-list aria-label="word propositions" *ngrxLet="propositions$; let propositions">
       <mat-chip *ngFor="let word of propositions" color="primary" (click)="addToResponse(word)">
         {{ word }}
       </mat-chip>

@@ -1,9 +1,25 @@
-<div class="bottom-sheet-container validate" [ngClass]="{ handset: isHandset$ | async }">
-  <button mat-stroked-button color="accent" class="skip-button" (click)="showResult()">
+<div
+  class="bottom-sheet-container validate"
+  [ngClass]="{ handset: isHandset$ | async }"
+  *ngrxLet="answer$; let answer"
+>
+  <button
+    mat-stroked-button
+    color="accent"
+    *ngrxLet="success$; let success"
+    class="skip-button"
+    (click)="showResult(success, answer)"
+  >
     {{ 'bottom-sheet.validate.skip-button' | translate }}
   </button>
 
-  <button mat-raised-button color="primary" class="validate-button" (click)="showResult()">
+  <button
+    mat-raised-button
+    color="primary"
+    *ngrxLet="success$; let success"
+    class="validate-button"
+    (click)="showResult(success, answer)"
+  >
     {{ 'bottom-sheet.validate.validate-button' | translate }}
   </button>
 </div>

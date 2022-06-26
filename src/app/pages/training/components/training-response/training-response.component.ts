@@ -1,7 +1,7 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
-import { TrainingService } from '../../training.service';
+import { TrainingStore } from '../../store/training.store';
 
 @Component({
   selector: 'app-training-response',
@@ -14,30 +14,21 @@ export class TrainingResponseComponent implements OnInit {
     shareReplay(),
   );
 
-  get response(): string[] {
-    return this.trainingService.responses?.[this.trainingService.step]?.responses || [];
-  }
-
-  get propositions(): string[] {
-    const allPropositions =
-      this.trainingService.sentences?.[this.trainingService.step]?.word_propositions?.fr || [];
-    return allPropositions.filter((proposition) => !this.response.includes(proposition));
-  }
+  response$: Observable<string[]> = this.trainingStore.currentUserResponse$;
+  propositions$: Observable<string[]> = this.trainingStore.currentPropositions$;
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
-    private readonly trainingService: TrainingService,
+    private readonly trainingStore: TrainingStore,
   ) {}
 
   ngOnInit(): void {}
 
   addToResponse(word: string) {
-    this.trainingService.setStepResponses([...this.response, word]);
+    this.trainingStore.addToCurrentResponse(word);
   }
 
   removeToResponse(word: string) {
-    const responses = this.response.filter((response) => response !== word);
-
-    this.trainingService.setStepResponses(responses);
+    this.trainingStore.removeToCurrentResponse(word);
   }
 }

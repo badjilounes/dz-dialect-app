@@ -38,8 +38,8 @@ $dz-dialect-app-theme: mat.define-light-theme(
 @import "./assets/styles/material/overlay.scss";
 
 /* app components */
-@import "app/pages/training/pages/training-home/training-home-component.theme.scss";
-@import "app/pages/training/pages/training-result/training-result-component.theme.scss";
+@import "app/pages/training/components/training-home/training-home-component.theme.scss";
+@import "app/pages/training/components/training-result/training-result-component.theme.scss";
 @import "app/pages/training/components/training-question/training-question.component.scss";
 @import "app/pages/training/components/training-response/training-response.component.scss";
 @import "app/pages/keyword/keyword.component.scss";

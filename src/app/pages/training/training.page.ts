@@ -1,15 +1,18 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
-import { TrainingStore } from '../../store/training.store';
+import { TrainingStore } from './store/training.store';
 
 @Component({
-  selector: 'app-training-progress',
-  templateUrl: './training-progress.component.html',
-  styleUrls: ['./training-progress.component.scss'],
+  selector: 'app-training',
+  templateUrl: './training.page.html',
+  styleUrls: ['./training.page.scss'],
+  providers: [TrainingStore],
 })
-export class TrainingProgressComponent implements OnInit {
-  progress$: Observable<number> = this.trainingStore.progress$;
+export class TrainingPage {
+  showTrainingResult$ = this.trainingStore.showResult$;
+  showTrainingHome$ = this.trainingStore.showHome$;
+  showTraining$ = this.trainingStore.showTraining$;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map((result) => result.matches),
@@ -20,6 +23,4 @@ export class TrainingProgressComponent implements OnInit {
     private readonly breakpointObserver: BreakpointObserver,
     private readonly trainingStore: TrainingStore,
   ) {}
-
-  ngOnInit(): void {}
 }

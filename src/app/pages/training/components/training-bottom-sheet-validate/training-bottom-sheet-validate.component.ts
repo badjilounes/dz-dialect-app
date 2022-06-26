@@ -1,10 +1,9 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { map, Observable, shareReplay } from 'rxjs';
-import { StepResult, TrainingService } from '../../training.service';
+import { TrainingStore } from '../../store/training.store';
 import { TrainingBottomSheetResultComponent } from '../training-bottom-sheet-result/training-bottom-sheet-result.component';
 
 @Component({
@@ -19,39 +18,29 @@ export class TrainingBottomSheetValidateComponent implements OnInit {
     shareReplay(),
   );
 
-  stepResult: StepResult | undefined;
+  success$: Observable<boolean> = this.trainingStore.success$;
+  answer$: Observable<string> = this.trainingStore.currentAnswer$;
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
-    private readonly trainingService: TrainingService,
+    private readonly trainingStore: TrainingStore,
     private readonly bottomSheet: MatBottomSheet,
-    private readonly router: Router,
   ) {}
 
   ngOnInit(): void {}
 
-  showResult() {
-    this.stepResult = {
-      success: this.trainingService.success,
-      answer: this.trainingService.answer,
-    };
-
+  showResult(success: boolean, answer: string) {
     const bottomSheetRef = this.bottomSheet.open(TrainingBottomSheetResultComponent, {
-      data: { success: this.trainingService.success, answer: this.trainingService.answer },
+      data: { success, answer },
       disableClose: true,
-      panelClass: ['step-result', this.stepResult?.success ? 'success' : 'failure'],
+      panelClass: ['step-result', success ? 'success' : 'failure'],
     });
 
     bottomSheetRef
       .afterDismissed()
       .pipe(untilDestroyed(this))
       .subscribe(() => {
-        if (this.trainingService.isLastStep) {
-          this.router.navigate(['/test/result']);
-          return;
-        }
-
-        this.trainingService.nextStep();
+        this.trainingStore.nextStep();
       });
   }
 }

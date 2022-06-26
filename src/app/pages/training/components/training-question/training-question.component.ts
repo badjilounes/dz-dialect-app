@@ -1,7 +1,7 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
-import { TrainingService } from '../../training.service';
+import { TrainingStore } from '../../store/training.store';
 
 @Component({
   selector: 'app-training-question',
@@ -14,13 +14,11 @@ export class TrainingQuestionComponent implements OnInit {
     shareReplay(),
   );
 
-  get sentence(): string {
-    return this.trainingService.sentences?.[this.trainingService.step]?.dz || '';
-  }
+  sentence$: Observable<string> = this.trainingStore.currentQuestion$;
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
-    private readonly trainingService: TrainingService,
+    private readonly trainingStore: TrainingStore,
   ) {}
 
   ngOnInit(): void {}

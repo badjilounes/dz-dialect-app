@@ -1,0 +1,17 @@
+<ng-container>
+  <app-training-home *ngIf="showTrainingHome$ | async"></app-training-home>
+
+  <div
+    class="app-content"
+    [ngClass]="{ handset: isHandset$ | async }"
+    *ngIf="showTraining$ | async"
+  >
+    <app-training-progress></app-training-progress>
+    <app-training-question></app-training-question>
+    <app-training-response></app-training-response>
+    <mat-divider></mat-divider>
+    <app-training-bottom-sheet-validate></app-training-bottom-sheet-validate>
+  </div>
+
+  <app-training-result *ngIf="showTrainingResult$ | async"></app-training-result>
+</ng-container>
