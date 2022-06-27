@@ -14,7 +14,7 @@ export class TrainingQuestionComponent implements OnInit {
     shareReplay(),
   );
 
-  sentence$: Observable<string> = this.trainingStore.currentQuestion$;
+  question$: Observable<string> = this.trainingStore.step$.pipe(map((step) => step.question));
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,

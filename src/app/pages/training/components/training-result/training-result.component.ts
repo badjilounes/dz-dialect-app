@@ -11,8 +11,8 @@ import { TrainingStore } from '../../store/training.store';
 })
 @UntilDestroy()
 export class TrainingResultComponent {
-  score$: Observable<number> = this.trainingStore.score$;
-  nbSteps$: Observable<number> = this.trainingStore.nbSteps$;
+  score$: Observable<number> = this.trainingStore.note$;
+  nbSteps$: Observable<number> = this.trainingStore.stepsCount$;
   loading$: Observable<boolean> = this.trainingStore.isLoading$;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(

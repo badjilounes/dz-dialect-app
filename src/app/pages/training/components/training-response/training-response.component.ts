@@ -14,8 +14,10 @@ export class TrainingResponseComponent implements OnInit {
     shareReplay(),
   );
 
-  response$: Observable<string[]> = this.trainingStore.currentUserResponse$;
-  propositions$: Observable<string[]> = this.trainingStore.currentPropositions$;
+  response$: Observable<string[]> = this.trainingStore.step$.pipe(map((step) => step.response));
+  propositions$: Observable<string[]> = this.trainingStore.step$.pipe(
+    map((step) => step.propositions),
+  );
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
@@ -25,10 +27,10 @@ export class TrainingResponseComponent implements OnInit {
   ngOnInit(): void {}
 
   addToResponse(word: string) {
-    this.trainingStore.addToCurrentResponse(word);
+    this.trainingStore.addToResponse(word);
   }
 
   removeToResponse(word: string) {
-    this.trainingStore.removeToCurrentResponse(word);
+    this.trainingStore.removeFromResponse(word);
   }
 }

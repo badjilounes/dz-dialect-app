@@ -18,8 +18,8 @@ export class TrainingBottomSheetValidateComponent implements OnInit {
     shareReplay(),
   );
 
-  success$: Observable<boolean> = this.trainingStore.success$;
-  answer$: Observable<string> = this.trainingStore.currentAnswer$;
+  answer$: Observable<string> = this.trainingStore.step$.pipe(map((step) => step.answer));
+  success$: Observable<boolean> = this.trainingStore.isResponseCorrect$;
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
