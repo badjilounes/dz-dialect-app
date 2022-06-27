@@ -22,8 +22,9 @@ const routes: Routes = [
         data: { menu: true, title: 'keyword.menu.title' },
       },
       {
-        path: 'test',
-        loadChildren: () => import('./pages/training/training.module').then((m) => m.TrainingModule),
+        path: 'training',
+        loadChildren: () =>
+          import('./pages/training/training.module').then((m) => m.TrainingModule),
         data: { menu: true, title: 'training.menu.title' },
       },
     ],
