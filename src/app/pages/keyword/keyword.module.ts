@@ -7,7 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
-import { ReactiveComponentModule } from '@ngrx/component';
+import { LetModule } from '@ngrx/component';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationSentenceModule } from 'src/app/shared/business/translation-bloc/translation-bloc.module';
 import { CapitalizeModule } from 'src/app/shared/technical/capitalize/capitalize.module';
@@ -28,7 +28,7 @@ import { KeywordComponent } from './keyword.component';
     CapitalizeModule,
     TranslationSentenceModule,
     MatProgressSpinnerModule,
-    ReactiveComponentModule,
+    LetModule,
   ],
 })
 export class KeywordModule {}
