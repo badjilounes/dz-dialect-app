@@ -1,6 +1,3 @@
-@use 'sass:map';
-@use '@angular/material' as mat;
-
 :host {
   padding: 0 24px;
 }
@@ -35,27 +32,3 @@
 .mat-standard-chip::after {
   border: inherit;
 }
-
-@mixin training-response-theme($theme) {
-  $primary: map-get($theme, primary);
-
-  $foreground: map-get($theme, foreground);
-  $divider-color: mat.get-color-from-palette($foreground, divider);
-
-  app-training-response .response-container {
-    .given-response-container {
-      border-top-color: $divider-color;
-      border-bottom-color: $divider-color;
-    }
-
-    .mat-standard-chip {
-      border-color: $divider-color;
-      box-shadow: 0 2px 0 $divider-color;
-    }
-
-    .mat-standard-chip::after {
-      background: map.get($primary, A400)
-    }
-  }
-}
-

@@ -7,8 +7,8 @@ import { SentenceControllerHttpService, SentenceDTO } from 'src/clients/dz-diale
 
 @Component({
   selector: 'app-random',
-  templateUrl: './random.component.html',
-  styleUrls: ['./random.component.scss'],
+  templateUrl: './random.page.html',
+  styleUrls: ['./random.page.scss'],
 })
 export class RandomComponent implements OnInit {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);

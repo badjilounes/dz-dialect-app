@@ -1,8 +1,4 @@
-<div
-  class="training-result-container"
-  *ngrxLet="isHandset$; let isHandset"
-  [ngClass]="{ handset: isHandset }"
->
+<div class="training-result-container" *ngrxLet="isHandset$; let handset" [ngClass]="{ handset }">
   <div class="training-result-content">
     <div class="training-result-description" *ngrxLet="nbSteps$; let total">
       <h1 *ngrxLet="score$; let score">
@@ -17,11 +13,10 @@
         class="restart-training-button"
         color="accent"
         (click)="restartTraining()"
+        *ngrxLet="loading$; let isLoading"
       >
-        <span *ngIf="(loading$ | async) === false">{{
-          'training.result.restart-button' | translate
-        }}</span>
-        <mat-spinner *ngIf="(loading$ | async) === true" [diameter]="30"></mat-spinner>
+        <span *ngIf="!isLoading">{{ 'training.result.restart-button' | translate }}</span>
+        <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
       </button>
     </div>
   </div>

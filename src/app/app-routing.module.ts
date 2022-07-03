@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MenuComponent } from './core/menu/menu.component';
-import { KeywordComponent } from './pages/keyword/keyword.component';
-import { RandomComponent } from './pages/random/random.component';
+import { KeywordComponent } from './pages/keyword/keyword.page';
+import { RandomComponent } from './pages/random/random.page';
 
 const routes: Routes = [
   { path: '', redirectTo: 'random', pathMatch: 'full' },

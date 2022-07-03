@@ -23,8 +23,8 @@ import {
 
 @Component({
   selector: 'app-keyword',
-  templateUrl: './keyword.component.html',
-  styleUrls: ['./keyword.component.scss'],
+  templateUrl: './keyword.page.html',
+  styleUrls: ['./keyword.page.scss'],
 })
 export class KeywordComponent implements OnInit {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
@@ -39,15 +39,11 @@ export class KeywordComponent implements OnInit {
   verbControl = new FormControl<string>('', [Validators.required]);
   verbOptions: string[] = [];
 
-  tensesControl = new FormControl<string[]>([]);
-  tenses = ['PAST', 'PRESENT', 'FUTURE', 'IMPERATIVE'];
+  tenseControl = new FormControl<string>('');
+  tenses = ['past', 'present', 'future', 'imperative'];
 
-  get selectedTenses(): string[] {
-    return this.tensesControl.value ?? [];
-  }
-
-  get firstTenseSelected(): string {
-    return this.selectedTenses[0] ? this.selectedTenses[0] : '';
+  get selectedTense(): string | undefined {
+    return this.tenseControl.value || undefined;
   }
 
   constructor(
@@ -87,8 +83,9 @@ export class KeywordComponent implements OnInit {
         .generateRandomSentence(
           5,
           undefined,
+          undefined,
           this.verbControl.value?.toLowerCase(),
-          this.tensesControl.value?.join(','),
+          this.selectedTense,
         )
         .pipe(
           tap(() => this.loading$.next(false)),

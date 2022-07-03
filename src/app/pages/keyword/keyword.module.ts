@@ -11,7 +11,7 @@ import { LetModule } from '@ngrx/component';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationSentenceModule } from 'src/app/shared/business/translation-bloc/translation-bloc.module';
 import { CapitalizeModule } from 'src/app/shared/technical/capitalize/capitalize.module';
-import { KeywordComponent } from './keyword.component';
+import { KeywordComponent } from './keyword.page';
 
 @NgModule({
   declarations: [KeywordComponent],

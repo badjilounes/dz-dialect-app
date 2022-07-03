@@ -1,6 +1,3 @@
-@use 'sass:map';
-@use '@angular/material' as mat;
-
 :host {
   display: grid;
   padding: 0 24px;
@@ -29,15 +26,4 @@
   padding: 12px 24px;
   height: 68px;
   border: 2px solid;
-}
-
-@mixin training-question-theme($theme) {
-  $foreground: map-get($theme, foreground);
-
-  app-training-question .question-container {
-    .mat-standard-chip{
-      border-color: mat.get-color-from-palette($foreground, divider);
-      box-shadow: 0 2px 0 mat.get-color-from-palette($foreground, divider);
-    }
-  }
 }

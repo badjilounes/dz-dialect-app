@@ -6,8 +6,8 @@ import { TrainingStore } from '../../store/training.store';
 
 @Component({
   selector: 'app-training-result',
-  templateUrl: './training-result.component.html',
-  styleUrls: ['./training-result.component.scss'],
+  templateUrl: './training-result.page.html',
+  styleUrls: ['./training-result.page.scss'],
 })
 @UntilDestroy()
 export class TrainingResultComponent {

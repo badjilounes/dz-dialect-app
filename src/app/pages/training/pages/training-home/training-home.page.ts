@@ -6,8 +6,8 @@ import { TrainingStore } from '../../store/training.store';
 
 @Component({
   selector: 'app-training-home',
-  templateUrl: './training-home.component.html',
-  styleUrls: ['./training-home.component.scss'],
+  templateUrl: './training-home.page.html',
+  styleUrls: ['./training-home.page.scss'],
 })
 @UntilDestroy()
 export class TrainingHomeComponent {

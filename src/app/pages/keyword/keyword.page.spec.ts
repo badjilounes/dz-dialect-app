@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RandomComponent } from './random.component';
+import { KeywordComponent } from './keyword.page';
 
-describe('RandomComponent', () => {
-  let component: RandomComponent;
-  let fixture: ComponentFixture<RandomComponent>;
+describe('KeywordComponent', () => {
+  let component: KeywordComponent;
+  let fixture: ComponentFixture<KeywordComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RandomComponent ]
-    })
-    .compileComponents();
+      declarations: [KeywordComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RandomComponent);
+    fixture = TestBed.createComponent(KeywordComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

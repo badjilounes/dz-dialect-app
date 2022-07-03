@@ -1,0 +1,10 @@
+
+@mixin keyword-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  app-keyword .app-content {
+    .mat-progress-spinner circle, .mat-spinner circle {
+      stroke: mat.get-color-from-palette($primary, 50);
+    }
+  }
+}

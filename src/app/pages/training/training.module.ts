@@ -9,12 +9,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LetModule } from '@ngrx/component';
 import { AppTranslateModule } from 'src/app/core/translate/translate.module';
 import { TrainingBottomSheetValidateComponent } from './components/training-bottom-sheet-validate/training-bottom-sheet-validate.component';
-import { TrainingHomeComponent } from './components/training-home/training-home.component';
 import { TrainingProgressComponent } from './components/training-progress/training-progress.component';
 import { TrainingQuestionComponent } from './components/training-question/training-question.component';
 import { TrainingResponseComponent } from './components/training-response/training-response.component';
-import { TrainingResultComponent } from './components/training-result/training-result.component';
+import { TrainingHomeComponent } from './pages/training-home/training-home.page';
+import { TrainingResultComponent } from './pages/training-result/training-result.page';
 
+import { TrainingRandomComponent } from './pages/training-random/training-random.page';
 import { TrainingRoutingModule } from './training-routing.module';
 import { TrainingPage } from './training.page';
 
@@ -27,6 +28,7 @@ import { TrainingPage } from './training.page';
     TrainingHomeComponent,
     TrainingResultComponent,
     TrainingBottomSheetValidateComponent,
+    TrainingRandomComponent,
   ],
   imports: [
     CommonModule,

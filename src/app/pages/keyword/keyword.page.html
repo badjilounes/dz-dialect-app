@@ -28,21 +28,15 @@
 
         <mat-form-field appearance="outline">
           <mat-select
-            [formControl]="tensesControl"
-            multiple
+            [formControl]="tenseControl"
             [placeholder]="'keyword.tense.placeholder' | translate"
           >
             <mat-select-trigger>
-              {{ 'keyword.tense.' + firstTenseSelected | translate }}
-
-              <span *ngIf="selectedTenses.length > 1">
-                (+{{ selectedTenses.length - 1 }}
-                {{ selectedTenses.length === 2 ? 'autre' : 'autres' }})
-              </span>
+              {{ 'keyword.tense.' + selectedTense | translate }}
             </mat-select-trigger>
-            <mat-option *ngFor="let tense of tenses" [value]="tense">{{
-              'keyword.tense.' + tense | translate
-            }}</mat-option>
+            <mat-option *ngFor="let tense of tenses" [value]="tense"
+              >{{ 'keyword.tense.' + tense | translate }}</mat-option
+            >
           </mat-select>
         </mat-form-field>
       </div>

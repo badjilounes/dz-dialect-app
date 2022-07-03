@@ -1,0 +1,10 @@
+
+@mixin random-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  app-random .app-content {
+    .mat-progress-spinner circle, .mat-spinner circle {
+      stroke: mat.get-color-from-palette($primary, 50);
+    }
+  }
+}
