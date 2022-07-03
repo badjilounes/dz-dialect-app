@@ -14,6 +14,7 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
+import { StorageService } from 'src/app/shared/technical/storage/storage.service';
 import {
   SentenceControllerHttpService,
   SentenceDTO,
@@ -54,9 +55,12 @@ export class KeywordComponent implements OnInit {
     private readonly verbsApi: VerbControllerHttpService,
     private readonly sentenceApi: SentenceControllerHttpService,
     private readonly snackBar: MatSnackBar,
+    private readonly storage: StorageService,
   ) {}
 
   ngOnInit() {
+    this.storage.clear();
+
     this.filteredOptions$ = this.verbsApi.getAllVerbIds().pipe(
       map((verbsSet) => Array.from(verbsSet)),
       tap((verbs) => (this.verbOptions = verbs)),
