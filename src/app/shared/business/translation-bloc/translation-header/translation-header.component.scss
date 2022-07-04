@@ -29,7 +29,7 @@
 
 .container {
   display: grid;
-  grid-template-columns: auto 3rem auto;
+  grid-template-columns: 1fr 3rem 1fr;
   place-items: center;
 
   .mat-icon {
