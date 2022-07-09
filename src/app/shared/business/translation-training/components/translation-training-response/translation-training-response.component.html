@@ -1,0 +1,21 @@
+<div class="response-container" [ngClass]="{ handset: isHandset$ | async }">
+  <div class="given-response-container">
+    <mat-chip-list aria-label="given response">
+      <mat-chip *ngFor="let word of response$ | async" (click)="removeToResponse(word)">
+        {{ word }}
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+
+  <div class="propositions-container">
+    <mat-chip-list aria-label="word propositions">
+      <mat-chip
+        *ngFor="let word of propositions$ | async"
+        color="primary"
+        (click)="addToResponse(word)"
+      >
+        {{ word }}
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+</div>

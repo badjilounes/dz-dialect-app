@@ -1,7 +1,0 @@
-<div class="question-container" [ngClass]="{ handset: isHandset$ | async }">
-  <h1>{{ 'training.question.instruction' | translate }}</h1>
-
-  <mat-chip-list aria-label="sentence to translate" *ngrxLet="question$; let question">
-    <mat-chip [selectable]="false" [disableRipple]="true">{{ question }}</mat-chip>
-  </mat-chip-list>
-</div>

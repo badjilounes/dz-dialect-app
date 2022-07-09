@@ -38,10 +38,10 @@ $dz-dialect-app-theme: mat.define-light-theme(
 @import "./assets/styles/material/overlay.scss";
 
 /* app components */
-@import "app/pages/training/pages/training-home/training-home-page.theme.scss";
-@import "app/pages/training/pages/training-result/training-result-page.theme.scss";
-@import "app/pages/training/components/training-question/training-question-component.theme.scss";
-@import "app/pages/training/components/training-response/training-response-component.theme.scss";
+@import "app/pages/training/training-presentation/components/training-presentation-overview/training-presentation-overview-component.theme.scss";
+@import "app/pages/training/training-presentation/components/training-presentation-result/training-presentation-result-component.theme.scss";
+@import "app/shared/business/translation-training/components/translation-training-question/translation-training-question-component.theme.scss";
+@import "app/shared/business/translation-training/components/translation-training-response/translation-training-response-component.theme.scss";
 @import "app/pages/keyword/keyword-page.theme.scss";
 @import "app/pages/random/random-page.theme.scss";
 @import "app/shared/business/translation-bloc/translation-content/translation-content-component.theme.scss";
@@ -50,10 +50,10 @@ $dz-dialect-app-theme: mat.define-light-theme(
 @include bottom-sheet-theme($dz-dialect-app-theme);
 
 /* component theme */
-@include training-home-theme($dz-dialect-app-theme);
-@include training-result-theme($dz-dialect-app-theme);
-@include training-question-theme($dz-dialect-app-theme);
-@include training-response-theme($dz-dialect-app-theme);
+@include training-presentation-overview-theme($dz-dialect-app-theme);
+@include training-presentation-result-theme($dz-dialect-app-theme);
+@include translation-training-question-theme($dz-dialect-app-theme);
+@include translation-training-response-theme($dz-dialect-app-theme);
 @include keyword-theme($dz-dialect-app-theme);
 @include random-theme($dz-dialect-app-theme);
 @include translation-content-theme($dz-dialect-app-theme);
@@ -78,10 +78,10 @@ $dz-dialect-app-theme: mat.define-light-theme(
   @include bottom-sheet-theme($dz-dialect-dark-app-theme);
 
   /* component theme */
-  @include training-home-theme($dz-dialect-dark-app-theme);
-  @include training-result-theme($dz-dialect-dark-app-theme);
-  @include training-question-theme($dz-dialect-dark-app-theme);
-  @include training-response-theme($dz-dialect-dark-app-theme);
+  @include training-presentation-overview-theme($dz-dialect-dark-app-theme);
+  @include training-presentation-result-theme($dz-dialect-dark-app-theme);
+  @include translation-training-question-theme($dz-dialect-dark-app-theme);
+  @include translation-training-response-theme($dz-dialect-dark-app-theme);
   @include keyword-theme($dz-dialect-dark-app-theme);
   @include random-theme($dz-dialect-dark-app-theme);
   @include translation-content-theme($dz-dialect-dark-app-theme);

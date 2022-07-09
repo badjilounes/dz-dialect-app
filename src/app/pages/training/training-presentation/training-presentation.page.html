@@ -1,0 +1,18 @@
+<ng-container *ngrxLet="sentences$; let sentences">
+  <app-training-presentation-overview
+    *ngIf="showTrainingHome$ | async"
+  ></app-training-presentation-overview>
+
+  <app-translation-training
+    *ngIf="showTraining$ | async"
+    [sentences]="sentences"
+    (trainingEnded)="showTrainingResults($event)"
+  >
+  </app-translation-training>
+
+  <app-training-presentation-result
+    *ngIf="showTrainingResult$ | async"
+    [score]="note"
+    [total]="total"
+  ></app-training-presentation-result>
+</ng-container>

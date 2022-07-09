@@ -1,8 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TrainingPage } from './training.page';
 
-const routes: Routes = [{ path: '', component: TrainingPage }];
+const routes: Routes = [
+  { path: '', redirectTo: 'presentation', pathMatch: 'full' },
+  {
+    path: 'presentation',
+    loadChildren: () =>
+      import('./training-presentation/training-presentation.module').then(
+        (m) => m.TrainingPresentationModule,
+      ),
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -1,0 +1,23 @@
+<div class="training-result-container" *ngrxLet="isHandset$; let handset" [ngClass]="{ handset }">
+  <div class="training-result-content">
+    <div class="training-result-description">
+      <h1>
+        <span>{{ 'training.result.description.prefix' | translate }}</span>
+        <span class="training-result-score" [ngClass]="{ error: score < total / 2 }">
+          {{ score }} / {{ total }}</span
+        >
+        <span>{{ 'training.result.description.suffix' | translate }}</span>
+      </h1>
+      <button
+        mat-raised-button
+        class="restart-training-button"
+        color="accent"
+        (click)="restartTraining()"
+        *ngrxLet="loading$; let isLoading"
+      >
+        <span *ngIf="!isLoading">{{ 'training.result.restart-button' | translate }}</span>
+        <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
+      </button>
+    </div>
+  </div>
+</div>

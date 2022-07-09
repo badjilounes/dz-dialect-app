@@ -1,0 +1,7 @@
+<div class="app-content" [ngClass]="{ handset: (isHandset$ | async) === true }">
+  <app-translation-training-progress></app-translation-training-progress>
+  <app-translation-training-question></app-translation-training-question>
+  <app-translation-training-response></app-translation-training-response>
+  <mat-divider></mat-divider>
+  <app-translation-training-bottom-sheet-validate></app-translation-training-bottom-sheet-validate>
+</div>
