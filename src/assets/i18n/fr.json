@@ -37,5 +37,8 @@
   "training.training-toolbar-links.train": "S'ENTRAINER",
   "training.training-toolbar-links.learn": "APPRENDRE",
   "training.learn.toggle-group.random": "Aléatoire",
-  "training.learn.toggle-group.verb": "Par verbe"
+  "training.learn.toggle-group.verb": "Par verbe",
+  "theme-mode-toggle.dark": "Mode sombre",
+  "theme-mode-toggle.light": "Mode clair",
+  "available-soon-text.title": "Bientôt disponible"
 }

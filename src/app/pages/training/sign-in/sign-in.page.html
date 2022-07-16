@@ -1,1 +1,11 @@
-<p>sign-in works!</p>
+<ng-container *ngIf="(isHandset$ | async) === false; else mobileDisplay">
+  <mat-card>
+    <div class="available-soon-img"></div>
+    <div class="available-soon-text">{{ 'available-soon-text.title' | translate }}</div>
+  </mat-card>
+</ng-container>
+
+<ng-template #mobileDisplay>
+  <div class="available-soon-img"></div>
+  <div class="available-soon-text">{{ 'available-soon-text.title' | translate }}</div>
+</ng-template>

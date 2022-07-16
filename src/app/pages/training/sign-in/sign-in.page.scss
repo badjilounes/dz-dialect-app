@@ -1,0 +1,32 @@
+.available-soon-img {
+  background-image: url('/assets/images/login.PNG');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.2;
+}
+
+.available-soon-text {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 auto;
+  width: fit-content;
+  padding: 16px;
+  border-radius: 16px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #d21034;
+  border: 2px solid #d21034;
+}
+
+.mat-card {
+  height: 560px;
+  max-width: 340px;
+  margin: 40px auto;
+}

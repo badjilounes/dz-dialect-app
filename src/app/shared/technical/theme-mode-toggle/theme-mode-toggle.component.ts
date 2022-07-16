@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { map } from 'rxjs';
 import { ThemeService } from 'src/app/core/theme/theme.service';
 
@@ -8,6 +8,8 @@ import { ThemeService } from 'src/app/core/theme/theme.service';
   styleUrls: ['./theme-mode-toggle.component.scss'],
 })
 export class ThemeModeToggleComponent {
+  @Input() icon = true;
+
   isDarkMode$ = this.theme.themeMode$.pipe(map((themeMode) => themeMode === 'dark'));
 
   constructor(private readonly theme: ThemeService) {}

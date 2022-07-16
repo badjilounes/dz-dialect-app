@@ -7,7 +7,15 @@
     (toggleChange)="toggleThemeMode()"
     #slideToggle
   >
-    <mat-icon *ngIf="!slideToggle.checked">light_mode</mat-icon>
-    <mat-icon *ngIf="slideToggle.checked">dark_mode</mat-icon>
+    <ng-container *ngIf="icon; else label">
+      <mat-icon *ngIf="!slideToggle.checked">light_mode</mat-icon>
+      <mat-icon *ngIf="slideToggle.checked">dark_mode</mat-icon>
+    </ng-container>
+
+    <ng-template #label>
+      <span>{{
+        (isDarkMode ? 'theme-mode-toggle.dark' : 'theme-mode-toggle.light') | translate
+      }}</span>
+    </ng-template>
   </mat-slide-toggle>
 </ng-container>
