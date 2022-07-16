@@ -53,6 +53,6 @@ export class ThemeService {
       color = this.themeMode$.getValue() === 'light' ? StatusBarColor.LIGHT : StatusBarColor.DARK;
     }
 
-    window.document.getElementById('meta-theme-color')!.setAttribute('content', color);
+    document.getElementById('meta-theme-color')!.setAttribute('content', color);
   }
 }
