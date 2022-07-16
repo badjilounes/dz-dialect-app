@@ -9,8 +9,12 @@
 }
 
 .mat-button-toggle-group {
-  height: 50px;
   margin-top: 16px;
+}
+
+.mat-button-toggle-group,
+.mat-button-toggle-button {
+  height: 50px;
 }
 
 .learn-content{
