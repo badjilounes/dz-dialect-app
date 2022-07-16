@@ -18,7 +18,8 @@ export class ThemeService {
   themeMode$!: BehaviorSubject<ThemeMode>;
 
   @LocaleStorage()
-  private _themedStatusBar = false;
+  private _themedStatusBar!: boolean;
+
   public get themedStatusBar() {
     return this._themedStatusBar;
   }
@@ -33,6 +34,10 @@ export class ThemeService {
   constructor() {
     if (!this.themeMode) {
       this.themeMode = ThemeService.DEFAULT_THEME;
+    }
+
+    if (this.themedStatusBar === undefined || this.themedStatusBar === null) {
+      this.themedStatusBar = false;
     }
 
     this.themeMode$ = new BehaviorSubject<ThemeMode>(this.themeMode);
