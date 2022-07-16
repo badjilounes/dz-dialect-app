@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MenuComponent } from './core/menu/menu.component';
+import { UnauthenticatedLayoutComponent } from './core/unauthenticated-layout/unauthenticated-layout.component';
 import { KeywordComponent } from './pages/keyword/keyword.page';
 import { RandomComponent } from './pages/random/random.page';
+import { TrainingPresentationPage } from './pages/training-presentation/training-presentation.page';
 
 const routes: Routes = [
   { path: '', redirectTo: 'random', pathMatch: 'full' },
 
   {
     path: '',
-    component: MenuComponent,
+    component: UnauthenticatedLayoutComponent,
     children: [
       {
         path: 'random',
@@ -22,12 +23,16 @@ const routes: Routes = [
         data: { menu: true, title: 'keyword.menu.title' },
       },
       {
-        path: 'training',
-        loadChildren: () =>
-          import('./pages/training/training.module').then((m) => m.TrainingModule),
+        path: 'training-presentation',
+        component: TrainingPresentationPage,
         data: { menu: true, title: 'training.menu.title' },
       },
     ],
+  },
+
+  {
+    path: '',
+    loadChildren: () => import('./pages/training/training.module').then((m) => m.TrainingModule),
   },
 
   { path: '**', redirectTo: 'random' },

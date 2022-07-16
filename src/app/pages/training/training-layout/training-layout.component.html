@@ -1,0 +1,16 @@
+<ng-container *ngrxLet="isMobile$; let mobile">
+  <ng-container *ngIf="!mobile; else mobileLayout">
+    <app-training-toolbar-top></app-training-toolbar-top>
+    <div class="app-content">
+      <router-outlet></router-outlet>
+    </div>
+  </ng-container>
+
+  <ng-template #mobileLayout>
+    <app-training-toolbar-top></app-training-toolbar-top>
+    <div class="app-content">
+      <router-outlet></router-outlet>
+    </div>
+    <app-training-toolbar-bottom></app-training-toolbar-bottom>
+  </ng-template>
+</ng-container>

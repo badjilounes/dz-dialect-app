@@ -16,7 +16,7 @@ import { TranslationHeaderComponent } from './translation-header/translation-hea
   declarations: [TranslationHeaderComponent, TranslationContentComponent, TranslationBlocComponent],
   imports: [
     CommonModule,
-    AppTranslateModule,
+    AppTranslateModule.forChild(),
     CapitalizeModule,
     MatCardModule,
     MatIconModule,

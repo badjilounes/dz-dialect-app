@@ -20,12 +20,20 @@
   "random.explanation.title": "Apprenez le dialecte algérien facilement",
   "random.generate-button": "Générer",
   "random.menu.title": "Aléatoire",
+  "title": "Générateur de phrases",
   "training.home.description": "La méthode efficace pour apprendre le dialecte algérien !",
   "training.home.start-button": "C'EST PARTI !",
+  "training.home.skip-presentation-button": "PASSER LA PRÉSENTATION",
+  "training.menu.title": "S'entrainer",
+  "training.question.instruction": "Écris ceci en français",
   "training.result.description.prefix": "Vous avez obtenu",
   "training.result.description.suffix": "Vous pouvez continuer à apprendre le dialecte algérien !",
   "training.result.restart-button": "ON Y RETOURNE !",
-  "training.menu.title": "S'entrainer",
-  "training.question.instruction": "Écris ceci en français",
-  "title": "Générateur de phrases"
+  "training.training-presentation.skip-tooltip": "Passer la présentation",
+  "training.training-presentation.cancel-confirmation-dialog.title": "Voulez-vous vraiment passer la présentation ?",
+  "training.training-presentation.cancel-confirmation-dialog.content": "Vous perdrez toutes vos réponses.",
+  "training.training-presentation.cancel-confirmation-dialog.confirm-button": "PASSER",
+  "training.training-presentation.cancel-confirmation-dialog.cancel-button": "NON, JE CONTINUE",
+  "training.training-toolbar-links.train": "S'ENTRAINER",
+  "training.training-toolbar-links.learn": "APPRENDRE"
 }

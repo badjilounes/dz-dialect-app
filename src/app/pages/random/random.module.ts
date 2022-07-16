@@ -18,7 +18,7 @@ import { RandomComponent } from './random.page';
   imports: [
     CommonModule,
     StorageModule,
-    AppTranslateModule,
+    AppTranslateModule.forChild(),
     TranslationSentenceModule,
     MatCardModule,
     MatIconModule,

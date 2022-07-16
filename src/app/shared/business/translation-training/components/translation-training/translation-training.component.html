@@ -1,5 +1,8 @@
 <div class="app-content" [ngClass]="{ handset: (isHandset$ | async) === true }">
-  <app-translation-training-progress></app-translation-training-progress>
+  <app-translation-training-progress
+    [cancelOption]="skipTraining"
+    [cancelOptionTooltip]="'training.training-presentation.skip-tooltip' | translate"
+  ></app-translation-training-progress>
   <app-translation-training-question></app-translation-training-question>
   <app-translation-training-response></app-translation-training-response>
   <mat-divider></mat-divider>

@@ -1,0 +1,13 @@
+:host {
+  display: grid;
+}
+
+.mat-toolbar {
+  height: 100%;
+  background: transparent;
+}
+
+
+app-training-toolbar-links {
+  justify-content: space-around;
+}

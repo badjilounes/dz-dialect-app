@@ -1,0 +1,23 @@
+:host {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+
+  display: grid;
+  grid-template-rows: min-content auto min-content;
+}
+
+app-training-toolbar-bottom {
+  height: 88px;
+}
+
+.app-content {
+  overflow: auto;
+  width: 100%;
+  position: relative;
+}
+
+
+

@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
 import { TranslationTrainingStore } from '../../store/translation-training.store';
 
@@ -7,8 +7,12 @@ import { TranslationTrainingStore } from '../../store/translation-training.store
   selector: 'app-translation-training-progress',
   templateUrl: './translation-training-progress.component.html',
   styleUrls: ['./translation-training-progress.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TranslationTrainingProgressComponent implements OnInit {
+export class TranslationTrainingProgressComponent {
+  @Input() cancelOption = false;
+  @Input() cancelOptionTooltip = '';
+
   progress$: Observable<number> = this.trainingStore.progress$;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
@@ -21,5 +25,7 @@ export class TranslationTrainingProgressComponent implements OnInit {
     private readonly trainingStore: TranslationTrainingStore,
   ) {}
 
-  ngOnInit(): void {}
+  cancel(): void {
+    this.trainingStore.cancelTraining();
+  }
 }

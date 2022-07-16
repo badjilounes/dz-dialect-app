@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>
+  {{ data.title | translate }}
+</h1>
+<div mat-dialog-content>
+  {{ data.content | translate }}
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>
+    {{ data.cancelLabel | translate }}
+  </button>
+  <button mat-button [color]="data.acceptButtonColor" (click)="confirm()">
+    {{ data.acceptLabel | translate }}
+  </button>
+</div>

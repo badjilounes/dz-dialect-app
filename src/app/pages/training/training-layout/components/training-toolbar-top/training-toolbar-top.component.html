@@ -1,0 +1,18 @@
+<mat-toolbar *ngrxLet="isMobile$; let mobile">
+  <ng-container *ngIf="mobile; else desktopToolbar">
+    <div class="toolbar-top-right">
+      <app-theme-mode-toggle></app-theme-mode-toggle>
+    </div>
+  </ng-container>
+
+  <ng-template #desktopToolbar>
+    <app-training-toolbar-links [links]="links"></app-training-toolbar-links>
+
+    <div class="toolbar-top-right">
+      <button mat-icon-button>
+        <img src="assets/images/unkwown-user.jpg" class="user-picture" />
+      </button>
+    </div>
+  </ng-template>
+</mat-toolbar>
+<mat-divider></mat-divider>

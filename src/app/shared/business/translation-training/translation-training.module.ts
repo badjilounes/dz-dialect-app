@@ -4,7 +4,10 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LetModule } from '@ngrx/component';
 import { AppTranslateModule } from 'src/app/core/translate/translate.module';
@@ -30,6 +33,8 @@ import { TranslationTrainingComponent } from './components/translation-training/
     MatButtonModule,
     MatDividerModule,
     MatChipsModule,
+    MatIconModule,
+    MatTooltipModule,
     MatBottomSheetModule,
     MatProgressSpinnerModule,
     LetModule,

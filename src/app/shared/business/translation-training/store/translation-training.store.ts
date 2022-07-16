@@ -1,12 +1,13 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { ComponentStore, OnStoreInit } from '@ngrx/component-store';
+import { UntilDestroy } from '@ngneat/until-destroy';
+import { ComponentStore } from '@ngrx/component-store';
 import { Observable, tap } from 'rxjs';
-import { StorageService } from 'src/app/shared/technical/storage/storage.service';
 import { SentenceDTO } from 'src/clients/dz-dialect-api';
+import { TranslationTrainingEndEvent } from '../models/translation-training-end-event';
 import { TranslationTrainingLanguage } from '../models/translation-training-language';
 import { EMPTY_RESULT, TranslationTrainingResult } from '../models/translation-training-result';
 import { EMPTY_STEP, TranslationTrainingStep } from '../models/translation-training-step';
+import { TranslationTrainingStepChangeEvent } from '../models/translation-training-step-change-event';
 
 type TranslationTrainingState = {
   sentences: SentenceDTO[];
@@ -18,10 +19,7 @@ type TranslationTrainingState = {
 
 @Injectable()
 @UntilDestroy()
-export class TranslationTrainingStore
-  extends ComponentStore<TranslationTrainingState>
-  implements OnStoreInit
-{
+export class TranslationTrainingStore extends ComponentStore<TranslationTrainingState> {
   readonly step$: Observable<TranslationTrainingStep> = this.select((state) => state.step);
   readonly result$: Observable<TranslationTrainingResult> = this.select((state) => state.result);
   readonly sentences$: Observable<SentenceDTO[]> = this.select((state) => state.sentences);
@@ -35,39 +33,39 @@ export class TranslationTrainingStore
     this.isResponseCorrect(state.step),
   );
 
-  readonly trainingEnded: EventEmitter<TranslationTrainingResult> =
-    new EventEmitter<TranslationTrainingResult>();
+  readonly stepChanged: EventEmitter<TranslationTrainingStepChangeEvent> =
+    new EventEmitter<TranslationTrainingStepChangeEvent>();
+  readonly trainingEnded: EventEmitter<TranslationTrainingEndEvent> =
+    new EventEmitter<TranslationTrainingEndEvent>();
+  readonly trainingCanceled: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private readonly storageService: StorageService) {
+  constructor() {
     super({
-      language: storageService.tryGet('training-language') || {
+      language: {
         propositions: 'fr',
         response: 'dz',
       },
-      step: storageService.tryGet('training-step') || EMPTY_STEP,
+      step: EMPTY_STEP,
       sentences: [],
-      result: storageService.tryGet('training-result') || EMPTY_RESULT,
+      result: EMPTY_RESULT,
       isLoading: false,
     });
   }
 
-  ngrxOnStoreInit() {
-    this.state$
-      .pipe(
-        tap(({ language }) => this.storageService.set('training-language', language)),
-        tap(({ step }) => this.storageService.set('training-step', step)),
-        tap(({ result }) => this.storageService.set('training-result', result)),
-        untilDestroyed(this),
-      )
-      .subscribe();
+  cancelTraining() {
+    this.trainingCanceled.emit();
   }
 
-  initTraining(sentences: SentenceDTO[], language: TranslationTrainingLanguage): void {
+  initTraining(
+    sentences: SentenceDTO[],
+    language: TranslationTrainingLanguage,
+    result = EMPTY_RESULT,
+  ): void {
     this.patchState(() => ({
       sentences,
       language,
-      result: EMPTY_RESULT,
-      step: this.buildStep(0, sentences, language),
+      result,
+      step: this.buildStep(result.history.length, sentences, language),
     }));
   }
 
@@ -79,13 +77,13 @@ export class TranslationTrainingStore
     return save$.pipe(
       tap(() => this.updateResult()),
       tap(() => {
-        const { step, sentences, result } = this.get();
+        const { step, sentences, result, language } = this.get();
         if (step.index + 1 === sentences.length) {
-          this.trainingEnded.emit(result);
+          this.trainingEnded.emit({ result });
         } else {
-          this.patchState((state) => ({
-            step: this.buildStep(step.index + 1, state.sentences, state.language),
-          }));
+          const nextStep = this.buildStep(step.index + 1, sentences, language);
+          this.patchState(() => ({ step: nextStep }));
+          this.stepChanged.emit({ result, current: nextStep, previous: step });
         }
       }),
     );
@@ -123,7 +121,7 @@ export class TranslationTrainingStore
     index: number,
     sentences: SentenceDTO[],
     language: TranslationTrainingLanguage,
-  ): TranslationTrainingStep | undefined {
+  ): TranslationTrainingStep {
     return {
       index,
       question: sentences[index]?.[language.response] ?? '',

@@ -1,0 +1,68 @@
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { DomSanitizer } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { LetModule } from '@ngrx/component';
+import { AppTranslateModule } from 'src/app/core/translate/translate.module';
+import { ThemeModeToggleModule } from 'src/app/shared/technical/theme-mode-toggle/theme-mode-toggle.module';
+import { TrainingToolbarBottomComponent } from './components/training-toolbar-bottom/training-toolbar-bottom.component';
+import { TrainingToolbarLinksComponent } from './components/training-toolbar-links/training-toolbar-links.component';
+import { TrainingToolbarTopComponent } from './components/training-toolbar-top/training-toolbar-top.component';
+import { TrainingLayoutComponent } from './training-layout.component';
+
+@NgModule({
+  declarations: [
+    TrainingLayoutComponent,
+    TrainingToolbarTopComponent,
+    TrainingToolbarBottomComponent,
+    TrainingToolbarLinksComponent,
+  ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatToolbarModule,
+    MatDividerModule,
+    MatButtonModule,
+    MatIconModule,
+    LetModule,
+    AppTranslateModule.forChild(),
+    ThemeModeToggleModule,
+  ],
+  exports: [TrainingLayoutComponent],
+})
+export class TrainingLayoutModule {
+  constructor(
+    private readonly matIconRegistry: MatIconRegistry,
+    private readonly domSanitizer: DomSanitizer,
+  ) {
+    this.matIconRegistry.addSvgIcon(
+      'train',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/svg/train.svg'),
+    );
+    this.matIconRegistry.addSvgIcon(
+      'train-active',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/svg/train-active.svg'),
+    );
+    this.matIconRegistry.addSvgIcon(
+      'learn',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/svg/learn.svg'),
+    );
+    this.matIconRegistry.addSvgIcon(
+      'learn-active',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/svg/learn-active.svg'),
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      'sign-in',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/svg/sign-in.svg'),
+    );
+    this.matIconRegistry.addSvgIcon(
+      'sign-in-active',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/svg/sign-in-active.svg'),
+    );
+  }
+}

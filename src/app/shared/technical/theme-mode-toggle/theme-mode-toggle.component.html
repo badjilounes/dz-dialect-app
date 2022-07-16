@@ -1,0 +1,13 @@
+<ng-container *ngrxLet="isDarkMode$; let isDarkMode">
+  <mat-slide-toggle
+    type="button"
+    aria-label="Toggle theme mode"
+    mat-icon-button
+    [checked]="isDarkMode"
+    (toggleChange)="toggleThemeMode()"
+    #slideToggle
+  >
+    <mat-icon *ngIf="!slideToggle.checked">light_mode</mat-icon>
+    <mat-icon *ngIf="slideToggle.checked">dark_mode</mat-icon>
+  </mat-slide-toggle>
+</ng-container>

@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+  place-items: center;
+
+  ::ng-deep .mat-slide-toggle {
+
+    .mat-slide-toggle-content {
+      height: 24px;
+    }
+
+    .mat-icon {
+      color: rgb(1,162,153);
+    }
+
+    &.mat-checked:not(.mat-disabled) {
+
+      .mat-slide-toggle-bar {
+        background-color: rgb(102,75,134);
+      }
+
+      .mat-slide-toggle-thumb {
+        background-color: rgb(187,134,252);
+      }
+
+      .mat-icon {
+        color: rgb(103,80,164);
+      }
+    }
+  }
+}
+

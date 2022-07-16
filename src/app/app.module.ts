@@ -1,6 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -8,16 +7,17 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { KeywordModule } from './pages/keyword/keyword.module';
 import { RandomModule } from './pages/random/random.module';
+import { TrainingPresentationModule } from './pages/training-presentation/training-presentation.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
-    CommonModule,
+    BrowserAnimationsModule,
     CoreModule,
     RandomModule,
-    AppRoutingModule,
     KeywordModule,
+    TrainingPresentationModule,
+    AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable

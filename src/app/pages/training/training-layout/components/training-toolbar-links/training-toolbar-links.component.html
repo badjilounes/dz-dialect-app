@@ -1,0 +1,28 @@
+<ng-container *ngrxLet="isMobile$; let isMobile">
+  <ng-container *ngIf="isDesktop$ | async; else mobileOrTabletDisplay">
+    <button
+      mat-button
+      *ngFor="let button of links"
+      [routerLink]="[button.link]"
+      routerLinkActive="active"
+      #rla="routerLinkActive"
+    >
+      <mat-icon [svgIcon]="rla.isActive ? button.activeImage : button.image"></mat-icon>
+      <span>{{ 'training.training-toolbar-links.' + button.label | translate }}</span>
+    </button>
+  </ng-container>
+
+  <ng-template #mobileOrTabletDisplay>
+    <button
+      mat-icon-button
+      class="without-label"
+      [ngClass]="{ isMobile }"
+      *ngFor="let button of links"
+      [routerLink]="[button.link]"
+      routerLinkActive="active"
+      #rla="routerLinkActive"
+    >
+      <mat-icon [svgIcon]="rla.isActive ? button.activeImage : button.image"></mat-icon>
+    </button>
+  </ng-template>
+</ng-container>

@@ -1,0 +1,11 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin training-layout-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  app-training-layout {
+    background-color: mat.get-color-from-palette($background, card);
+  }
+}
