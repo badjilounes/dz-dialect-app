@@ -35,5 +35,7 @@
   "training.training-presentation.cancel-confirmation-dialog.confirm-button": "PASSER",
   "training.training-presentation.cancel-confirmation-dialog.cancel-button": "NON, JE CONTINUE",
   "training.training-toolbar-links.train": "S'ENTRAINER",
-  "training.training-toolbar-links.learn": "APPRENDRE"
+  "training.training-toolbar-links.learn": "APPRENDRE",
+  "training.learn.toggle-group.random": "Aléatoire",
+  "training.learn.toggle-group.verb": "Par verbe"
 }

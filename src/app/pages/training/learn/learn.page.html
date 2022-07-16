@@ -1,1 +1,14 @@
-<app-keyword></app-keyword>
+<mat-button-toggle-group #toggleGroup="matButtonToggleGroup">
+  <mat-button-toggle value="random"
+    >{{'training.learn.toggle-group.random' | translate}}</mat-button-toggle
+  >
+  <mat-button-toggle value="verb"
+    >{{'training.learn.toggle-group.verb' | translate}}</mat-button-toggle
+  >
+</mat-button-toggle-group>
+
+<div [ngSwitch]="toggleGroup.value" class="learn-content">
+  <app-random *ngSwitchCase="'random'"> </app-random>
+  <app-keyword *ngSwitchCase="'verb'"> </app-keyword>
+  <p *ngSwitchDefault></p>
+</div>

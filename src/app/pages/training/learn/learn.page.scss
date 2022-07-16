@@ -1,0 +1,21 @@
+:host {
+  display: grid;
+  grid-template-rows: 66px auto;
+  justify-items: center;
+  row-gap: 16px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.mat-button-toggle-group {
+  height: 50px;
+  margin-top: 16px;
+}
+
+.learn-content{
+  overflow: auto;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}

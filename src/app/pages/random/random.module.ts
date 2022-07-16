@@ -29,5 +29,6 @@ import { RandomComponent } from './random.page';
     MatProgressSpinnerModule,
     LetModule,
   ],
+  exports: [RandomComponent],
 })
 export class RandomModule {}
