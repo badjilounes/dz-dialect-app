@@ -50,7 +50,7 @@ export class ThemeService {
     let color = StatusBarColor.GREEN;
 
     if (this.themedStatusBar) {
-      color = this.themeMode === 'light' ? StatusBarColor.LIGHT : StatusBarColor.DARK;
+      color = this.themeMode$.getValue() === 'light' ? StatusBarColor.LIGHT : StatusBarColor.DARK;
     }
 
     window.document.getElementById('meta-theme-color')!.setAttribute('content', color);
