@@ -5,7 +5,17 @@
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
 
+  $color-config:    mat.get-color-config($theme);
+  $is-dark-theme:   map.get($color-config, 'is-dark');
+
   app-training-layout {
     background-color: mat.get-color-from-palette($background, card);
+
+    .app-content {
+      @if $is-dark-theme == true {
+        background-color: #686868;
+      }
+    }
+
   }
 }

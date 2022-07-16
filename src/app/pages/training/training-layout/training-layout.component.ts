@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { filter, map, Observable, shareReplay, tap } from 'rxjs';
 import { BuyMeACoffeeService } from 'src/app/core/buy-me-a-coffee/buy-me-a-coffee.service';
+import { ThemeService } from 'src/app/core/theme/theme.service';
 
 @Component({
   selector: 'app-training-layout',
@@ -19,6 +20,7 @@ export class TrainingLayoutComponent implements OnInit, OnDestroy {
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
     private readonly buyMeACoffeeService: BuyMeACoffeeService,
+    private readonly themeService: ThemeService,
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +31,8 @@ export class TrainingLayoutComponent implements OnInit, OnDestroy {
         untilDestroyed(this),
       )
       .subscribe();
+
+    this.themeService.themedStatusBar = true;
   }
 
   ngOnDestroy(): void {

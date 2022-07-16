@@ -4,6 +4,11 @@ import { LocaleStorage } from 'src/app/shared/technical/storage/storage.decorato
 
 type ThemeMode = 'light' | 'dark';
 
+enum StatusBarColor {
+  GREEN = '#c5e1a5',
+  LIGHT = '#ffffff',
+  DARK = '#424242',
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -11,6 +16,16 @@ export class ThemeService {
   private static DEFAULT_THEME: ThemeMode = 'light';
 
   themeMode$!: BehaviorSubject<ThemeMode>;
+
+  @LocaleStorage()
+  private _themedStatusBar = false;
+  public get themedStatusBar() {
+    return this._themedStatusBar;
+  }
+  public set themedStatusBar(value) {
+    this._themedStatusBar = value;
+    this.setStatusBarColor();
+  }
 
   @LocaleStorage()
   private themeMode!: ThemeMode;
@@ -21,11 +36,23 @@ export class ThemeService {
     }
 
     this.themeMode$ = new BehaviorSubject<ThemeMode>(this.themeMode);
+    this.setStatusBarColor();
   }
 
   toggleThemeMode() {
     const themeMode = this.themeMode$.getValue() === 'light' ? 'dark' : 'light';
     this.themeMode = themeMode;
     this.themeMode$.next(themeMode);
+    this.setStatusBarColor();
+  }
+
+  setStatusBarColor() {
+    let color = StatusBarColor.GREEN;
+
+    if (this.themedStatusBar) {
+      color = this.themeMode === 'light' ? StatusBarColor.LIGHT : StatusBarColor.DARK;
+    }
+
+    window.document.getElementById('meta-theme-color')!.setAttribute('content', color);
   }
 }
