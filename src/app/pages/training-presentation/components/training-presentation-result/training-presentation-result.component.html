@@ -23,6 +23,10 @@
         <ng-template #restartTrainingSpinner>
           <mat-spinner [diameter]="30"></mat-spinner>
         </ng-template>
+
+        <button mat-button class="skip-training-button" (click)="skipTraining()">
+          <span>{{ 'training.home.skip-presentation-button' | translate }}</span>
+        </button>
       </ng-container>
     </div>
   </div>

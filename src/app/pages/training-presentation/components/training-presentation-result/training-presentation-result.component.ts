@@ -1,7 +1,9 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { UntilDestroy } from '@ngneat/until-destroy';
-import { map, Observable, shareReplay } from 'rxjs';
+import { Router } from '@angular/router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { filter, map, Observable, shareReplay, tap } from 'rxjs';
+import { ConfirmDialogService } from 'src/app/shared/technical/confirm-dialog/confirm-dialog.service';
 import { TrainingResult } from '../../models/training-result';
 import { TrainingPresentationStore } from '../../store/training-presentation.store';
 
@@ -20,14 +22,34 @@ export class TrainingPresentationResultComponent {
     shareReplay(),
   );
 
-  loading$: Observable<boolean> = this.trainingStore.isLoading$;
+  loading$: Observable<boolean> = this.trainingPresentationStore.isLoading$;
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
-    private readonly trainingStore: TrainingPresentationStore,
+    private readonly trainingPresentationStore: TrainingPresentationStore,
+    private readonly confirmDialogService: ConfirmDialogService,
+    private readonly router: Router,
   ) {}
 
   restartTraining(): void {
-    this.trainingStore.startTraining();
+    this.trainingPresentationStore.startTraining();
+  }
+
+  skipTraining(): void {
+    this.confirmDialogService
+      .confirm({
+        data: {
+          title: 'training.training-presentation.cancel-confirmation-dialog.title',
+          content: '',
+          cancelLabel: 'training.training-presentation.cancel-confirmation-dialog.cancel-button',
+          acceptLabel: 'training.training-presentation.cancel-confirmation-dialog.confirm-button',
+        },
+      })
+      .pipe(
+        filter((confirmed) => confirmed),
+        tap(() => this.trainingPresentationStore.cancelTraining()),
+        untilDestroyed(this),
+      )
+      .subscribe(() => this.router.navigate(['/train']));
   }
 }

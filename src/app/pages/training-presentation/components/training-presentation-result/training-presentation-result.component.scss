@@ -6,6 +6,16 @@
     display: flex;
     place-content: center;
   }
+
+  .skip-training-button:hover:not(.mat-button-disabled) ::ng-deep {
+    .mat-button-wrapper {
+      text-decoration: underline;
+    }
+
+    .mat-button-focus-overlay {
+      opacity: 0;
+    }
+  }
 }
 
 
