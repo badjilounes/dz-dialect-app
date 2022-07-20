@@ -6,21 +6,22 @@ const routes: Routes = [
   { path: '', redirectTo: 'learn', pathMatch: 'full' },
 
   {
-    path: 'train',
+    path: '',
     component: TrainingLayoutComponent,
-    loadChildren: () => import('./train/train.module').then((m) => m.TrainModule),
-  },
-
-  {
-    path: 'learn',
-    component: TrainingLayoutComponent,
-    loadChildren: () => import('./learn/learn.module').then((m) => m.LearnModule),
-  },
-
-  {
-    path: 'sign-in',
-    component: TrainingLayoutComponent,
-    loadChildren: () => import('./sign-in/sign-in.module').then((m) => m.SignInModule),
+    children: [
+      {
+        path: 'learn',
+        loadChildren: () => import('./learn/learn.module').then((m) => m.LearnModule),
+      },
+      {
+        path: 'sign-in',
+        loadChildren: () => import('./sign-in/sign-in.module').then((m) => m.SignInModule),
+      },
+      {
+        path: 'train',
+        loadChildren: () => import('./train/train.module').then((m) => m.TrainModule),
+      },
+    ],
   },
 ];
 

@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -12,7 +13,6 @@ import { AppTranslateModule } from 'src/app/core/translate/translate.module';
 import { BehaviorModule } from 'src/app/shared/technical/behavior/behavior.module';
 import { ThemeModeToggleModule } from 'src/app/shared/technical/theme-mode-toggle/theme-mode-toggle.module';
 import { TrainingToolbarBottomComponent } from './components/training-toolbar-bottom/training-toolbar-bottom.component';
-import { TrainingToolbarLinksComponent } from './components/training-toolbar-links/training-toolbar-links.component';
 import { TrainingToolbarTopComponent } from './components/training-toolbar-top/training-toolbar-top.component';
 import { TrainingLayoutComponent } from './training-layout.component';
 
@@ -21,7 +21,6 @@ import { TrainingLayoutComponent } from './training-layout.component';
     TrainingLayoutComponent,
     TrainingToolbarTopComponent,
     TrainingToolbarBottomComponent,
-    TrainingToolbarLinksComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +30,7 @@ import { TrainingLayoutComponent } from './training-layout.component';
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
+    MatTabsModule,
     LetModule,
     AppTranslateModule.forChild(),
     ThemeModeToggleModule,

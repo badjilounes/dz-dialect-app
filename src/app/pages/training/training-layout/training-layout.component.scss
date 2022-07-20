@@ -17,6 +17,8 @@ app-training-toolbar-bottom {
   overflow: auto;
   width: 100%;
   position: relative;
+  display: grid;
+  grid-template-rows: 0 auto;
 }
 
 

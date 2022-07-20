@@ -1,34 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ToolbarLink } from '../../training-toolbar-link';
 
 @Component({
   selector: 'app-training-toolbar-bottom',
   templateUrl: './training-toolbar-bottom.component.html',
   styleUrls: ['./training-toolbar-bottom.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TrainingToolbarBottomComponent implements OnInit {
-  links = [
-    {
-      activeImage: 'train-active',
-      image: 'train',
-      link: '/train',
-      label: 'train',
-    },
-    {
-      activeImage: 'learn-active',
-      image: 'learn',
-      link: '/learn',
-      label: 'learn',
-    },
-
-    {
-      activeImage: 'sign-in-active',
-      image: 'sign-in',
-      link: '/sign-in',
-      label: 'sign-in',
-    },
-  ];
-
-  constructor() {}
-
-  ngOnInit(): void {}
+export class TrainingToolbarBottomComponent {
+  @Input() tabs: ToolbarLink[] = [];
 }

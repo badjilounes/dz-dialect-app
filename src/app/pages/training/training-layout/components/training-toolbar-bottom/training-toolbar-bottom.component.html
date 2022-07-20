@@ -1,4 +1,16 @@
 <mat-divider></mat-divider>
 <mat-toolbar>
-  <app-training-toolbar-links [links]="links"></app-training-toolbar-links>
+  <nav mat-tab-nav-bar>
+    <a
+      mat-tab-link
+      *ngFor="let tab of tabs"
+      [routerLink]="[tab.link]"
+      routerLinkActive="active"
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+      [disableRipple]="true"
+    >
+      <mat-icon [svgIcon]="rla.isActive ? tab.activeImage : tab.image"></mat-icon>
+    </a>
+  </nav>
 </mat-toolbar>

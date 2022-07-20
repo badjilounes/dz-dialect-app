@@ -3,11 +3,15 @@
 
 @mixin training-toolbar-top-theme($theme) {
   $config: mat.get-color-config($theme);
-  $foreground: map.get($config, foreground);
+  $primary: map.get($config, primary);
 
   app-training-toolbar-top {
-    // .flag {
-    //   box-shadow: 0 2px 0 mat.get-color-from-palette($foreground, divider);
-    // }
+    .active span {
+      color: mat.get-color-from-palette($primary, 500);
+    }
+
+    .mat-tab-link {
+      color: #AFAFAF;
+    }
   }
 }

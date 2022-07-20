@@ -12,6 +12,27 @@ import { ThemeService } from 'src/app/core/theme/theme.service';
 })
 @UntilDestroy()
 export class TrainingLayoutComponent implements OnInit, OnDestroy {
+  links = [
+    {
+      activeImage: 'train-active',
+      image: 'train',
+      link: '/train',
+      label: 'train',
+    },
+    {
+      activeImage: 'learn-active',
+      image: 'learn',
+      link: '/learn',
+      label: 'learn',
+    },
+    {
+      activeImage: 'sign-in-active',
+      image: 'sign-in',
+      link: '/sign-in',
+      label: 'sign-in',
+    },
+  ];
+
   isMobile$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.XSmall]).pipe(
     map((result) => result.matches),
     shareReplay(),

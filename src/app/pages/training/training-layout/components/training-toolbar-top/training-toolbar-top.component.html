@@ -10,7 +10,22 @@
   </ng-container>
 
   <ng-template #desktopToolbar>
-    <app-training-toolbar-links [links]="links"></app-training-toolbar-links>
+    <nav mat-tab-nav-bar>
+      <a
+        mat-tab-link
+        *ngFor="let tab of links"
+        [routerLink]="[tab.link]"
+        routerLinkActive="active"
+        #rla="routerLinkActive"
+        [active]="rla.isActive"
+        [disableRipple]="true"
+      >
+        <mat-icon [svgIcon]="rla.isActive ? tab.activeImage : tab.image"></mat-icon>
+        <span *ngIf="(isMobile$ | async) === false">{{
+          'training.training-toolbar-links.' + tab.label | translate
+        }}</span>
+      </a>
+    </nav>
 
     <div class="toolbar-top-right desktop">
       <button mat-icon-button [matMenuTriggerFor]="menu">

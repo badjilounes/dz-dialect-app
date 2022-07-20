@@ -1,7 +1,40 @@
+:host {
+  width: 100%;
+  height: 100%;
+
+  .mat-tab-nav-bar ::ng-deep {
+    height: 100%;
+    border-bottom: none;
+
+    .mat-tab-links {
+      height: 100%;
+    }
+
+    .mat-ink-bar {
+      height: 4px;
+    }
+
+    .mat-tab-link{
+      gap: 16px;
+      height: 100%;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      .mat-icon {
+        height: 36px;
+        width: 36px;
+      }
+    }
+  }
+}
+
 .mat-toolbar {
   background: transparent;
   max-width: 1140px;
   margin: 0 auto;
+  padding: 0 16px 0 0;
 }
 
 .toolbar-top-right {
@@ -10,19 +43,16 @@
   flex: 1;
 
   &.mobile {
+    margin-left: 16px;
     justify-content: space-between;
   }
 
   &.desktop {
-  justify-content: flex-end;
+    justify-content: flex-end;
   }
 }
 
 .user-picture {
   height: 100%;
   border-radius: 50%;
-}
-
-app-training-toolbar-links {
-  column-gap: 24px;
 }

@@ -46,7 +46,6 @@ $dz-dialect-app-theme: mat.define-light-theme(
 @import "app/pages/keyword/keyword-page.theme.scss";
 @import "app/pages/random/random-page.theme.scss";
 @import "app/shared/business/translation-bloc/translation-content/translation-content-component.theme.scss";
-@import "app/pages/training/training-layout/components/training-toolbar-links/training-toolbar-links-component.theme.scss";
 @import "app/pages/training/training-layout/components/training-toolbar-top/training-toolbar-top-component.theme.scss";
 
 /* material theme */
@@ -61,7 +60,6 @@ $dz-dialect-app-theme: mat.define-light-theme(
 @include keyword-theme($dz-dialect-app-theme);
 @include random-theme($dz-dialect-app-theme);
 @include translation-content-theme($dz-dialect-app-theme);
-@include training-toolbar-links-theme($dz-dialect-app-theme);
 @include training-toolbar-top-theme($dz-dialect-app-theme);
 
 .darkMode {
@@ -92,7 +90,6 @@ $dz-dialect-app-theme: mat.define-light-theme(
   @include keyword-theme($dz-dialect-dark-app-theme);
   @include random-theme($dz-dialect-dark-app-theme);
   @include translation-content-theme($dz-dialect-dark-app-theme);
-  @include training-toolbar-links-theme($dz-dialect-dark-app-theme);
   @include training-toolbar-top-theme($dz-dialect-dark-app-theme);
 }
 
