@@ -3,6 +3,8 @@
   grid-template-rows: 1px auto;
 
   .mat-tab-nav-bar ::ng-deep {
+    border-bottom: none;
+
     .mat-tab-links {
       height: 100%;
       justify-content: space-around;
