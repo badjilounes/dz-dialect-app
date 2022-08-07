@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserAppStore } from 'src/app/core/stores/user.app-store';
 
 @Component({
@@ -10,6 +10,7 @@ import { UserAppStore } from 'src/app/core/stores/user.app-store';
 export class TrainPage implements OnInit {
   constructor(
     private readonly route: ActivatedRoute,
+    private readonly router: Router,
     private readonly userAppStore: UserAppStore,
   ) {}
 
@@ -17,6 +18,7 @@ export class TrainPage implements OnInit {
     const accessToken = this.route.snapshot.queryParams['access_token'];
     if (accessToken) {
       this.userAppStore.setAsAuthenticated(accessToken);
+      this.router.navigate(['/train']);
     }
   }
 }
