@@ -4,11 +4,15 @@ README.md
 api.module.ts
 api/api.ts
 api/authentication.service.ts
+api/users.service.ts
 configuration.ts
 encoder.ts
 git_push.sh
 index.ts
 model/auth-sign-in-dto.ts
 model/auth-sign-up-dto.ts
+model/auth-token-response-dto.ts
 model/models.ts
+model/providers-enum.ts
+model/user-response-dto.ts
 variables.ts

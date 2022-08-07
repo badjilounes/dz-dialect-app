@@ -1,0 +1,50 @@
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-form-field appearance="outline">
+    <input
+      type="username"
+      [placeholder]="'sign-up.username.placeholder' | translate"
+      aria-label="username"
+      matInput
+      formControlName="username"
+    />
+    <mat-error *ngIf="form.get('username')?.hasError('required')">
+      {{ 'sign-up.username.errors.required' | translate }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <input
+      [type]="hide.password ? 'password' : 'text'"
+      [placeholder]="'sign-up.password.placeholder' | translate"
+      aria-label="Password"
+      matInput
+      formControlName="password"
+    />
+    <mat-icon matSuffix (click)="hide.password = !hide.password">{{ hide.password ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <mat-error *ngIf="form.get('password')?.hasError('required')">
+      {{ 'sign-up.password.errors.required' | translate }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <input
+      [type]="hide.confirmPassword ? 'password' : 'text'"
+      [placeholder]="'sign-up.confirm-password.placeholder' | translate"
+      aria-label="Confirm password"
+      matInput
+      formControlName="confirmPassword"
+    />
+    <mat-icon matSuffix (click)="hide.confirmPassword = !hide.confirmPassword">{{ hide.confirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <mat-error *ngIf="form.get('confirmPassword')?.hasError('required')">
+      {{ 'sign-up.confirm-password.errors.required' | translate }}
+    </mat-error>
+    <mat-error *ngIf="form.get('confirmPassword')?.hasError('matchPassword')">
+      {{ 'sign-up.confirm-password.errors.match-password' | translate }}
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary">{{ 'sign-up.validate-button' | translate }}</button>
+</form>
+
+

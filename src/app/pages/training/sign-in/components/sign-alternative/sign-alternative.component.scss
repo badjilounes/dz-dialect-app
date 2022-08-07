@@ -1,0 +1,28 @@
+.alternative-divider {
+  display: grid;
+  grid-template-columns: auto min-content auto;
+  place-items: center;
+  column-gap: 0.5rem;
+  margin: 24px 0;
+
+  .mat-divider {
+    width: 100%;
+    border-top-width: 2px;
+  }
+
+  span {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+  }
+}
+
+.twitter-login-button {
+  width: 100%;
+  height: 50px;
+  border-radius: 16px;
+
+  .mat-icon {
+    margin-right: 4px;
+  }
+}

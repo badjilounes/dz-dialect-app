@@ -5,35 +5,38 @@
   width: 100%;
 }
 
-.available-soon-img {
-  background-image: url('/assets/images/login.PNG');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 100%;
-  width: 100%;
+.mat-icon-button {
   position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0.2;
-}
-
-.available-soon-text {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  margin: 0 auto;
-  width: fit-content;
-  padding: 16px;
-  border-radius: 16px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #8bc34a;
-  border: 2px solid #8bc34a;
+  top: 16px;
+  right: 16px;
+  z-index: 1;
 }
 
 .mat-card {
-  height: 560px;
-  max-width: 340px;
+  max-width: 500px;
   margin: 40px auto;
+  padding: 30px;
+
+  .mat-card-header {
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 24px;
+
+    h1 {
+      font-size: 26px;
+      margin: 10px 0 15px;
+      font-weight: 700;
+    }
+  }
+
+  .already-have-account,
+  .no-account-yet {
+    font-weight: 700;
+    margin-top: 20px;
+    text-align: center;
+
+    span {
+      cursor: pointer;
+    }
+  }
 }

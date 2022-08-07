@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { LetModule } from '@ngrx/component';
-import { AppTranslateModule } from 'src/app/core/translate/translate.module';
+import { TranslateModule } from '@ngx-translate/core';
 import { TranslationSentenceModule } from 'src/app/shared/business/translation-bloc/translation-bloc.module';
 import { CapitalizeModule } from 'src/app/shared/technical/capitalize/capitalize.module';
 import { KeywordComponent } from './keyword.page';
@@ -17,7 +17,7 @@ import { KeywordComponent } from './keyword.page';
   declarations: [KeywordComponent],
   imports: [
     CommonModule,
-    AppTranslateModule.forChild(),
+    TranslateModule,
     ReactiveFormsModule,
     FormsModule,
     MatAutocompleteModule,

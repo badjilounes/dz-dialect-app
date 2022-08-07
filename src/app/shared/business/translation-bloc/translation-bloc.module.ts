@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
-import { AppTranslateModule } from 'src/app/core/translate/translate.module';
+import { TranslateModule } from '@ngx-translate/core';
 import { CapitalizeModule } from '../../technical/capitalize/capitalize.module';
 import { TranslationBlocComponent } from './translation-bloc/translation-bloc.component';
 import { TranslationContentComponent } from './translation-content/translation-content.component';
@@ -16,7 +16,7 @@ import { TranslationHeaderComponent } from './translation-header/translation-hea
   declarations: [TranslationHeaderComponent, TranslationContentComponent, TranslationBlocComponent],
   imports: [
     CommonModule,
-    AppTranslateModule.forChild(),
+    TranslateModule,
     CapitalizeModule,
     MatCardModule,
     MatIconModule,

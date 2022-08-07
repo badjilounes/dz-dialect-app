@@ -22,6 +22,8 @@ import { Observable }                                        from 'rxjs';
 import { AuthSignInDto } from '../model/auth-sign-in-dto';
 // @ts-ignore
 import { AuthSignUpDto } from '../model/auth-sign-up-dto';
+// @ts-ignore
+import { AuthTokenResponseDto } from '../model/auth-token-response-dto';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -218,10 +220,10 @@ export class AuthenticationHttpService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public signIn(authSignInDto: AuthSignInDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public signIn(authSignInDto: AuthSignInDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public signIn(authSignInDto: AuthSignInDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public signIn(authSignInDto: AuthSignInDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+    public signIn(authSignInDto: AuthSignInDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<AuthTokenResponseDto>;
+    public signIn(authSignInDto: AuthSignInDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<AuthTokenResponseDto>>;
+    public signIn(authSignInDto: AuthSignInDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<AuthTokenResponseDto>>;
+    public signIn(authSignInDto: AuthSignInDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (authSignInDto === null || authSignInDto === undefined) {
             throw new Error('Required parameter authSignInDto was null or undefined when calling signIn.');
         }
@@ -232,6 +234,7 @@ export class AuthenticationHttpService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -265,7 +268,7 @@ export class AuthenticationHttpService {
             }
         }
 
-        return this.httpClient.post<any>(`${this.configuration.basePath}/authentication/sign-in`,
+        return this.httpClient.post<AuthTokenResponseDto>(`${this.configuration.basePath}/authentication/sign-in`,
             authSignInDto,
             {
                 context: localVarHttpContext,
@@ -284,10 +287,10 @@ export class AuthenticationHttpService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public signUp(authSignUpDto: AuthSignUpDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public signUp(authSignUpDto: AuthSignUpDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public signUp(authSignUpDto: AuthSignUpDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public signUp(authSignUpDto: AuthSignUpDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+    public signUp(authSignUpDto: AuthSignUpDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<AuthTokenResponseDto>;
+    public signUp(authSignUpDto: AuthSignUpDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<AuthTokenResponseDto>>;
+    public signUp(authSignUpDto: AuthSignUpDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<AuthTokenResponseDto>>;
+    public signUp(authSignUpDto: AuthSignUpDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (authSignUpDto === null || authSignUpDto === undefined) {
             throw new Error('Required parameter authSignUpDto was null or undefined when calling signUp.');
         }
@@ -298,6 +301,7 @@ export class AuthenticationHttpService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -331,7 +335,7 @@ export class AuthenticationHttpService {
             }
         }
 
-        return this.httpClient.post<any>(`${this.configuration.basePath}/authentication/sign-up`,
+        return this.httpClient.post<AuthTokenResponseDto>(`${this.configuration.basePath}/authentication/sign-up`,
             authSignUpDto,
             {
                 context: localVarHttpContext,

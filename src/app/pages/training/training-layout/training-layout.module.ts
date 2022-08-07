@@ -9,7 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { LetModule } from '@ngrx/component';
-import { AppTranslateModule } from 'src/app/core/translate/translate.module';
+import { TranslateModule } from '@ngx-translate/core';
 import { BehaviorModule } from 'src/app/shared/technical/behavior/behavior.module';
 import { ThemeModeToggleModule } from 'src/app/shared/technical/theme-mode-toggle/theme-mode-toggle.module';
 import { TrainingToolbarBottomComponent } from './components/training-toolbar-bottom/training-toolbar-bottom.component';
@@ -32,7 +32,7 @@ import { TrainingLayoutComponent } from './training-layout.component';
     MatIconModule,
     MatTabsModule,
     LetModule,
-    AppTranslateModule.forChild(),
+    TranslateModule,
     ThemeModeToggleModule,
     BehaviorModule,
   ],

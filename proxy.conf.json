@@ -7,5 +7,15 @@
     "pathRewrite": {
       "^/proxy": ""
     }
+  },
+
+  "/identity-proxy": {
+    "target": "http://localhost:3000",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "info",
+    "pathRewrite": {
+      "^/identity-proxy": ""
+    }
   }
 }

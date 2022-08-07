@@ -9,14 +9,14 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { LetModule } from '@ngrx/component';
+import { TranslateModule } from '@ngx-translate/core';
 import { ThemeModeToggleModule } from 'src/app/shared/technical/theme-mode-toggle/theme-mode-toggle.module';
-import { AppTranslateModule } from '../translate/translate.module';
 import { UnauthenticatedLayoutComponent } from './unauthenticated-layout.component';
 
 @NgModule({
   declarations: [UnauthenticatedLayoutComponent],
   imports: [
-    AppTranslateModule,
+    TranslateModule,
     RouterModule,
     CommonModule,
     LayoutModule,

@@ -1,11 +1,32 @@
-<ng-container *ngIf="(isHandset$ | async) === false; else mobileDisplay">
-  <mat-card>
-    <div class="available-soon-img"></div>
-    <div class="available-soon-text">{{ 'available-soon-text.title' | translate }}</div>
-  </mat-card>
-</ng-container>
+<button mat-icon-button [routerLink]="['/train']">
+  <mat-icon>close</mat-icon>
+</button>
 
-<ng-template #mobileDisplay>
-  <div class="available-soon-img"></div>
-  <div class="available-soon-text">{{ 'available-soon-text.title' | translate }}</div>
-</ng-template>
+<mat-card class="mat-elevation-z0">
+  <mat-card-header>
+    <mat-card-title>
+      <h1>{{ (signUp ? 'sign-up.title' : 'sign-in.title') | translate }}</h1>
+    </mat-card-title>
+  </mat-card-header>
+
+  <ng-container *ngIf="signUp else signIn">
+    <app-sign-up (formSubmitted)="createUser($event)"></app-sign-up>
+
+    <app-sign-alternative (alternativeSelected)="signInWith('twitter')"></app-sign-alternative>
+
+    <p class="already-have-account">{{ 'sign-up.already-have-account' | translate }} <span (click)="signUp = !signUp">{{ 'sign-up.already-have-account.sign-in' | translate }}</span></p>
+
+  </ng-container>
+
+  <ng-template #signIn>
+    <app-sign-in (formSubmitted)="signInUser($event)"></app-sign-in>
+
+    <app-sign-alternative (alternativeSelected)="signInWith('twitter')"></app-sign-alternative>
+
+    <p class="no-account-yet">{{ 'sign-in.no-account-yet' | translate }} <span (click)="signUp = !signUp">{{ 'sign-in.no-account-yet.sign-up' | translate }}</span></p>
+
+  </ng-template>
+
+
+
+</mat-card>

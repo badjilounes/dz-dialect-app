@@ -10,7 +10,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LetModule } from '@ngrx/component';
-import { AppTranslateModule } from 'src/app/core/translate/translate.module';
+import { TranslateModule } from '@ngx-translate/core';
 import { TranslationTrainingBottomSheetValidateComponent } from './components/translation-training-bottom-sheet-validate/translation-training-bottom-sheet-validate.component';
 import { TranslationTrainingProgressComponent } from './components/translation-training-progress/translation-training-progress.component';
 import { TranslationTrainingQuestionComponent } from './components/translation-training-question/translation-training-question.component';
@@ -28,7 +28,7 @@ import { TranslationTrainingComponent } from './components/translation-training/
   ],
   imports: [
     CommonModule,
-    AppTranslateModule.forChild(),
+    TranslateModule,
     MatProgressBarModule,
     MatButtonModule,
     MatDividerModule,

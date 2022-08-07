@@ -28,8 +28,8 @@ export class TrainingLayoutComponent implements OnInit, OnDestroy {
     {
       activeImage: 'sign-in-active',
       image: 'sign-in',
-      link: '/sign-in',
-      label: 'sign-in',
+      link: '/profile',
+      label: 'profile',
     },
   ];
 

@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ApiModule, Configuration, ConfigurationParameters } from 'src/clients/dz-dialect-api';
 import { ApiModule as IdentityApiModule, Configuration as IdentityConfiguration, ConfigurationParameters as IdentityConfigurationParameters } from 'src/clients/dz-dialect-identity-api';
 import { environment } from 'src/environments/environment';
+import { HTTP_BEARER_TOKEN_INTERCEPTOR_PROVIDER } from './authentication/bearer-token.interceptor';
 import { RoutingService } from './routing/routing.service';
 import { AppTranslateModule } from './translate/translate.module';
 import { UnauthenticatedLayoutModule } from './unauthenticated-layout/unauthenticated-layout.module';
@@ -30,6 +31,7 @@ export function identityApiConfigFactory(): IdentityConfiguration {
     IdentityApiModule.forRoot(identityApiConfigFactory),
     UnauthenticatedLayoutModule,
   ],
+  providers: [HTTP_BEARER_TOKEN_INTERCEPTOR_PROVIDER],
   exports: [AppTranslateModule],
 })
 export class CoreModule {

@@ -1,0 +1,25 @@
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field appearance="outline">
+      <input
+        type="username"
+        [placeholder]="'sign-in.username.placeholder' | translate"
+        aria-label="username"
+        matInput
+        formControlName="username"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <input
+        [type]="hidePassword ? 'password' : 'text'"
+        [placeholder]="'sign-in.password.placeholder' | translate"
+        aria-label="Password"
+        matInput
+        formControlName="password"
+      />
+      <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{ hidePassword? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary">{{ 'sign-in.validate-button' | translate }}</button>
+  </form>

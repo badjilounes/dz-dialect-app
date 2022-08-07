@@ -29,16 +29,20 @@
 
     <div class="toolbar-top-right desktop">
       <button mat-icon-button [matMenuTriggerFor]="menu">
-        <img src="assets/images/unkwown-user.jpg" class="user-picture" />
+        <img [src]="userImage$ | async" class="user-picture" />
       </button>
 
       <mat-menu #menu="matMenu">
-        <button mat-menu-item [routerLink]="['/sign-in']">
+        <button mat-menu-item [routerLink]="['/profile']">
           <mat-icon>face</mat-icon>
-          <span>Se connecter</span>
+          <span>Mon compte</span>
         </button>
         <button mat-menu-item appStopClickPropagation>
           <app-theme-mode-toggle [icon]="false"></app-theme-mode-toggle>
+        </button>
+        <button mat-menu-item (click)="signOut()" *ngIf="isAuthenticated">
+          <mat-icon>logout</mat-icon>
+          Déconnexion
         </button>
       </mat-menu>
     </div>

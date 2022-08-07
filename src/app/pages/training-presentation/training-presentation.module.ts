@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
 import { LetModule } from '@ngrx/component';
-import { AppTranslateModule } from 'src/app/core/translate/translate.module';
+import { TranslateModule } from '@ngx-translate/core';
 import { TranslationTrainingModule } from 'src/app/shared/business/translation-training/translation-training.module';
 import { ConfirmDialogModule } from 'src/app/shared/technical/confirm-dialog/confirm-dialog.module';
 import { TrainingPresentationOverviewComponent } from './components/training-presentation-overview/training-presentation-overview.component';
@@ -23,7 +23,7 @@ import { TrainingPresentationPage } from './training-presentation.page';
   imports: [
     BrowserAnimationsModule,
     TranslationTrainingModule,
-    AppTranslateModule.forChild(),
+    TranslateModule,
     MatButtonModule,
     MatDividerModule,
     MatProgressSpinnerModule,
