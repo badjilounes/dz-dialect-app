@@ -118,7 +118,7 @@ export class DzDialectApiSpringApplicationHttpService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.post<string>(`${this.configuration.basePath}/`,
+        return this.httpClient.patch<string>(`${this.configuration.basePath}/`,
             null,
             {
                 context: localVarHttpContext,
@@ -211,7 +211,7 @@ export class DzDialectApiSpringApplicationHttpService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<string>(`${this.configuration.basePath}/`,
+        return this.httpClient.options<string>(`${this.configuration.basePath}/`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -257,8 +257,7 @@ export class DzDialectApiSpringApplicationHttpService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.patch<string>(`${this.configuration.basePath}/`,
-            null,
+        return this.httpClient.get<string>(`${this.configuration.basePath}/`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -304,7 +303,7 @@ export class DzDialectApiSpringApplicationHttpService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.options<string>(`${this.configuration.basePath}/`,
+        return this.httpClient.head<string>(`${this.configuration.basePath}/`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -350,7 +349,7 @@ export class DzDialectApiSpringApplicationHttpService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.put<string>(`${this.configuration.basePath}/`,
+        return this.httpClient.post<string>(`${this.configuration.basePath}/`,
             null,
             {
                 context: localVarHttpContext,
@@ -397,7 +396,8 @@ export class DzDialectApiSpringApplicationHttpService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.head<string>(`${this.configuration.basePath}/`,
+        return this.httpClient.put<string>(`${this.configuration.basePath}/`,
+            null,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,

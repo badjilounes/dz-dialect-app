@@ -1,6 +1,6 @@
 /**
- * DZDialect API
- * DZDialect API v1.0
+ * DzDialect Identity API
+ * DzDialect Identity API Documentation
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -11,9 +11,8 @@
  */
 
 
-export interface WordPropositionsDTO { 
-    dz?: Array<string>;
-    dz_ar?: Array<string>;
-    fr?: Array<string>;
+export interface AuthSignInDto { 
+    username: string;
+    password: string;
 }
 
