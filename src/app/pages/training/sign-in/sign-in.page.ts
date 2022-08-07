@@ -67,7 +67,7 @@ export class SignInPage {
     this.authenticationHttpService
       .redirectToAuthorizeUrl(provider)
       .pipe(
-        tap(({ url }) => (window.location = url)),
+        tap(({ url }) => window.open(url, '_self')),
         catchError((error) => {
           this.snackBar.open(error.error.message, 'OK', { duration: 3000 });
           return EMPTY;
