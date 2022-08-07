@@ -1,8 +1,8 @@
 <mat-toolbar *ngrxLet="isMobile$; let mobile">
   <ng-container *ngIf="mobile; else desktopToolbar">
     <div class="toolbar-top-right mobile">
-      <button mat-icon-button [routerLink]="['/sign-in']">
-        <img src="assets/images/unkwown-user.jpg" class="user-picture" />
+      <button mat-icon-button [routerLink]="['/profile']">
+        <img [src]="userImage$ | async" class="user-picture" />
       </button>
 
       <app-theme-mode-toggle></app-theme-mode-toggle>
@@ -40,7 +40,7 @@
         <button mat-menu-item appStopClickPropagation>
           <app-theme-mode-toggle [icon]="false"></app-theme-mode-toggle>
         </button>
-        <button mat-menu-item (click)="signOut()" *ngIf="isAuthenticated">
+        <button mat-menu-item (click)="signOut()" *ngIf="isAuthenticated$ | async">
           <mat-icon>logout</mat-icon>
           Déconnexion
         </button>

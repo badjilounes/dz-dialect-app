@@ -1,21 +1,24 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { AuthenticationService } from './authentication.service';
+import { map, Observable, take } from 'rxjs';
+import { UserAppStore } from '../stores/user.app-store';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticatedGuard implements CanActivate {
-  constructor(private readonly router: Router, private readonly authenticationService: AuthenticationService) {}
+  constructor(private readonly router: Router, private readonly userAppStore: UserAppStore) {}
 
-  canActivate(): boolean {
-      const authenticated = this.authenticationService.isAuthenticated();
-
-      if (!authenticated) {
-        this.router.navigate(['/sign-in']);
-      }
-
-      return authenticated;
+  canActivate(): Observable<boolean> {
+    return this.userAppStore.isAuthenticated$.pipe(
+      take(1),
+      map((isAuthenticated) => {
+        if (!isAuthenticated) {
+          this.router.navigate(['/sign-in']);
+          return false;
+        }
+        return true;
+      }),
+    );
   }
-
 }

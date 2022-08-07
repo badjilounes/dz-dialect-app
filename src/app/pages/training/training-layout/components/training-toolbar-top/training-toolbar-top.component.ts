@@ -2,8 +2,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable, shareReplay } from 'rxjs';
-import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
-import { UserService } from 'src/app/core/user/user.service';
+import { UserAppStore } from 'src/app/core/stores/user.app-store';
+import { UsersHttpService } from 'src/clients/dz-dialect-identity-api';
 
 @Component({
   selector: 'app-training-toolbar-top',
@@ -16,8 +16,9 @@ export class TrainingToolbarTopComponent {
     shareReplay(),
   );
 
-  userImage$ = this.userService.user$.pipe(
-    map((user) => user?.imageUrl ?? 'assets/images/unkwown-user.jpg'),
+  userImage$: Observable<string | undefined> = this.userAppStore.user$.pipe(
+    map((user) => (user ? user.imageUrl : '/assets/images/unkwown-user.jpg')),
+    shareReplay(),
   );
 
   links = [
@@ -35,14 +36,17 @@ export class TrainingToolbarTopComponent {
     },
   ];
 
-  get isAuthenticated() {
-    return this.authenticationService.isAuthenticated();
-  }
+  isAuthenticated$ = this.userAppStore.isAuthenticated$;
 
-  constructor(private readonly breakpointObserver: BreakpointObserver, private readonly userService: UserService, private readonly authenticationService: AuthenticationService, private readonly router: Router) {}
+  constructor(
+    private readonly breakpointObserver: BreakpointObserver,
+    private readonly userAppStore: UserAppStore,
+    private readonly userHttpService: UsersHttpService,
+    private readonly router: Router,
+  ) {}
 
   signOut(): void {
-    this.authenticationService.setAsUnauthenticated();
+    this.userAppStore.setAsUnAuthenticated();
     this.router.navigate(['/train']);
   }
 }

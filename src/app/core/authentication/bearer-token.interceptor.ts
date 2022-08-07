@@ -1,17 +1,25 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { AuthenticationService } from './authentication.service';
+import { AuthenticationTokenService } from './authentication-token.service';
 
 @Injectable()
 export class BearerTokenInterceptor implements HttpInterceptor {
-  constructor(private readonly authenticationService: AuthenticationService) {}
+  constructor(private readonly authenticationTokenService: AuthenticationTokenService) {}
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(
-      this.authenticationService.token
-        ? req.clone({ setHeaders: { Authorization: `Bearer ${this.authenticationService.token}` } })
+      this.authenticationTokenService.token
+        ? req.clone({
+            setHeaders: { Authorization: `Bearer ${this.authenticationTokenService.token}` },
+          })
         : req,
     );
   }

@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
@@ -14,7 +14,6 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
-import { StorageService } from 'src/app/shared/technical/storage/storage.service';
 import {
   SentenceControllerHttpService,
   SentenceDTO,
@@ -26,7 +25,7 @@ import {
   templateUrl: './keyword.page.html',
   styleUrls: ['./keyword.page.scss'],
 })
-export class KeywordComponent implements OnInit {
+export class KeywordComponent {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map((result) => result.matches),
     shareReplay(),
@@ -51,12 +50,9 @@ export class KeywordComponent implements OnInit {
     private readonly verbsApi: VerbControllerHttpService,
     private readonly sentenceApi: SentenceControllerHttpService,
     private readonly snackBar: MatSnackBar,
-    private readonly storage: StorageService,
   ) {}
 
   ngOnInit() {
-    this.storage.clear();
-
     this.filteredOptions$ = this.verbsApi.getAllVerbIds().pipe(
       map((verbsSet) => Array.from(verbsSet)),
       tap((verbs) => (this.verbOptions = verbs)),

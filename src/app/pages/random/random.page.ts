@@ -1,8 +1,7 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, catchError, EMPTY, map, Observable, of, shareReplay, tap } from 'rxjs';
-import { StorageService } from 'src/app/shared/technical/storage/storage.service';
 import { SentenceControllerHttpService, SentenceDTO } from 'src/clients/dz-dialect-api';
 
 @Component({
@@ -10,7 +9,7 @@ import { SentenceControllerHttpService, SentenceDTO } from 'src/clients/dz-diale
   templateUrl: './random.page.html',
   styleUrls: ['./random.page.scss'],
 })
-export class RandomComponent implements OnInit {
+export class RandomComponent {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   sentence$: Observable<SentenceDTO | undefined> = of();
@@ -24,12 +23,7 @@ export class RandomComponent implements OnInit {
     private readonly breakpointObserver: BreakpointObserver,
     private readonly api: SentenceControllerHttpService,
     private readonly snackBar: MatSnackBar,
-    private readonly storage: StorageService,
   ) {}
-
-  ngOnInit(): void {
-    this.storage.clear();
-  }
 
   generate(): void {
     this.loading$.next(true);
