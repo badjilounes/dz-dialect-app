@@ -18,7 +18,7 @@ export class TrainPage implements OnInit {
     const accessToken = this.route.snapshot.queryParams['access_token'];
     if (accessToken) {
       this.userAppStore.setAsAuthenticated(accessToken);
-      this.router.navigate(['/train']);
+      this.router.navigate(['/train'], { replaceUrl: true });
     }
   }
 }
