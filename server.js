@@ -8,7 +8,11 @@ const app = express();
 app.use(forceHttpsIfProxy);
 
 // Serve only the static files form the dist directory
-app.use(express.static(`${__dirname}/${root}`));
+app.use(express.static(`${__dirname}/${root}`, {
+  index: false,
+  etag: false,
+  maxAge: '1000',
+}));
 
 app.get('/*', function (req, res) {
 
