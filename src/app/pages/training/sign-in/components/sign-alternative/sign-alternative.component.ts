@@ -12,4 +12,8 @@ export class SignAlternativeComponent {
   signInWithTwitter() {
     this.alternativeSelected.emit('twitter');
   }
+
+  signInWithGoogle() {
+    this.alternativeSelected.emit('google');
+  }
 }

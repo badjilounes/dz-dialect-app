@@ -12,21 +12,24 @@
   <ng-container *ngIf="signUp else signIn">
     <app-sign-up (formSubmitted)="createUser($event)"></app-sign-up>
 
-    <app-sign-alternative (alternativeSelected)="signInWith('twitter')"></app-sign-alternative>
+    <app-sign-alternative (alternativeSelected)="signInWith($event)"></app-sign-alternative>
 
-    <p class="already-have-account">{{ 'sign-up.already-have-account' | translate }} <span (click)="signUp = !signUp">{{ 'sign-up.already-have-account.sign-in' | translate }}</span></p>
-
+    <p class="already-have-account">
+      {{ 'sign-up.already-have-account' | translate }}
+      <span (click)="signUp = !signUp"
+        >{{ 'sign-up.already-have-account.sign-in' | translate }}</span
+      >
+    </p>
   </ng-container>
 
   <ng-template #signIn>
     <app-sign-in (formSubmitted)="signInUser($event)"></app-sign-in>
 
-    <app-sign-alternative (alternativeSelected)="signInWith('twitter')"></app-sign-alternative>
+    <app-sign-alternative (alternativeSelected)="signInWith($event)"></app-sign-alternative>
 
-    <p class="no-account-yet">{{ 'sign-in.no-account-yet' | translate }} <span (click)="signUp = !signUp">{{ 'sign-in.no-account-yet.sign-up' | translate }}</span></p>
-
+    <p class="no-account-yet">
+      {{ 'sign-in.no-account-yet' | translate }}
+      <span (click)="signUp = !signUp">{{ 'sign-in.no-account-yet.sign-up' | translate }}</span>
+    </p>
   </ng-template>
-
-
-
 </mat-card>

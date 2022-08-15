@@ -17,12 +17,20 @@
   }
 }
 
-.twitter-login-button {
-  width: 100%;
-  height: 50px;
-  border-radius: 16px;
+.alternative-actions-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
 
-  .mat-icon {
-    margin-right: 4px;
+  .alternative-login-button {
+    width: 100%;
+    height: 50px;
+    border-radius: 16px;
+
+    .mat-icon {
+      margin-right: 4px;
+    }
   }
 }
+
+

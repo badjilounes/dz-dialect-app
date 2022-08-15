@@ -12,11 +12,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { LetModule } from '@ngrx/component';
 import { TranslateModule } from '@ngx-translate/core';
+import { SignAlternativeComponent } from './components/sign-alternative/sign-alternative.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SignInRoutingModule } from './sign-in-routing.module';
 import { SignInPage } from './sign-in.page';
-import { SignAlternativeComponent } from './components/sign-alternative/sign-alternative.component';
 
 @NgModule({
   declarations: [SignInPage, SignAlternativeComponent],
@@ -45,6 +45,10 @@ export class SignInModule {
     this.matIconRegistry.addSvgIcon(
       'twitter',
       this.domSanitizer.bypassSecurityTrustResourceUrl('assets/svg/twitter.svg'),
+    );
+    this.matIconRegistry.addSvgIcon(
+      'google',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/svg/google.svg'),
     );
   }
 }

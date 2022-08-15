@@ -4,7 +4,14 @@
   <mat-divider></mat-divider>
 </div>
 
-<button mat-stroked-button class="twitter-login-button" (click)="signInWithTwitter()">
-  <mat-icon [svgIcon]="'twitter'"></mat-icon>
-  Twitter
-</button>
+<div class="alternative-actions-container">
+  <button mat-stroked-button class="alternative-login-button" (click)="signInWithTwitter()">
+    <mat-icon [svgIcon]="'twitter'"></mat-icon>
+    Twitter
+  </button>
+
+  <button mat-stroked-button class="alternative-login-button" (click)="signInWithGoogle()">
+    <mat-icon [svgIcon]="'google'"></mat-icon>
+    Google
+  </button>
+</div>
