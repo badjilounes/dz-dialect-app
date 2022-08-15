@@ -6,7 +6,7 @@ import { RandomComponent } from './pages/random/random.page';
 import { TrainingPresentationPage } from './pages/training-presentation/training-presentation.page';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'random', pathMatch: 'full' },
+  { path: '', redirectTo: 'training-presentation', pathMatch: 'full' },
 
   {
     path: '',
