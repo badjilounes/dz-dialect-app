@@ -17,7 +17,7 @@ export class TrainingToolbarTopComponent {
   );
 
   userImage$: Observable<string | undefined> = this.userAppStore.user$.pipe(
-    map((user) => (user ? user.imageUrl : '/assets/images/unkwown-user.jpg')),
+    map((user) => user?.imageUrl || '/assets/images/unkwown-user.jpg'),
     shareReplay(),
   );
 
