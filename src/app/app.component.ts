@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs';
+import { AppStore } from './app.store';
 import { ThemeService } from './core/theme/theme.service';
 
 @Component({
@@ -12,5 +13,7 @@ export class AppComponent {
 
   title = 'DZDialect';
 
-  constructor(private readonly themeService: ThemeService) {}
+  constructor(private readonly themeService: ThemeService, private readonly appStore: AppStore) {
+    this.appStore.initStore();
+  }
 }

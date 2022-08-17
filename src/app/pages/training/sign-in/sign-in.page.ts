@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { catchError, EMPTY, map, Observable, shareReplay, tap } from 'rxjs';
-import { UserAppStore } from 'src/app/core/stores/user.app-store';
+import { AppStore } from 'src/app/app.store';
 import {
   AuthenticationHttpService,
   AuthSignInDto,
@@ -28,7 +28,7 @@ export class SignInPage {
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
     private readonly authenticationHttpService: AuthenticationHttpService,
-    private readonly userAppStore: UserAppStore,
+    private readonly userAppStore: AppStore,
     private readonly snackBar: MatSnackBar,
     private readonly router: Router,
   ) {}

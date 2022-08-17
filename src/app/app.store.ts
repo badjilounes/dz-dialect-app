@@ -3,7 +3,7 @@ import { ComponentStore } from '@ngrx/component-store';
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, filter, map, tap } from 'rxjs/operators';
 import { UserResponseDto, UsersHttpService } from 'src/clients/dz-dialect-identity-api';
-import { AuthenticationTokenService } from '../authentication/authentication-token.service';
+import { AuthenticationTokenService } from './core/authentication/authentication-token.service';
 
 enum AuthenticationStatus {
   AUTHENTICATED,
@@ -19,7 +19,7 @@ type UserAppStoreState = {
 @Injectable({
   providedIn: 'root',
 })
-export class UserAppStore extends ComponentStore<UserAppStoreState> {
+export class AppStore extends ComponentStore<UserAppStoreState> {
   readonly isAuthenticated$: Observable<boolean> = this.select(
     (state) => state.authenticationStatus,
   ).pipe(
@@ -39,7 +39,6 @@ export class UserAppStore extends ComponentStore<UserAppStoreState> {
       authenticationStatus: AuthenticationStatus.PENDING,
       currentUser: undefined,
     });
-    this.initStore();
   }
 
   initStore(): void {
@@ -62,6 +61,7 @@ export class UserAppStore extends ComponentStore<UserAppStoreState> {
 
   setAsUnAuthenticated(): void {
     this.tokenService.clearToken();
+
     this.patchState(() => ({
       currentUser: undefined,
       authenticationStatus: AuthenticationStatus.UNAUTHENTICATED,
@@ -70,6 +70,7 @@ export class UserAppStore extends ComponentStore<UserAppStoreState> {
 
   setAsAuthenticated(token: string): void {
     this.tokenService.setToken(token);
+
     this.initStore();
   }
 }

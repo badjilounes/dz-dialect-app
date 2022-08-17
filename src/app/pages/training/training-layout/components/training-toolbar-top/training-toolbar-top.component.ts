@@ -2,8 +2,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable, shareReplay } from 'rxjs';
-import { UserAppStore } from 'src/app/core/stores/user.app-store';
-import { UsersHttpService } from 'src/clients/dz-dialect-identity-api';
+import { AppStore } from 'src/app/app.store';
 
 @Component({
   selector: 'app-training-toolbar-top',
@@ -40,8 +39,7 @@ export class TrainingToolbarTopComponent {
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
-    private readonly userAppStore: UserAppStore,
-    private readonly userHttpService: UsersHttpService,
+    private readonly userAppStore: AppStore,
     private readonly router: Router,
   ) {}
 

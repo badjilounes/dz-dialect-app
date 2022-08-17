@@ -7,20 +7,13 @@ export class AuthenticationTokenService {
   public get token(): string | undefined {
     return localStorage.getItem('token') ?? undefined;
   }
-  public set token(value: string | undefined) {
-    if (value) {
-      localStorage.setItem('token', value);
-    } else {
-      localStorage.removeItem('token');
-    }
-  }
 
   setToken(token: string) {
-    this.token = token;
+    localStorage.setItem('token', token);
   }
 
   clearToken() {
-    this.token = undefined;
+    localStorage.removeItem('token');
   }
 
   hasToken(): boolean {

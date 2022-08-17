@@ -14,14 +14,14 @@ import { AuthenticationTokenService } from './authentication-token.service';
 export class BearerTokenInterceptor implements HttpInterceptor {
   constructor(private readonly authenticationTokenService: AuthenticationTokenService) {}
 
-  intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(
-      this.authenticationTokenService.token
-        ? req.clone({
-            setHeaders: { Authorization: `Bearer ${this.authenticationTokenService.token}` },
-          })
-        : req,
-    );
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    if (this.authenticationTokenService.hasToken()) {
+      request = request.clone({
+        setHeaders: { Authorization: `Bearer ${this.authenticationTokenService.token}` },
+      });
+    }
+
+    return next.handle(request);
   }
 }
 
