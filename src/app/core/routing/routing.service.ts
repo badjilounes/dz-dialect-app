@@ -20,6 +20,9 @@ import { AppRoute } from './app-route.interface';
 @UntilDestroy()
 export class RoutingService {
   routes$: BehaviorSubject<AppRoute[]> = new BehaviorSubject<AppRoute[]>([]);
+  currentRoute$: BehaviorSubject<ActivatedRouteSnapshot | undefined> = new BehaviorSubject<
+    ActivatedRouteSnapshot | undefined
+  >(undefined);
 
   paramsSnapshot: Record<string, any> = {};
   params = new BehaviorSubject(this.paramsSnapshot);
@@ -38,6 +41,7 @@ export class RoutingService {
     this.router.events
       .pipe(
         filter((event: Event) => event instanceof NavigationEnd),
+        tap(() => this.setCurrentRoute()),
         tap(() => this.updateTitle()),
         tap(() => this.updateParams()),
         tap(() => this.updateQueryParams()),
@@ -70,15 +74,21 @@ export class RoutingService {
     return all;
   }
 
-  private updateTitle() {
+  private setCurrentRoute() {
     let currentRoute = this.route;
 
     while (currentRoute.firstChild) {
       currentRoute = currentRoute.firstChild;
     }
 
-    if (currentRoute.outlet === 'primary') {
-      this.setTitle(currentRoute.snapshot.data);
+    this.currentRoute$.next(currentRoute.snapshot);
+  }
+
+  private updateTitle() {
+    const currentRoute = this.currentRoute$.getValue();
+
+    if (currentRoute?.outlet === 'primary') {
+      this.setTitle(currentRoute.data);
     }
   }
 

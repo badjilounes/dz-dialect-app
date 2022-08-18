@@ -5,6 +5,8 @@
         <img [src]="userImage$ | async" class="user-picture" />
       </button>
 
+      <span class="title">{{ title$ | async | translate }}</span>
+
       <app-theme-mode-toggle></app-theme-mode-toggle>
     </div>
   </ng-container>

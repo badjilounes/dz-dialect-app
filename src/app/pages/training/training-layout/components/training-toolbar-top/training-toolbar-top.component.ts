@@ -1,8 +1,10 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, Observable, shareReplay } from 'rxjs';
 import { AppStore } from 'src/app/app.store';
+import { RoutingService } from 'src/app/core/routing/routing.service';
+import { filterUndefined } from 'src/app/shared/technical/operators/filter-undefined.operator';
 
 @Component({
   selector: 'app-training-toolbar-top',
@@ -37,10 +39,17 @@ export class TrainingToolbarTopComponent {
 
   isAuthenticated$ = this.userAppStore.isAuthenticated$;
 
+  title$ = this.routingService.currentRoute$.pipe(
+    filterUndefined(),
+    map((route) => route.data['title']),
+  );
+
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
     private readonly userAppStore: AppStore,
     private readonly router: Router,
+    private readonly routingService: RoutingService,
+    private readonly route: ActivatedRoute,
   ) {}
 
   signOut(): void {

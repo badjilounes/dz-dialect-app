@@ -13,15 +13,18 @@ const routes: Routes = [
       {
         path: 'learn',
         loadChildren: () => import('./learn/learn.module').then((m) => m.LearnModule),
+        data: { title: 'learn.title' },
       },
       {
         path: 'train',
         loadChildren: () => import('./train/train.module').then((m) => m.TrainModule),
+        data: { title: 'train.title' },
       },
       {
         path: 'profile',
         canActivate: [AuthenticatedGuard],
         loadChildren: () => import('./profile/profile.module').then((m) => m.ProfileModule),
+        data: { title: 'profile.title' },
       },
     ],
   },
