@@ -61,6 +61,14 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "local": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
@@ -72,6 +80,10 @@
               "browserTarget": "dz-dialect-app:build:production"
             },
             "development": {
+              "browserTarget": "dz-dialect-app:build:development",
+              "proxyConfig": "./proxy.conf.dev.json"
+            },
+            "local": {
               "browserTarget": "dz-dialect-app:build:development",
               "proxyConfig": "./proxy.conf.json"
             }

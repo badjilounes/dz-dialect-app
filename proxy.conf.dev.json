@@ -1,0 +1,21 @@
+{
+  "/proxy": {
+    "target": "https://evening-meadow-36429.herokuapp.com",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "info",
+    "pathRewrite": {
+      "^/proxy": ""
+    }
+  },
+
+  "/identity-proxy": {
+    "target": "https://dz-dialect-identity.herokuapp.com",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "info",
+    "pathRewrite": {
+      "^/identity-proxy": ""
+    }
+  }
+}
