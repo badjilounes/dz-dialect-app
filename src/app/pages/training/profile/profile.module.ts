@@ -5,10 +5,10 @@ import {ProfileFriendsComponent} from './components/profile-friends/profile-frie
 import {ProfileInformationComponent} from './components/profile-information/profile-information.component';
 import {ProfileRoutingModule} from './profile-routing.module';
 import {ProfilePage} from './profile.page';
-import {ProfileStatisticsComponent} from "./components/profile-statistics/profile-statistics.component";
+import {ProfileSuccessComponent} from "./components/profile-success/profile-success.component";
 
 @NgModule({
-  imports: [CommonModule, ProfileRoutingModule, ProfileInformationComponent, ProfileStatisticsComponent, MatButtonModule],
+  imports: [CommonModule, ProfileRoutingModule, ProfileInformationComponent, ProfileSuccessComponent, MatButtonModule],
   declarations: [ProfilePage, ProfileFriendsComponent],
 })
 export class ProfileModule {

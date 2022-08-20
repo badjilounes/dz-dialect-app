@@ -19,8 +19,8 @@ type Success = {
 
 @Component({
   selector: 'app-profile-statistics',
-  templateUrl: './profile-statistics.component.html',
-  styleUrls: ['./profile-statistics.component.scss'],
+  templateUrl: './profile-success.component.html',
+  styleUrls: ['./profile-success.component.scss'],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -33,7 +33,7 @@ type Success = {
     MatIconModule,
   ],
 })
-export class ProfileStatisticsComponent implements OnInit {
+export class ProfileSuccessComponent implements OnInit {
   public successList: Success[] = [
     {
       title: 'Tout feu tout flamme',
