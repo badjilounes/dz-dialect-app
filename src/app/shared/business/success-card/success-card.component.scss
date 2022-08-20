@@ -1,19 +1,27 @@
+.mat-card{
+  padding: 12px 24px;
+}
+
 .success-title {
   display: flex;
   align-items: center;
   column-gap: 0.5rem;
   margin-bottom: 0.5rem;
 
+  h2 {
+    font-weight: 400;
+    letter-spacing: 0.01785714em;
+    line-height: 1.25rem;
+    margin-bottom: 0;
+  }
+
   .mat-card-title{
     margin-bottom: 0;
   }
 }
-.progress-bar-container {
-  width: 100%;
-  height: 20px;
-  border-radius: 25px;
 
-  .mat-progress-bar {
-    height: 12px;
-  }
+.mat-progress-bar {
+  width: 100%;
+  height: 14px;
+  border-radius: 25px;
 }

@@ -1,14 +1,8 @@
-<mat-card>
+<mat-card class="mat-elevation-z0">
   <div class="success-title">
-  <img src="{{success.image}}" alt="image" width="48px">
-  <mat-card-title>{{ success.title }}</mat-card-title>
+    <img src="{{ success.image }}" alt="image" width="32px" />
+    <h2>{{ success.title }}</h2>
   </div>
-  <mat-progress-bar
-    class="progress-bar-container"
-    [color]="success.color"
-    [mode]="'determinate'"
-    [value]="success.value">
+  <mat-progress-bar [color]="success.color" [mode]="'determinate'" [value]="success.value">
   </mat-progress-bar>
-
 </mat-card>
-
