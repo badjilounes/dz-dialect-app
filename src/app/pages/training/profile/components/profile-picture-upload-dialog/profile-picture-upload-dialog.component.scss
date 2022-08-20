@@ -19,10 +19,17 @@
   position: relative;
   text-align: center;
   max-height: 50vh;
-
+  border: none;
   &.handset {
     max-height: 65vh;
   }
+}
+
+.ngx-dz-hovered {
+  background-color: rgba(23,78,166,.12);
+  border: 3px solid rgb(26,115,232);
+  margin: -3px;
+
 }
 
 .user-picture {

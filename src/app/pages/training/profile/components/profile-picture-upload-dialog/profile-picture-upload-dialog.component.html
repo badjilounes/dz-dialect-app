@@ -5,7 +5,12 @@
   <h2>{{ 'profile.profile-picture-upload-dialog.title' | translate }}</h2>
 </div>
 
-<div mat-dialog-content *ngrxLet="isHandset$; let handset" [ngClass]="{ handset }">
+<ngx-dropzone
+  mat-dialog-content
+  *ngrxLet="isHandset$; let handset"
+  [ngClass]="{ handset }"
+  (change)="onSelect($event)"
+>
   <div>
     <img [src]="data?.picture || '/assets/images/unknown-user.png'" class="user-picture" />
   </div>
@@ -21,4 +26,4 @@
       {{ 'profile.profile-picture-upload-dialog.import-from-computer' | translate }}
     </button>
   </div>
-</div>
+</ngx-dropzone>

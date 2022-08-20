@@ -5,6 +5,7 @@ import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { LetModule } from '@ngrx/component';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgxDropzoneChangeEvent, NgxDropzoneModule } from 'ngx-dropzone';
 import { AppStore } from 'src/app/app.store';
 
 @Component({
@@ -19,6 +20,7 @@ import { AppStore } from 'src/app/app.store';
     MatButtonModule,
     CommonModule,
     LetModule,
+    NgxDropzoneModule,
   ],
 })
 export class ProfilePictureUploadDialogComponent implements OnInit {
@@ -30,4 +32,8 @@ export class ProfilePictureUploadDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
+  onSelect(picture: NgxDropzoneChangeEvent) {
+    console.log(picture);
+  }
 }
