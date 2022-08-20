@@ -8,6 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { LetModule } from '@ngrx/component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AppStore } from 'src/app/app.store';
+import { FullLineCardButtonComponent } from 'src/app/shared/business/full-line-card-button/full-line-card-button.component';
 
 export type ProfileInformation = {
   name: string;
@@ -31,6 +32,7 @@ export type ProfileInformation = {
     MatMenuModule,
     MatButtonModule,
     MatDividerModule,
+    FullLineCardButtonComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

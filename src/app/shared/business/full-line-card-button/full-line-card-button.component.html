@@ -1,0 +1,21 @@
+<button mat-button *ngrxLet="isHandset$; let handset">
+  <div class="button-wrapper" [ngClass]="{ handset }">
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="label-wrapper">
+          <div class="label">
+            <ng-content select="[label]"></ng-content>
+          </div>
+        </div>
+        <div class="value-wrapper">
+          <div class="value">
+            <ng-content select="[value]"></ng-content>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="suffix">
+      <ng-content select="[suffix]"></ng-content>
+    </div>
+  </div>
+</button>
