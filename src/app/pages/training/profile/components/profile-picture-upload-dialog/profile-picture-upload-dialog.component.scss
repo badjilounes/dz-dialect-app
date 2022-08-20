@@ -1,0 +1,56 @@
+.mat-dialog-title {
+  display: flex;
+
+  h2 {
+    margin-bottom: 0;
+    margin-left: 12px;
+    line-height: 40px;
+    font-size: 1.125rem;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+}
+
+.mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  max-height: 50vh;
+
+  &.handset {
+    max-height: 65vh;
+  }
+}
+
+.user-picture {
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 80px;
+}
+
+.drop-picture-label {
+  line-height: 2rem;
+  font-size: 1.5rem;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+.drop-picture-alternative-label {
+  line-height: 1.5rem;
+  font-size: 1rem;
+  letter-spacing: .00625em;
+  font-weight: 400;
+  margin: 8px 0 4px;
+}
+
+
+.mat-stroked-button {
+  margin: 6px 0;
+
+  .mat-icon{
+    margin-right: 8px;
+  }
+}

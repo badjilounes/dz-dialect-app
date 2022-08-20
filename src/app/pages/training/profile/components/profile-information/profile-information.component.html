@@ -3,12 +3,12 @@
   <span subtitle>{{ 'profile.profile-information.subtitle' | translate }}</span>
 
   <div content>
-    <app-full-line-card-button>
+    <app-full-line-card-button (click)="openPictureUploadDialog()">
       <div label>{{ 'profile.profile-information.picture' | translate }}</div>
       <div value>{{ 'profile.profile-information.picture-edit' | translate }}</div>
       <img
         suffix
-        [src]="information?.picture || '/assets/images/unkwown-user.jpg'"
+        [src]="information?.picture || '/assets/images/unknown-user.png'"
         class="user-picture"
       />
     </app-full-line-card-button>

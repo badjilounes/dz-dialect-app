@@ -1,0 +1,24 @@
+<div mat-dialog-title>
+  <button mat-icon-button class="close-button" mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+  <h2>{{ 'profile.profile-picture-upload-dialog.title' | translate }}</h2>
+</div>
+
+<div mat-dialog-content *ngrxLet="isHandset$; let handset" [ngClass]="{ handset }">
+  <div>
+    <img [src]="data?.picture || '/assets/images/unknown-user.png'" class="user-picture" />
+  </div>
+  <div class="drop-picture-label">
+    {{ 'profile.profile-picture-upload-dialog.drop-picture-here' | translate }}
+  </div>
+  <div class="drop-picture-alternative-label">
+    {{ 'profile.profile-picture-upload-dialog.or' | translate }}
+  </div>
+  <div>
+    <button mat-stroked-button>
+      <mat-icon>computer</mat-icon>
+      {{ 'profile.profile-picture-upload-dialog.import-from-computer' | translate }}
+    </button>
+  </div>
+</div>
