@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { LetModule } from '@ngrx/component';
 import { AppStore } from 'src/app/app.store';
@@ -12,6 +12,8 @@ import { AppStore } from 'src/app/app.store';
   imports: [MatButtonModule, CommonModule, LetModule],
 })
 export class FullLineCardButtonComponent {
+  @Input() disabled = false;
+
   isHandset$ = this.appStore.isHandset$;
 
   constructor(private readonly appStore: AppStore) {}

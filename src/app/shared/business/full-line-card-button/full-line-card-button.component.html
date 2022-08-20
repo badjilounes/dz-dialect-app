@@ -1,4 +1,4 @@
-<button mat-button *ngrxLet="isHandset$; let handset">
+<button mat-button *ngrxLet="isHandset$; let handset" [disabled]="disabled">
   <div class="button-wrapper" [ngClass]="{ handset }">
     <div class="content-wrapper">
       <div class="content">

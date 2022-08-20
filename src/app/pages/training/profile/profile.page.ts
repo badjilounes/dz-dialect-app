@@ -19,6 +19,7 @@ export class ProfilePage implements OnInit {
       createdAt: user.createdAt,
       friendsCount: 0,
       picture: user.imageUrl,
+      email: user.email,
     })),
   );
 
