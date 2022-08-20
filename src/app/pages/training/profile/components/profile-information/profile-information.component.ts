@@ -1,14 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { LetModule } from '@ngrx/component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AppStore } from 'src/app/app.store';
 import { FullLineCardButtonComponent } from 'src/app/shared/business/full-line-card-button/full-line-card-button.component';
+import { ProfileCardComponent } from '../profile-card/profile-card.component';
 
 export type ProfileInformation = {
   name: string;
@@ -25,14 +22,11 @@ export type ProfileInformation = {
   standalone: true,
   imports: [
     CommonModule,
-    LetModule,
-    MatCardModule,
     TranslateModule,
     MatIconModule,
-    MatMenuModule,
-    MatButtonModule,
     MatDividerModule,
     FullLineCardButtonComponent,
+    ProfileCardComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

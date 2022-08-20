@@ -1,0 +1,42 @@
+:host {
+  ::ng-deep .mat-divider {
+    margin-left: 24px;
+  }
+}
+
+.mat-card {
+  padding: 16px 0 0 0;
+  max-width: 800px;
+  margin: 0 auto;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  h2, .mat-card-subtitle {
+    padding: 0 24px;
+  }
+
+  h2 {
+    line-height: 1.75rem;
+    font-size: 1.375rem;
+    letter-spacing: 0;
+    font-weight: 400;
+    hyphens: auto;
+    word-break: break-word;
+    word-wrap: break-word;
+  }
+
+  .mat-card-subtitle {
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.01428571em;
+    line-height: 1.25rem;
+    hyphens: auto;
+    word-break: break-word;
+    word-wrap: break-word;
+  }
+}
+
+

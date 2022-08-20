@@ -1,8 +1,8 @@
-<mat-card *ngrxLet="isHandset$; let handset" class="mat-elevation-z0">
-  <h2>{{ 'profile.profile-information.title' | translate }}</h2>
-  <mat-card-subtitle>{{ 'profile.profile-information.subtitle' | translate }}</mat-card-subtitle>
+<app-profile-card>
+  <span title>{{ 'profile.profile-information.title' | translate }}</span>
+  <span subtitle>{{ 'profile.profile-information.subtitle' | translate }}</span>
 
-  <mat-card-content>
+  <div content>
     <app-full-line-card-button>
       <div label>{{ 'profile.profile-information.picture' | translate }}</div>
       <div value>{{ 'profile.profile-information.picture-edit' | translate }}</div>
@@ -36,5 +36,5 @@
       <div value>{{ information?.createdAt | date }}</div>
       <mat-icon suffix>keyboard_arrow_right</mat-icon>
     </app-full-line-card-button>
-  </mat-card-content>
-</mat-card>
+  </div>
+</app-profile-card>
