@@ -4,8 +4,8 @@
 
   <mat-card-content>
     <app-full-line-card-button>
-      <span label>{{ 'profile.profile-information.picture' | translate }}</span>
-      <span value>{{ 'profile.profile-information.picture-edit' | translate }}</span>
+      <div label>{{ 'profile.profile-information.picture' | translate }}</div>
+      <div value>{{ 'profile.profile-information.picture-edit' | translate }}</div>
       <img
         suffix
         [src]="information?.picture || '/assets/images/unkwown-user.jpg'"
@@ -16,24 +16,24 @@
     <mat-divider></mat-divider>
 
     <app-full-line-card-button>
-      <span label>{{ 'profile.profile-information.name' | translate }}</span>
-      <span value>{{ information?.name }}</span>
+      <div label>{{ 'profile.profile-information.name' | translate }}</div>
+      <div value>{{ information?.name }}</div>
       <mat-icon suffix>keyboard_arrow_right</mat-icon>
     </app-full-line-card-button>
 
     <mat-divider></mat-divider>
 
     <app-full-line-card-button>
-      <span label>{{ 'profile.profile-information.username' | translate }}</span>
-      <span value>{{ information?.username }}</span>
+      <div label>{{ 'profile.profile-information.username' | translate }}</div>
+      <div value>{{ information?.username }}</div>
       <mat-icon suffix>keyboard_arrow_right</mat-icon>
     </app-full-line-card-button>
 
     <mat-divider></mat-divider>
 
     <app-full-line-card-button>
-      <span label>{{ 'profile.profile-information.createdAt' | translate }}</span>
-      <span value>{{ information?.createdAt | date }}</span>
+      <div label>{{ 'profile.profile-information.createdAt' | translate }}</div>
+      <div value>{{ information?.createdAt | date }}</div>
       <mat-icon suffix>keyboard_arrow_right</mat-icon>
     </app-full-line-card-button>
   </mat-card-content>

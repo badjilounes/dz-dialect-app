@@ -4,6 +4,7 @@ button {
   border-radius: 0;
   padding: 0 24px;
   min-height: 55px;
+  white-space: inherit;
 
   .button-wrapper {
     display: flex;
@@ -13,27 +14,19 @@ button {
     .content-wrapper {
       flex: 1 1 0;
 
-        .label-wrapper {
-          display: flex;
-          align-items: center;
-          margin-right: 24px;
-          height: 1.25rem;
-          padding-top: 4px;
+      .label-wrapper {
+        display: flex;
+        align-items: center;
+        flex-basis: 156px;
+        margin-right: 24px;
+      }
 
-          -webkit-flex-basis: 120px;
-          -ms-flex-preferred-size: 120px;
-          flex-basis: 120px;
-        }
-
-        .value-wrapper {
-          display: flex;
-          align-items: flex-start;
-          flex-grow: 1;
-          flex-shrink: 1;
-          margin-right: 24px;
-          height: 1.25rem;
-          padding-top: 4px;
-        }
+      .value-wrapper {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 156px;
+        margin-right: 24px;
+      }
 
     }
 
@@ -50,14 +43,6 @@ button {
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
-
-    // .label-wrapper {
-    //   flex-basis: 156px;
-    // }
-
-    // .value-wrapper {
-    //   flex-basis: 328px;
-    // }
   }
 }
 
@@ -71,7 +56,6 @@ button {
   word-break: break-word;
   word-wrap: break-word;
   color: rgb(95,99,104);
-  width: 100%;
 }
 
 .value {
@@ -82,5 +66,4 @@ button {
   hyphens: auto;
   word-break: break-word;
   word-wrap: break-word;
-  width: 100%;
 }
