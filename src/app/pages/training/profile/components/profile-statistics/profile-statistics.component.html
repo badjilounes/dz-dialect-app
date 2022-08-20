@@ -1,0 +1,10 @@
+<app-profile-card>
+  <span title>{{ 'profile.stats.title' | translate }}</span>
+
+  <div content>
+    <div *ngFor="let success of successList; let isLast = last">
+      <app-success-card [success]="success"></app-success-card>
+      <mat-divider *ngIf="!isLast"></mat-divider>
+    </div>
+  </div>
+</app-profile-card>
