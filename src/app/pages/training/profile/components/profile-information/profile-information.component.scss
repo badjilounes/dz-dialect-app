@@ -1,0 +1,124 @@
+.mat-card {
+  padding: 16px 0 0 0;
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid rgb(218,220,224);
+  border-radius: 8px;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  h2, .mat-card-subtitle {
+    padding: 0 24px;
+  }
+
+  h2 {
+    line-height: 1.75rem;
+    font-size: 1.375rem;
+    letter-spacing: 0;
+    font-weight: 400;
+    hyphens: auto;
+    word-break: break-word;
+    word-wrap: break-word;
+  }
+
+  .mat-card-subtitle {
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.01428571em;
+    line-height: 1.25rem;
+    hyphens: auto;
+    word-break: break-word;
+    word-wrap: break-word;
+  }
+}
+
+
+button {
+  width: 100%;
+  padding: 0;
+  border-radius: 0;
+  padding: 0 24px;
+  min-height: 55px;
+
+  .button-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+
+    .content-wrapper {
+      flex: 1 1 0;
+
+        .label {
+          display: flex;
+          align-items: center;
+          margin-right: 24px;
+          height: 1.25rem;
+          padding-top: 4px;
+        }
+
+        .value {
+          display: flex;
+          align-items: flex-start;
+          flex-grow: 1;
+          flex-shrink: 1;
+          margin-right: 24px;
+          height: 1.25rem;
+          padding-top: 4px;
+        }
+
+    }
+
+    .suffix {
+      display: flex;
+      flex-grow: 0;
+      flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+    }
+  }
+
+  .button-wrapper:not(.handset) .content {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+
+    .label {
+      flex-basis: 156px;
+    }
+
+    .value {
+      flex-basis: 328px;
+    }
+  }
+}
+
+.label {
+  font-size: 0.75rem;
+  letter-spacing: 0.04166667em;
+  line-height: 1rem;
+  text-transform: none;
+  hyphens: auto;
+  word-break: break-word;
+  word-wrap: break-word;
+  color: rgb(95,99,104);
+  width: 100%;
+}
+
+.value {
+  font-weight: 400;
+  letter-spacing: 0.01785714em;
+  line-height: 1.25rem;
+  hyphens: auto;
+  word-break: break-word;
+  word-wrap: break-word;
+  width: 100%;
+}
+
+.mat-divider {
+  margin-left: 24px;
+}
+
+.user-picture {
+  height: 60px;
+  border-radius: 50%;
+}

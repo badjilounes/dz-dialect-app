@@ -1,0 +1,73 @@
+<mat-card *ngrxLet="isHandset$; let handset" class="mat-elevation-z0">
+  <h2>{{ 'profile.profile-information.title' | translate }}</h2>
+  <mat-card-subtitle>{{ 'profile.profile-information.subtitle' | translate }}</mat-card-subtitle>
+
+  <mat-card-content>
+    <button mat-button>
+      <div class="button-wrapper" [ngClass]="{ handset }">
+        <div class="content-wrapper">
+          <div class="content">
+            <div class="label">{{ 'profile.profile-information.picture' | translate }}</div>
+            <div class="value">
+              <div>{{ 'profile.profile-information.picture-edit' | translate }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="suffix">
+          <img
+            [src]="information?.picture || '/assets/images/unkwown-user.jpg'"
+            class="user-picture"
+          />
+        </div>
+      </div>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-button>
+      <div class="button-wrapper" [ngClass]="{ handset }">
+        <div class="content-wrapper">
+          <div class="content">
+            <div class="label">{{ 'profile.profile-information.name' | translate }}</div>
+            <div class="value">
+              <div>{{ information?.name }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="suffix">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </div>
+      </div>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-button>
+      <div class="button-wrapper" [ngClass]="{ handset }">
+        <div class="content-wrapper">
+          <div class="content">
+            <div class="label">{{ 'profile.profile-information.username' | translate }}</div>
+            <div class="value">
+              <div>{{ information?.username }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="suffix">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </div>
+      </div>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-button>
+      <div class="button-wrapper" [ngClass]="{ handset }">
+        <div class="content-wrapper">
+          <div class="content">
+            <div class="label">{{ 'profile.profile-information.createdAt' | translate }}</div>
+            <div class="value">
+              <div>{{ information?.createdAt | date }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="suffix">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </div>
+      </div>
+    </button>
+  </mat-card-content>
+</mat-card>

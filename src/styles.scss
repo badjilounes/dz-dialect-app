@@ -8,6 +8,11 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
+
+$dz-dialect-typography: mat.define-typography-config(
+  $font-family: "'Google Sans', Roboto, Arial, sans-serif",
+);
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
@@ -23,6 +28,7 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
         accent: $dz-dialect-app-accent,
         warn: $dz-dialect-app-warn,
       ),
+      typography: $dz-dialect-typography,
     ));
 
 @include mat.all-component-themes($dz-dialect-app-theme);
@@ -68,6 +74,7 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
         accent: $dz-dialect-app-accent,
         warn: $dz-dialect-app-warn,
       ),
+      typography: $dz-dialect-typography,
     ));
 
   @include mat.all-component-colors($dz-dialect-dark-app-theme);
@@ -95,6 +102,5 @@ body {
 
 body {
   margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
   touch-action: pan-x pan-y;
 }

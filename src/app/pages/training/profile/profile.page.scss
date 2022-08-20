@@ -1,4 +1,8 @@
 .profile-container {
   display: grid;
   grid-template-rows: auto;
+  row-gap: 8px;
+  padding: 24px 0;
+  max-width: 800px;
+  margin: 0 auto;
 }

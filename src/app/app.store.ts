@@ -1,7 +1,8 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 import { EMPTY, Observable } from 'rxjs';
-import { catchError, filter, map, tap } from 'rxjs/operators';
+import { catchError, filter, map, shareReplay, tap } from 'rxjs/operators';
 import { UserResponseDto, UsersHttpService } from 'src/clients/dz-dialect-identity-api';
 import { AuthenticationTokenService } from './core/authentication/authentication-token.service';
 
@@ -31,9 +32,17 @@ export class AppStore extends ComponentStore<UserAppStoreState> {
     (state) => state.currentUser,
   );
 
+  readonly isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
+    .pipe(
+      map((result) => result.matches),
+      shareReplay(),
+    );
+
   constructor(
     private readonly usersHttpService: UsersHttpService,
     private readonly tokenService: AuthenticationTokenService,
+    private readonly breakpointObserver: BreakpointObserver,
   ) {
     super({
       authenticationStatus: AuthenticationStatus.PENDING,
