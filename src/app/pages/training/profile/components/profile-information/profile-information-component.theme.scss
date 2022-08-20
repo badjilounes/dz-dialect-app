@@ -1,0 +1,10 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin profile-information-theme($theme) {
+  $foreground: map-get($theme, foreground);
+
+  app-profile-information .mat-card{
+    border-color: mat.get-color-from-palette($foreground, divider);
+  }
+}
