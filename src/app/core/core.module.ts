@@ -1,5 +1,7 @@
+import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import localeFr from '@angular/common/locales/fr';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ApiModule, Configuration, ConfigurationParameters } from 'src/clients/dz-dialect-api';
 import {
@@ -12,6 +14,8 @@ import { HTTP_BEARER_TOKEN_INTERCEPTOR_PROVIDER } from './authentication/bearer-
 import { RoutingService } from './routing/routing.service';
 import { AppTranslateModule } from './translate/translate.module';
 import { UnauthenticatedLayoutModule } from './unauthenticated-layout/unauthenticated-layout.module';
+
+registerLocaleData(localeFr);
 
 export function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
@@ -35,7 +39,7 @@ export function identityApiConfigFactory(): IdentityConfiguration {
     IdentityApiModule.forRoot(identityApiConfigFactory),
     UnauthenticatedLayoutModule,
   ],
-  providers: [HTTP_BEARER_TOKEN_INTERCEPTOR_PROVIDER],
+  providers: [HTTP_BEARER_TOKEN_INTERCEPTOR_PROVIDER, { provide: LOCALE_ID, useValue: 'fr' }],
   exports: [AppTranslateModule],
 })
 export class CoreModule {
