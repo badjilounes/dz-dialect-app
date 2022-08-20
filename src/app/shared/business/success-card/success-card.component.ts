@@ -13,7 +13,11 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
   imports: [MatCardModule, MatButtonModule, TranslateModule, MatProgressBarModule],
 })
 export class SuccessCardComponent implements OnInit {
-  @Input() public success: any;
+  @Input() success: any;
+  get progressSuccess(): number {
+    return this.success.score / this.success.total * 100
+
+  }
 
   isHandset$ = this.appStore.isHandset$;
 

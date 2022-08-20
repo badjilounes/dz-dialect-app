@@ -9,10 +9,12 @@ import { ProfileCardComponent } from '../profile-card/profile-card.component';
 
 type Success = {
   title: string;
-  value: number;
   icon: string;
   color: string;
   image: string;
+  description: string;
+  score: number;
+  total: number;
 };
 
 @Component({
@@ -34,25 +36,31 @@ type Success = {
 export class ProfileStatisticsComponent implements OnInit {
   public successList: Success[] = [
     {
-      title: 'Success',
-      value: 26,
+      title: 'Tout feu tout flamme',
       icon: 'check_circle',
       color: '#00bcd4',
       image: 'assets/images/badge_gold.svg',
+      description: 'Réaliser une série de 10 jours',
+      score: 8,
+      total: 10,
     },
     {
-      title: 'Success2',
-      value: 15,
+      title: 'Grand sage',
       icon: 'check_circle',
       color: '#00bcd4',
       image: 'assets/images/badge_gold.svg',
+      description: 'Gagner 50 XP',
+      score: 28,
+      total: 50,
     },
     {
-      title: 'Success3',
-      value: 65,
+      title: 'Mastodonte',
       icon: 'check_circle',
       color: '#00bcd4',
       image: 'assets/images/badge_gold.svg',
+      description: 'Finissez tous les succès pour parler bilingue',
+      score: 10,
+      total: 100,
     },
   ];
   constructor() {}
