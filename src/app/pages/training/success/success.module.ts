@@ -1,6 +1,5 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
-import {SuccessPageComponent} from "./success-page.component";
 import {SuccessRoutingModule} from "./success-routing.module";
 
 @NgModule({
@@ -8,6 +7,5 @@ import {SuccessRoutingModule} from "./success-routing.module";
     CommonModule,
     SuccessRoutingModule
   ],
-  declarations: [SuccessPageComponent],
 })
 export class SuccessModule {}
