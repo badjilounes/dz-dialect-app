@@ -9,7 +9,7 @@ import {
   FullLineCardButtonComponent
 } from "../../../shared/business/full-line-card-button/full-line-card-button.component";
 import {MatIconModule} from "@angular/material/icon";
-import {RouterModule} from "@angular/router";
+import {Router, RouterModule} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
 
 @Component({
@@ -116,10 +116,15 @@ export class SuccessPageComponent implements OnInit {
     ];
   }
 
-  constructor() {
+  constructor(private readonly router: Router) {
   }
+
+
 
   ngOnInit(): void {
   }
 
+  onBack() {
+    this.router.navigate(['/profile']);
+  }
 }

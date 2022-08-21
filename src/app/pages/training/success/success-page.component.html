@@ -1,15 +1,14 @@
+<button mat-fab
+        color="primary"
+        (click)="onBack()">
+  <mat-icon>arrow_back</mat-icon>
+</button>
 <app-profile-card>
   <span title>{{ 'profile.stats.title' | translate }}</span>
-
   <div content>
     <div *ngFor="let success of successList">
       <app-success-card [success]="success"></app-success-card>
       <mat-divider></mat-divider>
     </div>
-
-    <app-full-line-card-button [routerLink]="['/success']">
-      <div label>{{ 'profile.stats.show-all' | translate }}</div>
-      <mat-icon suffix>keyboard_arrow_right</mat-icon>
-    </app-full-line-card-button>
   </div>
 </app-profile-card>

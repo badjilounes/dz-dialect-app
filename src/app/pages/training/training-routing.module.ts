@@ -30,7 +30,7 @@ const routes: Routes = [
         path: 'success',
         canActivate: [AuthenticatedGuard],
         loadChildren: () => import('./success/success.module').then((m) => m.SuccessModule),
-        data: { title: 'profile.title' },
+        data: { title: 'success.title' },
       },
     ],
   },
