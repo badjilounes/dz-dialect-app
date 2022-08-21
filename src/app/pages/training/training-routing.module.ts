@@ -26,6 +26,12 @@ const routes: Routes = [
         loadChildren: () => import('./profile/profile.module').then((m) => m.ProfileModule),
         data: { title: 'profile.title' },
       },
+      {
+        path: 'success',
+        canActivate: [AuthenticatedGuard],
+        loadChildren: () => import('./success/success.module').then((m) => m.SuccessModule),
+        data: { title: 'profile.title' },
+      },
     ],
   },
 

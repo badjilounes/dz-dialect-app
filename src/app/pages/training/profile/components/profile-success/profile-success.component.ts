@@ -7,6 +7,7 @@ import { FullLineCardButtonComponent } from 'src/app/shared/business/full-line-c
 import { SuccessCardComponent } from '../../../../../shared/business/success-card/success-card.component';
 import { ProfileCardComponent } from '../profile-card/profile-card.component';
 import {Success} from "../../../../../../clients/dz-dialect-api/model/success";
+import {RouterModule} from "@angular/router";
 
 
 
@@ -24,6 +25,7 @@ import {Success} from "../../../../../../clients/dz-dialect-api/model/success";
     CommonModule,
     FullLineCardButtonComponent,
     MatIconModule,
+    RouterModule,
   ],
 })
 export class ProfileSuccessComponent implements OnInit {
