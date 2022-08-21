@@ -1,24 +1,23 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {Success} from "../../../../clients/dz-dialect-api/model/success";
-import {ProfileCardComponent} from "../profile/components/profile-card/profile-card.component";
-import {TranslateModule} from "@ngx-translate/core";
-import {MatDividerModule} from "@angular/material/divider";
-import {SuccessCardComponent} from "../../../shared/business/success-card/success-card.component";
-import {CommonModule} from "@angular/common";
-import {
-  FullLineCardButtonComponent
-} from "../../../shared/business/full-line-card-button/full-line-card-button.component";
-import {MatIconModule} from "@angular/material/icon";
-import {Router, RouterModule} from "@angular/router";
-import {MatButtonModule} from "@angular/material/button";
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { Success } from '../../../../clients/dz-dialect-api/model/success';
+import { FullLineCardButtonComponent } from '../../../shared/business/full-line-card-button/full-line-card-button.component';
+import { SuccessCardComponent } from '../../../shared/business/success-card/success-card.component';
+import { ProfileCardComponent } from '../profile/components/profile-card/profile-card.component';
 
 @Component({
   selector: 'app-success-page',
-  templateUrl: './success-page.component.html',
-  styleUrls: ['./success-page.component.scss'],
+  templateUrl: './success.page.html',
+  styleUrls: ['./success.page.scss'],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ProfileCardComponent,
+  imports: [
+    ProfileCardComponent,
     TranslateModule,
     MatDividerModule,
     SuccessCardComponent,
@@ -26,10 +25,10 @@ import {MatButtonModule} from "@angular/material/button";
     FullLineCardButtonComponent,
     MatIconModule,
     RouterModule,
-    MatButtonModule,],
+    MatButtonModule,
+  ],
 })
-export class SuccessPageComponent implements OnInit {
-
+export class SuccessPage {
   get successList(): Success[] {
     return [
       {
@@ -114,17 +113,5 @@ export class SuccessPageComponent implements OnInit {
         total: 100,
       },
     ];
-  }
-
-  constructor(private readonly router: Router) {
-  }
-
-
-
-  ngOnInit(): void {
-  }
-
-  onBack() {
-    this.router.navigate(['/profile']);
   }
 }
