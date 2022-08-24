@@ -56,6 +56,7 @@ export class ProfilePictureUploadDialogComponent {
     this.usersHttpService
       .createProfilePictureMedia(event.addedFiles[0], 'body', true)
       .pipe(
+        tap(({ url }) => this.picture$.next(url)),
         tap(() => this.uploading$.next(false)),
         catchError((error) => {
           this.uploading$.next(false);
@@ -64,9 +65,7 @@ export class ProfilePictureUploadDialogComponent {
         }),
         untilDestroyed(this),
       )
-      .subscribe((uploaded) => {
-        this.picture$.next(uploaded.url);
-      });
+      .subscribe();
   }
 
   save() {
