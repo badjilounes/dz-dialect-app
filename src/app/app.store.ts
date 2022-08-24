@@ -51,21 +51,23 @@ export class AppStore extends ComponentStore<UserAppStoreState> {
   }
 
   initStore(): void {
-    this.usersHttpService
-      .getConnectedUser()
-      .pipe(
-        tap((currentUser) =>
-          this.patchState(() => ({
-            currentUser,
-            authenticationStatus: AuthenticationStatus.AUTHENTICATED,
-          })),
-        ),
-        catchError(() => {
-          this.setAsUnAuthenticated();
-          return EMPTY;
-        }),
-      )
-      .subscribe();
+    if (this.tokenService.hasToken()) {
+      this.usersHttpService
+        .getConnectedUser()
+        .pipe(
+          tap((currentUser) =>
+            this.patchState(() => ({
+              currentUser,
+              authenticationStatus: AuthenticationStatus.AUTHENTICATED,
+            })),
+          ),
+          catchError(() => {
+            this.setAsUnAuthenticated();
+            return EMPTY;
+          }),
+        )
+        .subscribe();
+    }
   }
 
   setAsUnAuthenticated(): void {
