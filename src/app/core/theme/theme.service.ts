@@ -41,6 +41,7 @@ export class ThemeService {
     }
 
     this.themeMode$ = new BehaviorSubject<ThemeMode>(this.themeMode);
+    this.setThemeMode();
     this.setStatusBarColor();
   }
 
@@ -48,7 +49,12 @@ export class ThemeService {
     const themeMode = this.themeMode$.getValue() === 'light' ? 'dark' : 'light';
     this.themeMode = themeMode;
     this.themeMode$.next(themeMode);
+    this.setThemeMode();
     this.setStatusBarColor();
+  }
+
+  setThemeMode() {
+    document.body.classList.toggle('darkMode', this.themeMode === 'dark');
   }
 
   setStatusBarColor() {

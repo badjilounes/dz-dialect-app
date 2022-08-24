@@ -13,19 +13,19 @@
     [multiple]="false"
     (change)="onSelect($event)"
   >
-    <div>
-      <img [src]="picture$ | async" class="user-picture" [ngClass]="{ uploaded }" />
+    <div class="user-picture-container">
+      <img [src]="picture$ | async" class="user-picture" />
     </div>
 
-    <div>
-      <div class="drop-picture-label">
+    <div class="upload-options">
+      <div class="drop-label">
         {{ 'profile.profile-picture-upload-dialog.drop-picture-here' | translate }}
       </div>
-      <div class="drop-picture-alternative-label">
+      <div class="or-label">
         {{ 'profile.profile-picture-upload-dialog.or' | translate }}
       </div>
       <div>
-        <button mat-stroked-button>
+        <button mat-stroked-button class="upload-from-computer-button">
           <mat-icon>computer</mat-icon>
           {{ 'profile.profile-picture-upload-dialog.import-from-computer' | translate }}
         </button>
@@ -34,12 +34,15 @@
   </ngx-dropzone>
 </ng-container>
 
-<div mat-dialog-actions *ngIf="uploaded">
-  <button mat-button (click)="cancel()">
+<div mat-dialog-actions>
+  <button mat-button *ngIf="uploaded" class="cancel-button" (click)="cancel()">
     {{ 'profile.profile-picture-upload-dialog.cancel' | translate }}
   </button>
 
-  <button mat-raised-button (click)="save()" color="primary">
-    {{ 'profile.profile-picture-upload-dialog.save' | translate }}
+  <button mat-stroked-button *ngIf="uploaded" color="primary" class="save-button" (click)="save()">
+    <span *ngIf="(saving$ | async) === false">{{
+      'profile.profile-picture-upload-dialog.save' | translate
+    }}</span>
+    <mat-spinner *ngIf="(saving$ | async) === true" [diameter]="20"></mat-spinner>
   </button>
 </div>

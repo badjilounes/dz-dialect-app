@@ -52,6 +52,7 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
 @import "app/pages/training/training-layout/components/training-toolbar-top/training-toolbar-top-component.theme.scss";
 @import "app/pages/training/sign-in/sign-in-page.theme.scss";
 @import "app/pages/training/profile/components/profile-card/profile-card-component.theme.scss";
+@import "app/pages/training/profile/components/profile-picture-upload-dialog/profile-picture-upload-dialog-component.theme.scss";
 
 /* material theme */
 @include bottom-sheet-theme($dz-dialect-app-theme);
@@ -68,6 +69,7 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
 @include training-toolbar-top-theme($dz-dialect-app-theme);
 @include sign-in-theme($dz-dialect-app-theme);
 @include profile-card-theme($dz-dialect-app-theme);
+@include profile-picture-upload-dialog-theme($dz-dialect-app-theme);
 
 .darkMode {
   // Include theme styles for core and each component used in your app.
@@ -97,6 +99,7 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
   @include training-toolbar-top-theme($dz-dialect-dark-app-theme);
   @include sign-in-theme($dz-dialect-dark-app-theme);
   @include profile-card-theme($dz-dialect-dark-app-theme);
+  @include profile-picture-upload-dialog-theme($dz-dialect-dark-app-theme);
 }
 
 html,

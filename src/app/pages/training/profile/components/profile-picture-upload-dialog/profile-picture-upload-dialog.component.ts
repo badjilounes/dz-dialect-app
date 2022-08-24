@@ -3,11 +3,13 @@ import { Component, Inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { LetModule } from '@ngrx/component';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxDropzoneChangeEvent, NgxDropzoneModule } from 'ngx-dropzone';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, catchError, EMPTY, tap } from 'rxjs';
 import { AppStore } from 'src/app/app.store';
 import { UsersHttpService } from 'src/clients/dz-dialect-identity-api';
 
@@ -25,10 +27,13 @@ import { UsersHttpService } from 'src/clients/dz-dialect-identity-api';
     CommonModule,
     LetModule,
     NgxDropzoneModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class ProfilePictureUploadDialogComponent {
   isHandset$ = this.appStore.isHandset$;
+  uploading$ = new BehaviorSubject<boolean>(false);
+  saving$ = new BehaviorSubject<boolean>(false);
 
   initialPicture = this.data?.picture || '/assets/images/unknown-user.png';
   picture$: BehaviorSubject<string> = new BehaviorSubject<string>(this.initialPicture);
@@ -42,24 +47,41 @@ export class ProfilePictureUploadDialogComponent {
     private readonly appStore: AppStore,
     private readonly usersHttpService: UsersHttpService,
     private readonly dialog: MatDialogRef<ProfilePictureUploadDialogComponent>,
+    private readonly snackBar: MatSnackBar,
   ) {}
 
   onSelect(event: NgxDropzoneChangeEvent) {
-    console.log(event);
+    this.uploading$.next(true);
 
     this.usersHttpService
       .createProfilePictureMedia(event.addedFiles[0], 'body', true)
-      .pipe(untilDestroyed(this))
+      .pipe(
+        tap(() => this.uploading$.next(false)),
+        catchError((error) => {
+          this.uploading$.next(false);
+          this.snackBar.open(error.message, 'OK', { duration: 3000 });
+          return EMPTY;
+        }),
+        untilDestroyed(this),
+      )
       .subscribe((uploaded) => {
         this.picture$.next(uploaded.url);
       });
   }
 
   save() {
+    this.saving$.next(true);
+
     this.usersHttpService
       .updateProfilePicture({ url: this.picture$.value })
       .pipe(
+        tap(() => this.saving$.next(false)),
         tap(() => this.dialog.close()),
+        catchError((error) => {
+          this.saving$.next(false);
+          this.snackBar.open(error.message, 'OK', { duration: 3000 });
+          return EMPTY;
+        }),
         untilDestroyed(this),
       )
       .subscribe();

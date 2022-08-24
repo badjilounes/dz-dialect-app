@@ -1,0 +1,21 @@
+@mixin profile-picture-upload-dialog-theme($theme) {
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  $primary: map-get($theme, primary);
+
+  app-profile-picture-upload-dialog {
+
+    .mat-dialog-content {
+      background-color: mat.get-color-from-palette($background, card);
+    }
+
+    .user-picture-container:hover .user-picture{
+      border-color: mat.get-color-from-palette($foreground, divider);
+    }
+
+    .upload-options {
+      color: mat.get-color-from-palette($foreground, text);
+    }
+  }
+}

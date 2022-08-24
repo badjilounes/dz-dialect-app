@@ -36,47 +36,67 @@
   justify-content: flex-end;
   padding: 0px 16px;
   margin: 0;
+
+  .save-button,
+  .cancel-button{
+    height: 40px;
+  }
+
+  .save-button {
+    width: 220px;
+
+    .mat-spinner{
+      margin: 0 auto;
+    }
+  }
 }
 
 .ngx-dz-hovered {
   background-color: rgba(23,78,166,.12);
   border: 3px solid rgb(26,115,232);
   margin: -3px;
-
 }
 
-.user-picture {
-  height: 150px;
-  width: 150px;
-  border-radius: 50%;
-  margin-bottom: 80px;
+.user-picture-container {
+  &:hover {
+    margin: -3px;
+  }
 
-  &.uploaded {
-    height: 220px;
-    width: 220px;
+  &:hover .user-picture {
+    opacity: 0.5;
+    border: 3px inset;
+  }
+
+  .user-picture {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
   }
 }
 
-.drop-picture-label {
-  line-height: 2rem;
-  font-size: 1.5rem;
-  letter-spacing: 0;
-  font-weight: 400;
-}
+.upload-options {
+  margin-top: 80px;
 
-.drop-picture-alternative-label {
-  line-height: 1.5rem;
-  font-size: 1rem;
-  letter-spacing: .00625em;
-  font-weight: 400;
-  margin: 8px 0 4px;
-}
+  .drop-label {
+    line-height: 2rem;
+    font-size: 1.5rem;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
 
+  .or-label {
+    line-height: 1.5rem;
+    font-size: 1rem;
+    letter-spacing: .00625em;
+    font-weight: 400;
+    margin: 8px 0 4px;
+  }
 
-.mat-stroked-button {
-  margin: 6px 0;
+  .upload-from-computer-button {
+    margin: 6px 0;
 
-  .mat-icon{
-    margin-right: 8px;
+    .mat-icon{
+      margin-right: 8px;
+    }
   }
 }
