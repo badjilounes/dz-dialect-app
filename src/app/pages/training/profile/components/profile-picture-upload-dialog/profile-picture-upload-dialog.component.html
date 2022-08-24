@@ -17,7 +17,7 @@
       <img [src]="picture$ | async" class="user-picture" [ngClass]="{ uploaded }" />
     </div>
 
-    <div *ngIf="!uploaded">
+    <div>
       <div class="drop-picture-label">
         {{ 'profile.profile-picture-upload-dialog.drop-picture-here' | translate }}
       </div>
@@ -39,7 +39,7 @@
     {{ 'profile.profile-picture-upload-dialog.cancel' | translate }}
   </button>
 
-  <button mat-stroked-button (click)="save()" color="primary">
+  <button mat-raised-button (click)="save()" color="primary">
     {{ 'profile.profile-picture-upload-dialog.save' | translate }}
   </button>
 </div>
