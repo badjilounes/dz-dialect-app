@@ -4,6 +4,7 @@ README.md
 api.module.ts
 api/api.ts
 api/authentication.service.ts
+api/media.service.ts
 api/users.service.ts
 configuration.ts
 encoder.ts
@@ -12,6 +13,7 @@ index.ts
 model/auth-sign-in-dto.ts
 model/auth-sign-up-dto.ts
 model/auth-token-response-dto.ts
+model/media-response-dto.ts
 model/models.ts
 model/providers-enum.ts
 model/user-response-dto.ts

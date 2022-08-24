@@ -5,25 +5,29 @@
   <h2>{{ 'profile.profile-picture-upload-dialog.title' | translate }}</h2>
 </div>
 
-<ngx-dropzone
-  mat-dialog-content
-  *ngrxLet="isHandset$; let handset"
-  [ngClass]="{ handset }"
-  (change)="onSelect($event)"
->
-  <div>
-    <img [src]="data?.picture || '/assets/images/unknown-user.png'" class="user-picture" />
-  </div>
-  <div class="drop-picture-label">
-    {{ 'profile.profile-picture-upload-dialog.drop-picture-here' | translate }}
-  </div>
-  <div class="drop-picture-alternative-label">
-    {{ 'profile.profile-picture-upload-dialog.or' | translate }}
-  </div>
-  <div>
-    <button mat-stroked-button>
-      <mat-icon>computer</mat-icon>
-      {{ 'profile.profile-picture-upload-dialog.import-from-computer' | translate }}
-    </button>
-  </div>
-</ngx-dropzone>
+<ng-container *ngrxLet="isHandset$; let handset">
+  <ngx-dropzone
+    *ngrxLet="user$; let user"
+    mat-dialog-content
+    [ngClass]="{ handset }"
+    [accept]="'image/*'"
+    [multiple]="false"
+    (change)="onSelect(user.id, $event)"
+  >
+    <div>
+      <img [src]="picture$ | async" class="user-picture" />
+    </div>
+    <div class="drop-picture-label">
+      {{ 'profile.profile-picture-upload-dialog.drop-picture-here' | translate }}
+    </div>
+    <div class="drop-picture-alternative-label">
+      {{ 'profile.profile-picture-upload-dialog.or' | translate }}
+    </div>
+    <div>
+      <button mat-stroked-button>
+        <mat-icon>computer</mat-icon>
+        {{ 'profile.profile-picture-upload-dialog.import-from-computer' | translate }}
+      </button>
+    </div>
+  </ngx-dropzone>
+</ng-container>

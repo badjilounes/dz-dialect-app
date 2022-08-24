@@ -95,24 +95,32 @@ export class AuthenticationHttpService {
      * Provider login callback
      * @param providerName 
      * @param code 
+     * @param error 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public providerCallback(providerName: string, code: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public providerCallback(providerName: string, code: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public providerCallback(providerName: string, code: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public providerCallback(providerName: string, code: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+    public providerCallback(providerName: string, code: string, error: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
+    public providerCallback(providerName: string, code: string, error: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
+    public providerCallback(providerName: string, code: string, error: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
+    public providerCallback(providerName: string, code: string, error: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
         if (providerName === null || providerName === undefined) {
             throw new Error('Required parameter providerName was null or undefined when calling providerCallback.');
         }
         if (code === null || code === undefined) {
             throw new Error('Required parameter code was null or undefined when calling providerCallback.');
         }
+        if (error === null || error === undefined) {
+            throw new Error('Required parameter error was null or undefined when calling providerCallback.');
+        }
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (code !== undefined && code !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
             <any>code, 'code');
+        }
+        if (error !== undefined && error !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>error, 'error');
         }
 
         let localVarHeaders = this.defaultHeaders;

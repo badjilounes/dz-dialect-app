@@ -3,6 +3,7 @@ import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
 import { AuthenticationHttpService } from './api/authentication.service';
+import { MediaHttpService } from './api/media.service';
 import { UsersHttpService } from './api/users.service';
 
 @NgModule({

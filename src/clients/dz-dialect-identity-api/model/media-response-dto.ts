@@ -11,11 +11,8 @@
  */
 
 
-export type ProvidersEnum = 'basic' | 'twitter' | 'google';
-
-export const ProvidersEnum = {
-    BASIC: 'basic' as ProvidersEnum,
-    TWITTER: 'twitter' as ProvidersEnum,
-    GOOGLE: 'google' as ProvidersEnum
-};
+export interface MediaResponseDto { 
+    id: string;
+    url: string;
+}
 
