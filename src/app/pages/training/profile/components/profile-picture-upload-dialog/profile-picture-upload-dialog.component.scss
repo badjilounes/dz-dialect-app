@@ -58,19 +58,29 @@
 }
 
 .user-picture-container {
+  position: relative;
+
+  &.uploading,
   &:hover {
     margin: -3px;
   }
 
+  &.uploading .user-picture,
   &:hover .user-picture {
     opacity: 0.5;
+  }
+
+  &:hover .user-picture {
     border: 3px inset;
   }
 
   .user-picture {
-    height: 200px;
-    width: 200px;
     border-radius: 50%;
+  }
+
+  .mat-progress-spinner{
+    position: absolute;
+    top: 0;
   }
 }
 
