@@ -30,7 +30,7 @@
 
 .mat-dialog-actions {
   justify-content: flex-end;
-  padding: 8px 16px;
+  padding: 4px 16px;
 }
 
 .ngx-dz-hovered {
@@ -45,6 +45,11 @@
   width: 150px;
   border-radius: 50%;
   margin-bottom: 80px;
+
+  &.uploaded {
+    height: 220px;
+    width: 220px;
+  }
 }
 
 .drop-picture-label {

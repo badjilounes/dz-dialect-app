@@ -14,19 +14,22 @@
     (change)="onSelect($event)"
   >
     <div>
-      <img [src]="picture$ | async" class="user-picture" />
+      <img [src]="picture$ | async" class="user-picture" [ngClass]="{ uploaded }" />
     </div>
-    <div class="drop-picture-label">
-      {{ 'profile.profile-picture-upload-dialog.drop-picture-here' | translate }}
-    </div>
-    <div class="drop-picture-alternative-label">
-      {{ 'profile.profile-picture-upload-dialog.or' | translate }}
-    </div>
-    <div>
-      <button mat-stroked-button>
-        <mat-icon>computer</mat-icon>
-        {{ 'profile.profile-picture-upload-dialog.import-from-computer' | translate }}
-      </button>
+
+    <div *ngIf="!uploaded">
+      <div class="drop-picture-label">
+        {{ 'profile.profile-picture-upload-dialog.drop-picture-here' | translate }}
+      </div>
+      <div class="drop-picture-alternative-label">
+        {{ 'profile.profile-picture-upload-dialog.or' | translate }}
+      </div>
+      <div>
+        <button mat-stroked-button>
+          <mat-icon>computer</mat-icon>
+          {{ 'profile.profile-picture-upload-dialog.import-from-computer' | translate }}
+        </button>
+      </div>
     </div>
   </ngx-dropzone>
 </ng-container>
