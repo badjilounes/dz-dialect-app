@@ -38,6 +38,7 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
 /* material components */
 @import "./assets/styles/material/bottom-sheet.scss";
 @import "./assets/styles/material/overlay.scss";
+@import "./assets/styles/material/dialog.scss";
 
 /* app components */
 @import "app/pages/training/training-layout/training-layout-component.theme.scss";

@@ -30,6 +30,8 @@
   "profile.profile-picture-upload-dialog.drop-picture-here": "Faire glisser la photo ici",
   "profile.profile-picture-upload-dialog.or": "ou",
   "profile.profile-picture-upload-dialog.import-from-computer": "Importer depuis l'ordinateur",
+  "profile.profile-picture-upload-dialog.cancel": "Annuler",
+  "profile.profile-picture-upload-dialog.save": "Enregistrer les modifications",
   "profile.title": "Profil",
   "profile.stats.title": "Succès",
   "profile.stats.subtitle": "sous titre",

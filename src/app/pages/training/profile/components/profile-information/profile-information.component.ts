@@ -5,6 +5,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
+import { AppStore } from 'src/app/app.store';
 import { FullLineCardButtonComponent } from 'src/app/shared/business/full-line-card-button/full-line-card-button.component';
 import { ProfileCardComponent } from '../profile-card/profile-card.component';
 import { ProfilePictureUploadDialogComponent } from '../profile-picture-upload-dialog/profile-picture-upload-dialog.component';
@@ -37,7 +38,11 @@ export type ProfileInformation = {
 export class ProfileInformationComponent {
   @Input() information: ProfileInformation | null = null;
 
-  constructor(private dialog: MatDialog, private readonly breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private dialog: MatDialog,
+    private readonly breakpointObserver: BreakpointObserver,
+    private readonly appStore: AppStore,
+  ) {}
 
   openPictureUploadDialog() {
     const isHandset = this.breakpointObserver.isMatched(Breakpoints.Handset);
@@ -47,6 +52,9 @@ export class ProfileInformationComponent {
       height: isHandset ? '100%' : '65vh',
       width: isHandset ? '100%' : '50vw',
       maxWidth: isHandset ? '100%' : '80vw',
+      panelClass: 'profile-picture-upload-dialog',
     });
+
+    ref.afterClosed().subscribe(() => this.appStore.initStore());
   }
 }

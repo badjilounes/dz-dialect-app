@@ -7,12 +7,11 @@
 
 <ng-container *ngrxLet="isHandset$; let handset">
   <ngx-dropzone
-    *ngrxLet="user$; let user"
     mat-dialog-content
     [ngClass]="{ handset }"
     [accept]="'image/*'"
     [multiple]="false"
-    (change)="onSelect(user.id, $event)"
+    (change)="onSelect($event)"
   >
     <div>
       <img [src]="picture$ | async" class="user-picture" />
@@ -31,3 +30,13 @@
     </div>
   </ngx-dropzone>
 </ng-container>
+
+<div mat-dialog-actions *ngIf="uploaded">
+  <button mat-button (click)="cancel()">
+    {{ 'profile.profile-picture-upload-dialog.cancel' | translate }}
+  </button>
+
+  <button mat-stroked-button (click)="save()" color="primary">
+    {{ 'profile.profile-picture-upload-dialog.save' | translate }}
+  </button>
+</div>

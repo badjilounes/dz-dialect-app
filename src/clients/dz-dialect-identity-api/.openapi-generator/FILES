@@ -16,5 +16,6 @@ model/auth-token-response-dto.ts
 model/media-response-dto.ts
 model/models.ts
 model/providers-enum.ts
+model/update-profile-picture-dto.ts
 model/user-response-dto.ts
 variables.ts
