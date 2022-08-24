@@ -67,6 +67,11 @@ export class AppStore extends ComponentStore<UserAppStoreState> {
           }),
         )
         .subscribe();
+    } else {
+      this.patchState(() => ({
+        currentUser: undefined,
+        authenticationStatus: AuthenticationStatus.UNAUTHENTICATED,
+      }));
     }
   }
 
