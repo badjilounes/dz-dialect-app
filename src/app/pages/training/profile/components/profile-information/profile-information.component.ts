@@ -38,6 +38,10 @@ export type ProfileInformation = {
 export class ProfileInformationComponent {
   @Input() information: ProfileInformation | null = null;
 
+  get picture(): string {
+    return this.information?.picture || '/assets/images/unknown-user.png';
+  }
+
   constructor(
     private dialog: MatDialog,
     private readonly breakpointObserver: BreakpointObserver,

@@ -1,8 +1,8 @@
 <mat-toolbar *ngrxLet="isMobile$; let mobile">
   <ng-container *ngIf="mobile; else desktopToolbar">
     <div class="toolbar-top-right mobile">
-      <button mat-icon-button [routerLink]="['/profile']">
-        <img [src]="userImage$ | async" class="user-picture" />
+      <button mat-icon-button [routerLink]="['/profile']" *ngrxLet="userImage$; let image">
+        <img [style.background-image]="'url(' + image + ')'" class="user-picture" />
       </button>
 
       <span class="title">{{ title$ | async | translate }}</span>
