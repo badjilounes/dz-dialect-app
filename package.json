@@ -2,8 +2,8 @@
   "name": "dz-dialect-app",
   "version": "0.0.0",
   "engines": {
-    "node": "16.14.2",
-    "npm": "8.5.0"
+    "node": "16.16.0",
+    "npm": "8.11.0"
   },
   "scripts": {
     "ng": "ng",
