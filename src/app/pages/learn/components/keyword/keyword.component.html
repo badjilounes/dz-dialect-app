@@ -1,0 +1,64 @@
+<div class="app-content" [ngClass]="{ handset: isHandset$ | async }">
+  <mat-card>
+    <mat-card-title>{{ 'keyword.menu.title' | translate }}</mat-card-title>
+
+    <form mat-card-content (ngSubmit)="generate()">
+      <p>{{ 'keyword.explanation.content' | translate }}</p>
+
+      <div class="form-fields-container">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'keyword.input.label' | translate }}</mat-label>
+          <input
+            type="text"
+            [placeholder]="'keyword.input.placeholder' | translate"
+            aria-label="Verb"
+            matInput
+            [formControl]="verbControl"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option
+              *ngFor="let option of filteredOptions$ | async"
+              [value]="option | capitalize"
+            >
+              {{ option | capitalize }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-select
+            [formControl]="tenseControl"
+            [placeholder]="'keyword.tense.placeholder' | translate"
+          >
+            <mat-select-trigger>
+              {{ 'keyword.tense.' + selectedTense | translate }}
+            </mat-select-trigger>
+            <mat-option *ngFor="let tense of tenses" [value]="tense">{{
+              'keyword.tense.' + tense | translate
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="verbControl.invalid"
+        class="generate-button"
+        *ngrxLet="loading$; let isLoading"
+      >
+        <span *ngIf="!isLoading">{{ 'random.generate-button' | translate }}</span>
+        <mat-spinner *ngIf="isLoading" [diameter]="20"></mat-spinner>
+      </button>
+    </form>
+  </mat-card>
+
+  <div class="translations-container" *ngrxLet="sentences$; let sentences">
+    <app-translation-bloc
+      *ngFor="let sentence of sentences"
+      [sentence]="sentence"
+    ></app-translation-bloc>
+  </div>
+</div>

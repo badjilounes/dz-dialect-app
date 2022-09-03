@@ -1,38 +1,50 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UnauthenticatedLayoutComponent } from './core/unauthenticated-layout/unauthenticated-layout.component';
-import { KeywordComponent } from './pages/keyword/keyword.page';
-import { RandomComponent } from './pages/random/random.page';
+import { AuthenticatedGuard } from './core/authentication/authenticated.guard';
+import { TrainingLayoutComponent } from './pages/training-layout/training-layout.component';
 import { TrainingPresentationPage } from './pages/training-presentation/training-presentation.page';
 
 const routes: Routes = [
   { path: '', redirectTo: 'training-presentation', pathMatch: 'full' },
 
   {
+    path: 'training-presentation',
+    component: TrainingPresentationPage,
+    data: { menu: true, title: 'training.menu.title' },
+  },
+
+  {
     path: '',
-    component: UnauthenticatedLayoutComponent,
+    component: TrainingLayoutComponent,
     children: [
       {
-        path: 'random',
-        component: RandomComponent,
-        data: { menu: true, title: 'random.menu.title' },
+        path: 'learn',
+        loadChildren: () => import('./pages/learn/learn.module').then((m) => m.LearnModule),
+        data: { title: 'learn.title' },
       },
       {
-        path: 'keyword',
-        component: KeywordComponent,
-        data: { menu: true, title: 'keyword.menu.title' },
+        path: 'train',
+        loadChildren: () => import('./pages/train/train.module').then((m) => m.TrainModule),
+        data: { title: 'train.title' },
       },
       {
-        path: 'training-presentation',
-        component: TrainingPresentationPage,
-        data: { menu: true, title: 'training.menu.title' },
+        path: 'profile',
+        canActivate: [AuthenticatedGuard],
+        loadChildren: () => import('./pages/profile/profile.module').then((m) => m.ProfileModule),
+        data: { title: 'profile.title' },
+      },
+      {
+        path: 'success',
+        canActivate: [AuthenticatedGuard],
+        loadChildren: () => import('./pages/success/success.module').then((m) => m.SuccessModule),
+        data: { title: 'success.title' },
       },
     ],
   },
 
   {
-    path: '',
-    loadChildren: () => import('./pages/training/training.module').then((m) => m.TrainingModule),
+    path: 'sign-in',
+    loadChildren: () => import('./pages/sign-in/sign-in.module').then((m) => m.SignInModule),
   },
 
   { path: '**', redirectTo: 'random' },

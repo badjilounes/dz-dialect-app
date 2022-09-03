@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { LetModule } from '@ngrx/component';
 import { AppStore } from 'src/app/app.store';
@@ -8,6 +8,7 @@ import { AppStore } from 'src/app/app.store';
   selector: 'app-full-line-card-button',
   templateUrl: './full-line-card-button.component.html',
   styleUrls: ['./full-line-card-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [MatButtonModule, CommonModule, LetModule],
 })

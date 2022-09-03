@@ -1,14 +1,21 @@
 import { Clipboard } from '@angular/cdk/clipboard';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { map, Observable, shareReplay } from 'rxjs';
+import { CapitalizeModule } from 'src/app/shared/technical/capitalize/capitalize.module';
 
 @Component({
   selector: 'app-translation-content',
   templateUrl: './translation-content.component.html',
   styleUrls: ['./translation-content.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [CommonModule, CapitalizeModule, MatButtonModule, MatIconModule],
 })
 export class TranslationContentComponent {
   @Input() content = '';

@@ -1,5 +1,7 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { MatChipsModule } from '@angular/material/chips';
 import { map, Observable, shareReplay } from 'rxjs';
 import { TranslationTrainingStore } from '../../store/translation-training.store';
 
@@ -7,6 +9,9 @@ import { TranslationTrainingStore } from '../../store/translation-training.store
   selector: 'app-translation-training-response',
   templateUrl: './translation-training-response.component.html',
   styleUrls: ['./translation-training-response.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [CommonModule, MatChipsModule],
 })
 export class TranslationTrainingResponseComponent implements OnInit {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(

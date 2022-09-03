@@ -1,5 +1,11 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { TranslateModule } from '@ngx-translate/core';
 import { map, Observable, shareReplay } from 'rxjs';
 
 export type Language = { value: 'dz' | 'fr' | 'dz_ar'; label: string };
@@ -8,6 +14,16 @@ export type Language = { value: 'dz' | 'fr' | 'dz_ar'; label: string };
   selector: 'app-translation-header',
   templateUrl: './translation-header.component.html',
   styleUrls: ['./translation-header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatIconModule,
+    MatButtonModule,
+    TranslateModule,
+  ],
 })
 export class TranslationHeaderComponent {
   @Input() sourceLanguage!: Language;

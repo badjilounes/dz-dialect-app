@@ -1,5 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
+import {
+  MatBottomSheetModule,
+  MatBottomSheetRef,
+  MAT_BOTTOM_SHEET_DATA,
+} from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 import { CapitalizeModule } from 'src/app/shared/technical/capitalize/capitalize.module';
@@ -9,7 +13,7 @@ import { CapitalizeModule } from 'src/app/shared/technical/capitalize/capitalize
   templateUrl: './translation-training-bottom-sheet-result.component.html',
   styleUrls: ['./translation-training-bottom-sheet-result.component.scss'],
   standalone: true,
-  imports: [CapitalizeModule, TranslateModule, MatButtonModule],
+  imports: [CapitalizeModule, TranslateModule, MatButtonModule, MatBottomSheetModule],
 })
 export class TranslationTrainingBottomSheetResultComponent {
   constructor(

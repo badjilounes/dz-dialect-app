@@ -1,7 +1,12 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { LetModule } from '@ngrx/component';
+import { TranslateModule } from '@ngx-translate/core';
 import { filter, map, Observable, shareReplay, tap } from 'rxjs';
 import { ConfirmDialogService } from 'src/app/shared/technical/confirm-dialog/confirm-dialog.service';
 import { TrainingResult } from '../../models/training-result';
@@ -12,6 +17,8 @@ import { TrainingPresentationStore } from '../../store/training-presentation.sto
   templateUrl: './training-presentation-result.component.html',
   styleUrls: ['./training-presentation-result.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [CommonModule, LetModule, MatButtonModule, MatProgressSpinnerModule, TranslateModule],
 })
 @UntilDestroy()
 export class TrainingPresentationResultComponent {
