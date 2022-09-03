@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { TrainingPresentationPage } from './training-presentation.page';
+import { TrainingPresentationRoutingModule } from './training-presentation-routing.module';
 
 @NgModule({
-  imports: [TrainingPresentationPage],
+  imports: [TrainingPresentationRoutingModule],
 })
 export class TrainingPresentationModule {}
