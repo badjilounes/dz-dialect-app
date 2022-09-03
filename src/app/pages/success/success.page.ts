@@ -10,7 +10,7 @@ import {
   CardItem,
   FullLineCardItemComponent,
 } from 'src/app/shared/business/full-line-card-item/full-line-card-item.component';
-import { ProfileCardComponent } from '../profile/components/profile-card/profile-card.component';
+import { CardComponent } from '../../shared/business/card/card.component';
 
 @Component({
   selector: 'app-success-page',
@@ -19,7 +19,7 @@ import { ProfileCardComponent } from '../profile/components/profile-card/profile
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    ProfileCardComponent,
+    CardComponent,
     TranslateModule,
     MatDividerModule,
     FullLineCardItemComponent,

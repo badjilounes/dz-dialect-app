@@ -4,7 +4,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -24,6 +23,7 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
+import { CardComponent } from 'src/app/shared/business/card/card.component';
 import { TranslationBlocComponent } from 'src/app/shared/business/translation-bloc/translation-bloc.component';
 import { CapitalizeModule } from 'src/app/shared/technical/capitalize/capitalize.module';
 import {
@@ -40,7 +40,7 @@ import {
   standalone: true,
   imports: [
     CommonModule,
-    MatCardModule,
+    CardComponent,
     MatFormFieldModule,
     TranslateModule,
     MatAutocompleteModule,

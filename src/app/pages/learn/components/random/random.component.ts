@@ -2,7 +2,6 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -10,6 +9,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { LetModule } from '@ngrx/component';
 import { TranslateModule } from '@ngx-translate/core';
 import { BehaviorSubject, catchError, EMPTY, map, Observable, of, shareReplay, tap } from 'rxjs';
+import { CardComponent } from 'src/app/shared/business/card/card.component';
 import { TranslationBlocComponent } from 'src/app/shared/business/translation-bloc/translation-bloc.component';
 import { CapitalizeModule } from 'src/app/shared/technical/capitalize/capitalize.module';
 import { StorageModule } from 'src/app/shared/technical/storage/storage.module';
@@ -26,7 +26,7 @@ import { SentenceControllerHttpService, SentenceDTO } from 'src/clients/dz-diale
     StorageModule,
     TranslateModule,
     TranslationBlocComponent,
-    MatCardModule,
+    CardComponent,
     MatIconModule,
     MatDividerModule,
     MatButtonModule,

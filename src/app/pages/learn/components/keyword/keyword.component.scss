@@ -3,13 +3,25 @@
     display: flex;
     place-content: center;
   }
+
+  app-card ::ng-deep .mat-card-content [content] {
+    display: grid;
+    grid-template-rows: auto min-content;
+    padding: 0 24px 16px 24px;
+
+    .generate-button {
+      width: 82px;
+      height: 36px;
+      justify-self: flex-end;
+    }
+  }
 }
 
 .app-content {
   padding: 1.5rem;
 
   &:not(.handset) {
-    max-width: 50vw;
+    max-width: 800px;
     width: 100%;
     margin: 0 auto;
   }
@@ -26,22 +38,8 @@
   }
 }
 
-.mat-card {
+app-card {
   margin-bottom: 1.5rem;
-}
-
-.mat-card-content {
-  display: grid;
-  grid-template-rows: auto min-content;
-
-  .generate-button {
-    width: 82px;
-    height: 36px;
-    justify-self: flex-end;
-  }
-}
-.example-form-field {
-  width: 200px;
 }
 
 .translations-container {

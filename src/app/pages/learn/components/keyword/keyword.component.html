@@ -1,10 +1,9 @@
 <div class="app-content" [ngClass]="{ handset: isHandset$ | async }">
-  <mat-card>
-    <mat-card-title>{{ 'keyword.menu.title' | translate }}</mat-card-title>
+  <app-card>
+    <span title>{{ 'keyword.menu.title' | translate }}</span>
+    <span subtitle>{{ 'keyword.explanation.content' | translate }}</span>
 
-    <form mat-card-content (ngSubmit)="generate()">
-      <p>{{ 'keyword.explanation.content' | translate }}</p>
-
+    <form content (ngSubmit)="generate()">
       <div class="form-fields-container">
         <mat-form-field appearance="outline">
           <mat-label>{{ 'keyword.input.label' | translate }}</mat-label>
@@ -53,7 +52,7 @@
         <mat-spinner *ngIf="isLoading" [diameter]="20"></mat-spinner>
       </button>
     </form>
-  </mat-card>
+  </app-card>
 
   <div class="translations-container" *ngrxLet="sentences$; let sentences">
     <app-translation-bloc

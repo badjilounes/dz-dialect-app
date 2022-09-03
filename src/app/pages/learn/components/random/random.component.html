@@ -1,14 +1,14 @@
 <div class="app-content" [ngClass]="{ handset: isHandset$ | async }">
-  <mat-card>
-    <mat-card-title>{{ 'random.explanation.title' | translate }}</mat-card-title>
-    <mat-card-content>
-      <p>{{ 'random.explanation.content' | translate }}</p>
+  <app-card>
+    <span title>{{ 'random.explanation.title' | translate }}</span>
+    <span subtitle>{{ 'random.explanation.content' | translate }}</span>
+    <span content>
       <button mat-raised-button class="generate-button" color="primary" (click)="generate()">
         <span *ngIf="(loading$ | async) === false">{{ 'random.generate-button' | translate }}</span>
         <mat-spinner *ngIf="(loading$ | async) === true" [diameter]="20"></mat-spinner>
       </button>
-    </mat-card-content>
-  </mat-card>
+    </span>
+  </app-card>
 
   <app-translation-bloc
     *ngrxLet="sentence$; let sentence"

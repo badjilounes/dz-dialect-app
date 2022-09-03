@@ -51,7 +51,7 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
 @import "app/shared/business/translation-bloc/translation-content/translation-content-component.theme.scss";
 @import "app/core/layout/components/training-toolbar-top/training-toolbar-top-component.theme.scss";
 @import "app/pages/sign-in/sign-in-page.theme.scss";
-@import "app/pages/profile/components/profile-card/profile-card-component.theme.scss";
+@import "app/shared/business/card/card-component.theme.scss";
 @import "app/pages/profile/components/profile-picture-upload-dialog/profile-picture-upload-dialog-component.theme.scss";
 @import "app/pages/profile/profile-page.theme.scss";
 
@@ -69,7 +69,7 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
 @include translation-content-theme($dz-dialect-app-theme);
 @include training-toolbar-top-theme($dz-dialect-app-theme);
 @include sign-in-theme($dz-dialect-app-theme);
-@include profile-card-theme($dz-dialect-app-theme);
+@include card-theme($dz-dialect-app-theme);
 @include profile-picture-upload-dialog-theme($dz-dialect-app-theme);
 @include profile-page-theme($dz-dialect-app-theme);
 
@@ -100,7 +100,7 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
   @include translation-content-theme($dz-dialect-dark-app-theme);
   @include training-toolbar-top-theme($dz-dialect-dark-app-theme);
   @include sign-in-theme($dz-dialect-dark-app-theme);
-  @include profile-card-theme($dz-dialect-dark-app-theme);
+  @include card-theme($dz-dialect-dark-app-theme);
   @include profile-picture-upload-dialog-theme($dz-dialect-dark-app-theme);
   @include profile-page-theme($dz-dialect-dark-app-theme);
 }

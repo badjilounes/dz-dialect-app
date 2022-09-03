@@ -9,7 +9,7 @@ import {
   CardItem,
   FullLineCardItemComponent,
 } from 'src/app/shared/business/full-line-card-item/full-line-card-item.component';
-import { ProfileCardComponent } from '../profile-card/profile-card.component';
+import { CardComponent } from '../../../../shared/business/card/card.component';
 
 @Component({
   selector: 'app-profile-statistics',
@@ -18,7 +18,7 @@ import { ProfileCardComponent } from '../profile-card/profile-card.component';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    ProfileCardComponent,
+    CardComponent,
     TranslateModule,
     MatDividerModule,
     FullLineCardItemComponent,
