@@ -53,6 +53,7 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
 @import "app/pages/sign-in/sign-in-page.theme.scss";
 @import "app/pages/profile/components/profile-card/profile-card-component.theme.scss";
 @import "app/pages/profile/components/profile-picture-upload-dialog/profile-picture-upload-dialog-component.theme.scss";
+@import "app/pages/profile/profile-page.theme.scss";
 
 /* material theme */
 @include bottom-sheet-theme($dz-dialect-app-theme);
@@ -70,6 +71,7 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
 @include sign-in-theme($dz-dialect-app-theme);
 @include profile-card-theme($dz-dialect-app-theme);
 @include profile-picture-upload-dialog-theme($dz-dialect-app-theme);
+@include profile-page-theme($dz-dialect-app-theme);
 
 .darkMode {
   // Include theme styles for core and each component used in your app.
@@ -100,6 +102,7 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
   @include sign-in-theme($dz-dialect-dark-app-theme);
   @include profile-card-theme($dz-dialect-dark-app-theme);
   @include profile-picture-upload-dialog-theme($dz-dialect-dark-app-theme);
+  @include profile-page-theme($dz-dialect-dark-app-theme);
 }
 
 html,
