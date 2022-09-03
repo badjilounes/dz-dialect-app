@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthenticatedGuard } from './core/authentication/authenticated.guard';
+import { UnauthenticatedGuard } from './core/authentication/unauthenticated.guard';
 import { TrainingLayoutComponent } from './pages/training-layout/training-layout.component';
-import { TrainingPresentationPage } from './pages/training-presentation/training-presentation.page';
 
 const routes: Routes = [
   { path: '', redirectTo: 'training-presentation', pathMatch: 'full' },
 
   {
     path: 'training-presentation',
-    component: TrainingPresentationPage,
+    canActivate: [UnauthenticatedGuard],
+    loadChildren: () =>
+      import('./pages/training-presentation/training-presentation.module').then(
+        (m) => m.TrainingPresentationModule,
+      ),
     data: { menu: true, title: 'training.menu.title' },
   },
 
@@ -44,6 +48,7 @@ const routes: Routes = [
 
   {
     path: 'sign-in',
+    canActivate: [UnauthenticatedGuard],
     loadChildren: () => import('./pages/sign-in/sign-in.module').then((m) => m.SignInModule),
   },
 
