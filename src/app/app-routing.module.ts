@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthenticatedGuard } from './core/authentication/authenticated.guard';
 import { UnauthenticatedGuard } from './core/authentication/unauthenticated.guard';
-import { TrainingLayoutComponent } from './pages/training-layout/training-layout.component';
+import { AppLayoutComponent } from './core/layout/app-layout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'training-presentation', pathMatch: 'full' },
@@ -19,7 +19,7 @@ const routes: Routes = [
 
   {
     path: '',
-    component: TrainingLayoutComponent,
+    component: AppLayoutComponent,
     children: [
       {
         path: 'learn',

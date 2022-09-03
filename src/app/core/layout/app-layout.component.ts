@@ -13,9 +13,9 @@ import { TrainingToolbarBottomComponent } from './components/training-toolbar-bo
 import { TrainingToolbarTopComponent } from './components/training-toolbar-top/training-toolbar-top.component';
 
 @Component({
-  selector: 'app-training-layout',
-  templateUrl: './training-layout.component.html',
-  styleUrls: ['./training-layout.component.scss'],
+  selector: 'app-layout',
+  templateUrl: './app-layout.component.html',
+  styleUrls: ['./app-layout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -27,7 +27,7 @@ import { TrainingToolbarTopComponent } from './components/training-toolbar-top/t
   ],
 })
 @UntilDestroy()
-export class TrainingLayoutComponent implements OnInit, OnDestroy {
+export class AppLayoutComponent implements OnInit, OnDestroy {
   links = [
     {
       activeImage: 'train-active',
