@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SuccessCardComponent } from './success-card.component';
+import { FullLineCardItemComponent } from './full-line-card-item.component';
 
 describe('SuccessCardComponent', () => {
-  let component: SuccessCardComponent;
-  let fixture: ComponentFixture<SuccessCardComponent>;
+  let component: FullLineCardItemComponent;
+  let fixture: ComponentFixture<FullLineCardItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SuccessCardComponent ]
-    })
-    .compileComponents();
+      declarations: [FullLineCardItemComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(SuccessCardComponent);
+    fixture = TestBed.createComponent(FullLineCardItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

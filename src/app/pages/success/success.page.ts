@@ -6,8 +6,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { FullLineCardButtonComponent } from 'src/app/shared/business/full-line-card-button/full-line-card-button.component';
-import { SuccessCardComponent } from 'src/app/shared/business/success-card/success-card.component';
-import { Success } from 'src/clients/dz-dialect-api/model/success';
+import {
+  CardItem,
+  FullLineCardItemComponent,
+} from 'src/app/shared/business/full-line-card-item/full-line-card-item.component';
 import { ProfileCardComponent } from '../profile/components/profile-card/profile-card.component';
 
 @Component({
@@ -20,7 +22,7 @@ import { ProfileCardComponent } from '../profile/components/profile-card/profile
     ProfileCardComponent,
     TranslateModule,
     MatDividerModule,
-    SuccessCardComponent,
+    FullLineCardItemComponent,
     CommonModule,
     FullLineCardButtonComponent,
     MatIconModule,
@@ -29,88 +31,97 @@ import { ProfileCardComponent } from '../profile/components/profile-card/profile
   ],
 })
 export class SuccessPage {
-  get successList(): Success[] {
+  get successList(): CardItem[] {
     return [
       {
         title: 'Tout feu tout flamme',
-        icon: 'check_circle',
         color: '#00bcd4',
         image: 'assets/images/badge_gold.svg',
         description: 'Réaliser une série de 10 jours',
-        score: 8,
-        total: 10,
+        progress: {
+          value: 8,
+          max: 10,
+        },
       },
       {
         title: 'Grand sage',
-        icon: 'check_circle',
         color: '#00bcd4',
         image: 'assets/images/badge_bronze.svg',
         description: 'Gagner 50 XP',
-        score: 28,
-        total: 50,
+        progress: {
+          value: 28,
+          max: 50,
+        },
       },
       {
         title: 'Mastodonte',
-        icon: 'check_circle',
         color: '#00bcd4',
         image: 'assets/images/badge_silver.svg',
         description: 'Finissez tous les succès pour parler bilingue',
-        score: 10,
-        total: 100,
+        progress: {
+          value: 10,
+          max: 100,
+        },
       },
       {
         title: 'Tout feu tout flamme',
-        icon: 'check_circle',
+        color: '#00bcd4',
+        image: 'assets/images/badge_gold.svg',
+        description: 'Réaliser une série de 10 jours',
+        progress: {
+          value: 8,
+          max: 10,
+        },
+      },
+      {
+        title: 'Grand sage',
         color: '#00bcd4',
         image: 'assets/images/badge_bronze.svg',
-        description: 'Réaliser une série de 10 jours',
-        score: 8,
-        total: 10,
-      },
-      {
-        title: 'Grand sage',
-        icon: 'check_circle',
-        color: '#00bcd4',
-        image: 'assets/images/badge_silver.svg',
         description: 'Gagner 50 XP',
-        score: 28,
-        total: 50,
+        progress: {
+          value: 28,
+          max: 50,
+        },
       },
       {
         title: 'Mastodonte',
-        icon: 'check_circle',
         color: '#00bcd4',
-        image: 'assets/images/badge_gold.svg',
+        image: 'assets/images/badge_silver.svg',
         description: 'Finissez tous les succès pour parler bilingue',
-        score: 10,
-        total: 100,
+        progress: {
+          value: 10,
+          max: 100,
+        },
       },
       {
         title: 'Tout feu tout flamme',
-        icon: 'check_circle',
         color: '#00bcd4',
         image: 'assets/images/badge_gold.svg',
         description: 'Réaliser une série de 10 jours',
-        score: 8,
-        total: 10,
+        progress: {
+          value: 8,
+          max: 10,
+        },
       },
       {
         title: 'Grand sage',
-        icon: 'check_circle',
         color: '#00bcd4',
-        image: 'assets/images/badge_silver.svg',
+        image: 'assets/images/badge_bronze.svg',
         description: 'Gagner 50 XP',
-        score: 28,
-        total: 50,
+        progress: {
+          value: 28,
+          max: 50,
+        },
       },
       {
         title: 'Mastodonte',
-        icon: 'check_circle',
         color: '#00bcd4',
         image: 'assets/images/badge_silver.svg',
         description: 'Finissez tous les succès pour parler bilingue',
-        score: 10,
-        total: 100,
+        progress: {
+          value: 10,
+          max: 100,
+        },
       },
     ];
   }

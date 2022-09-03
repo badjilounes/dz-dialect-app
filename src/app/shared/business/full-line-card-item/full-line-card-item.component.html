@@ -1,0 +1,14 @@
+<mat-card class="mat-elevation-z0">
+  <div class="success-title-wrapper">
+    <div class="success-title">
+      <img src="{{ item.image }}" alt="image" width="32px" />
+      <h2>{{ item.title }}</h2>
+    </div>
+    <div class="success-progress">{{ item.progress.value }}/{{ item.progress.max }}</div>
+  </div>
+  <mat-progress-bar [color]="item.color" [mode]="'determinate'" [value]="progress">
+  </mat-progress-bar>
+  <div class="success-description">
+    {{ item.description }}
+  </div>
+</mat-card>
