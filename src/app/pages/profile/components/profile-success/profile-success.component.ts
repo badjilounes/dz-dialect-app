@@ -4,12 +4,12 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { FullLineCardButtonComponent } from 'src/app/shared/business/full-line-card-button/full-line-card-button.component';
+import { FullLineCardButtonComponent } from 'src/app/shared/design-system/full-line-card-button/full-line-card-button.component';
 import {
   CardItem,
   FullLineCardItemComponent,
-} from 'src/app/shared/business/full-line-card-item/full-line-card-item.component';
-import { CardComponent } from '../../../../shared/business/card/card.component';
+} from 'src/app/shared/design-system/full-line-card-item/full-line-card-item.component';
+import { CardComponent } from '../../../../shared/design-system/card/card.component';
 
 @Component({
   selector: 'app-profile-statistics',

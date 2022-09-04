@@ -51,7 +51,7 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
 @import "app/shared/business/translation-bloc/translation-content/translation-content-component.theme.scss";
 @import "app/core/layout/components/training-toolbar-top/training-toolbar-top-component.theme.scss";
 @import "app/pages/sign-in/sign-in-page.theme.scss";
-@import "app/shared/business/card/card-component.theme.scss";
+@import "app/shared/design-system/card/card-component.theme.scss";
 @import "app/pages/profile/components/profile-picture-upload-dialog/profile-picture-upload-dialog-component.theme.scss";
 @import "app/pages/profile/profile-page.theme.scss";
 

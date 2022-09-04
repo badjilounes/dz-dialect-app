@@ -23,8 +23,8 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
-import { CardComponent } from 'src/app/shared/business/card/card.component';
 import { TranslationBlocComponent } from 'src/app/shared/business/translation-bloc/translation-bloc.component';
+import { CardComponent } from 'src/app/shared/design-system/card/card.component';
 import { CapitalizeModule } from 'src/app/shared/technical/capitalize/capitalize.module';
 import {
   SentenceControllerHttpService,
