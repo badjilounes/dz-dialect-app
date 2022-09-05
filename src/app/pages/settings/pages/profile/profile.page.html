@@ -1,7 +1,5 @@
-<div class="profile-container">
+<div class="profile-container" content>
   <app-profile-information [information]="userInformation$ | async"></app-profile-information>
-  <app-profile-statistics></app-profile-statistics>
-  <app-profile-friends *ngIf="false"></app-profile-friends>
   <button mat-stroked-button class="log-out-button" color="warn" (click)="logOut()">
     DÉCONNEXION
   </button>

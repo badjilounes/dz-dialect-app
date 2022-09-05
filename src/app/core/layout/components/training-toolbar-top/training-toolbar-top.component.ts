@@ -1,4 +1,3 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { LetModule } from '@ngrx/component';
 import { TranslateModule } from '@ngx-translate/core';
 import { map, Observable, shareReplay } from 'rxjs';
@@ -39,12 +38,9 @@ import { ThemeModeToggleComponent } from 'src/app/shared/technical/theme-mode-to
   ],
 })
 export class TrainingToolbarTopComponent {
-  isMobile$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.XSmall]).pipe(
-    map((result) => result.matches),
-    shareReplay(),
-  );
+  isMobile$: Observable<boolean> = this.appStore.isMobileOrTablet$;
 
-  userImage$: Observable<string | undefined> = this.userAppStore.user$.pipe(
+  userImage$: Observable<string | undefined> = this.appStore.user$.pipe(
     map((user) => user?.imageUrl || '/assets/images/unknown-user.png'),
     shareReplay(),
   );
@@ -64,7 +60,7 @@ export class TrainingToolbarTopComponent {
     },
   ];
 
-  isAuthenticated$ = this.userAppStore.isAuthenticated$;
+  isAuthenticated$ = this.appStore.isAuthenticated$;
 
   title$ = this.routingService.currentRoute$.pipe(
     filterUndefined(),
@@ -72,15 +68,13 @@ export class TrainingToolbarTopComponent {
   );
 
   constructor(
-    private readonly breakpointObserver: BreakpointObserver,
-    private readonly userAppStore: AppStore,
+    private readonly appStore: AppStore,
     private readonly router: Router,
     private readonly routingService: RoutingService,
-    private readonly route: ActivatedRoute,
   ) {}
 
   signOut(): void {
-    this.userAppStore.setAsUnAuthenticated();
+    this.appStore.setAsUnAuthenticated();
     this.router.navigate(['/train']);
   }
 }

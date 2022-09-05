@@ -40,20 +40,28 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
 @import "./assets/styles/material/overlay.scss";
 @import "./assets/styles/material/dialog.scss";
 
-/* app components */
+/* core components */
 @import "app/core/layout/app-layout-component.theme.scss";
-@import "app/pages/training-presentation/components/training-presentation-overview/training-presentation-overview-component.theme.scss";
-@import "app/pages/training-presentation/components/training-presentation-result/training-presentation-result-component.theme.scss";
+@import "app/core/layout/components/training-toolbar-top/training-toolbar-top-component.theme.scss";
+
+/* shared components */
 @import "app/shared/business/translation-training/components/translation-training-question/translation-training-question-component.theme.scss";
 @import "app/shared/business/translation-training/components/translation-training-response/translation-training-response-component.theme.scss";
+@import "app/shared/business/translation-bloc/translation-content/translation-content-component.theme.scss";
+
+/* design system */
+@import "app/shared/design-system/card/card-component.theme.scss";
+@import "app/shared/design-system/tabs/tabs-component.theme.scss";
+@import "app/shared/design-system/sidenav/sidenav-component.theme.scss";
+
+/* pages */
+@import "app/pages/training-presentation/components/training-presentation-overview/training-presentation-overview-component.theme.scss";
+@import "app/pages/training-presentation/components/training-presentation-result/training-presentation-result-component.theme.scss";
 @import "app/pages/learn/components/keyword/keyword-component.theme.scss";
 @import "app/pages/learn/components/random/random-component.theme.scss";
-@import "app/shared/business/translation-bloc/translation-content/translation-content-component.theme.scss";
-@import "app/core/layout/components/training-toolbar-top/training-toolbar-top-component.theme.scss";
 @import "app/pages/sign-in/sign-in-page.theme.scss";
-@import "app/shared/design-system/card/card-component.theme.scss";
-@import "app/pages/profile/components/profile-picture-upload-dialog/profile-picture-upload-dialog-component.theme.scss";
-@import "app/pages/profile/profile-page.theme.scss";
+@import "app/pages/settings/components/profile-picture-upload-dialog/profile-picture-upload-dialog-component.theme.scss";
+@import "app/pages/settings/settings-page.theme.scss";
 
 /* material theme */
 @include bottom-sheet-theme($dz-dialect-app-theme);
@@ -70,8 +78,10 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
 @include training-toolbar-top-theme($dz-dialect-app-theme);
 @include sign-in-theme($dz-dialect-app-theme);
 @include card-theme($dz-dialect-app-theme);
+@include app-tabs-theme($dz-dialect-app-theme);
 @include profile-picture-upload-dialog-theme($dz-dialect-app-theme);
 @include profile-page-theme($dz-dialect-app-theme);
+@include sidenav-theme($dz-dialect-app-theme);
 
 .darkMode {
   // Include theme styles for core and each component used in your app.
@@ -103,6 +113,8 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
   @include card-theme($dz-dialect-dark-app-theme);
   @include profile-picture-upload-dialog-theme($dz-dialect-dark-app-theme);
   @include profile-page-theme($dz-dialect-dark-app-theme);
+  @include app-tabs-theme($dz-dialect-dark-app-theme);
+  @include sidenav-theme($dz-dialect-dark-app-theme);
 }
 
 html,

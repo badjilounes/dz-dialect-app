@@ -1,4 +1,3 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
@@ -6,7 +5,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { LetModule } from '@ngrx/component';
-import { filter, map, Observable, shareReplay, tap } from 'rxjs';
+import { filter, Observable, tap } from 'rxjs';
+import { AppStore } from 'src/app/app.store';
 import { BuyMeACoffeeService } from 'src/app/core/buy-me-a-coffee/buy-me-a-coffee.service';
 import { ThemeService } from 'src/app/core/theme/theme.service';
 import { TrainingToolbarBottomComponent } from './components/training-toolbar-bottom/training-toolbar-bottom.component';
@@ -44,18 +44,15 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
     {
       activeImage: 'sign-in-active',
       image: 'sign-in',
-      link: '/profile',
-      label: 'profile',
+      link: '/settings',
+      label: 'settings',
     },
   ];
 
-  isMobile$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.XSmall]).pipe(
-    map((result) => result.matches),
-    shareReplay(),
-  );
+  isMobile$: Observable<boolean> = this.appStore.isMobileOrTablet$;
 
   constructor(
-    private readonly breakpointObserver: BreakpointObserver,
+    private readonly appStore: AppStore,
     private readonly buyMeACoffeeService: BuyMeACoffeeService,
     private readonly themeService: ThemeService,
     private readonly matIconRegistry: MatIconRegistry,

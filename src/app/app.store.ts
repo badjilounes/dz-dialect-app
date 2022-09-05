@@ -39,6 +39,13 @@ export class AppStore extends ComponentStore<UserAppStoreState> {
       shareReplay(),
     );
 
+  readonly isMobileOrTablet$: Observable<boolean> = this.breakpointObserver
+    .observe('(max-width: 1023px)')
+    .pipe(
+      map((result) => result.matches),
+      shareReplay(),
+    );
+
   constructor(
     private readonly usersHttpService: UsersHttpService,
     private readonly tokenService: AuthenticationTokenService,

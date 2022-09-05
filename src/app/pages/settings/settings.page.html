@@ -1,0 +1,13 @@
+<ng-container *ngrxLet="isMobile$; let mobile">
+  <ng-container *ngIf="mobile">
+    <app-tabs [tabs]="links">
+      <router-outlet></router-outlet>
+    </app-tabs>
+  </ng-container>
+
+  <ng-container *ngIf="!mobile">
+    <app-sidenav [items]="links">
+      <router-outlet></router-outlet>
+    </app-sidenav>
+  </ng-container>
+</ng-container>

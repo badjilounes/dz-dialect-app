@@ -32,16 +32,10 @@ const routes: Routes = [
         data: { title: 'train.title' },
       },
       {
-        path: 'profile',
+        path: 'settings',
         canActivate: [AuthenticatedGuard],
-        loadChildren: () => import('./pages/profile/profile.module').then((m) => m.ProfileModule),
-        data: { title: 'profile.title' },
-      },
-      {
-        path: 'success',
-        canActivate: [AuthenticatedGuard],
-        loadChildren: () => import('./pages/success/success.module').then((m) => m.SuccessModule),
-        data: { title: 'success.title' },
+        loadChildren: () =>
+          import('./pages/settings/settings.module').then((m) => m.SettingsModule),
       },
     ],
   },

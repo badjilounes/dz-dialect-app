@@ -1,0 +1,7 @@
+:host {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr;
+  overflow: auto;
+  height: 100%;
+}

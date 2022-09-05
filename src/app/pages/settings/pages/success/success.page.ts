@@ -10,7 +10,7 @@ import {
   CardItem,
   FullLineCardItemComponent,
 } from 'src/app/shared/design-system/full-line-card-item/full-line-card-item.component';
-import { CardComponent } from '../../shared/design-system/card/card.component';
+import { CardComponent } from '../../../../shared/design-system/card/card.component';
 
 @Component({
   selector: 'app-success-page',

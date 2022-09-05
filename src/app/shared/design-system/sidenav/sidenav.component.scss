@@ -1,0 +1,73 @@
+:host {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 0;
+  height: 100%;
+  overflow: auto;
+
+  .mat-list-item ::ng-deep .mat-ripple {
+    border-radius: 0 50px 50px 0;
+  }
+}
+
+.mat-drawer-container {
+  overflow: auto;
+  background-color: transparent;
+}
+
+.mat-drawer-content {
+  overflow: auto;
+
+  .sidenav-content {
+    overflow: auto;
+    max-width: 1120px;
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+.mat-drawer-side {
+  width: 280px;
+  border: none;
+}
+
+.mat-list-item {
+  border-radius: 0 50px 50px 0;
+  padding: 10px 16px 10px 24px;
+
+  .mat-icon {
+    padding-right: 16px;
+  }
+
+  .item-label {
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.00714286em;
+    line-height: 1.25rem;
+    hyphens: auto;
+    word-break: break-word;
+    word-wrap: break-word;
+    flex: 1 1 0;
+  }
+}
+
+.toolbar-shadow-container {
+  height: 15px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  .toolbar-shadow {
+    height: 15px;
+    position: absolute;
+    top: -15px;
+    transition: box-shadow .25s;
+    width: 100%;
+    z-index: 1;
+
+    &.shadow {
+      background-color: #fff;
+    }
+  }
+}

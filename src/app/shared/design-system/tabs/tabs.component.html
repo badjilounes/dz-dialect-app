@@ -1,0 +1,21 @@
+<mat-toolbar>
+  <nav mat-tab-nav-bar>
+    <a
+      mat-tab-link
+      *ngFor="let tab of tabs"
+      [routerLink]="[tab.link]"
+      routerLinkActive="active"
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+      [disableRipple]="true"
+    >
+      <span>{{ tab.label }}</span>
+    </a>
+  </nav>
+</mat-toolbar>
+
+<div class="tabs-content">
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
