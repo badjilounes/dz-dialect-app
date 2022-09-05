@@ -10,7 +10,7 @@
   },
 
   "/identity-proxy": {
-    "target": "https://dz-dialect-identity.herokuapp.com",
+    "target": "https://dz-dialect-identity-api.server.bdsapp.fr",
     "secure": true,
     "changeOrigin": true,
     "logLevel": "info",
