@@ -4,8 +4,11 @@
 @mixin training-toolbar-top-theme($theme) {
   $config: mat.get-color-config($theme);
   $primary: map.get($config, primary);
+  $background: map.get($config, background);
 
   app-training-toolbar-top {
+    background-color: mat.get-color-from-palette($background, card);
+
     .active span {
       color: mat.get-color-from-palette($primary, 500);
     }

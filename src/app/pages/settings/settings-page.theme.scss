@@ -2,9 +2,5 @@
 @use '@angular/material' as mat;
 
 @mixin profile-page-theme($theme) {
-  $background: map-get($theme, background);
 
-  app-profile .log-out-button{
-    background: mat.get-color-from-palette($background, card);
-  }
 }

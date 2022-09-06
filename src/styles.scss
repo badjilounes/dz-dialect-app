@@ -1,3 +1,4 @@
+@use 'sass:map';
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
@@ -25,11 +26,16 @@ $dz-dialect-app-warn: mat.define-palette(mat.$red-palette);
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
 $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-primary,
-        accent: $dz-dialect-app-accent,
-        warn: $dz-dialect-app-warn,
-      ),
-      typography: $dz-dialect-typography,
-    ));
+    accent: $dz-dialect-app-accent,
+    warn: $dz-dialect-app-warn,
+  ),
+  typography: $dz-dialect-typography,
+));
+
+$dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, card, #ffffff);
+$dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, app-bar, #ffffff);
+$dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, background, #ffffff);
+$dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog, #ffffff);
 
 @include mat.all-component-themes($dz-dialect-app-theme);
 
@@ -90,11 +96,16 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
   // Alternatively, you can import and @include the theme mixins for each component
   // that you are using.
   $dz-dialect-dark-app-theme: mat.define-dark-theme((color: (primary: $dz-dialect-app-primary,
-        accent: $dz-dialect-app-accent,
-        warn: $dz-dialect-app-warn,
-      ),
-      typography: $dz-dialect-typography,
-    ));
+      accent: $dz-dialect-app-accent,
+      warn: $dz-dialect-app-warn,
+    ),
+    typography: $dz-dialect-typography,
+  ));
+
+  $dz-dialect-dark-app-theme: map.set($dz-dialect-dark-app-theme, color, background, card, #292a2d);
+  $dz-dialect-dark-app-theme: map.set($dz-dialect-dark-app-theme, color, background, app-bar, #292a2d);
+  $dz-dialect-dark-app-theme: map.set($dz-dialect-dark-app-theme, color, background, background, rgb(32, 33, 36));
+  $dz-dialect-dark-app-theme: map.set($dz-dialect-dark-app-theme, color, background, dialog, #292a2d);
 
   @include mat.all-component-colors($dz-dialect-dark-app-theme);
 

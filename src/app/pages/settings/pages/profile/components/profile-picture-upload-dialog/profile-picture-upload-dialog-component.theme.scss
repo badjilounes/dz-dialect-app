@@ -7,7 +7,7 @@
   app-profile-picture-upload-dialog {
 
     .mat-dialog-content {
-      background-color: mat.get-color-from-palette($background, card);
+      background: transparent;
     }
 
     .ngx-dz-hovered {

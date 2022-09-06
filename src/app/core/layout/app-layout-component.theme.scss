@@ -2,13 +2,10 @@
 @use '@angular/material' as mat;
 
 @mixin app-layout-theme($theme) {
-  $foreground: map-get($theme, foreground);
-  $background: map-get($theme, background);
-
   $color-config:    mat.get-color-config($theme);
-  $is-dark-theme:   map.get($color-config, 'is-dark');
+  $background: map-get($color-config, background);
 
   app-layout {
-    background-color: mat.get-color-from-palette($background, card);
+    background-color: mat.get-color-from-palette($background, background);
   }
 }
