@@ -34,8 +34,8 @@ import {
 
 @Component({
   selector: 'app-keyword',
-  templateUrl: './keyword.component.html',
-  styleUrls: ['./keyword.component.scss'],
+  templateUrl: './keyword.page.html',
+  styleUrls: ['./keyword.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -56,7 +56,7 @@ import {
     MatButtonModule,
   ],
 })
-export class KeywordComponent {
+export class KeywordPage {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map((result) => result.matches),
     shareReplay(),

@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { KeywordComponent } from './keyword.component';
+import { KeywordPage } from './keyword.page';
 
-describe('KeywordComponent', () => {
-  let component: KeywordComponent;
-  let fixture: ComponentFixture<KeywordComponent>;
+describe('KeywordPage', () => {
+  let component: KeywordPage;
+  let fixture: ComponentFixture<KeywordPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [KeywordComponent],
+      declarations: [KeywordPage],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(KeywordComponent);
+    fixture = TestBed.createComponent(KeywordPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

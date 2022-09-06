@@ -17,8 +17,8 @@ import { SentenceControllerHttpService, SentenceDTO } from 'src/clients/dz-diale
 
 @Component({
   selector: 'app-random',
-  templateUrl: './random.component.html',
-  styleUrls: ['./random.component.scss'],
+  templateUrl: './random.page.html',
+  styleUrls: ['./random.page.scss'],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -36,7 +36,7 @@ import { SentenceControllerHttpService, SentenceDTO } from 'src/clients/dz-diale
     LetModule,
   ],
 })
-export class RandomComponent {
+export class RandomPage {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   sentence$: Observable<SentenceDTO | undefined> = of();

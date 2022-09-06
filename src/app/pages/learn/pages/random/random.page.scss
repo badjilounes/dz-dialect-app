@@ -1,4 +1,6 @@
 :host {
+  overflow: auto;
+
   app-card ::ng-deep .mat-card-content [content]{
     display: grid;
     grid-template-rows: auto min-content;
@@ -18,7 +20,7 @@
 }
 
 .app-content {
-  padding: 1.5rem;
+  padding: 1rem 0;
 
   &:not(.handset) {
     max-width: 800px;

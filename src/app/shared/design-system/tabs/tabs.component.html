@@ -14,7 +14,11 @@
   </nav>
 </mat-toolbar>
 
-<div class="tabs-content">
+<div class="toolbar-shadow-container">
+  <div class="toolbar-shadow" #shadow></div>
+</div>
+
+<div class="tabs-content" #tabContent>
   <div class="content">
     <router-outlet></router-outlet>
   </div>

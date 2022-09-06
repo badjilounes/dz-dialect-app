@@ -58,8 +58,8 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
 /* pages */
 @import "app/pages/training-presentation/components/training-presentation-overview/training-presentation-overview-component.theme.scss";
 @import "app/pages/training-presentation/components/training-presentation-result/training-presentation-result-component.theme.scss";
-@import "app/pages/learn/components/keyword/keyword-component.theme.scss";
-@import "app/pages/learn/components/random/random-component.theme.scss";
+@import "app/pages/learn/pages/keyword/keyword-page.theme.scss";
+@import "app/pages/learn/pages/random/random-page.theme.scss";
 @import "app/pages/sign-in/sign-in-page.theme.scss";
 @import "app/pages/settings/pages/profile/components/profile-picture-upload-dialog/profile-picture-upload-dialog-component.theme.scss";
 @import "app/pages/settings/settings-page.theme.scss";

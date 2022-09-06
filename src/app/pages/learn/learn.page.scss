@@ -1,25 +1,7 @@
 :host {
-  display: grid;
-  grid-template-rows: 66px auto;
-  justify-items: center;
-  row-gap: 16px;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-}
-
-.mat-button-toggle-group {
-  margin-top: 16px;
-}
-
-.mat-button-toggle-group,
-.mat-button-toggle-button {
-  height: 50px;
-}
-
-.learn-content{
-  overflow: auto;
   position: relative;
+  display: grid;
+  grid-template-rows: 1fr;
+  overflow: auto;
   height: 100%;
-  width: 100%;
 }

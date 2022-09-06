@@ -8,10 +8,14 @@
   .mat-tab-header ::ng-deep .mat-tab-links {
     justify-content: center;
   }
+
+  .mat-tab-nav-bar ::ng-deep .mat-ink-bar {
+      height: 4px;
+  }
 }
 
 .mat-toolbar {
-  height: 49px;
+  height: 50px;
   padding: 0;
   overflow: auto;
 }
@@ -31,3 +35,24 @@
   }
 }
 
+
+.toolbar-shadow-container {
+  height: 15px;
+  overflow: hidden;
+  position: absolute;
+  top: 50px;
+  width: 100%;
+
+  .toolbar-shadow {
+    height: 15px;
+    position: absolute;
+    top: -15px;
+    transition: box-shadow .25s;
+    width: 100%;
+    z-index: 1;
+
+    &.shadow {
+      background-color: #fff;
+    }
+  }
+}
