@@ -61,7 +61,7 @@ $dz-dialect-app-theme: mat.define-light-theme((color: (primary: $dz-dialect-app-
 @import "app/pages/learn/components/keyword/keyword-component.theme.scss";
 @import "app/pages/learn/components/random/random-component.theme.scss";
 @import "app/pages/sign-in/sign-in-page.theme.scss";
-@import "app/pages/settings/components/profile-picture-upload-dialog/profile-picture-upload-dialog-component.theme.scss";
+@import "app/pages/settings/pages/profile/components/profile-picture-upload-dialog/profile-picture-upload-dialog-component.theme.scss";
 @import "app/pages/settings/settings-page.theme.scss";
 
 /* material theme */

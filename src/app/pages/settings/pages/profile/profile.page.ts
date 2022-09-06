@@ -8,9 +8,8 @@ import { filterUndefined } from 'src/app/shared/technical/operators/filter-undef
 import {
   ProfileInformation,
   ProfileInformationComponent,
-} from '../../components/profile-information/profile-information.component';
-import { ProfilePictureUploadDialogComponent } from '../../components/profile-picture-upload-dialog/profile-picture-upload-dialog.component';
-import { ProfileSuccessComponent } from '../../components/profile-success/profile-success.component';
+} from './components/profile-information/profile-information.component';
+import { ProfilePictureUploadDialogComponent } from './components/profile-picture-upload-dialog/profile-picture-upload-dialog.component';
 
 @Component({
   selector: 'app-profile',
@@ -22,7 +21,6 @@ import { ProfileSuccessComponent } from '../../components/profile-success/profil
     CommonModule,
     RouterModule,
     ProfileInformationComponent,
-    ProfileSuccessComponent,
     MatButtonModule,
     ProfilePictureUploadDialogComponent,
   ],

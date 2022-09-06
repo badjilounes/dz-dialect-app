@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { AppStore } from 'src/app/app.store';
 import { FullLineCardButtonComponent } from 'src/app/shared/design-system/full-line-card-button/full-line-card-button.component';
-import { CardComponent } from '../../../../shared/design-system/card/card.component';
+import { CardComponent } from '../../../../../../shared/design-system/card/card.component';
 import { ProfilePictureUploadDialogComponent } from '../profile-picture-upload-dialog/profile-picture-upload-dialog.component';
 
 export type ProfileInformation = {
