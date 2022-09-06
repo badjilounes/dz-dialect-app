@@ -1,16 +1,18 @@
-<mat-card [ngClass]="{ handset: isHandset$ | async }">
-  <mat-card-title>
-    <app-translation-header
-      [sourceLanguage]="sourceLanguage"
-      [targetLanguage]="targetLanguage"
-      (languagesSwapped)="swapLanguages()"
-    ></app-translation-header>
-  </mat-card-title>
+<ng-container *ngrxLet="isHandset$; let handset">
+  <mat-card class="mat-elevation-z0" [ngClass]="{ handset }">
+    <mat-card-title>
+      <app-translation-header
+        [sourceLanguage]="sourceLanguage"
+        [targetLanguage]="targetLanguage"
+        (languagesSwapped)="swapLanguages()"
+      ></app-translation-header>
+    </mat-card-title>
 
-  <mat-divider *ngIf="isHandset$ | async"></mat-divider>
+    <mat-divider *ngIf="handset"></mat-divider>
 
-  <mat-card-content>
-    <app-translation-content [content]="sourceContent"></app-translation-content>
-    <app-translation-content [content]="targetContent"></app-translation-content>
-  </mat-card-content>
-</mat-card>
+    <mat-card-content>
+      <app-translation-content [content]="sourceContent"></app-translation-content>
+      <app-translation-content [content]="targetContent"></app-translation-content>
+    </mat-card-content>
+  </mat-card>
+</ng-container>

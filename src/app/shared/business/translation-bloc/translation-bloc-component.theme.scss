@@ -1,0 +1,10 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin translation-bloc-theme($theme) {
+  $foreground: map-get($theme, foreground);
+
+  app-translation-bloc .mat-card{
+    border-color: mat.get-color-from-palette($foreground, divider);
+  }
+}

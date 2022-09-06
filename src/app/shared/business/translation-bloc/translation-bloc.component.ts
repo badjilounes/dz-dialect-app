@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+import { LetModule } from '@ngrx/component';
 import { map, Observable, shareReplay } from 'rxjs';
 import { SentenceDTO } from 'src/clients/dz-dialect-api';
 import { TranslationContentComponent } from './translation-content/translation-content.component';
@@ -23,6 +24,7 @@ import {
     TranslationHeaderComponent,
     TranslationContentComponent,
     MatDividerModule,
+    LetModule,
   ],
 })
 export class TranslationBlocComponent {
