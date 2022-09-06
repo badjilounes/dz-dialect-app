@@ -7,7 +7,7 @@ type ThemeMode = 'light' | 'dark';
 enum StatusBarColor {
   GREEN = '#c5e1a5',
   LIGHT = '#ffffff',
-  DARK = '#424242',
+  DARK = '#292a2d',
 }
 @Injectable({
   providedIn: 'root',
