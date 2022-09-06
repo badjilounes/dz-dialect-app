@@ -9,12 +9,6 @@
 
   app-sidenav {
 
-    .mat-drawer {
-      @if $is-dark-theme == true {
-        background-color: #686868;
-      }
-    }
-
     .mat-list-item.active, .mat-list-item.active:focus  {
       background: mat.get-color-from-palette($primary, 50);
       color: mat.get-color-from-palette($primary, 500);

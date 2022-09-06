@@ -10,12 +10,5 @@
 
   app-layout {
     background-color: mat.get-color-from-palette($background, card);
-
-    .app-content {
-      @if $is-dark-theme == true {
-        background-color: #686868;
-      }
-    }
-
   }
 }
