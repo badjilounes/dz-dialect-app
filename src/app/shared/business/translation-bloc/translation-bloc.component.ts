@@ -1,11 +1,11 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { LetModule } from '@ngrx/component';
 import { map, Observable, shareReplay } from 'rxjs';
 import { SentenceDTO } from 'src/clients/dz-dialect-api';
+import { CardComponent } from '../../design-system/card/card.component';
 import { TranslationContentComponent } from './translation-content/translation-content.component';
 import {
   Language,
@@ -20,7 +20,7 @@ import {
   standalone: true,
   imports: [
     CommonModule,
-    MatCardModule,
+    CardComponent,
     TranslationHeaderComponent,
     TranslationContentComponent,
     MatDividerModule,

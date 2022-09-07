@@ -1,23 +1,15 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { LetModule } from '@ngrx/component';
-import { AppStore } from 'src/app/app.store';
-import {
-  SidenavComponent,
-  SidenavItem,
-} from 'src/app/shared/design-system/sidenav/sidenav.component';
-import { TabsComponent } from 'src/app/shared/design-system/tabs/tabs.component';
+import { SubNavigationComponent, SubNavigationItem } from 'src/app/shared/design-system/sub-navigation/sub-navigation.component';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
   standalone: true,
-  imports: [RouterModule, TabsComponent, CommonModule, LetModule, SidenavComponent],
+  imports: [SubNavigationComponent],
 })
 export class SettingsPage {
-  links: SidenavItem[] = [
+  links: SubNavigationItem[] = [
     {
       label: 'Informations personnelles',
       link: 'profile',
@@ -29,8 +21,4 @@ export class SettingsPage {
       icon: 'emoji_events_outline',
     },
   ];
-
-  isMobile$ = this.appStore.isMobileOrTablet$;
-
-  constructor(private appStore: AppStore) {}
 }

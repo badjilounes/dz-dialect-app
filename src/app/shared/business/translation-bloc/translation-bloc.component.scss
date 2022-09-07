@@ -1,24 +1,42 @@
-.mat-card {
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 8px;
-  box-sizing: border-box;
+:host {
+  app-card ::ng-deep .mat-card .mat-card-subtitle {
+      padding: 0;
+      margin-bottom: 0;
+  }
 
+  app-card.handset ::ng-deep .mat-card {
+    padding-top: 8px;
 
-  &.handset {
-    padding: 8px;
-
-    .mat-card-content {
-      display: grid;
-      grid-template-rows: max-content;
-      margin-top: 1rem;
-      row-gap: 0.5rem;
+    h2 {
+      margin-bottom: 8px;
+      padding-left: 8px;
+      padding-right: 8px;
     }
   }
 
-  &:not(.handset) .mat-card-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 3rem;
+  app-card:not(.handset) ::ng-deep .mat-card {
+    padding-top: 8px;
+
+    h2 {
+      margin-bottom: 8px;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
   }
 }
+
+.handset [content] {
+  display: grid;
+  padding: 8px;
+  grid-template-rows: max-content;
+  row-gap: 0.5rem;
+}
+
+
+:not(.handset) [content] {
+  display: grid;
+  padding: 0 8px 8px 8px;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 3rem;
+}
+

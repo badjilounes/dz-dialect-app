@@ -2,9 +2,23 @@
 @use '@angular/material' as mat;
 
 @mixin card-theme($theme) {
-  $foreground: map-get($theme, foreground);
+  $color-config:    mat.get-color-config($theme);
+  $is-dark-theme:   map.get($color-config, 'is-dark');
+  $foreground: map-get($color-config, foreground);
 
   app-card .mat-card{
-    border-color: mat.get-color-from-palette($foreground, divider);
+
+    @if $is-dark-theme == false {
+      box-shadow: none;
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 8px;
+      border-color: mat.get-color-from-palette($foreground, divider);
+    }
+
+    @if $is-dark-theme == true {
+      border: none;
+      border-radius: 4px;
+    }
   }
 }

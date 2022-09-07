@@ -1,18 +1,16 @@
 <ng-container *ngrxLet="isHandset$; let handset">
-  <mat-card class="mat-elevation-z0" [ngClass]="{ handset }">
-    <mat-card-title>
+  <app-card [ngClass]="{ handset }">
+    <div title>
       <app-translation-header
         [sourceLanguage]="sourceLanguage"
         [targetLanguage]="targetLanguage"
         (languagesSwapped)="swapLanguages()"
       ></app-translation-header>
-    </mat-card-title>
-
-    <mat-divider *ngIf="handset"></mat-divider>
-
-    <mat-card-content>
+    </div>
+    <mat-divider subtitle *ngIf="handset"></mat-divider>
+    <div content>
       <app-translation-content [content]="sourceContent"></app-translation-content>
       <app-translation-content [content]="targetContent"></app-translation-content>
-    </mat-card-content>
-  </mat-card>
+    </div>
+  </app-card>
 </ng-container>
