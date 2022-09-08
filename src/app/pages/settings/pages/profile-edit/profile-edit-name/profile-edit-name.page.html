@@ -1,0 +1,16 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+  <mat-form-field appearance="outline">
+    <mat-label>Nom</mat-label>
+    <input matInput type="text" formControlName="name" />
+    <mat-error *ngIf="form.get('name')?.hasError('required')"
+      >{{ 'profile-edit.name.errors.required' | translate }}</mat-error
+    >
+  </mat-form-field>
+
+  <div class="form-actions">
+    <button mat-button type="button" (click)="cancel()" [disabled]="form.pristine">Annuler</button>
+    <button mat-raised-button color="primary" [disabled]="form.pristine || form.invalid">
+      Enregister
+    </button>
+  </div>
+</form>

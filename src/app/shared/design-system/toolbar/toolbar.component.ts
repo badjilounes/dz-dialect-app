@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { LetModule } from '@ngrx/component';
 
@@ -9,7 +10,7 @@ import { LetModule } from '@ngrx/component';
   styleUrls: ['./toolbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CommonModule, MatToolbarModule, LetModule],
+  imports: [CommonModule, MatToolbarModule, LetModule, MatDividerModule],
 })
 export class ToolbarComponent implements OnInit {
   constructor() {}

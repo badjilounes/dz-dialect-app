@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TrainingPresentationpAGE } from './training-presentation.page';
+import { TrainingPresentationPage } from './training-presentation.page';
 
 describe('TrainingRandomComponent', () => {
-  let component: TrainingPresentationpAGE;
-  let fixture: ComponentFixture<TrainingPresentationpAGE>;
+  let component: TrainingPresentationPage;
+  let fixture: ComponentFixture<TrainingPresentationPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TrainingPresentationpAGE],
+      declarations: [TrainingPresentationPage],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TrainingPresentationpAGE);
+    fixture = TestBed.createComponent(TrainingPresentationPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

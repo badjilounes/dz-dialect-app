@@ -4,6 +4,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { AppStore } from 'src/app/app.store';
 import { FullLineCardButtonComponent } from 'src/app/shared/design-system/full-line-card-button/full-line-card-button.component';
@@ -32,6 +33,7 @@ export type ProfileInformation = {
     MatDialogModule,
     FullLineCardButtonComponent,
     CardComponent,
+    RouterModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -1,0 +1,15 @@
+<app-toolbar>
+  <div content>
+    <button mat-icon-button [routerLink]="['..']">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span>{{ title$ | async }}</span>
+  </div>
+</app-toolbar>
+
+<app-card>
+  <span subtitle>{{ subtitle$ | async }}</span>
+  <div content>
+    <router-outlet></router-outlet>
+  </div>
+</app-card>

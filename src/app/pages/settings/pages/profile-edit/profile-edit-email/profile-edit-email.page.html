@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="save()" *ngrxLet="statusChanges$; let formStatus">
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email" />
+    <mat-spinner matSuffix *ngIf="formStatus === 'PENDING'" diameter="20"></mat-spinner>
+
+    <mat-error *ngIf="form.get('email')?.hasError('required')">
+      {{ 'profile-edit.email.errors.required' | translate }}
+    </mat-error>
+    <mat-error *ngIf="form.get('email')?.hasError('email')">
+      {{ 'profile-edit.email.errors.email' | translate }}
+    </mat-error>
+    <mat-error *ngIf="form.get('email')?.hasError('uniqueEmail')">
+      {{ 'profile-edit.email.errors.unique' | translate }}
+    </mat-error>
+  </mat-form-field>
+  <div class="form-actions">
+    <button mat-button type="button" (click)="cancel()" [disabled]="form.pristine">Annuler</button>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="form.pristine || form.invalid || formStatus === 'PENDING'"
+    >
+      Enregister
+    </button>
+  </div>
+</form>

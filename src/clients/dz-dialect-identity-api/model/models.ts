@@ -3,5 +3,8 @@ export * from './auth-sign-up-dto';
 export * from './auth-token-response-dto';
 export * from './media-response-dto';
 export * from './providers-enum';
+export * from './update-email-dto';
+export * from './update-name-dto';
 export * from './update-profile-picture-dto';
+export * from './update-username-dto';
 export * from './user-response-dto';

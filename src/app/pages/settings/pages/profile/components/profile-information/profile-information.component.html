@@ -11,7 +11,7 @@
 
     <mat-divider></mat-divider>
 
-    <app-full-line-card-button>
+    <app-full-line-card-button [routerLink]="['name']">
       <div label>{{ 'profile.profile-information.name' | translate }}</div>
       <div value>{{ information?.name }}</div>
       <mat-icon suffix>keyboard_arrow_right</mat-icon>
@@ -19,7 +19,7 @@
 
     <mat-divider></mat-divider>
 
-    <app-full-line-card-button>
+    <app-full-line-card-button [routerLink]="['username']">
       <div label>{{ 'profile.profile-information.username' | translate }}</div>
       <div value>{{ information?.username }}</div>
       <mat-icon suffix>keyboard_arrow_right</mat-icon>
@@ -27,7 +27,7 @@
 
     <mat-divider></mat-divider>
 
-    <app-full-line-card-button>
+    <app-full-line-card-button [routerLink]="['email']">
       <div label>{{ 'profile.profile-information.email' | translate }}</div>
       <div value>{{ information?.email }}</div>
       <mat-icon suffix>keyboard_arrow_right</mat-icon>
