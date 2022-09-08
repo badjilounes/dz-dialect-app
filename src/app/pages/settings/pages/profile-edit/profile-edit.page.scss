@@ -27,9 +27,13 @@ app-toolbar [content]{
 }
 
 app-toolbar [content], app-card{
-  max-width: 1100px;
+  max-width: 840px;
   width: 100%;
   margin: 0 auto;
+
+  .mat-icon-button {
+    margin-right: 8px;
+  }
 }
 
 app-card{
