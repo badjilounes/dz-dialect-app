@@ -65,6 +65,10 @@ export class ProfileEditUsernamePage implements OnInit {
   }
 
   save() {
+    if (this.form.invalid || this.form.pristine || this.form.status === 'PENDING') {
+      return;
+    }
+
     this.store.saveChanges(this.form.value.username);
   }
 }

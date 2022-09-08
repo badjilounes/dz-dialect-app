@@ -9,8 +9,6 @@
 
   <div class="form-actions">
     <button mat-button type="button" (click)="cancel()" [disabled]="form.pristine">Annuler</button>
-    <button mat-raised-button color="primary" [disabled]="form.pristine || form.invalid">
-      Enregister
-    </button>
+    <button mat-raised-button color="primary" [disabled]="form.pristine">Enregister</button>
   </div>
 </form>

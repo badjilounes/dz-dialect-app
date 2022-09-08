@@ -1,21 +1,32 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LetModule } from '@ngrx/component';
 import { TranslateModule } from '@ngx-translate/core';
-import { AuthSignUpDto } from 'src/clients/dz-dialect-identity-api';
+import { startWith } from 'rxjs';
+import { AppValidators } from 'src/app/shared/technical/validators/app-validators';
+import { AuthSignUpDto, UsersHttpService } from 'src/clients/dz-dialect-identity-api';
 
-const matchPassword: ValidatorFn = (control: AbstractControl):  ValidationErrors | null => {
+const matchPassword: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const password = control.parent?.get('password')?.value;
   const matchPassword = password === control.value;
-  return matchPassword ? null : { matchPassword: true }
-}
+  return matchPassword ? null : { matchPassword: true };
+};
 
 @Component({
   selector: 'app-sign-up',
@@ -33,7 +44,8 @@ const matchPassword: ValidatorFn = (control: AbstractControl):  ValidationErrors
     LetModule,
     TranslateModule,
     MatDividerModule,
-  ]
+    MatProgressSpinnerModule,
+  ],
 })
 export class SignUpComponent {
   @Output() formSubmitted: EventEmitter<AuthSignUpDto> = new EventEmitter<AuthSignUpDto>();
@@ -41,13 +53,21 @@ export class SignUpComponent {
   hide = {
     password: true,
     confirmPassword: true,
-  }
+  };
 
   form: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required]),
+    username: new FormControl(
+      '',
+      [Validators.required],
+      [AppValidators.uniqueUsername(this.usersHttpService)],
+    ),
     password: new FormControl('', [Validators.required]),
     confirmPassword: new FormControl('', [Validators.required, matchPassword]),
   });
+
+  statusChanges$ = this.form.statusChanges.pipe(startWith('VALID'));
+
+  constructor(private readonly usersHttpService: UsersHttpService) {}
 
   submit() {
     if (!this.form.valid) {

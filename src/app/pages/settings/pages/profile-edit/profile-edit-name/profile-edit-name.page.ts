@@ -50,6 +50,10 @@ export class ProfileEditNamePage implements OnInit {
   }
 
   save() {
+    if (this.form.invalid || this.form.pristine) {
+      return;
+    }
+
     this.store.saveChanges(this.form.value.name);
   }
 }

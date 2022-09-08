@@ -72,6 +72,7 @@
   "sign-up.password.placeholder": "Entrez un mot de passe",
   "sign-up.title": "S'inscrire",
   "sign-up.username.errors.required": "Veuillez entrer un nom d'utilisateur",
+  "sign-up.username.errors.unique": "Ce nom d'utilisateur est déjà utilisé",
   "sign-up.username.placeholder": "Entrez un nom d'utilisateur",
   "sign-up.validate-button": "CRÉER MON COMPTE",
   "success.title": "Succès",
