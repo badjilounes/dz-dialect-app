@@ -17,5 +17,15 @@
     "pathRewrite": {
       "^/identity-proxy": ""
     }
+  },
+
+  "/training-proxy": {
+    "target": "http://localhost:3001",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "info",
+    "pathRewrite": {
+      "^/training-proxy": ""
+    }
   }
 }
