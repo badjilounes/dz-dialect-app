@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   apiUrl: '/proxy',
   identityApiUrl: '/identity-proxy',
+  trainingApiUrl: '/training-proxy',
 };
 
 /*

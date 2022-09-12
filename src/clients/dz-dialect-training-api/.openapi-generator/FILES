@@ -1,0 +1,16 @@
+.gitignore
+.openapi-generator-ignore
+README.md
+api.module.ts
+api/api.ts
+api/training.service.ts
+configuration.ts
+encoder.ts
+git_push.sh
+index.ts
+model/exam-type-enum.ts
+model/models.ts
+model/training-exam-question-response-dto.ts
+model/training-exam-response-dto.ts
+model/training-presentation-response-dto.ts
+variables.ts

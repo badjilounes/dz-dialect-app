@@ -13,7 +13,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "generate:api": "rimraf ./src/clients/dz-dialect-api && openapi-generator generate -i https://evening-meadow-36429.herokuapp.com/v3/api-docs -g typescript-angular -o ./src/clients/dz-dialect-api --additional-properties=enumPropertyNaming=UPPERCASE,serviceSuffix=HttpService,fileNaming=kebab-case",
-    "generate:identity-api": "rimraf ./src/clients/dz-dialect-identity-api && openapi-generator generate -i http://localhost:3000/openapi-json -g typescript-angular -o ./src/clients/dz-dialect-identity-api --additional-properties=enumPropertyNaming=UPPERCASE,serviceSuffix=HttpService,fileNaming=kebab-case"
+    "generate:identity-api": "rimraf ./src/clients/dz-dialect-identity-api && openapi-generator generate -i http://localhost:3000/openapi-json -g typescript-angular -o ./src/clients/dz-dialect-identity-api --additional-properties=enumPropertyNaming=UPPERCASE,serviceSuffix=HttpService,fileNaming=kebab-case",
+    "generate:training-api": "rimraf ./src/clients/dz-dialect-training-api && openapi-generator generate -i http://localhost:3001/openapi-json -g typescript-angular -o ./src/clients/dz-dialect-training-api --additional-properties=enumPropertyNaming=UPPERCASE,serviceSuffix=HttpService,fileNaming=kebab-case"
   },
   "private": true,
   "dependencies": {
