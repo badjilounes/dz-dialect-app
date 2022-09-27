@@ -11,9 +11,11 @@
  */
 
 
-export type ExamTypeEnum = 'translation';
+export type QuestionTypeEnum = 'SINGLE_CHOICE' | 'MULTIPLE_CHOICE' | 'WORD_LIST';
 
-export const ExamTypeEnum = {
-    TRANSLATION: 'translation' as ExamTypeEnum
+export const QuestionTypeEnum = {
+    SINGLE_CHOICE: 'SINGLE_CHOICE' as QuestionTypeEnum,
+    MULTIPLE_CHOICE: 'MULTIPLE_CHOICE' as QuestionTypeEnum,
+    WORD_LIST: 'WORD_LIST' as QuestionTypeEnum
 };
 

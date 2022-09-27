@@ -10,13 +10,11 @@
  * Do not edit the class manually.
  */
 import { TrainingExamQuestionResponseDto } from './training-exam-question-response-dto';
-import { ExamTypeEnum } from './exam-type-enum';
 
 
 export interface TrainingExamResponseDto { 
     id: string;
     name: string;
-    type: ExamTypeEnum;
     questions: Array<TrainingExamQuestionResponseDto>;
 }
 

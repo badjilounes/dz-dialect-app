@@ -9,13 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { QuestionTypeEnum } from './question-type-enum';
 
 
-export interface TrainingExamQuestionResponseDto { 
-    id: string;
-    type: QuestionTypeEnum;
-    question: string;
+export interface ValidateResponseDto { 
+    valid: boolean;
+    response: string;
     answer: Array<string>;
 }
 
