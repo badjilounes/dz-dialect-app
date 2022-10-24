@@ -19,7 +19,11 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { TrainingPresentationResponseDto } from '../model/training-presentation-response-dto';
+import { GetTrainingResponseDto } from '../model/get-training-response-dto';
+// @ts-ignore
+import { GetTrainingResultResponseDto } from '../model/get-training-result-response-dto';
+// @ts-ignore
+import { ShouldShowPresentationResponseDto } from '../model/should-show-presentation-response-dto';
 // @ts-ignore
 import { ValidateDto } from '../model/validate-dto';
 // @ts-ignore
@@ -34,7 +38,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class TrainingHttpService {
+export class StudentHttpService {
 
     protected basePath = 'http://localhost';
     public defaultHeaders = new HttpHeaders();
@@ -92,16 +96,20 @@ export class TrainingHttpService {
     }
 
     /**
-     * Create training presentation
+     * Get training presentation
+     * @param xGuestId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createTrainingPresentation(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<TrainingPresentationResponseDto>;
-    public createTrainingPresentation(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<TrainingPresentationResponseDto>>;
-    public createTrainingPresentation(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<TrainingPresentationResponseDto>>;
-    public createTrainingPresentation(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public getPresentationResult(xGuestId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GetTrainingResultResponseDto>;
+    public getPresentationResult(xGuestId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GetTrainingResultResponseDto>>;
+    public getPresentationResult(xGuestId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GetTrainingResultResponseDto>>;
+    public getPresentationResult(xGuestId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
 
         let localVarHeaders = this.defaultHeaders;
+        if (xGuestId !== undefined && xGuestId !== null) {
+            localVarHeaders = localVarHeaders.set('x-guest-id', String(xGuestId));
+        }
 
         let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
         if (localVarHttpHeaderAcceptSelected === undefined) {
@@ -132,8 +140,7 @@ export class TrainingHttpService {
             }
         }
 
-        return this.httpClient.post<TrainingPresentationResponseDto>(`${this.configuration.basePath}/training/create-presentation`,
-            null,
+        return this.httpClient.get<GetTrainingResultResponseDto>(`${this.configuration.basePath}/student/training/get-presentation-result`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -150,9 +157,9 @@ export class TrainingHttpService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getTrainingPresentation(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<TrainingPresentationResponseDto>;
-    public getTrainingPresentation(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<TrainingPresentationResponseDto>>;
-    public getTrainingPresentation(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<TrainingPresentationResponseDto>>;
+    public getTrainingPresentation(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GetTrainingResponseDto>;
+    public getTrainingPresentation(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GetTrainingResponseDto>>;
+    public getTrainingPresentation(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GetTrainingResponseDto>>;
     public getTrainingPresentation(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
 
         let localVarHeaders = this.defaultHeaders;
@@ -186,7 +193,64 @@ export class TrainingHttpService {
             }
         }
 
-        return this.httpClient.get<TrainingPresentationResponseDto>(`${this.configuration.basePath}/training/get-presentation`,
+        return this.httpClient.get<GetTrainingResponseDto>(`${this.configuration.basePath}/student/training/get-presentation`,
+            {
+                context: localVarHttpContext,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Whether presentation should be shown or not
+     * @param xGuestId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public shouldShowPresentation(xGuestId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<ShouldShowPresentationResponseDto>;
+    public shouldShowPresentation(xGuestId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<ShouldShowPresentationResponseDto>>;
+    public shouldShowPresentation(xGuestId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<ShouldShowPresentationResponseDto>>;
+    public shouldShowPresentation(xGuestId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+
+        let localVarHeaders = this.defaultHeaders;
+        if (xGuestId !== undefined && xGuestId !== null) {
+            localVarHeaders = localVarHeaders.set('x-guest-id', String(xGuestId));
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        return this.httpClient.get<ShouldShowPresentationResponseDto>(`${this.configuration.basePath}/student/training/should-show-presentation`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -205,12 +269,12 @@ export class TrainingHttpService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public validate(validateDto: ValidateDto, xGuestId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<ValidateResponseDto>;
-    public validate(validateDto: ValidateDto, xGuestId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<ValidateResponseDto>>;
-    public validate(validateDto: ValidateDto, xGuestId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<ValidateResponseDto>>;
-    public validate(validateDto: ValidateDto, xGuestId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public validatePresentation(validateDto: ValidateDto, xGuestId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<ValidateResponseDto>;
+    public validatePresentation(validateDto: ValidateDto, xGuestId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<ValidateResponseDto>>;
+    public validatePresentation(validateDto: ValidateDto, xGuestId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<ValidateResponseDto>>;
+    public validatePresentation(validateDto: ValidateDto, xGuestId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (validateDto === null || validateDto === undefined) {
-            throw new Error('Required parameter validateDto was null or undefined when calling validate.');
+            throw new Error('Required parameter validateDto was null or undefined when calling validatePresentation.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -263,7 +327,7 @@ export class TrainingHttpService {
             }
         }
 
-        return this.httpClient.post<ValidateResponseDto>(`${this.configuration.basePath}/training/validate`,
+        return this.httpClient.post<ValidateResponseDto>(`${this.configuration.basePath}/student/training/validate`,
             validateDto,
             {
                 context: localVarHttpContext,

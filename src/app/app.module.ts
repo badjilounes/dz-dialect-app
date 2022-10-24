@@ -11,9 +11,10 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { WordListQuestionComponent } from './shared/business/word-list-question/word-list-question.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, WordListQuestionComponent],
   imports: [
     BrowserAnimationsModule,
     CoreModule,
