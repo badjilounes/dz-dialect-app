@@ -1,11 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ShouldNotShowPresentationGuard } from 'src/app/core/presentation/should-not-show-presentation.guard';
+import { OverviewPage } from 'src/app/pages/overview/overview.page';
 import { AuthenticatedGuard } from './core/authentication/authenticated.guard';
 import { UnauthenticatedGuard } from './core/authentication/unauthenticated.guard';
 import { AppLayoutComponent } from './core/layout/app-layout.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'training-presentation', pathMatch: 'full' },
+  { path: '', redirectTo: 'overview', pathMatch: 'full' },
+
+  {
+    path: 'overview',
+    canActivate: [UnauthenticatedGuard],
+    component: OverviewPage,
+    data: { title: 'training.menu.title' },
+  },
 
   {
     path: 'training-presentation',
@@ -14,12 +23,23 @@ const routes: Routes = [
       import('./pages/training-presentation/training-presentation.module').then(
         (m) => m.TrainingPresentationModule,
       ),
-    data: { menu: true, title: 'training.menu.title' },
+    data: { title: 'training.menu.title' },
+  },
+
+  {
+    path: 'presentation',
+    canActivate: [UnauthenticatedGuard],
+    loadChildren: () =>
+      import('./pages/presentation/presentation.module').then(
+        (m) => m.PresentationModule,
+      ),
+    data: { title: 'training.menu.title' },
   },
 
   {
     path: '',
     component: AppLayoutComponent,
+    canActivate: [ShouldNotShowPresentationGuard],
     children: [
       {
         path: 'learn',

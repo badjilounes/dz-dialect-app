@@ -69,6 +69,7 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog,
 @import "app/pages/sign-in/sign-in-page.theme.scss";
 @import "app/pages/settings/pages/profile/components/profile-picture-upload-dialog/profile-picture-upload-dialog-component.theme.scss";
 @import "app/pages/settings/settings-page.theme.scss";
+@import "app/pages/overview/overview-page.theme.scss";
 
 /* material theme */
 @include bottom-sheet-theme($dz-dialect-app-theme);
@@ -90,6 +91,7 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog,
 @include profile-page-theme($dz-dialect-app-theme);
 @include sidenav-theme($dz-dialect-app-theme);
 @include translation-bloc-theme($dz-dialect-app-theme);
+@include overview-page-theme($dz-dialect-app-theme);
 
 .darkMode {
   // Include theme styles for core and each component used in your app.
@@ -129,6 +131,7 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog,
   @include app-tabs-theme($dz-dialect-dark-app-theme);
   @include sidenav-theme($dz-dialect-dark-app-theme);
   @include translation-bloc-theme($dz-dialect-dark-app-theme);
+  @include overview-page-theme($dz-dialect-dark-app-theme);
 }
 
 html,

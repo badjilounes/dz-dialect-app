@@ -1,0 +1,14 @@
+import { Injectable } from '@angular/core';
+import { v4 as uuidv4 } from 'uuid';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class GuestIdService {
+
+  get guestId(): string {
+    const guestId = localStorage.getItem('guestId') ?? uuidv4();
+    localStorage.setItem('guestId', guestId);
+    return guestId;
+  }
+}

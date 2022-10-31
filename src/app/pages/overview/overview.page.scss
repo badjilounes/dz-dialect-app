@@ -1,0 +1,105 @@
+
+:host{
+  display: grid;
+  grid-template-columns: 1fr;
+
+  .start-presentation-button ::ng-deep .mat-button-wrapper {
+    display: flex;
+    place-content: center;
+  }
+
+  .already-have-account-button:hover:not(.mat-button-disabled) ::ng-deep {
+    .mat-button-wrapper {
+      text-decoration: underline;
+    }
+
+    .mat-button-focus-overlay {
+      opacity: 0;
+    }
+  }
+}
+
+.overview-container {
+  display: grid;
+  background-image: url(/assets/svg/star.svg);
+
+  &.handset {
+    place-items: center;
+
+    .overview-content {
+      display: grid;
+      grid-template-rows: min-content min-content;
+      row-gap: 4.25rem;
+      place-items: center;
+      padding: 0 24px;
+      margin-bottom: 70px;
+
+      .flag {
+        width: 120px;
+        border-radius: 30px;
+        border-width: 4px;
+        border-style: solid;
+      }
+
+      h1 {
+        margin-bottom: 50px;
+      }
+    }
+
+    .overview-actions-container{
+      flex-direction: column;
+    }
+  }
+
+  &:not(.handset) {
+
+    .overview-content {
+      display: grid;
+      grid-template-columns: min-content auto;
+      place-items: center;
+      padding: 0 60px;
+      margin: 0 auto;
+
+      .flag {
+        width: 280px;
+        border-radius: 30px;
+        border-width: 4px;
+        border-style: solid;
+      }
+
+      .overview-description {
+        margin: auto 60px;
+      }
+    }
+  }
+
+  .overview-description {
+    text-align: center;
+
+    h1 {
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 38px;
+      margin-bottom: 40px;
+    }
+  }
+
+  .overview-actions-container {
+    gap: 12px;
+    display: flex;
+    place-items: center;
+    justify-content: center;
+  }
+
+  .already-have-account-button,
+  .start-presentation-button {
+    height: 50px;
+    width: 320px;
+    border-radius: 16px;
+  }
+
+  .start-presentation-button .mat-spinner {
+    height: 38px;
+    width: 38px;
+  }
+}

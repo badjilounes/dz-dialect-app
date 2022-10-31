@@ -1,0 +1,17 @@
+
+<ng-container *ngIf="loading$ | async; else page">
+  <mat-spinner class="spinner"></mat-spinner>
+</ng-container>
+
+<ng-template #page>
+  <ng-container *ngIf="showTraining$ | async">
+    <app-exam *ngrxLet="exam$; let exam"></app-exam>
+  </ng-container>
+
+  <ng-container *ngIf="showResult$ | async">
+    <!-- <app-training-presentation-result
+      *ngrxLet="result$; let result"
+      [result]="result"
+    ></app-training-presentation-result> -->
+  </ng-container>
+</ng-template>

@@ -16,6 +16,7 @@ export interface GetTrainingExamQuestionResponseDto {
     id: string;
     type: QuestionTypeEnum;
     question: string;
+    order: number;
     propositions: Array<string>;
 }
 
