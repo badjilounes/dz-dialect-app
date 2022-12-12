@@ -13,7 +13,7 @@ import { TranslationBlocComponent } from 'src/app/shared/business/translation-bl
 import { CardComponent } from 'src/app/shared/design-system/card/card.component';
 import { CapitalizeModule } from 'src/app/shared/technical/capitalize/capitalize.module';
 import { StorageModule } from 'src/app/shared/technical/storage/storage.module';
-import { SentenceControllerHttpService, SentenceDTO } from 'src/clients/dz-dialect-api';
+import { SentenceHttpService, SentenceResponseDto } from 'src/clients/dz-dialect-api';
 
 @Component({
   selector: 'app-random',
@@ -39,7 +39,7 @@ import { SentenceControllerHttpService, SentenceDTO } from 'src/clients/dz-diale
 export class RandomPage {
   loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  sentence$: Observable<SentenceDTO | undefined> = of();
+  sentence$: Observable<SentenceResponseDto | undefined> = of();
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map((result) => result.matches),
@@ -48,14 +48,14 @@ export class RandomPage {
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
-    private readonly api: SentenceControllerHttpService,
+    private readonly sentenceApi: SentenceHttpService,
     private readonly snackBar: MatSnackBar,
   ) {}
 
   generate(): void {
     this.loading$.next(true);
 
-    this.sentence$ = this.api.generateRandomSentence().pipe(
+    this.sentence$ = this.sentenceApi.getSentenceList(1).pipe(
       map(([firstSentence]) => firstSentence),
       tap(() => this.loading$.next(false)),
       catchError((error) => {

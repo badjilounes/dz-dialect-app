@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 
 function apiConfigFactory(): Configuration {
   const params: ConfigurationParameters = {
-    basePath: environment.apiUrl,
+    basePath: environment.sentenceApiUrl,
   };
   return new Configuration(params);
 }

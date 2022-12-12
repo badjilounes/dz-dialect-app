@@ -26,11 +26,7 @@ import {
 import { TranslationBlocComponent } from 'src/app/shared/business/translation-bloc/translation-bloc.component';
 import { CardComponent } from 'src/app/shared/design-system/card/card.component';
 import { CapitalizeModule } from 'src/app/shared/technical/capitalize/capitalize.module';
-import {
-  SentenceControllerHttpService,
-  SentenceDTO,
-  VerbControllerHttpService,
-} from 'src/clients/dz-dialect-api';
+import { SentenceHttpService, SentenceResponseDto } from 'src/clients/dz-dialect-api';
 
 @Component({
   selector: 'app-keyword',
@@ -63,30 +59,22 @@ export class KeywordPage {
   );
 
   loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  sentences$: Observable<SentenceDTO[] | undefined> = of();
+  sentences$: Observable<SentenceResponseDto[] | undefined> = of();
   filteredOptions$: Observable<string[]> = of([]);
 
   verbControl = new FormControl<string>('', [Validators.required]);
-  verbOptions: string[] = [];
 
-  tenseControl = new FormControl<string>('');
-  tenses = ['past', 'present', 'future', 'imperative'];
-
-  get selectedTense(): string | undefined {
-    return this.tenseControl.value || undefined;
-  }
+  tenseControl = new FormControl<string[]>([]);
+  tenses$: Observable<string[]> = of([]);
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
-    private readonly verbsApi: VerbControllerHttpService,
-    private readonly sentenceApi: SentenceControllerHttpService,
+    private readonly sentenceApi: SentenceHttpService,
     private readonly snackBar: MatSnackBar,
   ) {}
 
   ngOnInit() {
-    this.filteredOptions$ = this.verbsApi.getAllVerbIds().pipe(
-      map((verbsSet) => Array.from(verbsSet)),
-      tap((verbs) => (this.verbOptions = verbs)),
+    this.filteredOptions$ = this.sentenceApi.getVerbList().pipe(
       switchMap((verbs) =>
         this.verbControl.valueChanges.pipe(
           startWith(''),
@@ -94,6 +82,8 @@ export class KeywordPage {
         ),
       ),
     );
+
+    this.tenses$ = this.sentenceApi.getTenseList();
   }
 
   private _filter(options: string[], value: string): string[] {
@@ -107,12 +97,10 @@ export class KeywordPage {
       this.loading$.next(true);
 
       this.sentences$ = this.sentenceApi
-        .generateRandomSentence(
+        .getSentenceList(
           5,
-          undefined,
-          undefined,
-          this.verbControl.value?.toLowerCase(),
-          this.selectedTense,
+          this.verbControl.value ? [this.verbControl.value] : [],
+          this.tenseControl.value ? this.tenseControl.value : [],
         )
         .pipe(
           tap(() => this.loading$.next(false)),

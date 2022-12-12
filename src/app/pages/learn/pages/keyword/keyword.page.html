@@ -16,10 +16,7 @@
             [matAutocomplete]="auto"
           />
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option
-              *ngFor="let option of filteredOptions$ | async"
-              [value]="option | capitalize"
-            >
+            <mat-option *ngFor="let option of filteredOptions$ | async" [value]="option">
               {{ option | capitalize }}
             </mat-option>
           </mat-autocomplete>
@@ -29,13 +26,22 @@
           <mat-select
             [formControl]="tenseControl"
             [placeholder]="'keyword.tense.placeholder' | translate"
+            multiple
           >
             <mat-select-trigger>
-              {{ 'keyword.tense.' + selectedTense | translate }}
+              {{tenseControl.value?.[0] || ''}}
+              <span
+                *ngIf="(tenseControl.value?.length || 0) > 1"
+                class="example-additional-selection"
+              >
+                (+{{(tenseControl.value?.length || 0) - 1}} {{tenseControl.value?.length === 2 ?
+                'autre' : 'autres'}})
+              </span>
             </mat-select-trigger>
-            <mat-option *ngFor="let tense of tenses" [value]="tense">{{
-              'keyword.tense.' + tense | translate
-            }}</mat-option>
+
+            <ng-container *ngrxLet="tenses$; let tenses">
+              <mat-option *ngFor="let tense of tenses" [value]="tense"> {{ tense }} </mat-option>
+            </ng-container>
           </mat-select>
         </mat-form-field>
       </div>

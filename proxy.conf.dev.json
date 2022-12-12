@@ -1,16 +1,26 @@
 {
-  "/proxy": {
-    "target": "https://evening-meadow-36429.herokuapp.com",
+  "/sentence-proxy": {
+    "target": "https://dz-dialect-sentence-api.server.bdsapp.fr",
     "secure": true,
     "changeOrigin": true,
     "logLevel": "info",
     "pathRewrite": {
-      "^/proxy": ""
+      "^/sentence-proxy": ""
     }
   },
 
   "/identity-proxy": {
     "target": "https://dz-dialect-identity-api.server.bdsapp.fr",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "info",
+    "pathRewrite": {
+      "^/identity-proxy": ""
+    }
+  },
+
+  "/training-proxy": {
+    "target": "https://dz-dialect-training-api.server.bdsapp.fr",
     "secure": true,
     "changeOrigin": true,
     "logLevel": "info",

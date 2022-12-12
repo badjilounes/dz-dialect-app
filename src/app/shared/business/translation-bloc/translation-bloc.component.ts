@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { LetModule } from '@ngrx/component';
 import { map, Observable, shareReplay } from 'rxjs';
-import { SentenceDTO } from 'src/clients/dz-dialect-api';
+import { SentenceResponseDto } from 'src/clients/dz-dialect-api';
 import { CardComponent } from '../../design-system/card/card.component';
 import { TranslationContentComponent } from './translation-content/translation-content.component';
 import {
@@ -28,7 +28,7 @@ import {
   ],
 })
 export class TranslationBlocComponent {
-  @Input() sentence?: SentenceDTO | null;
+  @Input() sentence?: SentenceResponseDto | null;
 
   private _sourceLanguage: Language = {
     value: 'dz',

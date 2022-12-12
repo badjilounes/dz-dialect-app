@@ -1,11 +1,11 @@
 {
-  "/proxy": {
-    "target": "https://evening-meadow-36429.herokuapp.com",
+  "/sentence-proxy": {
+    "target": "http://localhost:3002",
     "secure": true,
     "changeOrigin": true,
     "logLevel": "info",
     "pathRewrite": {
-      "^/proxy": ""
+      "^/sentence-proxy": ""
     }
   },
 

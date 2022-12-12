@@ -2,14 +2,7 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
-import { AdjectiveControllerHttpService } from './api/adjective-controller.service';
-import { AdverbControllerHttpService } from './api/adverb-controller.service';
-import { DzDialectApiSpringApplicationHttpService } from './api/dz-dialect-api-spring-application.service';
-import { NounControllerHttpService } from './api/noun-controller.service';
-import { PronounsControllerHttpService } from './api/pronouns-controller.service';
-import { QuestionsControllerHttpService } from './api/questions-controller.service';
-import { SentenceControllerHttpService } from './api/sentence-controller.service';
-import { VerbControllerHttpService } from './api/verb-controller.service';
+import { SentenceHttpService } from './api/sentence.service';
 
 @NgModule({
   imports:      [],
