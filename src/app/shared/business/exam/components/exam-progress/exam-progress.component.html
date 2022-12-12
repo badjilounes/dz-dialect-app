@@ -3,13 +3,13 @@
   [ngClass]="{ handset: isHandset$ | async }"
   *ngrxLet="progress$; let progress"
 >
-  <!-- <button
+  <button
     mat-icon-button
     *ngIf="cancelOption"
     [matTooltip]="cancelOptionTooltip"
     (click)="cancel()"
   >
     <mat-icon>close</mat-icon>
-  </button> -->
+  </button>
   <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
 </div>

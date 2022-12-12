@@ -37,7 +37,7 @@ export class ExamStore extends ComponentStore<ExamState> {
     (state) => ((state.question?.order || 0) * 100) / (state.exam?.questions.length || 10),
   );
 
-  readonly examCanceled: EventEmitter<void> = new EventEmitter<void>();
+  readonly examSkipped: EventEmitter<void> = new EventEmitter<void>();
   readonly examCompleted: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
@@ -48,8 +48,8 @@ export class ExamStore extends ComponentStore<ExamState> {
     super();
   }
 
-  readonly cancelExam = this.effect((save$: Observable<void>) => {
-    return save$.pipe(tap(() => this.examCanceled.emit()));
+  readonly skipExam = this.effect((save$: Observable<void>) => {
+    return save$.pipe(tap(() => this.examSkipped.emit()));
   });
 
   readonly addToResponse = this.effect((save$: Observable<string>) => {

@@ -46,6 +46,7 @@ export class ExamComponent implements OnInit {
   @Input() skipOption = false;
 
   @Output() completed: EventEmitter<void> = new EventEmitter<void>();
+  @Output() skipped: EventEmitter<void> = new EventEmitter<void>();
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map((result) => result.matches),
@@ -57,6 +58,7 @@ export class ExamComponent implements OnInit {
     private readonly examStore: ExamStore,
   ) {
     this.completed = this.examStore.examCompleted;
+    this.skipped = this.examStore.examSkipped;
   }
 
   ngOnInit(): void {

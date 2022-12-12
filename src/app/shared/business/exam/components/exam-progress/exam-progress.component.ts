@@ -41,6 +41,6 @@ export class ExamProgressComponent {
   ) {}
 
   cancel(): void {
-    this.examStore.cancelExam();
+    this.examStore.skipExam();
   }
 }
