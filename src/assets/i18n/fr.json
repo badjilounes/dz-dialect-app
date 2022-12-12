@@ -90,6 +90,7 @@
   "training.result.description.prefix": "Vous avez obtenu",
   "training.result.description.suffix": "Vous pouvez continuer à apprendre le dialecte algérien !",
   "training.result.restart-button": "ON Y RETOURNE !",
+  "training.result.skip-presentation-button": "PASSER LA PRÉSENTATION",
   "training.training-presentation.cancel-confirmation-dialog.cancel-button": "NON, JE CONTINUE",
   "training.training-presentation.cancel-confirmation-dialog.confirm-button": "PASSER",
   "training.training-presentation.cancel-confirmation-dialog.content": "Vous perdrez toutes vos réponses.",

@@ -1,26 +1,34 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LetModule } from '@ngrx/component';
-import { TranslateModule } from '@ngx-translate/core';
-import { map, Observable, shareReplay } from 'rxjs';
+import { OverviewComponent } from 'src/app/pages/overview/components/overview/overview.component';
+import { PresentationResultComponent } from 'src/app/pages/overview/components/presentation-result/presentation-result.component';
+import { PresentationComponent } from 'src/app/pages/overview/components/presentation/presentation.component';
+import { OverviewStore } from 'src/app/pages/overview/store/overview.store';
 
 @Component({
-  selector: 'app-overview',
   templateUrl: './overview.page.html',
   styleUrls: ['./overview.page.scss'],
   standalone: true,
-  imports: [CommonModule, LetModule, MatButtonModule, TranslateModule, RouterModule]
+  providers: [OverviewStore],
+  imports: [
+    MatProgressSpinnerModule,
+    CommonModule,
+    LetModule,
+    OverviewComponent,
+    PresentationComponent,
+    PresentationResultComponent,
+  ],
 })
 export class OverviewPage {
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Medium]).pipe(
-    map((result) => result.matches),
-    shareReplay(),
-  );
+  showResult$ = this.overviewStore.showResult$;
+  showOverview$ = this.overviewStore.showOverview$;
+  showPresentation$ = this.overviewStore.showPresentation$;
+  showLoader$ = this.overviewStore.showLoader$;
 
-  constructor(
-    private readonly breakpointObserver: BreakpointObserver,
-  ) {}
+  presentation$ = this.overviewStore.presentation$;
+  result$ = this.overviewStore.result$;
+
+  constructor(private readonly overviewStore: OverviewStore) {}
 }

@@ -1,8 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { ComponentStore, OnStoreInit } from '@ngrx/component-store';
-import { catchError, EMPTY, Observable, switchMap, tap } from 'rxjs';
+import { ComponentStore, OnStoreInit, tapResponse } from '@ngrx/component-store';
+import { Observable, repeat, switchMap, tap } from 'rxjs';
 import { AppStore } from 'src/app/app.store';
 import { UsersHttpService } from 'src/clients/dz-dialect-identity-api';
 
@@ -50,16 +51,17 @@ export class ProfileEditNameStore
   saveChanges = this.effect((save$: Observable<string>) => {
     return save$.pipe(
       switchMap((name) => this.usersHttpService.updateName({ name })),
-      tap((user) => {
-        this.appStore.initStore();
-        this.patchState(() => ({ name: user.name }));
-        this.snackBar.open('Nom modifié', 'OK', { duration: 2000 });
-        this.router.navigate(['/settings/profile']);
-      }),
-      catchError((error) => {
-        this.snackBar.open(error.error.message, 'OK', { duration: 2000 });
-        return EMPTY;
-      }),
+      tapResponse(
+        (user) => {
+          this.appStore.initStore();
+          this.patchState(() => ({ name: user.name }));
+          this.snackBar.open('Nom modifié', 'OK', { duration: 2000 });
+          this.router.navigate(['/settings/profile']);
+        },
+        ({ error }: HttpErrorResponse) =>
+          this.snackBar.open(error.message, 'OK', { duration: 2000 }),
+      ),
+      repeat(),
     );
   });
 }

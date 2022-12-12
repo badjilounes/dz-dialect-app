@@ -1,4 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -31,7 +32,12 @@ export class SignInPage {
     private readonly userAppStore: AppStore,
     private readonly snackBar: MatSnackBar,
     private readonly router: Router,
+    private readonly location: Location,
   ) {}
+
+  back(): void {
+    this.location.back();
+  }
 
   createUser(credentials: AuthSignUpDto): void {
     this.authenticationHttpService

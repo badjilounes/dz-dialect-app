@@ -1,0 +1,25 @@
+<ng-container *ngrxLet="isHandset$; let handset">
+  <div class="bottom-sheet-container validate" [ngClass]="{ handset }">
+    <button
+      mat-stroked-button
+      color="accent"
+      class="skip-button"
+      (click)="validate()"
+      *ngrxLet="loading$; let isLoading"
+    >
+      <span *ngIf="!isLoading">{{ 'bottom-sheet.validate.skip-button' | translate }}</span>
+      <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
+    </button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="validate-button"
+      (click)="validate()"
+      *ngrxLet="loading$; let isLoading"
+    >
+      <span *ngIf="!isLoading">{{ 'bottom-sheet.validate.validate-button' | translate }}</span>
+      <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
+    </button>
+  </div>
+</ng-container>

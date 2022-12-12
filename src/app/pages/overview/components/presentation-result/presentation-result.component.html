@@ -1,0 +1,37 @@
+<div
+  class="presentation-result-container"
+  *ngrxLet="isHandset$; let handset"
+  [ngClass]="{ handset }"
+>
+  <div class="presentation-result-content">
+    <div class="presentation-result-description">
+      <h1>
+        <span>{{ 'training.result.description.prefix' | translate }}</span>
+        <span
+          class="presentation-result-score"
+          [ngClass]="{ error: result.note < result.total / 2 }"
+        >
+          {{ result.note }} / {{ result.total }}</span
+        >
+        <span>{{ 'training.result.description.suffix' | translate }}</span>
+      </h1>
+
+      <ng-container *ngrxLet="loading$; let isLoading">
+        <button
+          mat-raised-button
+          class="restart-training-button"
+          color="accent"
+          (click)="restartTraining()"
+          *ngrxLet="loading$; let isLoading"
+        >
+          <span *ngIf="!isLoading">{{ 'training.result.restart-button' | translate }}</span>
+          <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
+        </button>
+
+        <button mat-button class="skip-training-button" (click)="skipTraining()">
+          <span>{{ 'training.result.skip-presentation-button' | translate }}</span>
+        </button>
+      </ng-container>
+    </div>
+  </div>
+</div>

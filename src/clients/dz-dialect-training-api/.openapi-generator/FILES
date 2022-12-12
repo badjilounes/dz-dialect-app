@@ -22,4 +22,5 @@ model/should-show-presentation-response-dto.ts
 model/training-category-enum.ts
 model/validate-dto.ts
 model/validate-response-dto.ts
+param.ts
 variables.ts

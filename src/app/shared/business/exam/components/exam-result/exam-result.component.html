@@ -1,0 +1,7 @@
+<div class="error-container">
+  <h3>{{ 'bottom-sheet.success.' + result.valid + '.title' | translate }}</h3>
+  <p>{{ result.answer | capitalize }}</p>
+  <button mat-raised-button (click)="nextStep()">
+    {{ 'bottom-sheet.next-button' | translate }}
+  </button>
+</div>

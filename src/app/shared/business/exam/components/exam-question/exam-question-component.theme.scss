@@ -1,0 +1,13 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin exam-question-theme($theme) {
+  $foreground: map-get($theme, foreground);
+
+  app-exam-question .question-container {
+    .mat-standard-chip{
+      border-color: mat.get-color-from-palette($foreground, divider);
+      box-shadow: 0 2px 0 mat.get-color-from-palette($foreground, divider);
+    }
+  }
+}

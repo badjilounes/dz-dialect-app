@@ -1,17 +1,20 @@
-<div class="overview-container" *ngrxLet="isHandset$; let handset" [ngClass]="{ handset }">
-  <div class="overview-content">
-    <img src="assets/svg/flag-algeria.svg" class="flag" />
-    <div class="overview-description">
-      <h1>{{ 'overview.description' | translate }}</h1>
-      <div class="overview-actions-container">
-        <button mat-raised-button class="start-presentation-button" color="accent" [routerLink]="['/presentation']">
-          <span>{{ 'overview.start-button' | translate }}</span>
-        </button>
+<ng-container *ngIf="showOverview$ | async">
+  <app-overview></app-overview>
+</ng-container>
 
-        <button mat-stroked-button class="already-have-account-button" [routerLink]="['/sign-in']">
-          <span>{{ 'overview.already-have-account' | translate }}</span>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+<ng-container *ngIf="showPresentation$ | async">
+  <ng-container *ngrxLet="presentation$; let presentation">
+    <app-presentation [presentation]="presentation"></app-presentation>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf="showResult$ | async">
+  <app-presentation-result
+    *ngrxLet="result$; let result"
+    [result]="result"
+  ></app-presentation-result>
+</ng-container>
+
+<ng-container *ngIf="showLoader$ | async">
+  <mat-spinner [diameter]="80"></mat-spinner>
+</ng-container>

@@ -51,10 +51,11 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog,
 @import "app/core/layout/components/training-toolbar-top/training-toolbar-top-component.theme.scss";
 
 /* business components */
-@import "app/shared/business/translation-training/components/translation-training-question/translation-training-question-component.theme.scss";
-@import "app/shared/business/translation-training/components/translation-training-response/translation-training-response-component.theme.scss";
+@import "app/shared/business/exam/components/exam-question/exam-question-component.theme.scss";
+@import "app/shared/business/exam/components/exam-response/exam-response-component.theme.scss";
 @import "app/shared/business/translation-bloc/translation-content/translation-content-component.theme.scss";
 @import "app/shared/business/translation-bloc/translation-bloc-component.theme.scss";
+@import "app/shared/business/exam/components/exam-actions/exam-actions-component.theme.scss";
 
 /* design system */
 @import "app/shared/design-system/card/card-component.theme.scss";
@@ -62,24 +63,23 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog,
 @import "app/shared/design-system/sidenav/sidenav-component.theme.scss";
 
 /* pages */
-@import "app/pages/training-presentation/components/training-presentation-overview/training-presentation-overview-component.theme.scss";
-@import "app/pages/training-presentation/components/training-presentation-result/training-presentation-result-component.theme.scss";
 @import "app/pages/learn/pages/keyword/keyword-page.theme.scss";
 @import "app/pages/learn/pages/random/random-page.theme.scss";
 @import "app/pages/sign-in/sign-in-page.theme.scss";
 @import "app/pages/settings/pages/profile/components/profile-picture-upload-dialog/profile-picture-upload-dialog-component.theme.scss";
 @import "app/pages/settings/settings-page.theme.scss";
-@import "app/pages/overview/overview-page.theme.scss";
+@import "app/pages/overview/components/overview/overview-component.theme.scss";
+@import "app/pages/overview/components/presentation-result/presentation-result-component.theme.scss";
 
 /* material theme */
 @include bottom-sheet-theme($dz-dialect-app-theme);
 
 /* component theme */
 @include app-layout-theme($dz-dialect-app-theme);
-@include training-presentation-overview-theme($dz-dialect-app-theme);
-@include training-presentation-result-theme($dz-dialect-app-theme);
-@include translation-training-question-theme($dz-dialect-app-theme);
-@include translation-training-response-theme($dz-dialect-app-theme);
+@include exam-question-theme($dz-dialect-app-theme);
+@include exam-response-theme($dz-dialect-app-theme);
+@include exam-actions-component-theme($dz-dialect-app-theme);
+@include presentation-result-theme($dz-dialect-app-theme);
 @include keyword-theme($dz-dialect-app-theme);
 @include random-theme($dz-dialect-app-theme);
 @include translation-content-theme($dz-dialect-app-theme);
@@ -91,7 +91,7 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog,
 @include profile-page-theme($dz-dialect-app-theme);
 @include sidenav-theme($dz-dialect-app-theme);
 @include translation-bloc-theme($dz-dialect-app-theme);
-@include overview-page-theme($dz-dialect-app-theme);
+@include overview-component-theme($dz-dialect-app-theme);
 
 .darkMode {
   // Include theme styles for core and each component used in your app.
@@ -116,10 +116,10 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog,
 
   /* component theme */
   @include app-layout-theme($dz-dialect-dark-app-theme);
-  @include training-presentation-overview-theme($dz-dialect-dark-app-theme);
-  @include training-presentation-result-theme($dz-dialect-dark-app-theme);
-  @include translation-training-question-theme($dz-dialect-dark-app-theme);
-  @include translation-training-response-theme($dz-dialect-dark-app-theme);
+  @include exam-question-theme($dz-dialect-dark-app-theme);
+  @include exam-response-theme($dz-dialect-dark-app-theme);
+  @include exam-actions-component-theme($dz-dialect-dark-app-theme);
+  @include presentation-result-theme($dz-dialect-dark-app-theme);
   @include keyword-theme($dz-dialect-dark-app-theme);
   @include random-theme($dz-dialect-dark-app-theme);
   @include translation-content-theme($dz-dialect-dark-app-theme);
@@ -131,7 +131,7 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog,
   @include app-tabs-theme($dz-dialect-dark-app-theme);
   @include sidenav-theme($dz-dialect-dark-app-theme);
   @include translation-bloc-theme($dz-dialect-dark-app-theme);
-  @include overview-page-theme($dz-dialect-dark-app-theme);
+  @include overview-component-theme($dz-dialect-dark-app-theme);
 }
 
 html,

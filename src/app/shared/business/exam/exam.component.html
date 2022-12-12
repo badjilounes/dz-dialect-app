@@ -1,1 +1,10 @@
-<p>exam works!</p>
+<div class="exam-container" *ngrxLet="isHandset$; let handset" [ngClass]="{ handset }">
+  <app-exam-progress
+    [cancelOption]="skipOption"
+    [cancelOptionTooltip]="'training.training-presentation.skip-tooltip' | translate"
+  ></app-exam-progress>
+  <app-exam-question></app-exam-question>
+  <app-exam-response></app-exam-response>
+  <mat-divider></mat-divider>
+  <app-exam-actions></app-exam-actions>
+</div>

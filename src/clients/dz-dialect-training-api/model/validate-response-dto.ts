@@ -14,6 +14,6 @@
 export interface ValidateResponseDto { 
     valid: boolean;
     response: string;
-    answer: Array<string>;
+    answer: string;
 }
 

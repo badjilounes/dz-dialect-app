@@ -1,0 +1,36 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin presentation-result-theme($theme) {
+  $color-config:    mat.get-color-config($theme);
+  $is-dark-theme:   map.get($color-config, 'is-dark');
+
+  $primary: map.get($theme, primary);
+  $warn: map.get($theme, warn);
+
+  app-presentation-result .presentation-result-container {
+    @if $is-dark-theme == false {
+      background-color: mat.get-color-from-palette($primary, 100);
+    }
+
+    @if $is-dark-theme == true {
+      background-color: inherit;
+    }
+
+    .flag {
+      border-color: mat.get-color-from-palette($primary, 50);
+    }
+
+    .mat-progress-spinner circle, .mat-spinner circle {
+      stroke: mat.get-color-from-palette($primary, 50);
+    }
+
+    .presentation-result-score.error {
+      color: mat.get-color-from-palette($warn, 600);
+    }
+
+    .presentation-result-score.success {
+      color: mat.get-color-from-palette($warn, 600);
+    }
+  }
+}
