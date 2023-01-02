@@ -9,13 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TrainingCategoryEnum } from './training-category-enum';
-import { GetTrainingExamResponseDto } from './get-training-exam-response-dto';
+import { CreateTrainingExamDto } from './create-training-exam-dto';
 
 
-export interface GetTrainingResponseDto { 
-    id: string;
-    category: TrainingCategoryEnum;
-    exam: GetTrainingExamResponseDto;
+export interface CreateTrainingDto { 
+    chapterId: string;
+    exams: Array<CreateTrainingExamDto>;
 }
 

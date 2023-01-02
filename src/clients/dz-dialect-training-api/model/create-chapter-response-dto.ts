@@ -11,8 +11,10 @@
  */
 
 
-export interface GetTrainingResultResponseDto { 
-    note: number;
-    total: number;
+export interface CreateChapterResponseDto { 
+    id: string;
+    name: string;
+    description: string;
+    isPresentation: boolean;
 }
 

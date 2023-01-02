@@ -9,9 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { CreateTrainingExamQuestionDto } from './create-training-exam-question-dto';
 
 
-export interface ShouldShowPresentationResponseDto { 
-    showPresentation: boolean;
+export interface CreateTrainingExamDto { 
+    name: string;
+    questions: Array<CreateTrainingExamQuestionDto>;
 }
 

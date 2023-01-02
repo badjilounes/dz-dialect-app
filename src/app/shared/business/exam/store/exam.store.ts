@@ -3,30 +3,28 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ComponentStore } from '@ngrx/component-store';
 import { map, Observable, switchMap, tap } from 'rxjs';
 import {
-  GetTrainingExamQuestionResponseDto,
-  GetTrainingExamResponseDto,
+  GetExamQuestionResponseDto,
+  GetExamResponseDto,
   StudentHttpService,
-  ValidateResponseDto,
+  ValidateExamResponseResponseDto,
 } from '../../../../../clients/dz-dialect-training-api';
 import { GuestIdService } from '../../../../core/guest/guest-id.service';
 import { ExamResultComponent } from '../components/exam-result/exam-result.component';
 
 type ExamState = {
   trainingId: string;
-  exam: GetTrainingExamResponseDto;
+  exam: GetExamResponseDto;
   propositions: string[];
-  question: GetTrainingExamQuestionResponseDto;
+  question: GetExamQuestionResponseDto;
   response: string[];
   isLoading: boolean;
 };
 
 @Injectable()
 export class ExamStore extends ComponentStore<ExamState> {
-  readonly exam$: Observable<GetTrainingExamResponseDto | undefined> = this.select(
-    (state) => state.exam,
-  );
+  readonly exam$: Observable<GetExamResponseDto | undefined> = this.select((state) => state.exam);
   readonly propositions$: Observable<string[]> = this.select((state) => state.propositions);
-  readonly question$: Observable<GetTrainingExamQuestionResponseDto | undefined> = this.select(
+  readonly question$: Observable<GetExamQuestionResponseDto | undefined> = this.select(
     (state) => state.question,
   );
   readonly response$: Observable<string[]> = this.select((state) => state.response);
@@ -78,7 +76,7 @@ export class ExamStore extends ComponentStore<ExamState> {
     return save$.pipe(
       tap(() => this.patchState({ isLoading: true })),
       switchMap(() =>
-        this.studentHttpService.validatePresentation(
+        this.studentHttpService.validateExamResponse(
           {
             trainingId: this.get().trainingId,
             examId: this.get().exam.id,
@@ -88,7 +86,9 @@ export class ExamStore extends ComponentStore<ExamState> {
           this.guestIdService.guestId,
         ),
       ),
-      tap(({ answer, valid }: ValidateResponseDto) => this.showQuestionResult({ answer, valid })),
+      tap(({ answer, valid }: ValidateExamResponseResponseDto) =>
+        this.showQuestionResult({ answer, valid }),
+      ),
       tap(() => this.patchState({ isLoading: false })),
     );
   });

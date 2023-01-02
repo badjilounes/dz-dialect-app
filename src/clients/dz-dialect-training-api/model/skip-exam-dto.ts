@@ -11,10 +11,7 @@
  */
 
 
-export interface ValidateDto { 
-    trainingId: string;
+export interface SkipExamDto { 
     examId: string;
-    questionId: string;
-    response: Array<string>;
 }
 

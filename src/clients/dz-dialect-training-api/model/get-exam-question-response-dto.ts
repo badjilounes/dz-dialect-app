@@ -9,12 +9,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { GetTrainingExamQuestionResponseDto } from './get-training-exam-question-response-dto';
+import { QuestionTypeEnum } from './question-type-enum';
 
 
-export interface GetTrainingExamResponseDto { 
+export interface GetExamQuestionResponseDto { 
     id: string;
-    name: string;
-    questions: Array<GetTrainingExamQuestionResponseDto>;
+    type: QuestionTypeEnum;
+    question: string;
+    order: number;
+    propositions: Array<string>;
 }
 

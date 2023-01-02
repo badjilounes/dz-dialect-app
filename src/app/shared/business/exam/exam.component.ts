@@ -12,10 +12,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { LetModule } from '@ngrx/component';
 import { TranslateModule } from '@ngx-translate/core';
 import { map, Observable, shareReplay } from 'rxjs';
-import {
-  GetTrainingExamResponseDto,
-  GetTrainingResponseDto,
-} from 'src/clients/dz-dialect-training-api';
+import { GetExamResponseDto } from 'src/clients/dz-dialect-training-api';
 import { ExamActionsComponent } from './components/exam-actions/exam-actions.component';
 import { ExamProgressComponent } from './components/exam-progress/exam-progress.component';
 import { ExamQuestionComponent } from './components/exam-question/exam-question.component';
@@ -41,8 +38,7 @@ import { ExamStore } from './store/exam.store';
   providers: [ExamStore],
 })
 export class ExamComponent implements OnInit {
-  @Input() training!: GetTrainingResponseDto;
-  @Input() exam!: GetTrainingExamResponseDto;
+  @Input() exam!: GetExamResponseDto;
   @Input() skipOption = false;
 
   @Output() completed: EventEmitter<void> = new EventEmitter<void>();
@@ -63,7 +59,7 @@ export class ExamComponent implements OnInit {
 
   ngOnInit(): void {
     this.examStore.setState({
-      trainingId: this.training.id,
+      trainingId: this.exam.trainingId,
       exam: this.exam,
       propositions: this.exam.questions[0].propositions,
       question: this.exam.questions[0],

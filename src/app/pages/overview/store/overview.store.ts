@@ -8,8 +8,8 @@ import { Observable, repeat, switchMap, tap } from 'rxjs';
 import { GuestIdService } from 'src/app/core/guest/guest-id.service';
 import { filterUndefined } from 'src/app/shared/technical/operators/filter-undefined.operator';
 import {
-  GetTrainingResponseDto,
-  GetTrainingResultResponseDto,
+  GetExamResponseDto,
+  GetExamResultResponseDto,
   StudentHttpService,
 } from 'src/clients/dz-dialect-training-api';
 import { OverviewDisplay } from '../overview-display';
@@ -17,8 +17,8 @@ import { OverviewDisplay } from '../overview-display';
 type OverviewState = {
   display: OverviewDisplay;
   isLoading: boolean;
-  presentation?: GetTrainingResponseDto;
-  result?: GetTrainingResultResponseDto;
+  presentation?: GetExamResponseDto;
+  result?: GetExamResultResponseDto;
 };
 
 @UntilDestroy()
@@ -39,11 +39,11 @@ export class OverviewStore extends ComponentStore<OverviewState> {
     (state) => state.display === OverviewDisplay.LOADER,
   );
 
-  readonly presentation$: Observable<GetTrainingResponseDto> = this.select(
+  readonly presentation$: Observable<GetExamResponseDto> = this.select(
     (state) => state.presentation,
   ).pipe(filterUndefined());
 
-  readonly result$: Observable<GetTrainingResultResponseDto> = this.select(
+  readonly result$: Observable<GetExamResultResponseDto> = this.select(
     (state) => state.result,
   ).pipe(filterUndefined());
 
@@ -58,12 +58,14 @@ export class OverviewStore extends ComponentStore<OverviewState> {
       isLoading: false,
     });
   }
-  readonly getResults = this.effect((save$: Observable<void>) => {
-    return save$.pipe(
+  readonly getResults = this.effect((examId$: Observable<string>) => {
+    return examId$.pipe(
       tap(() => this.patchState(() => ({ isLoading: true, display: OverviewDisplay.LOADER }))),
-      switchMap(() => this.studentHttpService.getPresentationResult(this.guestIdService.guestId)),
+      switchMap((examId) =>
+        this.studentHttpService.getExamResult(examId, this.guestIdService.guestId),
+      ),
       tapResponse(
-        (result: GetTrainingResultResponseDto) => {
+        (result: GetExamResultResponseDto) => {
           this.patchState(() => ({
             display: OverviewDisplay.RESULT,
             isLoading: false,
@@ -84,7 +86,7 @@ export class OverviewStore extends ComponentStore<OverviewState> {
       tap(() => this.patchState(() => ({ isLoading: true }))),
       switchMap(() => this.studentHttpService.startPresentation(this.guestIdService.guestId)),
       tapResponse(
-        (presentation: GetTrainingResponseDto) => {
+        (presentation: GetExamResponseDto) => {
           this.patchState(() => ({
             display: OverviewDisplay.PRESENTATION,
             presentation,
@@ -100,10 +102,12 @@ export class OverviewStore extends ComponentStore<OverviewState> {
     );
   });
 
-  readonly skipPresentation = this.effect((save$: Observable<void>) => {
-    return save$.pipe(
+  readonly skipPresentation = this.effect((presentationExamId$: Observable<string>) => {
+    return presentationExamId$.pipe(
       tap(() => this.patchState(() => ({ isLoading: true }))),
-      switchMap(() => this.studentHttpService.skipPresentation(this.guestIdService.guestId)),
+      switchMap((examId) =>
+        this.studentHttpService.skipExam({ examId }, this.guestIdService.guestId),
+      ),
       tapResponse(
         () => this.router.navigate(['/train']),
         ({ error }: HttpErrorResponse) => {
