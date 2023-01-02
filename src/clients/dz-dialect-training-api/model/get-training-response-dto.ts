@@ -9,12 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { GetExamResponseDto } from './get-exam-response-dto';
 
 
-export interface CreateChapterDto { 
-    name: string;
-    description: string;
-    isPresentation: boolean;
-    order: number;
+export interface GetTrainingResponseDto { 
+    id: string;
+    exam: GetExamResponseDto;
 }
 

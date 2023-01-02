@@ -16,5 +16,6 @@ export interface CreateChapterResponseDto {
     name: string;
     description: string;
     isPresentation: boolean;
+    order: number;
 }
 

@@ -20,6 +20,9 @@ model/create-training-response-dto.ts
 model/get-exam-question-response-dto.ts
 model/get-exam-response-dto.ts
 model/get-exam-result-response-dto.ts
+model/get-training-chapter-list-chapter-response-dto.ts
+model/get-training-chapter-list-response-dto.ts
+model/get-training-response-dto.ts
 model/models.ts
 model/question-type-enum.ts
 model/skip-exam-dto.ts

@@ -11,10 +11,9 @@
  */
 
 
-export interface CreateChapterDto { 
+export interface GetTrainingChapterListChapterResponseDto { 
+    id: string;
     name: string;
     description: string;
-    isPresentation: boolean;
-    order: number;
 }
 
