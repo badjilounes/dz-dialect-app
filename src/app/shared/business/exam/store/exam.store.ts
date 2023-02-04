@@ -2,14 +2,15 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ComponentStore } from '@ngrx/component-store';
 import { map, Observable, switchMap, tap } from 'rxjs';
-import {
-  GetExamQuestionResponseDto,
-  GetExamResponseDto,
-  StudentHttpService,
-  ValidateExamResponseResponseDto,
-} from '../../../../../clients/dz-dialect-training-api';
+
 import { GuestIdService } from '../../../../core/guest/guest-id.service';
 import { ExamResultComponent } from '../components/exam-result/exam-result.component';
+import {GetExamResponseDto} from "../../../../../clients/dz-dialect-training-api/model/get-exam-response-dto";
+import {
+  GetExamQuestionResponseDto,
+  StudentHttpService,
+  ValidateExamResponseResponseDto
+} from "../../../../../clients/dz-dialect-training-api";
 
 type ExamState = {
   trainingId: string;

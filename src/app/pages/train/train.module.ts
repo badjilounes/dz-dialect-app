@@ -1,12 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
 
-import { LetModule } from '@ngrx/component';
-import { TrainRoutingModule } from './train-routing.module';
-import { TrainPage } from './train.page';
+import {LetModule} from '@ngrx/component';
+import {TrainRoutingModule} from './train-routing.module';
 
 @NgModule({
-  declarations: [TrainPage],
-  imports: [CommonModule, TrainRoutingModule, LetModule],
+    imports: [CommonModule, TrainRoutingModule, LetModule],
 })
 export class TrainModule {}
