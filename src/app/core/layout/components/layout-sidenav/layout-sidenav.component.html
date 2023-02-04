@@ -1,0 +1,22 @@
+<mat-sidenav-container *ngrxLet="isDesktopLarge$; let isDesktopLarge">
+  <mat-sidenav mode="side" opened>
+    <mat-nav-list role="list">
+      <a
+        mat-list-item
+        role="listitem"
+        *ngFor="let item of links"
+        [routerLink]="[item.link]"
+        routerLinkActive="link-active"
+        #rla="routerLinkActive"
+      >
+        <mat-icon [svgIcon]="item.icon"></mat-icon>
+        <span class="item-label" *ngIf="isDesktopLarge">{{
+          'training.training-toolbar-links.' + item.label | translate | uppercase
+        }}</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

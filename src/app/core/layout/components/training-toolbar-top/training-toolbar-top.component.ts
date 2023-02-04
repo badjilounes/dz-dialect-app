@@ -35,10 +35,11 @@ import { ThemeModeToggleComponent } from 'src/app/shared/technical/theme-mode-to
     MatMenuModule,
     MatDividerModule,
     BehaviorModule,
+    MatDividerModule,
   ],
 })
 export class TrainingToolbarTopComponent {
-  isMobile$: Observable<boolean> = this.appStore.isMobileOrTablet$;
+  isMobile$: Observable<boolean> = this.appStore.isHandset$;
 
   userImage$: Observable<string | undefined> = this.appStore.user$.pipe(
     map((user) => user?.imageUrl || '/assets/images/unknown-user.png'),

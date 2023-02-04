@@ -1,6 +1,10 @@
 :host {
   display: grid;
   grid-template-rows: 1px auto;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 
   .mat-tab-nav-bar ::ng-deep {
     border-bottom: none;
@@ -8,11 +12,15 @@
     .mat-tab-links {
       height: 100%;
       justify-content: space-around;
+      align-items: center;
 
       .mat-tab-link {
-        height: 80px;
-        width: 80px;
+        height: 50px;
+        width: 50px;
         padding: 0;
+        min-width: 40px;
+        border-radius: 8px;
+        padding: 4px;
       }
 
       .mat-icon {
@@ -22,8 +30,7 @@
     }
 
     .mat-ink-bar {
-      top: 0;
-      height: 4px;
+      display: none;
     }
   }
 }
@@ -36,5 +43,6 @@
 
 .mat-toolbar {
   height: 100%;
+  padding: 0 16px 4px 16px;
 }
 

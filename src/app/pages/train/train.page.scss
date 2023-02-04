@@ -1,52 +1,124 @@
-@import '../../../assets/styles/variables.scss' ;
-$font-family: "'Google Sans', Roboto, Arial, sans-serif";
+@import '../../../assets/styles/variables.scss';
 
-* {
-  font-family: $font-family;
-  font-weight: 600;
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 2rem;
 }
 
 .section {
-  color : #fff;
-  margin: 6em 1em 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:2rem;
+}
+
+
+.section-card {
+  display:grid;
+  grid-template-columns: auto min-content;
+  color: #fff;
   background-color: $duolingo-color;
-  border-radius: 2em;
-  padding: 2em;
+  border-radius: 0.8rem;
+  max-width: 590px;
+  width: 100%;
+  padding: 22px 16px;
 }
- .button-start {
-    display: flex;
-    justify-content: center;
-    align-items: center;
- }
- .margin-top {
-  margin-top: 5em;
- }
- .margin-button {
-  margin-bottom: 5em;
- }
+.guide-button{
+  display:flex;
+  grid-row: span 2 / span 2;
+  align-items: center;
+  justify-content: center;
+}
 
- #green-circle {
-    background: $duolingo-color;
-    border-radius: 50%;
-    width: 6em;
-    height: 6em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0px 0.5em 0 0 $duolingo-shadow-color;
-    &:active {
-      box-shadow: 0px 0.2em 0 0 $duolingo-shadow-color;
-      transform: translate(0em, 0.3em)
+.title-container{
+  display:flex;
+  flex-direction: column;
+
+  .title{
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.36;
+    margin: 0;
+  }
+  .description{
+    font-size: 19px;
+    line-height: 1.4;
+    margin:0;
   }
 }
 
-@media (min-width: 1025px) {
-  .lateral-margin {
-    margin: 0 20em;
-  }
+.button-start {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 
+.green-circle {
+  background: $duolingo-color;
+  border-radius: 50%;
+  width: 6em;
+  height: 6em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0.5em 0 0 $duolingo-shadow-color;
+  cursor: pointer;
 
+  &:active {
+    box-shadow: 0px 0.2em 0 0 $duolingo-shadow-color;
+    transform: translate(0em, 0.3em)
+  }
+}
+.step-title {
+  animation: moveUpDown 1s ease-in-out infinite;
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  border: 2px solid #e5e5e5;
+  display: inline-block;
+  padding: 10px 20px;
+  position: relative;
+  color: var(--path-unit-background-color);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
 
+.step-title p {
+  margin: 0;
+  text-align: center;
+}
 
+.step-title:before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-bottom: 10px solid #FFFFFF;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  position: absolute;
+  bottom: -10px;
+  left: calc(50% - 10px);
+  transform: rotate(180deg);
+  border-bottom: 10px solid #e5e5e5;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

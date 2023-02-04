@@ -1,0 +1,36 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin app-layout-sidenav-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  $color-config: mat.get-color-config($theme);
+  $foreground: map-get($color-config, foreground);
+  $is-dark-theme:   map.get($color-config, 'is-dark');
+
+  app-layout-sidenav {
+    .mat-nav-list .mat-list-item  {
+      .item-label {
+        color: mat.get-color-from-palette($foreground, text);
+      }
+
+      &.link-active {
+        @if $is-dark-theme == false {
+          background-color: mat.get-color-from-palette($primary, 50);
+          opacity: 1;
+        }
+  
+        @if $is-dark-theme == true {
+          background-color: transparent;
+          opacity: 0.6;
+        }
+
+        border: 2px solid mat.get-color-from-palette($primary, 500);
+    
+        .item-label {
+          color: mat.get-color-from-palette($primary, 500);
+        }
+      }
+    }
+  }
+}

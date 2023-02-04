@@ -49,6 +49,8 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog,
 /* core components */
 @import "app/core/layout/app-layout-component.theme.scss";
 @import "app/core/layout/components/training-toolbar-top/training-toolbar-top-component.theme.scss";
+@import "app/core/layout/components/layout-sidenav/layout-sidenav-component.theme.scss";
+@import "app/core/layout/components/training-toolbar-bottom/training-toolbar-bottom-component.theme.scss";
 
 /* business components */
 @import "app/shared/business/exam/components/exam-question/exam-question-component.theme.scss";
@@ -76,6 +78,8 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog,
 
 /* component theme */
 @include app-layout-theme($dz-dialect-app-theme);
+@include app-layout-sidenav-theme($dz-dialect-app-theme);
+@include training-toolbar-bottom-theme($dz-dialect-app-theme);
 @include exam-question-theme($dz-dialect-app-theme);
 @include exam-response-theme($dz-dialect-app-theme);
 @include exam-actions-component-theme($dz-dialect-app-theme);
@@ -116,6 +120,8 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog,
 
   /* component theme */
   @include app-layout-theme($dz-dialect-dark-app-theme);
+  @include app-layout-sidenav-theme($dz-dialect-dark-app-theme);
+  @include training-toolbar-bottom-theme($dz-dialect-dark-app-theme);
   @include exam-question-theme($dz-dialect-dark-app-theme);
   @include exam-response-theme($dz-dialect-dark-app-theme);
   @include exam-actions-component-theme($dz-dialect-dark-app-theme);

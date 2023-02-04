@@ -4,9 +4,7 @@
   width: 100%;
   left: 0;
   top: 0;
-
-  display: grid;
-  grid-template-rows: min-content auto min-content;
+  display: flex;
 }
 
 app-training-toolbar-bottom {
@@ -19,7 +17,5 @@ app-training-toolbar-bottom {
   position: relative;
   display: grid;
   grid-template-rows: 0 auto;
+  padding: 70px 0 88px 0;
 }
-
-
-

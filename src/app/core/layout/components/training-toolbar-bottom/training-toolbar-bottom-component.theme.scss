@@ -1,0 +1,31 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin training-toolbar-bottom-theme($theme) {
+  $primary: map-get($theme, primary);
+  $color-config:    mat.get-color-config($theme);
+  $is-dark-theme:   map.get($color-config, 'is-dark');
+
+  app-training-toolbar-bottom {
+    .mat-tab-nav-bar .mat-tab-link {
+
+      &.active  {
+        @if $is-dark-theme == false {
+          background-color: mat.get-color-from-palette($primary, 50);
+        }
+
+        @if $is-dark-theme == true {
+          background-color: transparent;
+        }
+
+        border: 2px solid mat.get-color-from-palette($primary, 500);
+        opacity: 1;
+      }
+
+      &:not(.active) {
+        border: 2px solid transparent;       
+      }
+    }
+     
+  }
+}

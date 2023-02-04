@@ -39,8 +39,8 @@ export class AppStore extends ComponentStore<UserAppStoreState> {
       shareReplay(),
     );
 
-  readonly isMobileOrTablet$: Observable<boolean> = this.breakpointObserver
-    .observe('(max-width: 1023px)')
+  readonly isDesktopLarge$: Observable<boolean> = this.breakpointObserver
+    .observe('(min-width: 1160px)')
     .pipe(
       map((result) => result.matches),
       shareReplay(),

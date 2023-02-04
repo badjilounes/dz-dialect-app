@@ -33,19 +33,30 @@
 }
 
 .mat-drawer-side {
-  width: 280px;
+  width: 250px;
   border: none;
+  position: fixed;
+  top: 70px;
+}
+
+.mat-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 4px;
+  padding-top: 24px;
 }
 
 .mat-list-item {
+  height: 56px;
   border-radius: 0 50px 50px 0;
-  padding: 10px 16px 10px 24px;
+  border: 2px solid transparent;
 
   .mat-icon {
     padding-right: 16px;
   }
 
-  .item-label {
+  .label {
     font-size: 0.875rem;
     font-weight: 400;
     letter-spacing: 0.00714286em;
@@ -54,7 +65,7 @@
     word-break: break-word;
     word-wrap: break-word;
     flex: 1 1 0;
-  }
+  } 
 }
 
 .toolbar-shadow-container {

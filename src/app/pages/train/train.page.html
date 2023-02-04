@@ -1,18 +1,28 @@
-<span *ngFor="let section of sectionList">
-  <div class="section lateral-margin">
-    <h1>Section {{section.number}}</h1>
-    <p>{{section.description}}</p>
-  </div>
+<ng-container *ngrxLet="section$;let sections">
+  <div *ngFor="let section of sections" class="section">
+    <div class="section-card">
+      <div class="title-container">
+        <h1 class="title">{{section.chapter.name}}</h1>
+        <p class="description">{{section.chapter.description}}</p>
+      </div>
+      <div class="guide-button">
+        <button mat-stroked-button>
+          <mat-icon>library_books</mat-icon>
+          Guide
+        </button>
+      </div>
+    </div>
 
-  <div class="button-start margin-top">
-    <p>COMMENCER !</p>
-  </div>
-  <div class="button-start margin-button">
-    <div id="green-circle">
-      <img
-        draggable="false"
-        src="https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/5e4203031e39fc43d94371565fd0d369.svg"
-      />
+    <div class="button-start margin-button">
+      <div class="step-title">
+        <p>COMMENCER !</p>
+      </div>
+      <div class="green-circle">
+        <img
+          draggable="false"
+          src="https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/5e4203031e39fc43d94371565fd0d369.svg"
+        />
+      </div>
     </div>
   </div>
-</span>
+</ng-container>

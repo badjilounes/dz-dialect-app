@@ -8,6 +8,7 @@ import { LetModule } from '@ngrx/component';
 import { filter, Observable, tap } from 'rxjs';
 import { AppStore } from 'src/app/app.store';
 import { BuyMeACoffeeService } from 'src/app/core/buy-me-a-coffee/buy-me-a-coffee.service';
+import { LayoutSidenavComponent } from 'src/app/core/layout/components/layout-sidenav/layout-sidenav.component';
 import { ThemeService } from 'src/app/core/theme/theme.service';
 import { TrainingToolbarBottomComponent } from './components/training-toolbar-bottom/training-toolbar-bottom.component';
 import { TrainingToolbarTopComponent } from './components/training-toolbar-top/training-toolbar-top.component';
@@ -24,32 +25,43 @@ import { TrainingToolbarTopComponent } from './components/training-toolbar-top/t
     LetModule,
     RouterModule,
     CommonModule,
+    LayoutSidenavComponent,
   ],
 })
 @UntilDestroy()
 export class AppLayoutComponent implements OnInit, OnDestroy {
-  links = [
+  tabs = [
     {
-      activeImage: 'train-active',
-      image: 'train',
+      image: 'train-active',
       link: '/train',
       label: 'train',
     },
     {
-      activeImage: 'learn-active',
-      image: 'learn',
+      image: 'learn-active',
       link: '/learn',
       label: 'learn',
     },
     {
-      activeImage: 'sign-in-active',
-      image: 'sign-in',
+      image: 'sign-in-active',
       link: '/settings',
       label: 'settings',
     },
   ];
 
-  isMobile$: Observable<boolean> = this.appStore.isMobileOrTablet$;
+  sidenav = [
+    {
+      link: '/train',
+      label: 'train',
+      icon: 'train-active',
+    },
+    {
+      link: '/learn',
+      label: 'learn',
+      icon: 'learn-active',
+    },
+  ];
+
+  isMobile$: Observable<boolean> = this.appStore.isHandset$;
 
   constructor(
     private readonly appStore: AppStore,
