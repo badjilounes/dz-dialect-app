@@ -11,10 +11,8 @@
  */
 
 
-export interface CreateChapterResponseDto { 
+export interface ReorderChapterDto { 
     id: string;
-    name: string;
-    description: string;
-    isPresentation: boolean;
+    order: number;
 }
 

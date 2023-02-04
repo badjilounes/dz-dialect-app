@@ -15,6 +15,5 @@ export interface CreateChapterDto {
     name: string;
     description: string;
     isPresentation: boolean;
-    order: number;
 }
 

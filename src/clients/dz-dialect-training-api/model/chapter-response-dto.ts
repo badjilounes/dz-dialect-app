@@ -11,10 +11,12 @@
  */
 
 
-export interface CreateChapterResponseDto { 
+export interface ChapterResponseDto { 
     id: string;
     name: string;
     description: string;
     isPresentation: boolean;
+    createdAt: string;
+    updatedAt: string;
 }
 

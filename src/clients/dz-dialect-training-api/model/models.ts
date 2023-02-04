@@ -1,3 +1,4 @@
+export * from './chapter-response-dto';
 export * from './create-chapter-dto';
 export * from './create-chapter-response-dto';
 export * from './create-training-dto';
@@ -12,7 +13,10 @@ export * from './get-exam-result-response-dto';
 export * from './get-training-chapter-list-chapter-response-dto';
 export * from './get-training-chapter-list-response-dto';
 export * from './get-training-response-dto';
+export * from './paginated-chapter-response-dto';
 export * from './question-type-enum';
+export * from './reorder-chapter-dto';
+export * from './reorder-chapters-dto';
 export * from './skip-exam-dto';
 export * from './start-exam-dto';
 export * from './training-category-enum';

@@ -16,6 +16,7 @@ export interface GetExamResponseDto {
     id: string;
     trainingId: string;
     name: string;
+    resume?: GetExamQuestionResponseDto;
     questions: Array<GetExamQuestionResponseDto>;
 }
 

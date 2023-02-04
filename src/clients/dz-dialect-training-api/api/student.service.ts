@@ -242,9 +242,9 @@ export class StudentHttpService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getTrainingChapterList(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GetTrainingChapterListResponseDto>;
-    public getTrainingChapterList(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GetTrainingChapterListResponseDto>>;
-    public getTrainingChapterList(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GetTrainingChapterListResponseDto>>;
+    public getTrainingChapterList(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<GetTrainingChapterListResponseDto>>;
+    public getTrainingChapterList(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<GetTrainingChapterListResponseDto>>>;
+    public getTrainingChapterList(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<GetTrainingChapterListResponseDto>>>;
     public getTrainingChapterList(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
 
         let localVarHeaders = this.defaultHeaders;
@@ -279,7 +279,7 @@ export class StudentHttpService {
         }
 
         let localVarPath = `/student/training/get-training-chapter-list`;
-        return this.httpClient.request<GetTrainingChapterListResponseDto>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<Array<GetTrainingChapterListResponseDto>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,

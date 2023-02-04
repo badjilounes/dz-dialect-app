@@ -9,6 +9,7 @@ configuration.ts
 encoder.ts
 git_push.sh
 index.ts
+model/chapter-response-dto.ts
 model/create-chapter-dto.ts
 model/create-chapter-response-dto.ts
 model/create-training-dto.ts
@@ -24,7 +25,10 @@ model/get-training-chapter-list-chapter-response-dto.ts
 model/get-training-chapter-list-response-dto.ts
 model/get-training-response-dto.ts
 model/models.ts
+model/paginated-chapter-response-dto.ts
 model/question-type-enum.ts
+model/reorder-chapter-dto.ts
+model/reorder-chapters-dto.ts
 model/skip-exam-dto.ts
 model/start-exam-dto.ts
 model/training-category-enum.ts
