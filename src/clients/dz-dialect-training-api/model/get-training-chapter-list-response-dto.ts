@@ -14,7 +14,7 @@ import { GetTrainingResponseDto } from './get-training-response-dto';
 
 
 export interface GetTrainingChapterListResponseDto { 
-    chapter: Array<GetTrainingChapterListChapterResponseDto>;
+    chapter: GetTrainingChapterListChapterResponseDto;
     trainingList: Array<GetTrainingResponseDto>;
 }
 
