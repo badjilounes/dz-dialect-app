@@ -1,8 +1,8 @@
 
-@mixin keyword-theme($theme) {
+@mixin learn-theme($theme) {
   $primary: map-get($theme, primary);
 
-  app-keyword .app-content {
+  app-learn .app-content {
     .mat-progress-spinner circle, .mat-spinner circle {
       stroke: mat.get-color-from-palette($primary, 50);
     }

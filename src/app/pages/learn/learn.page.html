@@ -1,1 +1,79 @@
-<app-sub-navigation [links]="links"></app-sub-navigation>
+<div class="app-content" [ngClass]="{ handset: isHandset$ | async }">
+  <app-card>
+    <span title>{{ 'learn.explanation.title' | translate }}</span>
+    <span subtitle>{{ 'learn.explanation.content' | translate }}</span>
+    <form content [formGroup]="formGroup" (ngSubmit)="generate()">
+      <div class="form-fields-container">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'learn.input.label' | translate }}</mat-label>
+          <input
+            type="text"
+            [placeholder]="'learn.input.placeholder' | translate"
+            aria-label="Verb"
+            matInput
+            formControlName="verbs"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of verbs$ | async" [value]="option">
+              {{ option | capitalize }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'learn.tense.label' | translate }}</mat-label>
+
+          <mat-select
+            formControlName="tense"
+            [placeholder]="'learn.tense.placeholder' | translate"
+            multiple
+          >
+            <mat-select-trigger>
+              {{formGroup.controls.tense.value?.[0] || ''}}
+              <span *ngIf="(formGroup.controls.tense.value?.length || 0) > 1">
+                (+{{(formGroup.controls.tense.value?.length || 0) - 1}}
+                {{formGroup.controls.tense.value?.length === 2 ? 'autre' : 'autres'}})
+              </span>
+            </mat-select-trigger>
+
+            <ng-container *ngrxLet="tenses$; let tenses">
+              <mat-option *ngFor="let tense of tenses" [value]="tense"> {{ tense }} </mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'learn.number.label' | translate }}</mat-label>
+          <input
+            type="number"
+            matInput
+            formControlName="number"
+            [placeholder]="'learn.number.placeholder' | translate"
+            min="0"
+            max="20"
+          />
+        </mat-form-field>
+      </div>
+
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="formGroup.invalid"
+        class="generate-button"
+        *ngrxLet="loading$; let isLoading"
+      >
+        <span *ngIf="!isLoading">{{ 'learn.generate-button' | translate }}</span>
+        <mat-spinner *ngIf="isLoading" [diameter]="20"></mat-spinner>
+      </button>
+    </form>
+  </app-card>
+
+  <div class="translations-container" *ngrxLet="sentences$; let sentences">
+    <app-translation-bloc
+      *ngFor="let sentence of sentences"
+      [sentence]="sentence"
+    ></app-translation-bloc>
+  </div>
+</div>

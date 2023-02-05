@@ -5,8 +5,11 @@
   $primary: map-get($theme, primary);
   $color-config:    mat.get-color-config($theme);
   $is-dark-theme:   map.get($color-config, 'is-dark');
+  $foreground: map-get($theme, foreground);
 
   app-training-toolbar-bottom {
+    border-top: 1px solid mat.get-color-from-palette($foreground, divider);
+    
     .mat-tab-nav-bar .mat-tab-link {
 
       &.active  {
@@ -15,7 +18,7 @@
         }
 
         @if $is-dark-theme == true {
-          background-color: transparent;
+          background-color: rgb(139 195 74 / 10%);
         }
 
         border: 2px solid mat.get-color-from-palette($primary, 500);

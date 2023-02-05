@@ -4,4 +4,63 @@
   grid-template-rows: 1fr;
   overflow: auto;
   height: 100%;
+
+  .generate-button ::ng-deep .mat-button-wrapper {
+    display: flex;
+    place-content: center;
+  }
+
+  .app-card ::ng-deep .mat-card-content [content] {
+    display: grid;
+    grid-template-rows: auto min-content;
+    padding: 0 24px 16px 24px;
+
+    .generate-button {
+      width: 82px;
+      height: 36px;
+      justify-self: flex-end;
+    }
+  }
+
+  .mat-form-field  ::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0.5rem;
+  }
 }
+
+.app-content:not(.handset) {
+  padding: 1.5rem;
+
+  .form-fields-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr min-content;
+    column-gap: 1rem;
+  }
+
+  .app-card {
+    margin-bottom: 1.5rem;
+  }
+
+  .translations-container {
+    display: grid;
+    gap: 1.5rem;
+  }  
+}
+  
+.app-content.handset {
+  padding: 1rem;
+
+  .form-fields-container{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .app-card {
+    margin-bottom: 1rem;
+  }
+
+  .translations-container {
+    display: grid;
+    gap: 1rem;
+  }  
+}
+

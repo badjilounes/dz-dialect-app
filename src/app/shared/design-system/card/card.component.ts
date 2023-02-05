@@ -10,6 +10,7 @@ import { AppStore } from 'src/app/app.store';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatCardModule, LetModule],
+  host: { class: 'app-card' },
 })
 export class CardComponent {
   isHandset$ = this.appStore.isHandset$;

@@ -1,10 +1,10 @@
 :host {
-  app-card ::ng-deep .mat-card .mat-card-subtitle {
+  .app-card ::ng-deep .mat-card .mat-card-subtitle {
       padding: 0;
       margin-bottom: 0;
   }
 
-  app-card.handset ::ng-deep .mat-card {
+  .app-card.handset ::ng-deep .mat-card {
     padding-top: 8px;
 
     h2 {
@@ -14,7 +14,7 @@
     }
   }
 
-  app-card:not(.handset) ::ng-deep .mat-card {
+  .app-card:not(.handset) ::ng-deep .mat-card {
     padding-top: 8px;
 
     h2 {

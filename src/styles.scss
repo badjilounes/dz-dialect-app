@@ -65,8 +65,7 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog,
 @import "app/shared/design-system/sidenav/sidenav-component.theme.scss";
 
 /* pages */
-@import "app/pages/learn/pages/keyword/keyword-page.theme.scss";
-@import "app/pages/learn/pages/random/random-page.theme.scss";
+@import "app/pages/learn/learn-page.theme.scss";
 @import "app/pages/sign-in/sign-in-page.theme.scss";
 @import "app/pages/settings/pages/profile/components/profile-picture-upload-dialog/profile-picture-upload-dialog-component.theme.scss";
 @import "app/pages/settings/settings-page.theme.scss";
@@ -84,8 +83,7 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog,
 @include exam-response-theme($dz-dialect-app-theme);
 @include exam-actions-component-theme($dz-dialect-app-theme);
 @include presentation-result-theme($dz-dialect-app-theme);
-@include keyword-theme($dz-dialect-app-theme);
-@include random-theme($dz-dialect-app-theme);
+@include learn-theme($dz-dialect-app-theme);
 @include translation-content-theme($dz-dialect-app-theme);
 @include training-toolbar-top-theme($dz-dialect-app-theme);
 @include sign-in-theme($dz-dialect-app-theme);
@@ -126,8 +124,7 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog,
   @include exam-response-theme($dz-dialect-dark-app-theme);
   @include exam-actions-component-theme($dz-dialect-dark-app-theme);
   @include presentation-result-theme($dz-dialect-dark-app-theme);
-  @include keyword-theme($dz-dialect-dark-app-theme);
-  @include random-theme($dz-dialect-dark-app-theme);
+  @include learn-theme($dz-dialect-dark-app-theme);
   @include translation-content-theme($dz-dialect-dark-app-theme);
   @include training-toolbar-top-theme($dz-dialect-dark-app-theme);
   @include sign-in-theme($dz-dialect-dark-app-theme);

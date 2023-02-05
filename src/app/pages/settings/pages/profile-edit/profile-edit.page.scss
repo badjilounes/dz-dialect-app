@@ -1,5 +1,5 @@
 :host {
-  app-card ::ng-deep .mat-card {
+  .app-card ::ng-deep .mat-card {
     padding: 24px;
 
     h2 {
@@ -15,7 +15,7 @@
     }
   }
 
-  app-card, app-toolbar ::ng-deep .mat-toolbar {
+  .app-card, app-toolbar ::ng-deep .mat-toolbar {
     padding: 0 8px;
     box-sizing: border-box;
   }
@@ -26,7 +26,7 @@ app-toolbar [content]{
   align-items: center;
 }
 
-app-toolbar [content], app-card{
+app-toolbar [content], .app-card{
   max-width: 840px;
   width: 100%;
   margin: 0 auto;
@@ -36,6 +36,6 @@ app-toolbar [content], app-card{
   }
 }
 
-app-card{
+.app-card{
   margin-top: 24px;
 }
