@@ -1,0 +1,29 @@
+<mat-toolbar class="toolbar-top">
+  <button mat-icon-button [routerLink]="['/settings/profile']" *ngrxLet="userImage$; let image">
+    <div class="user-picture" [style.background-image]="'url(' + image + ')'"></div>
+  </button>
+
+  <span class="title">{{ title$ | async | translate }}</span>
+
+  <app-theme-mode-toggle></app-theme-mode-toggle>
+</mat-toolbar>
+
+<div class="app-content">
+  <router-outlet></router-outlet>
+</div>
+
+<mat-toolbar class="toolbar-bottom">
+  <nav mat-tab-nav-bar>
+    <a
+      mat-tab-link
+      *ngFor="let tab of links"
+      [routerLink]="[tab.link]"
+      routerLinkActive="active"
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+      [disableRipple]="true"
+    >
+      <mat-icon [svgIcon]="tab.image"></mat-icon>
+    </a>
+  </nav>
+</mat-toolbar>

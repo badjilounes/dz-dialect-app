@@ -6,7 +6,7 @@
     <app-full-line-card-button (click)="openPictureUploadDialog()">
       <div label>{{ 'profile.profile-information.picture' | translate }}</div>
       <div value>{{ 'profile.profile-information.picture-edit' | translate }}</div>
-      <img suffix [style.background-image]="'url(' + picture + ')'" class="user-picture" />
+      <div suffix class="user-picture" [style.background-image]="'url(' + picture + ')'"></div>
     </app-full-line-card-button>
 
     <mat-divider></mat-divider>

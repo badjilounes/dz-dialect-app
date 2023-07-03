@@ -1,12 +1,5 @@
 <!-- <button mat-icon-button [routerLink]="['/profile']">
   <mat-icon>arrow_back</mat-icon>
 </button> -->
-<app-card>
-  <span title>{{ 'profile.stats.title' | translate }}</span>
-  <div content>
-    <div *ngFor="let success of successList">
-      <app-full-line-card-item [item]="success"></app-full-line-card-item>
-      <mat-divider></mat-divider>
-    </div>
-  </div>
-</app-card>
+
+<app-success-list [items]="items" [maxItems]="items.length"></app-success-list>

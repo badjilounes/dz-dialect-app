@@ -39,8 +39,15 @@ export class AppStore extends ComponentStore<UserAppStoreState> {
       shareReplay(),
     );
 
-  readonly isDesktopLarge$: Observable<boolean> = this.breakpointObserver
+  readonly isLargeScreen$: Observable<boolean> = this.breakpointObserver
     .observe('(min-width: 1160px)')
+    .pipe(
+      map((result) => result.matches),
+      shareReplay(),
+    );
+
+  readonly isSmallScreen$: Observable<boolean> = this.breakpointObserver
+    .observe([Breakpoints.Small, Breakpoints.XSmall])
     .pipe(
       map((result) => result.matches),
       shareReplay(),

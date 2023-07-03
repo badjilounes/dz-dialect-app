@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { SubNavigationComponent, SubNavigationItem } from 'src/app/shared/design-system/sub-navigation/sub-navigation.component';
+import { RouterModule } from '@angular/router';
+import { SubNavigationItem } from 'src/app/shared/design-system/sub-navigation/sub-navigation.component';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
   standalone: true,
-  imports: [SubNavigationComponent],
+  imports: [RouterModule],
 })
 export class SettingsPage {
   links: SubNavigationItem[] = [

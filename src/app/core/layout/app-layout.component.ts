@@ -5,13 +5,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { LetModule } from '@ngrx/component';
-import { filter, Observable, tap } from 'rxjs';
+import { Observable, filter, tap } from 'rxjs';
 import { AppStore } from 'src/app/app.store';
 import { BuyMeACoffeeService } from 'src/app/core/buy-me-a-coffee/buy-me-a-coffee.service';
 import { LayoutSidenavComponent } from 'src/app/core/layout/components/layout-sidenav/layout-sidenav.component';
 import { ThemeService } from 'src/app/core/theme/theme.service';
-import { TrainingToolbarBottomComponent } from './components/training-toolbar-bottom/training-toolbar-bottom.component';
-import { TrainingToolbarTopComponent } from './components/training-toolbar-top/training-toolbar-top.component';
+import { LayoutBottomTabsComponent } from './components/layout-bottom-tabs/layout-bottom-tabs.component';
 
 @Component({
   selector: 'app-layout',
@@ -20,48 +19,16 @@ import { TrainingToolbarTopComponent } from './components/training-toolbar-top/t
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    TrainingToolbarBottomComponent,
-    TrainingToolbarTopComponent,
     LetModule,
     RouterModule,
     CommonModule,
     LayoutSidenavComponent,
+    LayoutBottomTabsComponent,
   ],
 })
 @UntilDestroy()
 export class AppLayoutComponent implements OnInit, OnDestroy {
-  tabs = [
-    {
-      image: 'train-active',
-      link: '/train',
-      label: 'train',
-    },
-    {
-      image: 'learn-active',
-      link: '/learn',
-      label: 'learn',
-    },
-    {
-      image: 'sign-in-active',
-      link: '/settings',
-      label: 'settings',
-    },
-  ];
-
-  sidenav = [
-    {
-      link: '/train',
-      label: 'train',
-      icon: 'train-active',
-    },
-    {
-      link: '/learn',
-      label: 'learn',
-      icon: 'learn-active',
-    },
-  ];
-
-  isMobile$: Observable<boolean> = this.appStore.isHandset$;
+  isSmallScreen$: Observable<boolean> = this.appStore.isSmallScreen$;
 
   constructor(
     private readonly appStore: AppStore,
@@ -70,35 +37,27 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
     private readonly matIconRegistry: MatIconRegistry,
     private readonly domSanitizer: DomSanitizer,
   ) {
-    this.matIconRegistry.addSvgIcon(
+    const images = [
       'train',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/svg/train.svg'),
-    );
-    this.matIconRegistry.addSvgIcon(
       'train-active',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/svg/train-active.svg'),
-    );
-    this.matIconRegistry.addSvgIcon(
       'learn',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/svg/learn.svg'),
-    );
-    this.matIconRegistry.addSvgIcon(
       'learn-active',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/svg/learn-active.svg'),
-    );
-
-    this.matIconRegistry.addSvgIcon(
       'sign-in',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/svg/sign-in.svg'),
-    );
-    this.matIconRegistry.addSvgIcon(
       'sign-in-active',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/svg/sign-in-active.svg'),
-    );
+      'home',
+      'quest',
+    ];
+
+    images.forEach((image) => {
+      this.matIconRegistry.addSvgIcon(
+        image,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(`assets/svg/${image}.svg`),
+      );
+    });
   }
 
   ngOnInit(): void {
-    this.isMobile$
+    this.isSmallScreen$
       .pipe(
         filter((isMobile) => isMobile),
         tap(() => this.buyMeACoffeeService.updatePosition({ bottom: 108 })),
@@ -110,7 +69,7 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.isMobile$
+    this.isSmallScreen$
       .pipe(
         filter((isMobile) => isMobile),
         tap(() => this.buyMeACoffeeService.resetPosition()),

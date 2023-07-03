@@ -1,6 +1,11 @@
 <mat-sidenav-container *ngrxLet="isDesktopLarge$; let isDesktopLarge">
   <mat-sidenav mode="side" opened>
-    <mat-nav-list role="list">
+    <mat-nav-list role="list" [class.mobile]="!isDesktopLarge">
+      <a class="logo-container" [routerLink]="['/']" [ngSwitch]="isDesktopLarge">
+        <img *ngSwitchCase="true" src="assets/images/logo-light.svg" width="150" />
+        <img *ngSwitchCase="false" src="assets/svg/home-reduce.svg" width="40" height="40" />
+      </a>
+
       <a
         mat-list-item
         role="listitem"
@@ -9,14 +14,18 @@
         routerLinkActive="link-active"
         #rla="routerLinkActive"
       >
-        <mat-icon [svgIcon]="item.icon"></mat-icon>
+        <mat-icon [svgIcon]="item.image"></mat-icon>
         <span class="item-label" *ngIf="isDesktopLarge">{{
           'training.training-toolbar-links.' + item.label | translate | uppercase
         }}</span>
       </a>
     </mat-nav-list>
+
+    <mat-divider vertical="true"></mat-divider>
   </mat-sidenav>
   <mat-sidenav-content>
-    <router-outlet></router-outlet>
+    <div class="app-content">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

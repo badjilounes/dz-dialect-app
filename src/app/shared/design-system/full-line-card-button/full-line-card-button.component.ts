@@ -11,6 +11,9 @@ import { AppStore } from 'src/app/app.store';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [MatButtonModule, CommonModule, LetModule],
+  host: {
+    class: 'app-full-line-card-button',
+  },
 })
 export class FullLineCardButtonComponent {
   @Input() disabled = false;

@@ -1,14 +1,9 @@
-<ng-container *ngrxLet="isMobile$; let mobile">
-  <ng-container *ngIf="!mobile; else mobileLayout">
-    <app-training-toolbar-top></app-training-toolbar-top>
-    <app-layout-sidenav [links]="sidenav"></app-layout-sidenav>
+<ng-container *ngrxLet="isSmallScreen$; let isSmallScreen">
+  <ng-container *ngIf="!isSmallScreen; else mobileLayout">
+    <app-layout-sidenav></app-layout-sidenav>
   </ng-container>
 
   <ng-template #mobileLayout>
-    <app-training-toolbar-top></app-training-toolbar-top>
-    <div class="app-content">
-      <router-outlet></router-outlet>
-    </div>
-    <app-training-toolbar-bottom [tabs]="tabs"></app-training-toolbar-bottom>
+    <app-layout-bottom-tabs></app-layout-bottom-tabs>
   </ng-template>
 </ng-container>

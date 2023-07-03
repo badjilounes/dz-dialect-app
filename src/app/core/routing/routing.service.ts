@@ -112,7 +112,7 @@ export class RoutingService {
 
     forkJoin(toTranslate)
       .pipe(untilDestroyed(this))
-      .subscribe(([appTitle, routeTitle]) => this.title.setTitle(`${appTitle} - ${routeTitle}`));
+      .subscribe(([appTitle, routeTitle]) => this.title.setTitle(`${routeTitle} - ${appTitle}`));
   }
 
   private collectParams(snapshot: ActivatedRouteSnapshot, params: Params = {}): Params {

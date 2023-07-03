@@ -10,9 +10,27 @@
 @include mat.core();
 
 
+@font-face {
+  font-family: 'dzd-round';
+  font-weight: 400;
+  font-style: normal;
+  src: url("./assets/fonts/dzd-round-regular.woff2") format('woff2');
+}
+
+@font-face {
+  font-family: 'dzd-round';
+  font-weight: bold;
+  font-style: normal;
+  src: url("./assets/fonts/dzd-round-bold.woff2") format('woff2');
+}
+
+
 $dz-dialect-typography: mat.define-typography-config(
-  $font-family: "'Google Sans', Roboto, Arial, sans-serif",
+  $font-family: 'dzd-round',
 );
+
+@include mat.typography-hierarchy($dz-dialect-typography);
+
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
@@ -37,6 +55,7 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, app-bar
 $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, background, #ffffff);
 $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog, #ffffff);
 
+
 @include mat.all-component-themes($dz-dialect-app-theme);
 
 
@@ -45,12 +64,12 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog,
 @import "./assets/styles/material/bottom-sheet.scss";
 @import "./assets/styles/material/overlay.scss";
 @import "./assets/styles/material/dialog.scss";
+@import "./assets/styles/material/menu.scss";
 
 /* core components */
 @import "app/core/layout/app-layout-component.theme.scss";
-@import "app/core/layout/components/training-toolbar-top/training-toolbar-top-component.theme.scss";
 @import "app/core/layout/components/layout-sidenav/layout-sidenav-component.theme.scss";
-@import "app/core/layout/components/training-toolbar-bottom/training-toolbar-bottom-component.theme.scss";
+@import "app/core/layout/components/layout-bottom-tabs/layout-bottom-tabs-component.theme.scss";
 
 /* business components */
 @import "app/shared/business/exam/components/exam-question/exam-question-component.theme.scss";
@@ -78,14 +97,13 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog,
 /* component theme */
 @include app-layout-theme($dz-dialect-app-theme);
 @include app-layout-sidenav-theme($dz-dialect-app-theme);
-@include training-toolbar-bottom-theme($dz-dialect-app-theme);
+@include layout-bottom-tabs-theme($dz-dialect-app-theme);
 @include exam-question-theme($dz-dialect-app-theme);
 @include exam-response-theme($dz-dialect-app-theme);
 @include exam-actions-component-theme($dz-dialect-app-theme);
 @include presentation-result-theme($dz-dialect-app-theme);
 @include learn-theme($dz-dialect-app-theme);
 @include translation-content-theme($dz-dialect-app-theme);
-@include training-toolbar-top-theme($dz-dialect-app-theme);
 @include sign-in-theme($dz-dialect-app-theme);
 @include card-theme($dz-dialect-app-theme);
 @include app-tabs-theme($dz-dialect-app-theme);
@@ -119,14 +137,13 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog,
   /* component theme */
   @include app-layout-theme($dz-dialect-dark-app-theme);
   @include app-layout-sidenav-theme($dz-dialect-dark-app-theme);
-  @include training-toolbar-bottom-theme($dz-dialect-dark-app-theme);
+  @include layout-bottom-tabs-theme($dz-dialect-dark-app-theme);
   @include exam-question-theme($dz-dialect-dark-app-theme);
   @include exam-response-theme($dz-dialect-dark-app-theme);
   @include exam-actions-component-theme($dz-dialect-dark-app-theme);
   @include presentation-result-theme($dz-dialect-dark-app-theme);
   @include learn-theme($dz-dialect-dark-app-theme);
   @include translation-content-theme($dz-dialect-dark-app-theme);
-  @include training-toolbar-top-theme($dz-dialect-dark-app-theme);
   @include sign-in-theme($dz-dialect-dark-app-theme);
   @include card-theme($dz-dialect-dark-app-theme);
   @include profile-picture-upload-dialog-theme($dz-dialect-dark-app-theme);

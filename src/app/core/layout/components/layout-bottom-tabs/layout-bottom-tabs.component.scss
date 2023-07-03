@@ -1,0 +1,89 @@
+$border-width: 2px;
+$border-style: solid;
+$toolbar-top-height: 58px;
+$toolbar-bottom-height: 88px;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .mat-tab-nav-bar ::ng-deep {
+    .mat-tab-links {
+      height: 100%;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .mat-tab-link {
+      height: 54px;
+      width: 54px;
+      padding: 0;
+      min-width: 40px;
+      border-radius: 12px;
+      padding: 4px;
+      border-style: $border-style;
+      border-width: $border-width;
+    }
+
+    .mat-ink-bar {
+      display: none;
+    }
+  }
+}
+
+.mat-toolbar {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.toolbar-top {
+  top: 0;
+  padding: 0 16px;
+  height: $toolbar-top-height;
+  border-bottom-width: $border-width;
+  border-bottom-style: $border-style;
+  display: flex;
+  justify-content: space-between;
+
+  .user-picture {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+
+.app-content {
+  width: 100%;
+  position: relative;
+  display: grid;
+  grid-template-rows: 0 auto;
+  padding: $toolbar-top-height 0 $toolbar-bottom-height 0;
+}
+
+
+.toolbar-bottom {
+  bottom: 0;
+  padding: 0;
+  height: $toolbar-bottom-height;
+  border-top-width: $border-width;
+  border-top-style: $border-style;
+
+  .mat-tab-nav-bar  {
+    height: 100%;
+    width: 100%;
+    border-bottom: none;
+  }
+
+  .mat-icon {
+    height: 50px;
+    width: 50px;
+    min-width: 50px;
+  }
+}

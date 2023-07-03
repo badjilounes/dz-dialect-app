@@ -23,13 +23,13 @@
     (change)="onSelect($event)"
   >
     <div class="user-picture-container" [ngClass]="{ uploading }">
-      <img
+      <div
         *ngrxLet="picture$; let picture"
         [style.background-image]="'url(' + picture + ')'"
         class="user-picture"
         height="200px"
         width="200px"
-      />
+      ></div>
       <mat-spinner *ngIf="uploading" [diameter]="200" [strokeWidth]="6"></mat-spinner>
     </div>
 

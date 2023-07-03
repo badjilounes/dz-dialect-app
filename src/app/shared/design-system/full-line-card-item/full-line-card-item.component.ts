@@ -20,6 +20,9 @@ export type CardItem = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [MatCardModule, MatButtonModule, TranslateModule, MatProgressBarModule],
+  host: {
+    class: 'app-full-line-card-item',
+  },
 })
 export class FullLineCardItemComponent {
   @Input() item!: CardItem;

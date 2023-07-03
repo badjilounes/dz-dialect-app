@@ -1,4 +1,4 @@
-export type ToolbarLink = {
+export type LayoutLink = {
   label: string;
   link: string;
   image: string;

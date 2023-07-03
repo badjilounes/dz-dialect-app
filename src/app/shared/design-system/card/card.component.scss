@@ -1,17 +1,30 @@
+$border-width: 2px;
+$border-style: solid;
+$border-radius: 16px;
+
 :host {
   display: block;
+
+  .mat-card ::ng-deep .app-full-line-card-item:not(:last-child) {
+    border-bottom-width: $border-width;
+    border-bottom-style: $border-style;
+  }
 }
 
 .mat-card {
-  padding: 16px 0 0 0;
+  padding: 0;
   box-sizing: border-box;
   overflow: hidden;
+  border-width: $border-width;
+  border-style: $border-style;
+  border-radius: $border-radius;
 
   h2, .mat-card-subtitle {
     padding: 0 24px;
   }
 
   h2 {
+    margin-top: 16px;
     line-height: 1.75rem;
     font-size: 1.375rem;
     letter-spacing: 0;
@@ -19,6 +32,10 @@
     hyphens: auto;
     word-break: break-word;
     word-wrap: break-word;
+
+    &:empty {
+      display: none;
+    }
   }
 
   .mat-card-subtitle {
@@ -29,6 +46,10 @@
     hyphens: auto;
     word-break: break-word;
     word-wrap: break-word;
+
+    &:empty {
+      display: none;
+    }
   }
 }
 

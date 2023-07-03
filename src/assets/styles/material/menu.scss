@@ -1,0 +1,11 @@
+.toolbar-menu.mat-menu-panel {
+  border-radius: 12px;
+  width: 400px;
+  max-width: 400px;
+  position: relative;
+  top: 8px;
+  
+  .mat-menu-content {
+    padding: 0;
+  }
+}
