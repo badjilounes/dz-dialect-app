@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { Router, RouterModule } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { AppStore } from 'src/app/app.store';

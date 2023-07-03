@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
 import { LetModule } from '@ngrx/component';
 import { OverviewComponent } from 'src/app/pages/overview/components/overview/overview.component';
 import { PresentationResultComponent } from 'src/app/pages/overview/components/presentation-result/presentation-result.component';

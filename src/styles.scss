@@ -7,7 +7,16 @@
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
-@include mat.core();
+// TODO(v15): As of v15 mat.legacy-core no longer includes default typography styles.
+//  The following line adds:
+//    1. Default typography styles for all components
+//    2. Styles for typography hierarchy classes (e.g. .mat-headline-1)
+//  If you specify typography styles for the components you use elsewhere, you should delete this line.
+//  If you don't need the default component typographies but still want the hierarchy styles,
+//  you can delete this line and instead use:
+//    `@include mat.legacy-typography-hierarchy(mat.define-legacy-typography-config());`
+@include mat.all-legacy-component-typographies();
+@include mat.legacy-core();
 
 
 @font-face {
@@ -25,11 +34,11 @@
 }
 
 
-$dz-dialect-typography: mat.define-typography-config(
+$dz-dialect-typography: mat.define-legacy-typography-config(
   $font-family: 'dzd-round',
 );
 
-@include mat.typography-hierarchy($dz-dialect-typography);
+@include mat.legacy-typography-hierarchy($dz-dialect-typography);
 
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
@@ -56,7 +65,7 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, backgro
 $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog, #ffffff);
 
 
-@include mat.all-component-themes($dz-dialect-app-theme);
+@include mat.all-legacy-component-themes($dz-dialect-app-theme);
 
 
 /* You can add global styles to this file, and also import other style files */
@@ -129,7 +138,7 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, background, dialog,
   $dz-dialect-dark-app-theme: map.set($dz-dialect-dark-app-theme, color, background, background, rgb(32, 33, 36));
   $dz-dialect-dark-app-theme: map.set($dz-dialect-dark-app-theme, color, background, dialog, #292a2d);
 
-  @include mat.all-component-colors($dz-dialect-dark-app-theme);
+  @include mat.all-legacy-component-colors($dz-dialect-dark-app-theme);
 
   /* material theme */
   @include bottom-sheet-theme($dz-dialect-dark-app-theme);
