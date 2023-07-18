@@ -46,6 +46,7 @@ export class PresentationComponent {
           content: '',
           cancelLabel: 'training.training-presentation.cancel-confirmation-dialog.cancel-button',
           acceptLabel: 'training.training-presentation.cancel-confirmation-dialog.confirm-button',
+          acceptButtonColor: 'warn',
         },
       })
       .pipe(

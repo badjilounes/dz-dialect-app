@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { MatLegacyDialog as MatDialog, MatLegacyDialogConfig as MatDialogConfig } from '@angular/material/legacy-dialog';
+import {
+  MatLegacyDialog as MatDialog,
+  MatLegacyDialogConfig as MatDialogConfig,
+} from '@angular/material/legacy-dialog';
 import { map, Observable } from 'rxjs';
 import { ConfirmDialogComponent } from './confirm-dialog.component';
 
-export enum ConfirmButtonColor {
-  PRIMARY = 'primary',
-  WARN = 'warn',
-}
+export type ConfirmButtonColor = 'primary' | 'accent' | 'warn';
 
 export type ConfirmData = {
   title: string;
@@ -25,7 +25,7 @@ export class ConfirmDialogService {
     config.width = config.width ?? '600px';
 
     if (config.data) {
-      config.data.acceptButtonColor = config.data.acceptButtonColor || ConfirmButtonColor.PRIMARY;
+      config.data.acceptButtonColor = config.data.acceptButtonColor || 'primary';
     }
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, config);

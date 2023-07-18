@@ -1,8 +1,8 @@
 <ng-container *ngrxLet="isHandset$; let handset">
   <div class="bottom-sheet-container validate" [ngClass]="{ handset }">
     <button
-      mat-stroked-button
-      color="accent"
+      mat-button
+      color="warn"
       class="skip-button"
       (click)="validate()"
       *ngrxLet="loading$; let isLoading"
