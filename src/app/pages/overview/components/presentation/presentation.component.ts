@@ -51,7 +51,7 @@ export class PresentationComponent {
       })
       .pipe(
         filter((confirmed) => confirmed),
-        tap(() => this.overviewStore.skipPresentation(this.presentation.id)),
+        tap(() => this.overviewStore.skipPresentation(this.presentation.trainingId)),
         untilDestroyed(this),
       )
       .subscribe();
