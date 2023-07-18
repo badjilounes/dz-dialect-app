@@ -5,9 +5,9 @@ import { LocaleStorage } from 'src/app/shared/technical/storage/storage.decorato
 type ThemeMode = 'light' | 'dark';
 
 enum StatusBarColor {
-  GREEN = '#c5e1a5',
+  OVERVIEW = '#025acc',
   LIGHT = '#ffffff',
-  DARK = 'rgb(241, 247, 251)',
+  DARK = '#131f24',
 }
 @Injectable({
   providedIn: 'root',
@@ -58,7 +58,7 @@ export class ThemeService {
   }
 
   setStatusBarColor(): void {
-    let color = StatusBarColor.GREEN;
+    let color = StatusBarColor.OVERVIEW;
 
     if (this.themedStatusBar) {
       color = this.themeMode$.getValue() === 'light' ? StatusBarColor.LIGHT : StatusBarColor.DARK;
