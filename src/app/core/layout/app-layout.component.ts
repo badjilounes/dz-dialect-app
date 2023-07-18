@@ -46,6 +46,8 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
       'sign-in-active',
       'home',
       'quest',
+      'cog',
+      'more',
     ];
 
     images.forEach((image) => {

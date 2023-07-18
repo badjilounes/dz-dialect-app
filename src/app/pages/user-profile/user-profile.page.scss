@@ -1,0 +1,33 @@
+$toolbar-top-height: 58px;
+
+:host {
+  display: grid;
+  row-gap: 24px;
+
+  &.page-screen-layout:not(.small) {
+    app-user-profile-toolbar {
+      display: none;
+    }
+
+    app-user-profile-information {
+      padding-top: var(--large-screen-spacing);
+    }
+  }
+
+  &.page-screen-layout.small {
+    padding-top: $toolbar-top-height;
+
+    app-user-profile-information {
+      padding-top: var(--small-screen-spacing);
+    }
+  }
+}
+
+app-user-profile-toolbar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  height: $toolbar-top-height;
+}

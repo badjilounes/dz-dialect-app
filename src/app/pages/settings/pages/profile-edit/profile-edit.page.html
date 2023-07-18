@@ -1,11 +1,12 @@
 <app-toolbar>
-  <div content>
-    <button mat-icon-button [routerLink]="['..']">
-      <mat-icon>arrow_back</mat-icon>
-    </button>
-    <span>{{ title$ | async }}</span>
+  <div toolbar-content>
+    <ng-container *ngTemplateOutlet="header"></ng-container>
   </div>
 </app-toolbar>
+
+<div class="header">
+  <ng-container *ngTemplateOutlet="header"></ng-container>
+</div>
 
 <app-card>
   <span subtitle>{{ subtitle$ | async }}</span>
@@ -13,3 +14,10 @@
     <router-outlet></router-outlet>
   </div>
 </app-card>
+
+<ng-template #header>
+  <button mat-icon-button [routerLink]="['..']">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span>{{ title$ | async }}</span>
+</ng-template>

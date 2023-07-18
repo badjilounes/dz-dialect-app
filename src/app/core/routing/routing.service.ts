@@ -37,7 +37,7 @@ export class RoutingService {
     private readonly translate: TranslateService,
   ) {}
 
-  init() {
+  init(): void {
     this.router.events
       .pipe(
         filter((event: Event) => event instanceof NavigationEnd),
@@ -74,7 +74,7 @@ export class RoutingService {
     return all;
   }
 
-  private setCurrentRoute() {
+  private setCurrentRoute(): void {
     let currentRoute = this.route;
 
     while (currentRoute.firstChild) {
@@ -84,7 +84,7 @@ export class RoutingService {
     this.currentRoute$.next(currentRoute.snapshot);
   }
 
-  private updateTitle() {
+  private updateTitle(): void {
     const currentRoute = this.currentRoute$.getValue();
 
     if (currentRoute?.outlet === 'primary') {
@@ -92,7 +92,7 @@ export class RoutingService {
     }
   }
 
-  private updateParams() {
+  private updateParams(): void {
     const snapshot = this.route.snapshot.root;
     this.paramsSnapshot = this.collectParams(snapshot);
     this.params.next(this.paramsSnapshot);
@@ -112,7 +112,7 @@ export class RoutingService {
 
     forkJoin(toTranslate)
       .pipe(untilDestroyed(this))
-      .subscribe(([appTitle, routeTitle]) => this.title.setTitle(`${routeTitle} - ${appTitle}`));
+      .subscribe(([appTitle, routeTitle]) => this.title.setTitle(`${appTitle} - ${routeTitle}`));
   }
 
   private collectParams(snapshot: ActivatedRouteSnapshot, params: Params = {}): Params {

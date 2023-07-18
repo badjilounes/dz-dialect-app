@@ -1,0 +1,20 @@
+@mixin profile-picture-upload-dialog-theme($theme) {
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  $accent: map-get($theme, accent);
+
+  app-profile-edit-picture .mat-dialog-content {
+    &.ngx-dz-hovered {
+      background-color: rgba(23, 78, 166, 0.12);
+      border-color: mat.get-color-from-palette($accent, 500);
+    }
+
+    .upload-options {
+      color: mat.get-color-from-palette($foreground, text);
+    }
+
+    .user-picture-container .user-picture {
+      box-shadow: 0px 0px 0px 2px mat.get-color-from-palette($background, divider);
+    }
+  }
+}

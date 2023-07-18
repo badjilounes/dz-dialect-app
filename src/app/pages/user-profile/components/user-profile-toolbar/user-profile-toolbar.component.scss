@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.user-profile-toolbar {
+  display: flex;
+  width: 100%;
+  padding: 0 8px;
+  justify-content: flex-end;
+  align-items: center;
+
+  .user-profile-toolbar-title {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 19px;
+    font-weight: 700;
+  }
+
+  .mat-icon {
+    filter: brightness(0.9);
+  }
+}

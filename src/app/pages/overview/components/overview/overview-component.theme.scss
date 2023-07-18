@@ -2,29 +2,30 @@
 @use '@angular/material' as mat;
 
 @mixin overview-component-theme($theme) {
-  $color-config:    mat.get-color-config($theme);
-  $is-dark-theme:   map.get($color-config, 'is-dark');
+  $color-config: mat.get-color-config($theme);
+  $is-dark-theme: map.get($color-config, 'is-dark');
 
   $primary: map.get($theme, primary);
 
   app-overview {
     .overview-container {
-      @if $is-dark-theme == false {
-        background-color: mat.get-color-from-palette($primary, 100);
-      }
-
-      @if $is-dark-theme == true {
-        background-color: inherit;
-      }
+      background-color: #025acc;
+      color: white;
 
       .flag {
-        border-color: mat.get-color-from-palette($primary, 50);
+        border-color: white;
       }
 
-      .mat-progress-spinner circle, .mat-spinner circle {
+      .mat-progress-spinner circle,
+      .mat-spinner circle {
         stroke: mat.get-color-from-palette($primary, 50);
+      }
+
+      .mat-stroked-button[mat-stroked-button]:not(
+          .mat-button-disabled[disabled]
+        ).mat-primary.already-have-account-button {
+        color: white;
       }
     }
   }
 }
-

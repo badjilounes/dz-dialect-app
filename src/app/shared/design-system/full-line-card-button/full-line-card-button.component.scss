@@ -1,8 +1,23 @@
+:host .mat-button ::ng-deep {
+  .mat-button-wrapper {
+    flex: 1;
+    text-transform: none;
+  }
+
+  .mat-ripple,
+  .mat-button-focus-overlay {
+    border-radius: 0;
+  }
+}
+
+.mat-button {
+  height: fit-content;
+}
+
 button {
   width: 100%;
-  padding: 0;
   border-radius: 0;
-  padding: 0 24px;
+  padding: 0 16px;
   min-height: 55px;
   white-space: inherit;
 
@@ -10,6 +25,7 @@ button {
     display: flex;
     align-items: center;
     padding: 8px 0;
+    width: 100%;
 
     .content-wrapper {
       flex: 1 1 0;
@@ -27,7 +43,6 @@ button {
         flex-basis: 156px;
         margin-right: 24px;
       }
-
     }
 
     .suffix {

@@ -7,7 +7,7 @@ import { IdentityClientModule } from 'src/app/core/clients/identity-client.modul
 import { SentenceClientModule } from 'src/app/core/clients/sentence-client.module';
 import { TrainingClientModule } from 'src/app/core/clients/training-client.module';
 import { HTTP_BEARER_TOKEN_INTERCEPTOR_PROVIDER } from './authentication/bearer-token.interceptor';
-import { IsPageLayoutDirective } from './layout/directives/is-page-layout.directive';
+import { PageLayoutDirective } from './layout/directives/is-page-layout.directive';
 import { RoutingService } from './routing/routing.service';
 import { AppTranslateModule } from './translate/translate.module';
 
@@ -20,7 +20,7 @@ registerLocaleData(localeFr);
     SentenceClientModule,
     IdentityClientModule,
     TrainingClientModule,
-    IsPageLayoutDirective,
+    PageLayoutDirective,
   ],
   providers: [HTTP_BEARER_TOKEN_INTERCEPTOR_PROVIDER, { provide: LOCALE_ID, useValue: 'fr' }],
   exports: [AppTranslateModule],

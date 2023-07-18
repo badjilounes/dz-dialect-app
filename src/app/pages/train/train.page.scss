@@ -1,9 +1,8 @@
-@import '../../../assets/styles/variables.scss';
+// @import '../../../assets/styles/variables.scss';
 
 :host {
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
   gap: 2rem;
 }
 
@@ -11,41 +10,40 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap:2rem;
+  gap: 2rem;
 }
 
-
 .section-card {
-  display:grid;
+  display: grid;
   grid-template-columns: auto min-content;
   color: #fff;
-  background-color: $duolingo-color;
+  // background-color: $duolingo-color;
   border-radius: 0.8rem;
   max-width: 590px;
   width: 100%;
   padding: 22px 16px;
 }
-.guide-button{
-  display:flex;
+.guide-button {
+  display: flex;
   grid-row: span 2 / span 2;
   align-items: center;
   justify-content: center;
 }
 
-.title-container{
-  display:flex;
+.title-container {
+  display: flex;
   flex-direction: column;
 
-  .title{
+  .title {
     font-size: 25px;
     font-weight: 700;
     line-height: 1.36;
     margin: 0;
   }
-  .description{
+  .description {
     font-size: 19px;
     line-height: 1.4;
-    margin:0;
+    margin: 0;
   }
 }
 
@@ -56,26 +54,25 @@
   align-items: center;
 }
 
-
 .green-circle {
-  background: $duolingo-color;
+  // background: $duolingo-color;
   border-radius: 50%;
   width: 6em;
   height: 6em;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 0.5em 0 0 $duolingo-shadow-color;
+  // box-shadow: 0px 0.5em 0 0 $duolingo-shadow-color;
   cursor: pointer;
 
   &:active {
-    box-shadow: 0px 0.2em 0 0 $duolingo-shadow-color;
-    transform: translate(0em, 0.3em)
+    // box-shadow: 0px 0.2em 0 0 $duolingo-shadow-color;
+    transform: translate(0em, 0.3em);
   }
 }
 .step-title {
   animation: moveUpDown 1s ease-in-out infinite;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 20px;
   border: 2px solid #e5e5e5;
   display: inline-block;
@@ -84,7 +81,7 @@
   color: var(--path-unit-background-color);
   font-size: 17px;
   font-weight: 700;
-  letter-spacing: .03em;
+  letter-spacing: 0.03em;
   line-height: 1;
   text-align: center;
   text-transform: uppercase;
@@ -97,10 +94,10 @@
 }
 
 .step-title:before {
-  content: "";
+  content: '';
   width: 0;
   height: 0;
-  border-bottom: 10px solid #FFFFFF;
+  border-bottom: 10px solid #ffffff;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   position: absolute;

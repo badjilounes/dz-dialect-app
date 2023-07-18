@@ -1,21 +1,10 @@
-
-:host{
+:host {
   display: grid;
   grid-template-columns: 1fr;
 
   .start-presentation-button ::ng-deep .mat-button-wrapper {
     display: flex;
     place-content: center;
-  }
-
-  .already-have-account-button:hover:not(.mat-button-disabled) ::ng-deep {
-    .mat-button-wrapper {
-      text-decoration: underline;
-    }
-
-    .mat-button-focus-overlay {
-      opacity: 0;
-    }
   }
 }
 
@@ -46,13 +35,12 @@
       }
     }
 
-    .overview-actions-container{
+    .overview-actions-container {
       flex-direction: column;
     }
   }
 
   &:not(.handset) {
-
     .overview-content {
       display: grid;
       grid-template-columns: min-content auto;
@@ -96,6 +84,7 @@
     height: 50px;
     width: 320px;
     border-radius: 16px;
+    justify-content: center;
   }
 
   .start-presentation-button .mat-spinner {

@@ -1,0 +1,115 @@
+:host {
+  display: grid;
+  grid-template-rows: min-content auto min-content;
+  height: 100%;
+}
+
+.mat-dialog-title {
+  display: flex;
+  margin: 0;
+  position: relative;
+
+  h2 {
+    margin-bottom: 0;
+    margin-left: 12px;
+    line-height: 40px;
+    font-size: 1.125rem;
+    letter-spacing: 0;
+    font-weight: 400;
+
+    &.handset {
+      z-index: 0;
+      margin: 0;
+      position: absolute;
+      width: 100%;
+      top: 4px;
+      text-align: center;
+    }
+  }
+
+  .close-button {
+    z-index: 1;
+  }
+}
+
+.subtitle {
+  text-align: center;
+  padding: 0 40px;
+  margin: 8px 0 0 0;
+}
+
+.mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  max-height: 50vh;
+  border-width: 0;
+  margin: 0;
+  padding: 0;
+  max-height: none;
+  background: transparent;
+
+  &.ngx-dz-hovered {
+    border-width: 3px;
+    border-style: solid;
+    margin: -3px;
+  }
+
+  .user-picture-container {
+    position: relative;
+
+    &.uploading .user-picture,
+    &:hover .user-picture {
+      opacity: 0.5;
+    }
+
+    .user-picture {
+      height: 200px;
+      width: 200px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .mat-progress-spinner {
+      position: absolute;
+      top: 0;
+    }
+  }
+
+  &.handset .upload-options {
+    margin-top: 20px;
+  }
+
+  .upload-options {
+    margin-top: 32px;
+  }
+
+  .drop-label {
+    line-height: 2rem;
+    font-size: 1.5rem;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+
+  .or-label {
+    line-height: 1.5rem;
+    font-size: 1rem;
+    letter-spacing: 0.00625em;
+    font-weight: 400;
+  }
+
+  .upload-from-device-button {
+    margin: 6px 0;
+  }
+}
+
+.mat-dialog-actions {
+  justify-content: flex-end;
+  padding: 8px 16px;
+  margin: 0;
+}

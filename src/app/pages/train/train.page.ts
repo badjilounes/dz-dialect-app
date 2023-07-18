@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LetModule } from '@ngrx/component';
 import { Observable } from 'rxjs';
@@ -10,6 +10,7 @@ import {
   GetTrainingChapterListResponseDto,
   StudentHttpService,
 } from '../../../clients/dz-dialect-training-api';
+import { PageLayoutDirective } from '../../core/layout/directives/is-page-layout.directive';
 
 @Component({
   selector: 'app-train',
@@ -17,6 +18,7 @@ import {
   styleUrls: ['./train.page.scss'],
   standalone: true,
   imports: [MatButtonModule, CommonModule, MatIconModule, LetModule],
+  hostDirectives: [PageLayoutDirective],
 })
 export class TrainPage implements OnInit {
   section$: Observable<GetTrainingChapterListResponseDto[]> =

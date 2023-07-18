@@ -1,0 +1,14 @@
+$border-width: 2px;
+$border-style: solid;
+
+:host {
+  display: block;
+  height: 100%;
+  border-bottom-width: $border-width;
+  border-bottom-style: $border-style;
+}
+
+.mat-toolbar {
+  padding: 0;
+  height: 100%;
+}

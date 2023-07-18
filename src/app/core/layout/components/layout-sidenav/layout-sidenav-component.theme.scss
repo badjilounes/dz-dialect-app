@@ -3,34 +3,49 @@
 
 @mixin app-layout-sidenav-theme($theme) {
   $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
 
   $color-config: mat.get-color-config($theme);
   $foreground: map-get($color-config, foreground);
-  $is-dark-theme:   map.get($color-config, 'is-dark');
+  $is-dark-theme: map.get($color-config, 'is-dark');
 
   app-layout-sidenav {
-    .mat-nav-list .mat-list-item  {
+    .mat-nav-list .mat-list-item {
       .item-label {
         color: mat.get-color-from-palette($foreground, text);
       }
 
       &.link-active {
+        opacity: 1;
+        border: 2px solid mat.get-color-from-palette($primary, 200);
+
         @if $is-dark-theme == false {
           background-color: mat.get-color-from-palette($primary, 50);
-          opacity: 1;
-        }
-  
-        @if $is-dark-theme == true {
-          background-color: transparent;
-          opacity: 0.6;
         }
 
-        border: 2px solid mat.get-color-from-palette($primary, 500);
-    
+        @if $is-dark-theme == true {
+          background-color: transparent;
+        }
+
         .item-label {
           color: mat.get-color-from-palette($primary, 500);
         }
       }
+    }
+  }
+
+  .layout-sidenav-menu .logout-link {
+    .item-label {
+      color: mat.get-color-from-palette($warn, 500);
+    }
+
+    &:hover {
+      background-color: mat.get-color-from-palette($warn, 50);
+    }
+
+    .mat-ripple .mat-ripple-element {
+      background-color: mat.get-color-from-palette($warn, 200);
+      opacity: 0.1;
     }
   }
 }

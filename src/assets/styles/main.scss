@@ -1,0 +1,35 @@
+:root {
+  --large-screen-spacing: 24px;
+  --small-screen-spacing: 16px;
+  --background-dark: rgb(19, 31, 36);
+  --background-light: rgb(255, 255, 255);
+  --color-light: rgb(60, 60, 60);
+  --color-dark: rgb(241, 247, 251);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  touch-action: pan-x pan-y;
+  background-color: var(--background-light);
+  color: var(--color-light);
+
+  &.darkMode {
+    background-color: var(--background-dark);
+    color: var(--color-dark);
+  }
+}
+
+.page-screen-layout {
+  &.large {
+    margin: var(--large-screen-spacing);
+  }
+
+  &.small {
+    margin: var(--small-screen-spacing);
+  }
+}

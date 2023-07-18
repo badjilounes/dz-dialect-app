@@ -24,7 +24,7 @@ export class SignInPage {
     shareReplay(),
   );
 
-  signUp = true;
+  type: 'sign-in' | 'sign-up' = 'sign-in';
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
@@ -44,7 +44,7 @@ export class SignInPage {
       .signUp(credentials)
       .pipe(
         tap(() => this.snackBar.open('Votre compte a bien été créé !', 'OK', { duration: 3000 })),
-        tap(() => (this.signUp = false)),
+        tap(() => (this.type = 'sign-in')),
         catchError((error) => {
           this.snackBar.open(error.error.message, 'OK', { duration: 3000 });
           return EMPTY;
@@ -69,7 +69,7 @@ export class SignInPage {
       .subscribe();
   }
 
-  signInWith(provider: string) {
+  signInWith(provider: string): void {
     this.authenticationHttpService
       .redirectToAuthorizeUrl(provider)
       .pipe(

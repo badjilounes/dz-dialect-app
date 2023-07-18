@@ -1,0 +1,33 @@
+$progress-bar-height: 14px;
+$progress-bar-color: #ffc800;
+$progress-bar-color-lighten: #ffd453;
+$progress-bar-border-radius: 8px;
+
+:host {
+  display: block;
+
+  .mat-mdc-progress-bar {
+    width: 100%;
+    height: $progress-bar-height;
+    border-radius: $progress-bar-border-radius;
+  }
+
+  .mat-mdc-progress-bar ::ng-deep {
+    .mdc-linear-progress__bar {
+      transform: none !important;
+      transition: width 250ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
+      background-color: $progress-bar-color;
+      border-radius: $progress-bar-border-radius;
+      padding: 0 8px;
+    }
+
+    .mdc-linear-progress__bar-inner {
+      border-top-width: 0;
+      height: 4px;
+      background-color: $progress-bar-color-lighten;
+      border-radius: $progress-bar-border-radius;
+      position: relative;
+      top: -7px;
+    }
+  }
+}

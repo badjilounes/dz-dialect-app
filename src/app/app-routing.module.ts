@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthenticatedGuard } from './core/authentication/authenticated.guard';
 import { UnauthenticatedGuard } from './core/authentication/unauthenticated.guard';
 import { AppLayoutComponent } from './core/layout/app-layout.component';
+import { LogoutComponent } from './pages/logout/logout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'overview', pathMatch: 'full' },
@@ -34,6 +35,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/settings/settings.module').then((m) => m.SettingsModule),
       },
+      {
+        path: 'profile',
+        canActivate: [AuthenticatedGuard],
+        loadChildren: () =>
+          import('./pages/user-profile/user-profile.module').then((m) => m.UserProfileModule),
+        data: { title: 'profile.title' },
+      },
     ],
   },
 
@@ -43,11 +51,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/sign-in/sign-in.module').then((m) => m.SignInModule),
   },
 
+  {
+    path: 'logout',
+    component: LogoutComponent,
+  },
+
   { path: '**', redirectTo: 'random' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

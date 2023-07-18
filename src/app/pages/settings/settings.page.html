@@ -1,1 +1,5 @@
-<router-outlet></router-outlet>
+<div class="profile-container" content>
+  <app-profile-information [information]="userInformation$ | async"></app-profile-information>
+  <app-appearance></app-appearance>
+  <button mat-button color="warn" (click)="logOut()">DÉCONNEXION</button>
+</div>

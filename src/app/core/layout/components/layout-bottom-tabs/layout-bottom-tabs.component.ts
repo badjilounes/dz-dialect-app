@@ -8,9 +8,8 @@ import { RouterModule } from '@angular/router';
 import { LetModule } from '@ngrx/component';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable, map, shareReplay } from 'rxjs';
-import { LayoutLink } from 'src/app/core/layout/models/layout-link';
+import { LayoutLink } from 'src/app/core/layout/models/layout-item';
 import { RoutingService } from 'src/app/core/routing/routing.service';
-import { filterUndefined } from 'src/app/shared/technical/operators/filter-undefined.operator';
 import { ThemeModeToggleComponent } from 'src/app/shared/technical/theme-mode-toggle/theme-mode-toggle.component';
 import { AppStore } from '../../../../app.store';
 
@@ -35,28 +34,26 @@ import { AppStore } from '../../../../app.store';
 export class LayoutBottomTabsComponent {
   links: LayoutLink[] = [
     {
-      image: 'home',
+      type: 'link',
       link: '/learn',
       label: 'learn',
+      icon: 'home',
     },
 
     {
-      image: 'quest',
+      type: 'link',
       link: '/train',
       label: 'train',
+      icon: 'quest',
     },
 
     {
-      image: 'sign-in-active',
-      link: '/settings',
+      type: 'link',
+      link: '/profile/me',
       label: 'settings',
+      icon: 'sign-in-active',
     },
   ];
-
-  title$ = this.routingService.currentRoute$.pipe(
-    filterUndefined(),
-    map((route) => route.data['title']),
-  );
 
   userImage$: Observable<string | undefined> = this.appStore.user$.pipe(
     map((user) => user?.imageUrl || '/assets/images/unknown-user.png'),

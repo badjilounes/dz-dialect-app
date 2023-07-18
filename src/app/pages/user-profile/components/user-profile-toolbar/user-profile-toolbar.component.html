@@ -1,0 +1,8 @@
+<app-toolbar>
+  <div class="user-profile-toolbar" toolbar-content>
+    <span class="user-profile-toolbar-title" *ngrxLet="title$; let title">{{ title }}</span>
+    <button mat-icon-button [routerLink]="['/settings/account']">
+      <mat-icon svgIcon="cog"></mat-icon>
+    </button>
+  </div>
+</app-toolbar>

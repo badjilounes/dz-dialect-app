@@ -1,0 +1,17 @@
+<div class="title">Statistiques</div>
+
+<div class="statistic-list-container">
+  <app-card *ngFor="let item of items">
+    <app-full-line-card-item content>
+      <img
+        card-item-image
+        class="statistic-image"
+        src="{{ item.value ? item.image.active : item.image.inactive }}"
+      />
+      <div card-item-title class="card-item-title" [class.inactive]="!item.value">
+        <h4 class="statistic-value">{{ item.value }}</h4>
+        <div class="statistic-title">{{ item.description }}</div>
+      </div>
+    </app-full-line-card-item>
+  </app-card>
+</div>

@@ -1,24 +1,75 @@
 <mat-sidenav-container *ngrxLet="isDesktopLarge$; let isDesktopLarge">
   <mat-sidenav mode="side" opened>
-    <mat-nav-list role="list" [class.mobile]="!isDesktopLarge">
+    <mat-nav-list role="list" [class.small-screen]="!isDesktopLarge">
       <a class="logo-container" [routerLink]="['/']" [ngSwitch]="isDesktopLarge">
         <img *ngSwitchCase="true" src="assets/images/logo-light.svg" width="150" />
         <img *ngSwitchCase="false" src="assets/svg/home-reduce.svg" width="40" height="40" />
       </a>
 
-      <a
-        mat-list-item
-        role="listitem"
-        *ngFor="let item of links"
-        [routerLink]="[item.link]"
-        routerLinkActive="link-active"
-        #rla="routerLinkActive"
-      >
-        <mat-icon [svgIcon]="item.image"></mat-icon>
-        <span class="item-label" *ngIf="isDesktopLarge">{{
-          'training.training-toolbar-links.' + item.label | translate | uppercase
-        }}</span>
-      </a>
+      <ng-container *ngFor="let layoutItem of items">
+        <ng-container *ngIf="layoutItem.type === 'link'">
+          <a
+            mat-list-item
+            role="listitem"
+            [class]="layoutItem.class"
+            [routerLink]="[layoutItem.link]"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="link-active"
+            #rla="routerLinkActive"
+          >
+            <ng-container
+              [ngTemplateOutlet]="itemContent"
+              [ngTemplateOutletContext]="{ item: layoutItem, showLabelOnSmallScreen: false }"
+            ></ng-container>
+          </a>
+        </ng-container>
+
+        <ng-container *ngIf="layoutItem.type === 'heading'">
+          <a
+            mat-list-item
+            role="listitem"
+            [matMenuTriggerFor]="menu"
+            #trigger="matMenuTrigger"
+            openMenuOnMouseover
+            [trigger]="trigger"
+            [menu]="menu"
+          >
+            <ng-container
+              [ngTemplateOutlet]="itemContent"
+              [ngTemplateOutletContext]="{ item: layoutItem, showLabelOnSmallScreen: false }"
+            ></ng-container>
+          </a>
+
+          <mat-menu
+            #menu="matMenu"
+            xPosition="before"
+            yPosition="below"
+            [classList]="'layout-sidenav-menu ' + (!isDesktopLarge ? 'small-screen' : '')"
+          >
+            <ng-container *ngFor="let link of layoutItem.links">
+              <ng-container *ngIf="link.type === 'link'">
+                <a mat-menu-item [routerLink]="[link.link]" [class]="link.class">
+                  <ng-container
+                    [ngTemplateOutlet]="itemContent"
+                    [ngTemplateOutletContext]="{ item: link, showLabelOnSmallScreen: true }"
+                  ></ng-container>
+                </a>
+              </ng-container>
+            </ng-container>
+          </mat-menu>
+        </ng-container>
+
+        <ng-template
+          #itemContent
+          let-item="item"
+          let-showLabelOnSmallScreen="showLabelOnSmallScreen"
+        >
+          <mat-icon *ngIf="item.icon" [svgIcon]="item.icon"></mat-icon>
+          <span class="item-label" *ngIf="isDesktopLarge || showLabelOnSmallScreen">{{
+            'training.training-toolbar-links.' + item.label | translate | uppercase
+          }}</span>
+        </ng-template>
+      </ng-container>
     </mat-nav-list>
 
     <mat-divider vertical="true"></mat-divider>

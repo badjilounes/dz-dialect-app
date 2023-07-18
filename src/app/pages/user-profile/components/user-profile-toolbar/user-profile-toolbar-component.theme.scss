@@ -1,0 +1,10 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin user-profile-toolbar-theme($theme) {
+  app-user-profile-toolbar {
+    .user-profile-toolbar {
+      color: rgb(175, 175, 175);
+    }
+  }
+}

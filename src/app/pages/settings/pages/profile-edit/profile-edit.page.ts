@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
@@ -9,6 +9,7 @@ import { RoutingService } from 'src/app/core/routing/routing.service';
 import { CardComponent } from 'src/app/shared/design-system/card/card.component';
 import { ToolbarComponent } from 'src/app/shared/design-system/toolbar/toolbar.component';
 import { filterUndefined } from 'src/app/shared/technical/operators/filter-undefined.operator';
+import { PageLayoutDirective } from '../../../../core/layout/directives/is-page-layout.directive';
 
 @Component({
   selector: 'app-profile-edit',
@@ -24,8 +25,9 @@ import { filterUndefined } from 'src/app/shared/technical/operators/filter-undef
     CardComponent,
     CommonModule,
   ],
+  hostDirectives: [PageLayoutDirective],
 })
-export class ProfileEditPage implements OnInit {
+export class ProfileEditPage {
   title$ = this.routingService.currentRoute$.pipe(
     filterUndefined(),
     switchMap((route) => this.translate.get(route.data['title'])),
@@ -40,6 +42,4 @@ export class ProfileEditPage implements OnInit {
     private readonly routingService: RoutingService,
     private readonly translate: TranslateService,
   ) {}
-
-  ngOnInit(): void {}
 }

@@ -5,18 +5,18 @@
 <mat-card class="mat-elevation-z0">
   <mat-card-header>
     <mat-card-title>
-      <h1>{{ (signUp ? 'sign-up.title' : 'sign-in.title') | translate }}</h1>
+      <h1>{{ (type === 'sign-up' ? 'sign-up.title' : 'sign-in.title') | translate }}</h1>
     </mat-card-title>
   </mat-card-header>
 
-  <ng-container *ngIf="signUp else signIn">
+  <ng-container *ngIf="type === 'sign-up' else signIn">
     <app-sign-up (formSubmitted)="createUser($event)"></app-sign-up>
 
     <app-sign-alternative (alternativeSelected)="signInWith($event)"></app-sign-alternative>
 
     <p class="already-have-account">
       {{ 'sign-up.already-have-account' | translate }}
-      <span (click)="signUp = !signUp"
+      <span (click)="type = 'sign-in'"
         >{{ 'sign-up.already-have-account.sign-in' | translate }}</span
       >
     </p>
@@ -29,7 +29,7 @@
 
     <p class="no-account-yet">
       {{ 'sign-in.no-account-yet' | translate }}
-      <span (click)="signUp = !signUp">{{ 'sign-in.no-account-yet.sign-up' | translate }}</span>
+      <span (click)="type = 'sign-up'">{{ 'sign-in.no-account-yet.sign-up' | translate }}</span>
     </p>
   </ng-template>
 </mat-card>

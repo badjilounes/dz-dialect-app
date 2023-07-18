@@ -1,4 +1,9 @@
 :host {
-  display: flex;
-  flex-direction: column;
+  display: block;
+}
+
+.profile-container {
+  display: grid;
+  grid-template-rows: auto;
+  row-gap: 16px;
 }

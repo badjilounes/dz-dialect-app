@@ -1,40 +1,7 @@
-:host {
-  .mat-form-field ::ng-deep {
-    .mat-form-field-outline-start {
-      border-radius: 16px 0 0 16px;
-      min-width: 16px;
-    }
-
-    .mat-form-field-outline-end {
-      border-radius: 0 16px 16px 0;
-    }
-
-    .mat-form-field-flex {
-      padding: 0 1.5em 0 1.5em;
-    }
-
-    .mat-form-field-subscript-wrapper {
-      margin-top: 0.25rem;
-      padding: 0 2em;
-    }
-
-    .mat-form-field-infix {
-      border-top: 0.5em solid transparent;
-    }
-  }
-}
-
 form {
   display: grid;
 }
 
 .mat-raised-button {
-  height: 50px;
-  border-radius: 16px;
   margin-top: 10px;
-}
-
-.mat-form-field {
-  display: block;
-  height: 67px;
 }

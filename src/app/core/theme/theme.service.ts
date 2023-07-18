@@ -7,7 +7,7 @@ type ThemeMode = 'light' | 'dark';
 enum StatusBarColor {
   GREEN = '#c5e1a5',
   LIGHT = '#ffffff',
-  DARK = '#292a2d',
+  DARK = 'rgb(241, 247, 251)',
 }
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,7 @@ export class ThemeService {
   @LocaleStorage()
   private _themedStatusBar!: boolean;
 
-  public get themedStatusBar() {
+  public get themedStatusBar(): boolean {
     return this._themedStatusBar;
   }
   public set themedStatusBar(value) {
@@ -45,7 +45,7 @@ export class ThemeService {
     this.setStatusBarColor();
   }
 
-  toggleThemeMode() {
+  toggleThemeMode(): void {
     const themeMode = this.themeMode$.getValue() === 'light' ? 'dark' : 'light';
     this.themeMode = themeMode;
     this.themeMode$.next(themeMode);
@@ -53,11 +53,11 @@ export class ThemeService {
     this.setStatusBarColor();
   }
 
-  setThemeMode() {
+  setThemeMode(): void {
     document.body.classList.toggle('darkMode', this.themeMode === 'dark');
   }
 
-  setStatusBarColor() {
+  setStatusBarColor(): void {
     let color = StatusBarColor.GREEN;
 
     if (this.themedStatusBar) {

@@ -1,0 +1,16 @@
+<app-card>
+  <span title>{{ 'appearence.title' | translate }}</span>
+  <span subtitle>{{ 'appearence.subtitle' | translate }}</span>
+
+  <div content>
+    <app-full-line-card-button (click)="toggleTheme()">
+      <div label>{{ 'appearence.theme.dark' | translate }}</div>
+      <mat-slide-toggle
+        suffix
+        color="accent"
+        [formControl]="isDarkThemeControl"
+        appPreventClick
+      ></mat-slide-toggle>
+    </app-full-line-card-button>
+  </div>
+</app-card>

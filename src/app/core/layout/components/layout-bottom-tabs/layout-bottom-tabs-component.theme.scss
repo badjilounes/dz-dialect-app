@@ -3,46 +3,31 @@
 
 @mixin layout-bottom-tabs-theme($theme) {
   $primary: map-get($theme, primary);
-  $color-config:    mat.get-color-config($theme);
-  $is-dark-theme:   map.get($color-config, 'is-dark');
+  $color-config: mat.get-color-config($theme);
+  $is-dark-theme: map.get($color-config, 'is-dark');
   $foreground: map-get($theme, foreground);
   $background: map.get($color-config, background);
 
   app-layout-bottom-tabs {
-
-    .toolbar-top {
-      border-color: mat.get-color-from-palette($foreground, divider);
-      background-color: mat.get-color-from-palette($background, card);
-
-      .active span {
-        color: mat.get-color-from-palette($primary, 500);
-      }
-  
-      .mat-tab-link {
-        color: #AFAFAF;
-      }
-    }
-
     .toolbar-bottom {
       border-color: mat.get-color-from-palette($foreground, divider);
-    
+
       .mat-tab-nav-bar .mat-tab-link {
-  
-        &.active  {
+        &.active {
           @if $is-dark-theme == false {
             background-color: mat.get-color-from-palette($primary, 50);
           }
-  
+
           @if $is-dark-theme == true {
             background-color: rgb(139 195 74 / 10%);
           }
-  
+
           border-color: mat.get-color-from-palette($primary, 500);
           opacity: 1;
         }
-  
+
         &:not(.active) {
-          border-color: transparent;       
+          border-color: transparent;
         }
       }
     }

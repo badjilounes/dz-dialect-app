@@ -7,7 +7,7 @@
         <button
           mat-raised-button
           class="start-presentation-button"
-          color="accent"
+          color="primary"
           (click)="startPresentation()"
           *ngrxLet="loading$; let isLoading"
         >
@@ -15,7 +15,12 @@
           <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
         </button>
 
-        <button mat-stroked-button class="already-have-account-button" [routerLink]="['/sign-in']">
+        <button
+          mat-stroked-button
+          color="primary"
+          class="already-have-account-button"
+          [routerLink]="['/sign-in']"
+        >
           <span>{{ 'overview.already-have-account' | translate }}</span>
         </button>
       </div>

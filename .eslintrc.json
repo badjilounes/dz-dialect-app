@@ -1,40 +1,28 @@
 {
   "root": true,
+  "plugins": ["unused-imports"],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "parserOptions": {
-        "project": [
-          "tsconfig.json",
-          "e2e/tsconfig.json"
-        ],
+        "project": ["tsconfig.json", "e2e/tsconfig.json"],
         "createDefaultProgram": true
       },
       "extends": [
-        "plugin:@angular-eslint/ng-cli-compat",
-        "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
         "plugin:@angular-eslint/template/process-inline-templates",
-        // Settings for Prettier
-        "prettier/@typescript-eslint",
+        "plugin:@angular-eslint/recommended",
+        "prettier",
         "plugin:prettier/recommended"
       ],
       "rules": {
+        "@angular-eslint/component-class-suffix": "off",
+        "@angular-eslint/no-host-metadata-property": "off",
         "@angular-eslint/component-selector": [
           "error",
           {
             "type": "element",
             "prefix": "app",
             "style": "kebab-case"
-          }
-        ],
-        "@angular-eslint/directive-selector": [
-          "error",
-          {
-            "type": "attribute",
-            "prefix": "app",
-            "style": "camelCase"
           }
         ],
         "no-underscore-dangle": [
@@ -47,49 +35,44 @@
           "error",
           {
             "selector": "enumMember",
-            "format": [
-              "PascalCase"
-            ]
+            "format": ["PascalCase"]
           }
         ],
         "no-shadow": "off",
-        "@typescript-eslint/no-shadow": [
-          "error"
+        "@typescript-eslint/no-shadow": ["error"],
+
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            "argsIgnorePattern": "^(_|key)",
+            "varsIgnorePattern": "^(_|key)",
+            "caughtErrorsIgnorePattern": "^(_|key)"
+          }
+        ],
+        "@angular-eslint/no-output-rename": "warn",
+
+        "@angular-eslint/no-conflicting-lifecycle": "warn",
+        "@typescript-eslint/explicit-function-return-type": "error",
+
+        "@typescript-eslint/no-explicit-any": [
+          "error",
+          {
+            "ignoreRestArgs": true
+          }
+        ],
+        "unused-imports/no-unused-imports": "warn",
+        "prettier/prettier": [
+          "error",
+          {
+            "endOfLine": "auto"
+          }
         ]
       }
     },
     {
-      "files": [
-        "*.html"
-      ],
-      "extends": [
-        "plugin:@angular-eslint/template/recommended"
-      ],
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
       "rules": {}
-    },
-    {
-      "files": [
-        "src/**/*.spec.ts",
-        "src/**/*.d.ts"
-      ],
-      "parserOptions": {
-        "project": "./tsconfig.spec.json"
-      },
-      // Jasmine rules
-      "extends": [
-        "plugin:jasmine/recommended"
-      ],
-      // Plugin to run Jasmine rules
-      "plugins": [
-        "jasmine"
-      ],
-      "env": {
-        "jasmine": true
-      },
-      // Turn off "no-unused-vars" rule
-      "rules": {
-        "@typescript-eslint/no-unused-vars": "off"
-      }
     }
   ]
 }

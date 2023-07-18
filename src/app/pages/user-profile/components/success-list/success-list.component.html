@@ -1,0 +1,49 @@
+<ng-container *ngrxLet="isSmallScreen$; let isSmallScreen">
+  <div class="title-container">
+    <div class="title">{{ 'profile.stats.title' | translate }}</div>
+    <a
+      mat-button
+      color="accent"
+      [routerLink]="['/profile/success']"
+      *ngIf="hasMoreItems && !isSmallScreen"
+      >{{ 'profile.stats.show-all' | translate }}</a
+    >
+  </div>
+
+  <app-card>
+    <div content>
+      <ng-container *ngFor="let item of items; let i = index; let isFirst = first">
+        <app-full-line-card-item *ngIf="i < maxItems">
+          <img
+            card-item-image
+            class="card-item-image"
+            src="{{ item.image }}"
+            alt="image"
+            width="32px"
+          />
+          <div class="card-item-title-container" card-item-title>
+            <h3 class="card-item-title">{{ item.title }}</h3>
+
+            <div class="card-item-title-progress">
+              {{ item.progress.value }}/{{ item.progress.max }}
+            </div>
+          </div>
+
+          <ng-container card-item-subtitle>
+            <app-progress-bar [value]="(item.progress.value / item.progress.max) * 100">
+            </app-progress-bar>
+            <div class="card-item-description">{{ item.description }}</div>
+          </ng-container>
+        </app-full-line-card-item>
+      </ng-container>
+
+      <app-full-line-card-button
+        [routerLink]="['/profile/success']"
+        *ngIf="hasMoreItems && isSmallScreen"
+      >
+        <span label class="show-all-label">{{ 'profile.stats.show-all' | translate }}</span>
+        <mat-icon suffix>keyboard_arrow_right</mat-icon>
+      </app-full-line-card-button>
+    </div>
+  </app-card>
+</ng-container>

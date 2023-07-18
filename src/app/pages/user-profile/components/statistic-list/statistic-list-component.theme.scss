@@ -1,0 +1,11 @@
+@mixin statistic-list-theme($theme) {
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  app-statistic-list {
+    .inactive .statistic-value,
+    .statistic-title {
+      color: #afafaf;
+    }
+  }
+}

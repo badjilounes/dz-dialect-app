@@ -7,13 +7,9 @@ import { RouterModule } from '@angular/router';
 import { LetModule } from '@ngrx/component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AppStore } from '../../../../app.store';
-import { LayoutLink } from '../../models/layout-link';
-
-export type LayoutSidenavItem = {
-  label: string;
-  link: string;
-  icon: string;
-};
+import { LayoutItem } from '../../models/layout-item';
+import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
+import { OpenMenuOnMouseoverDirective } from '../../../../shared/technical/open-on-mouseover/open-menu-on-mouseover.directive';
 
 @Component({
   selector: 'app-layout-sidenav',
@@ -29,26 +25,41 @@ export type LayoutSidenavItem = {
     MatListModule,
     MatIconModule,
     LetModule,
+    MatLegacyMenuModule,
+    OpenMenuOnMouseoverDirective,
   ],
 })
 export class LayoutSidenavComponent {
-  links: LayoutLink[] = [
+  items: LayoutItem[] = [
     {
+      type: 'link',
       link: '/learn',
       label: 'learn',
-      image: 'home',
+      icon: 'home',
     },
 
     {
+      type: 'link',
       link: '/train',
       label: 'train',
-      image: 'quest',
+      icon: 'quest',
     },
 
     {
-      link: '/settings/profile',
+      type: 'link',
+      link: '/profile/me',
       label: 'profil',
-      image: 'sign-in-active',
+      icon: 'sign-in-active',
+    },
+
+    {
+      type: 'heading',
+      label: 'more',
+      icon: 'more',
+      links: [
+        { type: 'link', label: 'settings', link: '/settings/account' },
+        { type: 'link', label: 'logout', link: '/logout', class: 'logout-link' },
+      ],
     },
   ];
 

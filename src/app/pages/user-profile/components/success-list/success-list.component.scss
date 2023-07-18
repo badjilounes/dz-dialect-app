@@ -1,0 +1,54 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 26px;
+}
+
+.show-all-label {
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.card-item-image {
+  min-width: 77px;
+  margin-right: 30px;
+}
+
+.card-item-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+
+  .card-item-title {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 0.01785714em;
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+
+  .card-item-progress {
+    font-size: 17px;
+    color: #afafaf;
+  }
+}
+
+.card-item-description {
+  font-size: 15px;
+  color: #afafaf;
+  margin-top: 15px;
+  font-weight: 500;
+}

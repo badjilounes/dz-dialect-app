@@ -13,15 +13,18 @@ import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/materia
 import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
 import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
 import { MatLegacySelectModule as MatSelectModule } from '@angular/material/legacy-select';
-import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
+import {
+  MatLegacySnackBar as MatSnackBar,
+  MatLegacySnackBarModule as MatSnackBarModule,
+} from '@angular/material/legacy-snack-bar';
 import { LetModule } from '@ngrx/component';
 import { TranslateModule } from '@ngx-translate/core';
 import {
   BehaviorSubject,
-  catchError,
   EMPTY,
-  map,
   Observable,
+  catchError,
+  map,
   of,
   startWith,
   switchMap,
@@ -32,6 +35,7 @@ import { TranslationBlocComponent } from 'src/app/shared/business/translation-bl
 import { CardComponent } from 'src/app/shared/design-system/card/card.component';
 import { CapitalizeModule } from 'src/app/shared/technical/capitalize/capitalize.module';
 import { SentenceHttpService, SentenceResponseDto } from 'src/clients/dz-dialect-api';
+import { PageLayoutDirective } from '../../core/layout/directives/is-page-layout.directive';
 
 @Component({
   selector: 'app-learn',
@@ -55,6 +59,7 @@ import { SentenceHttpService, SentenceResponseDto } from 'src/clients/dz-dialect
     TranslationBlocComponent,
     CardComponent,
   ],
+  hostDirectives: [PageLayoutDirective],
 })
 export class LearnPage implements OnInit {
   isHandset$ = this.appStore.isHandset$;

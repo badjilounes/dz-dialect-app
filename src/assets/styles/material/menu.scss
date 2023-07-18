@@ -1,11 +1,33 @@
-.toolbar-menu.mat-menu-panel {
-  border-radius: 12px;
-  width: 400px;
-  max-width: 400px;
-  position: relative;
-  top: 8px;
-  
-  .mat-menu-content {
-    padding: 0;
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+$small-screen-menu-item-width: 52px;
+$large-screen-menu-item-width: 218px;
+
+@mixin menu-theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $foreground: map-get($color-config, foreground);
+
+  .layout-sidenav-menu.mat-menu-panel {
+    position: relative;
+    top: -50%;
+    border-radius: 16px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: mat.get-color-from-palette($foreground, divider);
+    box-shadow: none;
+
+    &.small-screen {
+      right: calc(-1 * #{$small-screen-menu-item-width} - 8px);
+    }
+
+    &:not(.small-screen) {
+      right: calc(-1 * #{$large-screen-menu-item-width} - 12px);
+    }
+
+    .mat-menu-item {
+      width: $large-screen-menu-item-width;
+      opacity: 0.67;
+    }
   }
 }

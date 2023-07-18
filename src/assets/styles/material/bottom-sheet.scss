@@ -1,6 +1,4 @@
-
 @use '@angular/material' as mat;
-@import "../variables.scss";
 
 .step-result .mat-bottom-sheet-container {
   padding: 24px;
@@ -11,7 +9,7 @@
   $primary: map-get($theme, primary);
   $warn: map-get($theme, warn);
 
-  .step-result.failure .mat-bottom-sheet-container{
+  .step-result.failure .mat-bottom-sheet-container {
     background-color: mat.get-color-from-palette($warn, 200);
     color: mat.get-color-from-palette($warn, 800);
 
@@ -21,7 +19,7 @@
     }
   }
 
-  .step-result.success .mat-bottom-sheet-container{
+  .step-result.success .mat-bottom-sheet-container {
     background-color: mat.get-color-from-palette($primary, 200);
     color: mat.get-color-from-palette($primary, 800);
 

@@ -1,0 +1,43 @@
+<app-card>
+  <span title>{{ 'profile.profile-information.title' | translate }}</span>
+  <span subtitle>{{ 'profile.profile-information.subtitle' | translate }}</span>
+
+  <div content>
+    <app-full-line-card-button (click)="openPictureUploadDialog()">
+      <div label>{{ 'profile.profile-information.picture' | translate }}</div>
+      <div value>{{ 'profile.profile-information.picture-edit' | translate }}</div>
+      <div suffix class="user-picture" [style.background-image]="'url(' + picture + ')'"></div>
+    </app-full-line-card-button>
+
+    <mat-divider></mat-divider>
+
+    <app-full-line-card-button [routerLink]="['profile/edit/name']">
+      <div label>{{ 'profile.profile-information.name' | translate }}</div>
+      <div value>{{ information?.name }}</div>
+      <mat-icon suffix>keyboard_arrow_right</mat-icon>
+    </app-full-line-card-button>
+
+    <mat-divider></mat-divider>
+
+    <app-full-line-card-button [routerLink]="['profile/edit/username']">
+      <div label>{{ 'profile.profile-information.username' | translate }}</div>
+      <div value>{{ information?.username }}</div>
+      <mat-icon suffix>keyboard_arrow_right</mat-icon>
+    </app-full-line-card-button>
+
+    <mat-divider></mat-divider>
+
+    <app-full-line-card-button [routerLink]="['profile/edit/email']">
+      <div label>{{ 'profile.profile-information.email' | translate }}</div>
+      <div value>{{ information?.email }}</div>
+      <mat-icon suffix>keyboard_arrow_right</mat-icon>
+    </app-full-line-card-button>
+
+    <mat-divider></mat-divider>
+
+    <app-full-line-card-button [disabled]="true">
+      <div label>{{ 'profile.profile-information.createdAt' | translate }}</div>
+      <div value>{{ information?.createdAt | date }}</div>
+    </app-full-line-card-button>
+  </div>
+</app-card>

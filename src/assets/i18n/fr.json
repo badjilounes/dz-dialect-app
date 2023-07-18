@@ -1,5 +1,8 @@
 {
   "account.title": "Paramètres",
+  "appearence.theme.dark": "Mode sombre",
+  "appearence.title": "Apparence",
+  "appearence.subtitle": "Personnalisez l'apparence de l'application",
   "available-soon-text.title": "Bientôt disponible",
   "bottom-sheet.next-button": "CONTINUER",
   "bottom-sheet.success.false.title": "La bonne réponse est :",
@@ -51,13 +54,14 @@
   "profile.profile-picture-upload-dialog.drop-picture-here": "Faire glisser la photo ici",
   "profile.profile-picture-upload-dialog.import-from-device": "Importer depuis l'appareil",
   "profile.profile-picture-upload-dialog.or": "ou",
-  "profile.profile-picture-upload-dialog.save": "Enregistrer les modifications",
+  "profile.profile-picture-upload-dialog.save": "Enregistrer",
   "profile.profile-picture-upload-dialog.subtitle": "Votre photo de profil aide les autres utilisateurs à vous reconnaître et vous permet de savoir quand vous êtes connecté à voter compte",
   "profile.profile-picture-upload-dialog.title": "Photo de profil",
   "profile.stats.show-all": "Afficher tout",
   "profile.stats.subtitle": "sous titre",
   "profile.stats.title": "Succès",
   "profile.title": "Mon profil",
+  "settings.title": "Paramètres",
   "sign-in.no-account-yet.sign-up": "S'INSCRIRE",
   "sign-in.no-account-yet": "Tu n'as pas encore de compte ?",
   "sign-in.password.placeholder": "Entrez un mot de passe",
@@ -97,6 +101,9 @@
   "training.training-presentation.cancel-confirmation-dialog.title": "Voulez-vous vraiment passer la présentation ?",
   "training.training-presentation.skip-tooltip": "Passer la présentation",
   "training.training-toolbar-links.learn": "MON COURS",
-  "training.training-toolbar-links.train": "QUÊTES",
-  "training.training-toolbar-links.profil": "MON PROFIL"
+  "training.training-toolbar-links.logout": "DÉCONNEXION",
+  "training.training-toolbar-links.more": "PLUS",
+  "training.training-toolbar-links.profil": "MON PROFIL",
+  "training.training-toolbar-links.settings": "PARAMÈTRES",
+  "training.training-toolbar-links.train": "QUÊTES"
 }
