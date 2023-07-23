@@ -12,20 +12,10 @@
   .step-result.failure .mat-bottom-sheet-container {
     background-color: mat.get-color-from-palette($warn, 200);
     color: mat.get-color-from-palette($warn, 800);
-
-    .mat-raised-button {
-      background-color: mat.get-color-from-palette($warn, 800);
-      color: mat.get-color-from-palette($warn, 200);
-    }
   }
 
   .step-result.success .mat-bottom-sheet-container {
     background-color: mat.get-color-from-palette($primary, 200);
     color: mat.get-color-from-palette($primary, 800);
-
-    .mat-raised-button {
-      background-color: mat.get-color-from-palette($primary, 800);
-      color: mat.get-color-from-palette($primary, 200);
-    }
   }
 }

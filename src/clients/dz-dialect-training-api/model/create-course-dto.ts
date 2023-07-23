@@ -11,10 +11,9 @@
  */
 
 
-export interface CreateChapterResponseDto { 
-    id: string;
+export interface CreateCourseDto { 
     name: string;
     description: string;
-    isPresentation: boolean;
+    trainingId: string;
 }
 

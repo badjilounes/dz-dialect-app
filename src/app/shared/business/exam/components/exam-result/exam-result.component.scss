@@ -1,15 +1,9 @@
-
 .error-container {
   grid-gap: 5px;
   display: grid;
   grid-auto-flow: row;
   line-height: 22px;
   margin-bottom: 20px;
-
-  .mat-raised-button {
-    border-radius: 16px;
-    height: 48px;
-  }
 }
 
 h3 {

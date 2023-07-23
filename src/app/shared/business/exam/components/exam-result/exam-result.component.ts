@@ -17,6 +17,8 @@ import { CapitalizeModule } from '../../../../technical/capitalize/capitalize.mo
   imports: [CapitalizeModule, TranslateModule, MatButtonModule, MatBottomSheetModule],
 })
 export class ExamResultComponent {
+  nextButtonColor = this.result.valid ? 'primary' : 'warn';
+
   constructor(
     private readonly bottomSheet: MatBottomSheetRef,
     @Inject(MAT_BOTTOM_SHEET_DATA) public result: { valid: boolean; answer: string },

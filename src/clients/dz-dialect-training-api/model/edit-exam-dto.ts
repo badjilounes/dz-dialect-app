@@ -9,10 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { EditExamQuestionDto } from './edit-exam-question-dto';
 
 
-export interface ReorderChapterDto { 
-    id: string;
-    order: number;
+export interface EditExamDto { 
+    name: string;
+    courseId: string;
+    questions: Array<EditExamQuestionDto>;
 }
 

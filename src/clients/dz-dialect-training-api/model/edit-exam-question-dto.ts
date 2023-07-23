@@ -9,13 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ChapterResponseDto } from './chapter-response-dto';
 
 
-export interface PaginatedChapterResponseDto { 
-    elements: Array<ChapterResponseDto>;
-    length: number;
-    pageIndex: number;
-    pageSize: number;
+export interface EditExamQuestionDto { 
+    id: string;
+    type: string;
+    question: string;
+    propositions: Array<string>;
+    answer: Array<string>;
 }
 

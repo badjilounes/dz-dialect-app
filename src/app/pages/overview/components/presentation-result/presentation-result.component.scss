@@ -1,4 +1,4 @@
-:host{
+:host {
   display: grid;
   grid-template-columns: 1fr;
 
@@ -17,7 +17,6 @@
     }
   }
 }
-
 
 .presentation-result-container {
   display: grid;
@@ -48,7 +47,6 @@
   }
 
   &:not(.handset) {
-
     .presentation-result-content {
       display: grid;
       grid-template-columns: min-content auto;
@@ -84,11 +82,16 @@
       height: 50px;
       width: 320px;
       border-radius: 16px;
+      margin-bottom: 8px;
 
       .mat-spinner {
         height: 38px;
         width: 38px;
       }
+    }
+
+    .skip-training-button {
+      margin: 0 auto;
     }
 
     .presentation-result-score {
@@ -97,6 +100,4 @@
       font-size: 80px;
     }
   }
-
 }
-

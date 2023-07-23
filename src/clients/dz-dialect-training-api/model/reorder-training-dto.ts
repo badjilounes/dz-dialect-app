@@ -11,9 +11,8 @@
  */
 
 
-export interface CreateTrainingDto { 
-    name: string;
-    description: string;
-    isPresentation: boolean;
+export interface ReorderTrainingDto { 
+    id: string;
+    order: number;
 }
 

@@ -9,11 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { CreateExamQuestionDto } from './create-exam-question-dto';
 
 
-export type TrainingCategoryEnum = 'PRESENTATION';
-
-export const TrainingCategoryEnum = {
-    PRESENTATION: 'PRESENTATION' as TrainingCategoryEnum
-};
+export interface CreateExamDto { 
+    name: string;
+    courseId: string;
+    questions: Array<CreateExamQuestionDto>;
+}
 

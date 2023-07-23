@@ -2,8 +2,8 @@
 @use '@angular/material' as mat;
 
 @mixin presentation-result-theme($theme) {
-  $color-config:    mat.get-color-config($theme);
-  $is-dark-theme:   map.get($color-config, 'is-dark');
+  $color-config: mat.get-color-config($theme);
+  $is-dark-theme: map.get($color-config, 'is-dark');
 
   $primary: map.get($theme, primary);
   $warn: map.get($theme, warn);
@@ -21,7 +21,8 @@
       border-color: mat.get-color-from-palette($primary, 50);
     }
 
-    .mat-progress-spinner circle, .mat-spinner circle {
+    .mat-progress-spinner circle,
+    .mat-spinner circle {
       stroke: mat.get-color-from-palette($primary, 50);
     }
 

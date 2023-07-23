@@ -11,9 +11,9 @@
  */
 
 
-export interface CreateTrainingDto { 
+export interface EditCourseDto { 
     name: string;
     description: string;
-    isPresentation: boolean;
+    trainingId: string;
 }
 

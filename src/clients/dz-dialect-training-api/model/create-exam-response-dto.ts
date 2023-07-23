@@ -9,10 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ReorderChapterDto } from './reorder-chapter-dto';
 
 
-export interface ReorderChaptersDto { 
-    chapters: Array<ReorderChapterDto>;
+export interface CreateExamResponseDto { 
+    id: string;
+    name: string;
+    courseId: string;
+    questions: Array<string>;
 }
 

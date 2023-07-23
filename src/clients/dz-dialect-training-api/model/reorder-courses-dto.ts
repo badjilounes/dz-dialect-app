@@ -9,11 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ReorderCourseDto } from './reorder-course-dto';
 
 
-export interface CreateTrainingDto { 
-    name: string;
-    description: string;
-    isPresentation: boolean;
+export interface ReorderCoursesDto { 
+    courses: Array<ReorderCourseDto>;
 }
 

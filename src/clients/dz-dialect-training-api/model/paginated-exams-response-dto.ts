@@ -9,11 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ExamResponseDto } from './exam-response-dto';
 
 
-export interface CreateTrainingDto { 
-    name: string;
-    description: string;
-    isPresentation: boolean;
+export interface PaginatedExamsResponseDto { 
+    elements: Array<ExamResponseDto>;
+    length: number;
+    pageIndex: number;
+    pageSize: number;
 }
 
