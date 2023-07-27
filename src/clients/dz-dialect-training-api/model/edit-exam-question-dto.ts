@@ -17,5 +17,8 @@ export interface EditExamQuestionDto {
     question: string;
     propositions: Array<string>;
     answer: Array<string>;
+    order: number;
+    createdAt: string;
+    updatedAt: string;
 }
 

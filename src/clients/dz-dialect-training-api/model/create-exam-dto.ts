@@ -13,6 +13,7 @@ import { CreateExamQuestionDto } from './create-exam-question-dto';
 
 
 export interface CreateExamDto { 
+    trainingId: string;
     name: string;
     courseId: string;
     questions: Array<CreateExamQuestionDto>;

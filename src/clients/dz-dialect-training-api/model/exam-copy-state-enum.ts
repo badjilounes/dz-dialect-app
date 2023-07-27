@@ -9,11 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { GetExamResponseDto } from './get-exam-response-dto';
 
 
-export interface GetTrainingResponseDto { 
-    id: string;
-    exam: GetExamResponseDto;
-}
+export type ExamCopyStateEnum = 'COMPLETED' | 'IN_PROGRESS' | 'SKIPPED';
+
+export const ExamCopyStateEnum = {
+    COMPLETED: 'COMPLETED' as ExamCopyStateEnum,
+    IN_PROGRESS: 'IN_PROGRESS' as ExamCopyStateEnum,
+    SKIPPED: 'SKIPPED' as ExamCopyStateEnum
+};
 

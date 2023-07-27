@@ -9,17 +9,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { GetExamQuestionResponseResponseDto } from './get-exam-question-response-response-dto';
-import { QuestionTypeEnum } from './question-type-enum';
+import { GetExamQuestionResponseDto } from './get-exam-question-response-dto';
+import { ExamCopyStateEnum } from './exam-copy-state-enum';
 
 
-export interface GetExamQuestionResponseDto { 
+export interface GetExamCopyResponseDto { 
     id: string;
-    type: QuestionTypeEnum;
-    question: string;
-    response: GetExamQuestionResponseResponseDto;
-    propositions: Array<string>;
-    order: number;
+    examId: string;
+    state: ExamCopyStateEnum;
+    questions: Array<GetExamQuestionResponseDto>;
+    currentQuestionIndex: number;
     createdAt: string;
     updatedAt: string;
 }

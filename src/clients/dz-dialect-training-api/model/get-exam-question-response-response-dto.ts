@@ -11,7 +11,11 @@
  */
 
 
-export interface SkipExamDto { 
-    examId: string;
+export interface GetExamQuestionResponseResponseDto { 
+    id: string;
+    valid: boolean;
+    answer: string;
+    response: string;
+    createdAt: string;
 }
 

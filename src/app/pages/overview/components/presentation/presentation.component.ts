@@ -7,9 +7,9 @@ import { LetModule } from '@ngrx/component';
 import { filter, tap } from 'rxjs';
 import { ConfirmDialogModule } from 'src/app/shared/technical/confirm-dialog/confirm-dialog.module';
 import { ConfirmDialogService } from 'src/app/shared/technical/confirm-dialog/confirm-dialog.service';
-import { GetExamResponseDto } from 'src/clients/dz-dialect-training-api';
 import { ExamComponent } from '../../../../shared/business/exam/exam.component';
 import { OverviewStore } from '../../store/overview.store';
+import { GetExamCopyResponseDto } from '../../../../../clients/dz-dialect-training-api';
 
 @UntilDestroy()
 @Component({
@@ -27,7 +27,7 @@ import { OverviewStore } from '../../store/overview.store';
   ],
 })
 export class PresentationComponent {
-  @Input() presentation!: GetExamResponseDto;
+  @Input() presentationExamCopy!: GetExamCopyResponseDto;
 
   constructor(
     private readonly overviewStore: OverviewStore,
@@ -35,7 +35,7 @@ export class PresentationComponent {
   ) {}
 
   onExamComplete(): void {
-    this.overviewStore.getResults(this.presentation.id);
+    this.overviewStore.getExamResultsFromExamId(this.presentationExamCopy.examId);
   }
 
   onExamSkip(): void {
@@ -51,7 +51,7 @@ export class PresentationComponent {
       })
       .pipe(
         filter((confirmed) => confirmed),
-        tap(() => this.overviewStore.skipPresentation(this.presentation.trainingId)),
+        tap(() => this.overviewStore.skipPresentation()),
         untilDestroyed(this),
       )
       .subscribe();

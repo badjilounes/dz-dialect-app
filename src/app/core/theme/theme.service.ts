@@ -4,8 +4,9 @@ import { LocaleStorage } from 'src/app/shared/technical/storage/storage.decorato
 
 type ThemeMode = 'light' | 'dark';
 
-enum StatusBarColor {
+export enum StatusBarColor {
   OVERVIEW = '#025acc',
+  RESULT = '#bdedce',
   LIGHT = '#ffffff',
   DARK = '#131f24',
 }
@@ -64,6 +65,10 @@ export class ThemeService {
       color = this.themeMode$.getValue() === 'light' ? StatusBarColor.LIGHT : StatusBarColor.DARK;
     }
 
+    this.updateStatusBarColor(color);
+  }
+
+  updateStatusBarColor(color: StatusBarColor): void {
     document.getElementById('meta-theme-color')!.setAttribute('content', color);
   }
 }

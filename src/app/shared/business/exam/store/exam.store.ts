@@ -1,28 +1,29 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ComponentStore } from '@ngrx/component-store';
-import { map, Observable, switchMap, tap } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import {
+  ExamCopyStateEnum,
+  GetExamCopyResponseDto,
   GetExamQuestionResponseDto,
-  GetExamResponseDto,
   StudentHttpService,
-  ValidateExamResponseResponseDto,
+  ValidateResponseResponseDto,
 } from '../../../../../clients/dz-dialect-training-api';
 import { GuestIdService } from '../../../../core/guest/guest-id.service';
-import { ExamResultComponent } from '../components/exam-result/exam-result.component';
 
 type ExamState = {
-  trainingId: string;
-  exam: GetExamResponseDto;
-  propositions: string[];
+  examCopy: GetExamCopyResponseDto;
   question: GetExamQuestionResponseDto;
+  propositions: string[];
   response: string[];
   isLoading: boolean;
 };
 
 @Injectable()
 export class ExamStore extends ComponentStore<ExamState> {
-  readonly exam$: Observable<GetExamResponseDto | undefined> = this.select((state) => state.exam);
+  readonly examCopy$: Observable<GetExamCopyResponseDto | undefined> = this.select(
+    (state) => state.examCopy,
+  );
   readonly propositions$: Observable<string[]> = this.select((state) => state.propositions);
   readonly question$: Observable<GetExamQuestionResponseDto | undefined> = this.select(
     (state) => state.question,
@@ -32,11 +33,13 @@ export class ExamStore extends ComponentStore<ExamState> {
   readonly isLoading$: Observable<boolean> = this.select((state) => state.isLoading);
 
   readonly progress$: Observable<number> = this.select(
-    (state) => ((state.question?.order || 0) * 100) / (state.exam?.questions.length || 10),
+    (state) => ((state.examCopy.currentQuestionIndex + 1) * 100) / state.examCopy.questions.length,
   );
 
   readonly examSkipped: EventEmitter<void> = new EventEmitter<void>();
   readonly examCompleted: EventEmitter<void> = new EventEmitter<void>();
+  readonly responseValidated: EventEmitter<ValidateResponseResponseDto> =
+    new EventEmitter<ValidateResponseResponseDto>();
 
   constructor(
     private readonly bottomSheet: MatBottomSheet,
@@ -72,55 +75,36 @@ export class ExamStore extends ComponentStore<ExamState> {
     );
   });
 
-  readonly validate = this.effect((save$: Observable<void>) => {
+  readonly validateResponse = this.effect((save$: Observable<void>) => {
     return save$.pipe(
       tap(() => this.patchState({ isLoading: true })),
       switchMap(() =>
-        this.studentHttpService.validateExamResponse(
+        this.studentHttpService.validateResponse(
           {
-            trainingId: this.get().trainingId,
-            examId: this.get().exam.id,
+            examCopyId: this.get().examCopy.id,
             questionId: this.get().question.id,
             response: this.get().response,
           },
           this.guestIdService.guestId,
         ),
       ),
-      tap(({ answer, valid }: ValidateExamResponseResponseDto) =>
-        this.showQuestionResult({ answer, valid }),
-      ),
+      tap((response: ValidateResponseResponseDto) => this.responseValidated.emit(response)),
       tap(() => this.patchState({ isLoading: false })),
     );
   });
 
-  readonly showQuestionResult = this.effect(
-    (save$: Observable<{ valid: boolean; answer: string }>) => {
-      return save$.pipe(
-        map(({ valid, answer }) =>
-          this.bottomSheet.open(ExamResultComponent, {
-            data: { valid, answer },
-            disableClose: true,
-            panelClass: ['step-result', valid ? 'success' : 'failure'],
-          }),
-        ),
-        switchMap((bottomSheetRef) => bottomSheetRef.afterDismissed()),
-        tap(() => {
-          if (this.get().question.order === this.get().exam.questions.length) {
-            this.examCompleted.emit();
-          } else {
-            this.patchState((state) => {
-              const question = state.exam.questions[state.question.order];
-              return {
-                question: question,
-                response: [],
-                propositions: question.propositions,
-              };
-            });
-          }
-        }),
-      );
-    },
-  );
+  readonly nextQuestion = (response: ValidateResponseResponseDto): void => {
+    if (response.examCopyState === ExamCopyStateEnum.COMPLETED) {
+      this.examCompleted.emit();
+    } else {
+      const { examCopy } = this.get();
+      this.patchState({
+        question: examCopy.questions[response.nextQuestionIndex],
+        propositions: examCopy.questions[response.nextQuestionIndex].propositions,
+        response: [],
+      });
+    }
+  };
 
   private removeFrom(array: string[], item: string): string[] {
     const index = array.indexOf(item);

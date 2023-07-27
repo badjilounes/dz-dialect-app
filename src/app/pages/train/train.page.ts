@@ -4,12 +4,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LetModule } from '@ngrx/component';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AppStore } from 'src/app/app.store';
-import {
-  GetTrainingChapterListResponseDto,
-  StudentHttpService,
-} from '../../../clients/dz-dialect-training-api';
 import { PageLayoutDirective } from '../../core/layout/directives/is-page-layout.directive';
 
 @Component({
@@ -21,14 +17,12 @@ import { PageLayoutDirective } from '../../core/layout/directives/is-page-layout
   hostDirectives: [PageLayoutDirective],
 })
 export class TrainPage implements OnInit {
-  section$: Observable<GetTrainingChapterListResponseDto[]> =
-    this.studentHttpService.getTrainingChapterList();
+  section$: Observable<any[]> = of([]);
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly userAppStore: AppStore,
-    private readonly studentHttpService: StudentHttpService,
   ) {}
 
   ngOnInit(): void {
@@ -38,8 +32,5 @@ export class TrainPage implements OnInit {
         .navigate(['/train'], { replaceUrl: true })
         .then(() => this.userAppStore.setAsAuthenticated(accessToken));
     }
-    this.studentHttpService.getTrainingChapterList().subscribe((data) => {
-      console.log(data);
-    });
   }
 }

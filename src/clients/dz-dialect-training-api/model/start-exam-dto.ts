@@ -12,6 +12,8 @@
 
 
 export interface StartExamDto { 
+    trainingId: string;
+    courseId: string;
     examId: string;
 }
 

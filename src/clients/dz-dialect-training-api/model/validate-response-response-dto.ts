@@ -9,11 +9,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { ExamCopyStateEnum } from './exam-copy-state-enum';
 
 
-export interface ValidateExamResponseResponseDto { 
+export interface ValidateResponseResponseDto { 
     valid: boolean;
     response: string;
     answer: string;
+    nextQuestionIndex: number;
+    examCopyState: ExamCopyStateEnum;
 }
 

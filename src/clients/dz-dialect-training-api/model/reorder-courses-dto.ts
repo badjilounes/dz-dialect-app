@@ -13,6 +13,7 @@ import { ReorderCourseDto } from './reorder-course-dto';
 
 
 export interface ReorderCoursesDto { 
+    trainingId: string;
     courses: Array<ReorderCourseDto>;
 }
 

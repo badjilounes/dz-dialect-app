@@ -1,6 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
 import { Router } from '@angular/router';
@@ -12,6 +12,7 @@ import { filter, map, Observable, shareReplay } from 'rxjs';
 import { ConfirmDialogModule } from 'src/app/shared/technical/confirm-dialog/confirm-dialog.module';
 import { ConfirmDialogService } from '../../../../shared/technical/confirm-dialog/confirm-dialog.service';
 import { OverviewStore } from '../../store/overview.store';
+import { StatusBarColor, ThemeService } from '../../../../core/theme/theme.service';
 
 type TrainingResult = {
   note: number;
@@ -33,7 +34,7 @@ type TrainingResult = {
     ConfirmDialogModule,
   ],
 })
-export class PresentationResultComponent {
+export class PresentationResultComponent implements OnInit, OnDestroy {
   @Input() result: TrainingResult = { note: 0, total: 0 };
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
@@ -48,7 +49,16 @@ export class PresentationResultComponent {
     private readonly overviewStore: OverviewStore,
     private readonly confirmDialogService: ConfirmDialogService,
     private readonly router: Router,
+    private readonly theme: ThemeService,
   ) {}
+
+  ngOnInit(): void {
+    this.theme.updateStatusBarColor(StatusBarColor.RESULT);
+  }
+
+  ngOnDestroy(): void {
+    this.theme.setStatusBarColor();
+  }
 
   restartTraining(): void {
     this.overviewStore.startPresentation();

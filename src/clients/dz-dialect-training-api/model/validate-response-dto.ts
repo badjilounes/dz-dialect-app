@@ -11,9 +11,9 @@
  */
 
 
-export interface GetTrainingChapterListChapterResponseDto { 
-    id: string;
-    name: string;
-    description: string;
+export interface ValidateResponseDto { 
+    examCopyId: string;
+    questionId: string;
+    response: Array<string>;
 }
 

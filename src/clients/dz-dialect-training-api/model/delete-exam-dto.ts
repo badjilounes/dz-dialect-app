@@ -11,10 +11,9 @@
  */
 
 
-export interface ValidateExamResponseDto { 
+export interface DeleteExamDto { 
     trainingId: string;
+    courseId: string;
     examId: string;
-    questionId: string;
-    response: Array<string>;
 }
 

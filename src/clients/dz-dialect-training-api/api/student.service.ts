@@ -19,19 +19,15 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { GetExamResponseDto } from '../model/get-exam-response-dto';
+import { GetExamCopyResponseDto } from '../model/get-exam-copy-response-dto';
 // @ts-ignore
 import { GetExamResultResponseDto } from '../model/get-exam-result-response-dto';
 // @ts-ignore
-import { GetTrainingChapterListResponseDto } from '../model/get-training-chapter-list-response-dto';
-// @ts-ignore
-import { SkipExamDto } from '../model/skip-exam-dto';
-// @ts-ignore
 import { StartExamDto } from '../model/start-exam-dto';
 // @ts-ignore
-import { ValidateExamResponseDto } from '../model/validate-exam-response-dto';
+import { ValidateResponseDto } from '../model/validate-response-dto';
 // @ts-ignore
-import { ValidateExamResponseResponseDto } from '../model/validate-exam-response-response-dto';
+import { ValidateResponseResponseDto } from '../model/validate-response-response-dto';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -104,17 +100,17 @@ export class StudentHttpService {
     }
 
     /**
-     * Get exam
+     * Get the user copy of given exam
      * @param examId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getExam(examId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GetExamResponseDto>;
-    public getExam(examId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GetExamResponseDto>>;
-    public getExam(examId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GetExamResponseDto>>;
-    public getExam(examId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public getExamCopy(examId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GetExamCopyResponseDto>;
+    public getExamCopy(examId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GetExamCopyResponseDto>>;
+    public getExamCopy(examId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GetExamCopyResponseDto>>;
+    public getExamCopy(examId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (examId === null || examId === undefined) {
-            throw new Error('Required parameter examId was null or undefined when calling getExam.');
+            throw new Error('Required parameter examId was null or undefined when calling getExamCopy.');
         }
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
@@ -154,8 +150,8 @@ export class StudentHttpService {
             }
         }
 
-        let localVarPath = `/student/training/get-exam`;
-        return this.httpClient.request<GetExamResponseDto>('get', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/student/training/get-exam-copy`;
+        return this.httpClient.request<GetExamCopyResponseDto>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -169,7 +165,7 @@ export class StudentHttpService {
     }
 
     /**
-     * Get training exam results
+     * Get exam results
      * @param examId 
      * @param xGuestId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -238,73 +234,15 @@ export class StudentHttpService {
     }
 
     /**
-     * Get training chapter list
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getTrainingChapterList(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<Array<GetTrainingChapterListResponseDto>>;
-    public getTrainingChapterList(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<Array<GetTrainingChapterListResponseDto>>>;
-    public getTrainingChapterList(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<Array<GetTrainingChapterListResponseDto>>>;
-    public getTrainingChapterList(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
-
-        let localVarHeaders = this.defaultHeaders;
-
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
-
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/student/training/get-training-chapter-list`;
-        return this.httpClient.request<Array<GetTrainingChapterListResponseDto>>('get', `${this.configuration.basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Skip exam
-     * @param skipExamDto 
+     * Skip presentation
      * @param xGuestId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public skipExam(skipExamDto: SkipExamDto, xGuestId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public skipExam(skipExamDto: SkipExamDto, xGuestId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public skipExam(skipExamDto: SkipExamDto, xGuestId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public skipExam(skipExamDto: SkipExamDto, xGuestId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
-        if (skipExamDto === null || skipExamDto === undefined) {
-            throw new Error('Required parameter skipExamDto was null or undefined when calling skipExam.');
-        }
+    public skipPresentation(xGuestId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
+    public skipPresentation(xGuestId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
+    public skipPresentation(xGuestId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
+    public skipPresentation(xGuestId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
 
         let localVarHeaders = this.defaultHeaders;
         if (xGuestId !== undefined && xGuestId !== null) {
@@ -335,15 +273,6 @@ export class StudentHttpService {
         }
 
 
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
-        }
-
         let responseType_: 'text' | 'json' | 'blob' = 'json';
         if (localVarHttpHeaderAcceptSelected) {
             if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
@@ -355,11 +284,10 @@ export class StudentHttpService {
             }
         }
 
-        let localVarPath = `/student/training/skip-exam`;
+        let localVarPath = `/student/training/skip-presentation`;
         return this.httpClient.request<any>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: skipExamDto,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -376,9 +304,9 @@ export class StudentHttpService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public startExam(startExamDto: StartExamDto, xGuestId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GetExamResponseDto>;
-    public startExam(startExamDto: StartExamDto, xGuestId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GetExamResponseDto>>;
-    public startExam(startExamDto: StartExamDto, xGuestId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GetExamResponseDto>>;
+    public startExam(startExamDto: StartExamDto, xGuestId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GetExamCopyResponseDto>;
+    public startExam(startExamDto: StartExamDto, xGuestId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GetExamCopyResponseDto>>;
+    public startExam(startExamDto: StartExamDto, xGuestId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GetExamCopyResponseDto>>;
     public startExam(startExamDto: StartExamDto, xGuestId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (startExamDto === null || startExamDto === undefined) {
             throw new Error('Required parameter startExamDto was null or undefined when calling startExam.');
@@ -435,7 +363,7 @@ export class StudentHttpService {
         }
 
         let localVarPath = `/student/training/start-exam`;
-        return this.httpClient.request<GetExamResponseDto>('post', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<GetExamCopyResponseDto>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: startExamDto,
@@ -454,9 +382,9 @@ export class StudentHttpService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public startPresentation(xGuestId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GetExamResponseDto>;
-    public startPresentation(xGuestId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GetExamResponseDto>>;
-    public startPresentation(xGuestId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GetExamResponseDto>>;
+    public startPresentation(xGuestId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<GetExamCopyResponseDto>;
+    public startPresentation(xGuestId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<GetExamCopyResponseDto>>;
+    public startPresentation(xGuestId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<GetExamCopyResponseDto>>;
     public startPresentation(xGuestId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
 
         let localVarHeaders = this.defaultHeaders;
@@ -501,7 +429,7 @@ export class StudentHttpService {
         }
 
         let localVarPath = `/student/training/start-presentation`;
-        return this.httpClient.request<GetExamResponseDto>('post', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<GetExamCopyResponseDto>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -514,18 +442,18 @@ export class StudentHttpService {
     }
 
     /**
-     * Validate exam response
-     * @param validateExamResponseDto 
+     * Validate response
+     * @param validateResponseDto 
      * @param xGuestId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public validateExamResponse(validateExamResponseDto: ValidateExamResponseDto, xGuestId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<ValidateExamResponseResponseDto>;
-    public validateExamResponse(validateExamResponseDto: ValidateExamResponseDto, xGuestId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<ValidateExamResponseResponseDto>>;
-    public validateExamResponse(validateExamResponseDto: ValidateExamResponseDto, xGuestId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<ValidateExamResponseResponseDto>>;
-    public validateExamResponse(validateExamResponseDto: ValidateExamResponseDto, xGuestId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
-        if (validateExamResponseDto === null || validateExamResponseDto === undefined) {
-            throw new Error('Required parameter validateExamResponseDto was null or undefined when calling validateExamResponse.');
+    public validateResponse(validateResponseDto: ValidateResponseDto, xGuestId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<ValidateResponseResponseDto>;
+    public validateResponse(validateResponseDto: ValidateResponseDto, xGuestId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<ValidateResponseResponseDto>>;
+    public validateResponse(validateResponseDto: ValidateResponseDto, xGuestId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<ValidateResponseResponseDto>>;
+    public validateResponse(validateResponseDto: ValidateResponseDto, xGuestId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+        if (validateResponseDto === null || validateResponseDto === undefined) {
+            throw new Error('Required parameter validateResponseDto was null or undefined when calling validateResponse.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -578,11 +506,11 @@ export class StudentHttpService {
             }
         }
 
-        let localVarPath = `/student/training/validate-exam-response`;
-        return this.httpClient.request<ValidateExamResponseResponseDto>('post', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/student/training/validate-response`;
+        return this.httpClient.request<ValidateResponseResponseDto>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: validateExamResponseDto,
+                body: validateResponseDto,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

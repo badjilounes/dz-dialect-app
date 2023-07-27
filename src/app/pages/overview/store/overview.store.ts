@@ -8,7 +8,7 @@ import { Observable, repeat, switchMap, tap } from 'rxjs';
 import { GuestIdService } from 'src/app/core/guest/guest-id.service';
 import { filterUndefined } from 'src/app/shared/technical/operators/filter-undefined.operator';
 import {
-  GetExamResponseDto,
+  GetExamCopyResponseDto,
   GetExamResultResponseDto,
   StudentHttpService,
 } from 'src/clients/dz-dialect-training-api';
@@ -17,7 +17,7 @@ import { OverviewDisplay } from '../overview-display';
 type OverviewState = {
   display: OverviewDisplay;
   isLoading: boolean;
-  presentation?: GetExamResponseDto;
+  presentationExamCopy?: GetExamCopyResponseDto;
   result?: GetExamResultResponseDto;
 };
 
@@ -39,8 +39,8 @@ export class OverviewStore extends ComponentStore<OverviewState> {
     (state) => state.display === OverviewDisplay.LOADER,
   );
 
-  readonly presentation$: Observable<GetExamResponseDto> = this.select(
-    (state) => state.presentation,
+  readonly presentationExamCopy$: Observable<GetExamCopyResponseDto> = this.select(
+    (state) => state.presentationExamCopy,
   ).pipe(filterUndefined());
 
   readonly result$: Observable<GetExamResultResponseDto> = this.select(
@@ -58,7 +58,7 @@ export class OverviewStore extends ComponentStore<OverviewState> {
       isLoading: false,
     });
   }
-  readonly getResults = this.effect((examId$: Observable<string>) => {
+  readonly getExamResultsFromExamId = this.effect((examId$: Observable<string>) => {
     return examId$.pipe(
       tap(() => this.patchState(() => ({ isLoading: true, display: OverviewDisplay.LOADER }))),
       switchMap((examId) =>
@@ -86,10 +86,10 @@ export class OverviewStore extends ComponentStore<OverviewState> {
       tap(() => this.patchState(() => ({ isLoading: true }))),
       switchMap(() => this.studentHttpService.startPresentation(this.guestIdService.guestId)),
       tapResponse(
-        (presentation: GetExamResponseDto) => {
+        (presentationExamCopy: GetExamCopyResponseDto) => {
           this.patchState(() => ({
             display: OverviewDisplay.PRESENTATION,
-            presentation,
+            presentationExamCopy,
             isLoading: false,
           }));
         },
@@ -102,12 +102,10 @@ export class OverviewStore extends ComponentStore<OverviewState> {
     );
   });
 
-  readonly skipPresentation = this.effect((presentationExamId$: Observable<string>) => {
-    return presentationExamId$.pipe(
+  readonly skipPresentation = this.effect((source$: Observable<void>) => {
+    return source$.pipe(
       tap(() => this.patchState(() => ({ isLoading: true }))),
-      switchMap((examId) =>
-        this.studentHttpService.skipExam({ examId }, this.guestIdService.guestId),
-      ),
+      switchMap(() => this.studentHttpService.skipPresentation(this.guestIdService.guestId)),
       tapResponse(
         () => this.router.navigate(['/train']),
         ({ error }: HttpErrorResponse) => {

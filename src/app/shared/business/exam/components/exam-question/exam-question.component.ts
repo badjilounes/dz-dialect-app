@@ -1,6 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatLegacyChipsModule as MatChipsModule } from '@angular/material/legacy-chips';
 import { TranslateModule } from '@ngx-translate/core';
 import { map, Observable, shareReplay } from 'rxjs';
@@ -15,7 +15,7 @@ import { ExamStore } from '../../store/exam.store';
   standalone: true,
   imports: [CommonModule, TranslateModule, MatChipsModule],
 })
-export class ExamQuestionComponent implements OnInit {
+export class ExamQuestionComponent {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map((result) => result.matches),
     shareReplay(),
@@ -30,6 +30,4 @@ export class ExamQuestionComponent implements OnInit {
     private readonly breakpointObserver: BreakpointObserver,
     private readonly examStore: ExamStore,
   ) {}
-
-  ngOnInit(): void {}
 }

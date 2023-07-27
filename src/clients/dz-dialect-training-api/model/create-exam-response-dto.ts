@@ -16,5 +16,8 @@ export interface CreateExamResponseDto {
     name: string;
     courseId: string;
     questions: Array<string>;
+    order: number;
+    createdAt: string;
+    updatedAt: string;
 }
 

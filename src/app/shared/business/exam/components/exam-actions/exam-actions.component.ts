@@ -1,6 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
@@ -26,7 +26,7 @@ import { ExamStore } from '../../store/exam.store';
     MatProgressSpinnerModule,
   ],
 })
-export class ExamActionsComponent implements OnInit {
+export class ExamActionsComponent {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map((result) => result.matches),
     shareReplay(),
@@ -39,9 +39,7 @@ export class ExamActionsComponent implements OnInit {
     private readonly examStore: ExamStore,
   ) {}
 
-  ngOnInit(): void {}
-
   validate(): void {
-    this.examStore.validate();
+    this.examStore.validateResponse();
   }
 }

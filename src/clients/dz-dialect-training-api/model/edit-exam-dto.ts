@@ -13,6 +13,8 @@ import { EditExamQuestionDto } from './edit-exam-question-dto';
 
 
 export interface EditExamDto { 
+    trainingId: string;
+    examId: string;
     name: string;
     courseId: string;
     questions: Array<EditExamQuestionDto>;

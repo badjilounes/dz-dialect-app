@@ -11,14 +11,21 @@ import {
 import { MatDividerModule } from '@angular/material/divider';
 import { LetModule } from '@ngrx/component';
 import { TranslateModule } from '@ngx-translate/core';
-import { map, Observable, shareReplay } from 'rxjs';
-import { GetExamResponseDto } from 'src/clients/dz-dialect-training-api';
+import { map, Observable, shareReplay, tap } from 'rxjs';
 import { ExamActionsComponent } from './components/exam-actions/exam-actions.component';
 import { ExamProgressComponent } from './components/exam-progress/exam-progress.component';
 import { ExamQuestionComponent } from './components/exam-question/exam-question.component';
 import { ExamResponseComponent } from './components/exam-response/exam-response.component';
 import { ExamStore } from './store/exam.store';
+import {
+  GetExamCopyResponseDto,
+  ValidateResponseResponseDto,
+} from '../../../../clients/dz-dialect-training-api';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { ExamResultComponent } from './components/exam-result/exam-result.component';
+import { MatBottomSheet, MatBottomSheetConfig } from '@angular/material/bottom-sheet';
 
+@UntilDestroy()
 @Component({
   selector: 'app-exam',
   templateUrl: './exam.component.html',
@@ -38,7 +45,7 @@ import { ExamStore } from './store/exam.store';
   providers: [ExamStore],
 })
 export class ExamComponent implements OnInit {
-  @Input() exam!: GetExamResponseDto;
+  @Input() examCopy!: GetExamCopyResponseDto;
   @Input() skipOption = false;
 
   @Output() completed: EventEmitter<void> = new EventEmitter<void>();
@@ -52,6 +59,7 @@ export class ExamComponent implements OnInit {
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
     private readonly examStore: ExamStore,
+    private readonly bottomSheet: MatBottomSheet,
   ) {
     this.completed = this.examStore.examCompleted;
     this.skipped = this.examStore.examSkipped;
@@ -59,12 +67,31 @@ export class ExamComponent implements OnInit {
 
   ngOnInit(): void {
     this.examStore.setState({
-      trainingId: this.exam.trainingId,
-      exam: this.exam,
-      propositions: this.exam.questions[0].propositions,
-      question: this.exam.questions[0],
+      examCopy: this.examCopy,
+      propositions: this.examCopy.questions[this.examCopy.currentQuestionIndex].propositions,
+      question: this.examCopy.questions[this.examCopy.currentQuestionIndex],
       response: [],
       isLoading: false,
     });
+
+    this.examStore.responseValidated
+      .pipe(untilDestroyed(this))
+      .subscribe((responseValidationData) => {
+        const bottomSheetConfiguration: MatBottomSheetConfig<ValidateResponseResponseDto> = {
+          data: responseValidationData,
+          disableClose: true,
+          panelClass: ['step-result', responseValidationData.valid ? 'success' : 'failure'],
+        };
+
+        const bottomSheetRef = this.bottomSheet.open(ExamResultComponent, bottomSheetConfiguration);
+
+        bottomSheetRef
+          .afterDismissed()
+          .pipe(
+            tap(() => this.examStore.nextQuestion(responseValidationData)),
+            untilDestroyed(this),
+          )
+          .subscribe();
+      });
   }
 }

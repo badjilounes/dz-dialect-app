@@ -13,6 +13,8 @@ import { ReorderExamDto } from './reorder-exam-dto';
 
 
 export interface ReorderExamsDto { 
+    trainingId: string;
+    courseId: string;
     exams: Array<ReorderExamDto>;
 }
 

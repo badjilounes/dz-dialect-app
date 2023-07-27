@@ -33,6 +33,10 @@ import { CreateTrainingDto } from '../model/create-training-dto';
 // @ts-ignore
 import { CreateTrainingResponseDto } from '../model/create-training-response-dto';
 // @ts-ignore
+import { DeleteCourseDto } from '../model/delete-course-dto';
+// @ts-ignore
+import { DeleteExamDto } from '../model/delete-exam-dto';
+// @ts-ignore
 import { EditCourseDto } from '../model/edit-course-dto';
 // @ts-ignore
 import { EditExamDto } from '../model/edit-exam-dto';
@@ -329,16 +333,16 @@ export class ProfessorHttpService {
 
     /**
      * Delete course
-     * @param id 
+     * @param deleteCourseDto 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteCourse(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public deleteCourse(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public deleteCourse(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public deleteCourse(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling deleteCourse.');
+    public deleteCourse(deleteCourseDto: DeleteCourseDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
+    public deleteCourse(deleteCourseDto: DeleteCourseDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
+    public deleteCourse(deleteCourseDto: DeleteCourseDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
+    public deleteCourse(deleteCourseDto: DeleteCourseDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+        if (deleteCourseDto === null || deleteCourseDto === undefined) {
+            throw new Error('Required parameter deleteCourseDto was null or undefined when calling deleteCourse.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -360,6 +364,15 @@ export class ProfessorHttpService {
         }
 
 
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
+        }
+
         let responseType_: 'text' | 'json' | 'blob' = 'json';
         if (localVarHttpHeaderAcceptSelected) {
             if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
@@ -371,10 +384,11 @@ export class ProfessorHttpService {
             }
         }
 
-        let localVarPath = `/professor/training/delete-course/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
+        let localVarPath = `/professor/training/delete-course`;
         return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: deleteCourseDto,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -386,16 +400,16 @@ export class ProfessorHttpService {
 
     /**
      * Delete exam
-     * @param id 
+     * @param deleteExamDto 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteExam(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
-    public deleteExam(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
-    public deleteExam(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
-    public deleteExam(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling deleteExam.');
+    public deleteExam(deleteExamDto: DeleteExamDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any>;
+    public deleteExam(deleteExamDto: DeleteExamDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpResponse<any>>;
+    public deleteExam(deleteExamDto: DeleteExamDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<HttpEvent<any>>;
+    public deleteExam(deleteExamDto: DeleteExamDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext}): Observable<any> {
+        if (deleteExamDto === null || deleteExamDto === undefined) {
+            throw new Error('Required parameter deleteExamDto was null or undefined when calling deleteExam.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -417,6 +431,15 @@ export class ProfessorHttpService {
         }
 
 
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
+        }
+
         let responseType_: 'text' | 'json' | 'blob' = 'json';
         if (localVarHttpHeaderAcceptSelected) {
             if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
@@ -428,10 +451,11 @@ export class ProfessorHttpService {
             }
         }
 
-        let localVarPath = `/professor/training/delete-exam/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
+        let localVarPath = `/professor/training/delete-exam`;
         return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                body: deleteExamDto,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -572,18 +596,14 @@ export class ProfessorHttpService {
 
     /**
      * Edit exam
-     * @param id 
      * @param editExamDto 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public editExam(id: string, editExamDto: EditExamDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<ExamResponseDto>;
-    public editExam(id: string, editExamDto: EditExamDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<ExamResponseDto>>;
-    public editExam(id: string, editExamDto: EditExamDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<ExamResponseDto>>;
-    public editExam(id: string, editExamDto: EditExamDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling editExam.');
-        }
+    public editExam(editExamDto: EditExamDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<ExamResponseDto>;
+    public editExam(editExamDto: EditExamDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<ExamResponseDto>>;
+    public editExam(editExamDto: EditExamDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<ExamResponseDto>>;
+    public editExam(editExamDto: EditExamDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (editExamDto === null || editExamDto === undefined) {
             throw new Error('Required parameter editExamDto was null or undefined when calling editExam.');
         }
@@ -628,7 +648,7 @@ export class ProfessorHttpService {
             }
         }
 
-        let localVarPath = `/professor/training/edit-exam/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
+        let localVarPath = `/professor/training/edit-exam`;
         return this.httpClient.request<ExamResponseDto>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
