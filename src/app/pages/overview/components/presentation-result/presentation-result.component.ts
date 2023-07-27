@@ -53,7 +53,11 @@ export class PresentationResultComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.theme.updateStatusBarColor(StatusBarColor.RESULT);
+    if (this.theme.themeMode$.value === 'light') {
+      this.theme.updateStatusBarColor(StatusBarColor.LIGHTGREEN);
+    } else {
+      this.theme.updateStatusBarColor(StatusBarColor.DARK);
+    }
   }
 
   ngOnDestroy(): void {

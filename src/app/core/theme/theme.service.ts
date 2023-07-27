@@ -6,7 +6,7 @@ type ThemeMode = 'light' | 'dark';
 
 export enum StatusBarColor {
   OVERVIEW = '#025acc',
-  RESULT = '#bdedce',
+  LIGHTGREEN = '#bdedce',
   LIGHT = '#ffffff',
   DARK = '#131f24',
 }
