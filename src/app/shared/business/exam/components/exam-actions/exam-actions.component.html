@@ -4,7 +4,7 @@
       mat-button
       color="warn"
       class="skip-button"
-      (click)="validate()"
+      (click)="skip()"
       *ngrxLet="loading$; let isLoading"
     >
       <span *ngIf="!isLoading">{{ 'bottom-sheet.validate.skip-button' | translate }}</span>

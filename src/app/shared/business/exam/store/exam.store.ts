@@ -1,5 +1,4 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ComponentStore } from '@ngrx/component-store';
 import { Observable, switchMap, tap } from 'rxjs';
 import {
@@ -42,7 +41,6 @@ export class ExamStore extends ComponentStore<ExamState> {
     new EventEmitter<ValidateResponseResponseDto>();
 
   constructor(
-    private readonly bottomSheet: MatBottomSheet,
     private readonly studentHttpService: StudentHttpService,
     private readonly guestIdService: GuestIdService,
   ) {
@@ -75,7 +73,25 @@ export class ExamStore extends ComponentStore<ExamState> {
     );
   });
 
-  readonly validateResponse = this.effect((save$: Observable<void>) => {
+  readonly skipQuestion = this.effect((save$: Observable<void>) => {
+    return save$.pipe(
+      tap(() => this.patchState({ isLoading: true })),
+      switchMap(() =>
+        this.studentHttpService.validateResponse(
+          {
+            examCopyId: this.get().examCopy.id,
+            questionId: this.get().question.id,
+            response: [],
+          },
+          this.guestIdService.guestId,
+        ),
+      ),
+      tap((response: ValidateResponseResponseDto) => this.responseValidated.emit(response)),
+      tap(() => this.patchState({ isLoading: false })),
+    );
+  });
+
+  readonly validateQuestion = this.effect((save$: Observable<void>) => {
     return save$.pipe(
       tap(() => this.patchState({ isLoading: true })),
       switchMap(() =>

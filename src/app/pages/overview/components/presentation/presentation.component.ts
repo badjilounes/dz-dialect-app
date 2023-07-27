@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
 import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -10,6 +10,7 @@ import { ConfirmDialogService } from 'src/app/shared/technical/confirm-dialog/co
 import { ExamComponent } from '../../../../shared/business/exam/exam.component';
 import { OverviewStore } from '../../store/overview.store';
 import { GetExamCopyResponseDto } from '../../../../../clients/dz-dialect-training-api';
+import { ThemeService } from '../../../../core/theme/theme.service';
 
 @UntilDestroy()
 @Component({
@@ -26,13 +27,18 @@ import { GetExamCopyResponseDto } from '../../../../../clients/dz-dialect-traini
     ConfirmDialogModule,
   ],
 })
-export class PresentationComponent {
+export class PresentationComponent implements OnInit {
   @Input() presentationExamCopy!: GetExamCopyResponseDto;
 
   constructor(
     private readonly overviewStore: OverviewStore,
     private readonly confirmDialogService: ConfirmDialogService,
+    private readonly theme: ThemeService,
   ) {}
+
+  ngOnInit(): void {
+    this.theme.setStatusBarColor();
+  }
 
   onExamComplete(): void {
     this.overviewStore.getExamResultsFromExamId(this.presentationExamCopy.examId);

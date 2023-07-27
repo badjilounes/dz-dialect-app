@@ -39,7 +39,11 @@ export class ExamActionsComponent {
     private readonly examStore: ExamStore,
   ) {}
 
+  skip(): void {
+    this.examStore.skipQuestion();
+  }
+
   validate(): void {
-    this.examStore.validateResponse();
+    this.examStore.validateQuestion();
   }
 }
