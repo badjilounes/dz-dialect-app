@@ -1,38 +1,36 @@
-// @import '../../../assets/styles/variables.scss';
-
 :host {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  flex: 1;
+  overflow: auto;
 }
 
-.section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+:host.page-screen-layout.small {
+  margin: 0;
+
+  .exercise-header {
+    column-gap: 16px;
+    grid-auto-columns: 1fr min-content;
+    padding: 16px;
+    row-gap: 3px;
+  }
 }
 
-.section-card {
+:host.page-screen-layout.large {
+  .exercise-header {
+    row-gap: 6px;
+    border-radius: 12px;
+    padding: 22px 16px;
+  }
+}
+
+.exercise-header {
   display: grid;
-  grid-template-columns: auto min-content;
-  color: #fff;
-  // background-color: $duolingo-color;
-  border-radius: 0.8rem;
-  max-width: 590px;
-  width: 100%;
-  padding: 22px 16px;
-}
-.guide-button {
-  display: flex;
-  grid-row: span 2 / span 2;
+  position: relative;
+  background-color: rgb(88, 204, 2);
+  color: white;
+  overflow: hidden;
   align-items: center;
-  justify-content: center;
-}
-
-.title-container {
-  display: flex;
-  flex-direction: column;
 
   .title {
     font-size: 25px;
@@ -40,10 +38,37 @@
     line-height: 1.36;
     margin: 0;
   }
+
   .description {
     font-size: 19px;
     line-height: 1.4;
     margin: 0;
+  }
+}
+
+.exercise-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 70px;
+  padding-bottom: 35px;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+}
+
+.exercise-button {
+  width: 70px;
+  height: 57px;
+  background-color: rgb(229, 229, 229);
+  border-radius: 50%;
+  position: relative;
+
+  &:not(.button-pressed) {
+    box-shadow: 0 8px 0 rgb(0, 0, 0, 0.2), 0 8px 0 rgb(229, 229, 229);
+  }
+
+  &.button-pressed {
+    top: 8px;
   }
 }
 

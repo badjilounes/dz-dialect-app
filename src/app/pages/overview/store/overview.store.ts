@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { Observable, repeat, switchMap, tap } from 'rxjs';
-import { GuestIdService } from 'src/app/core/guest/guest-id.service';
 import { filterUndefined } from 'src/app/shared/technical/operators/filter-undefined.operator';
 import {
   GetExamCopyResponseDto,
@@ -49,7 +48,6 @@ export class OverviewStore extends ComponentStore<OverviewState> {
 
   constructor(
     private readonly studentHttpService: StudentHttpService,
-    private readonly guestIdService: GuestIdService,
     private readonly snackBar: MatSnackBar,
     private readonly router: Router,
   ) {
@@ -61,9 +59,7 @@ export class OverviewStore extends ComponentStore<OverviewState> {
   readonly getExamResultsFromExamId = this.effect((examId$: Observable<string>) => {
     return examId$.pipe(
       tap(() => this.patchState(() => ({ isLoading: true, display: OverviewDisplay.LOADER }))),
-      switchMap((examId) =>
-        this.studentHttpService.getExamResult(examId, this.guestIdService.guestId),
-      ),
+      switchMap((examId) => this.studentHttpService.getExamResult(examId)),
       tapResponse(
         (result: GetExamResultResponseDto) => {
           this.patchState(() => ({
@@ -84,7 +80,7 @@ export class OverviewStore extends ComponentStore<OverviewState> {
   readonly startPresentation = this.effect((save$: Observable<void>) => {
     return save$.pipe(
       tap(() => this.patchState(() => ({ isLoading: true }))),
-      switchMap(() => this.studentHttpService.startPresentation(this.guestIdService.guestId)),
+      switchMap(() => this.studentHttpService.startPresentation()),
       tapResponse(
         (presentationExamCopy: GetExamCopyResponseDto) => {
           this.patchState(() => ({
@@ -105,7 +101,7 @@ export class OverviewStore extends ComponentStore<OverviewState> {
   readonly skipPresentation = this.effect((source$: Observable<void>) => {
     return source$.pipe(
       tap(() => this.patchState(() => ({ isLoading: true }))),
-      switchMap(() => this.studentHttpService.skipPresentation(this.guestIdService.guestId)),
+      switchMap(() => this.studentHttpService.skipPresentation()),
       tapResponse(
         () => this.router.navigate(['/train']),
         ({ error }: HttpErrorResponse) => {

@@ -8,7 +8,6 @@ import {
   StudentHttpService,
   ValidateResponseResponseDto,
 } from '../../../../../clients/dz-dialect-training-api';
-import { GuestIdService } from '../../../../core/guest/guest-id.service';
 
 type ExamState = {
   examCopy: GetExamCopyResponseDto;
@@ -40,10 +39,7 @@ export class ExamStore extends ComponentStore<ExamState> {
   readonly responseValidated: EventEmitter<ValidateResponseResponseDto> =
     new EventEmitter<ValidateResponseResponseDto>();
 
-  constructor(
-    private readonly studentHttpService: StudentHttpService,
-    private readonly guestIdService: GuestIdService,
-  ) {
+  constructor(private readonly studentHttpService: StudentHttpService) {
     super();
   }
 
@@ -77,14 +73,11 @@ export class ExamStore extends ComponentStore<ExamState> {
     return save$.pipe(
       tap(() => this.patchState({ isLoading: true })),
       switchMap(() =>
-        this.studentHttpService.validateResponse(
-          {
-            examCopyId: this.get().examCopy.id,
-            questionId: this.get().question.id,
-            response: [],
-          },
-          this.guestIdService.guestId,
-        ),
+        this.studentHttpService.validateResponse({
+          examCopyId: this.get().examCopy.id,
+          questionId: this.get().question.id,
+          response: [],
+        }),
       ),
       tap((response: ValidateResponseResponseDto) => this.responseValidated.emit(response)),
       tap(() => this.patchState({ isLoading: false })),
@@ -95,14 +88,11 @@ export class ExamStore extends ComponentStore<ExamState> {
     return save$.pipe(
       tap(() => this.patchState({ isLoading: true })),
       switchMap(() =>
-        this.studentHttpService.validateResponse(
-          {
-            examCopyId: this.get().examCopy.id,
-            questionId: this.get().question.id,
-            response: this.get().response,
-          },
-          this.guestIdService.guestId,
-        ),
+        this.studentHttpService.validateResponse({
+          examCopyId: this.get().examCopy.id,
+          questionId: this.get().question.id,
+          response: this.get().response,
+        }),
       ),
       tap((response: ValidateResponseResponseDto) => this.responseValidated.emit(response)),
       tap(() => this.patchState({ isLoading: false })),

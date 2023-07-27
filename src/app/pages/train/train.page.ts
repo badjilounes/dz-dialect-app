@@ -7,22 +7,28 @@ import { LetModule } from '@ngrx/component';
 import { Observable, of } from 'rxjs';
 import { AppStore } from 'src/app/app.store';
 import { PageLayoutDirective } from '../../core/layout/directives/is-page-layout.directive';
+import {
+  GetExerciseResponseDto,
+  StudentHttpService,
+} from '../../../clients/dz-dialect-training-api';
+import { AddClassOnClickDirective } from '../../shared/technical/behavior/add-class-on-click.directive';
 
 @Component({
   selector: 'app-train',
   templateUrl: './train.page.html',
   styleUrls: ['./train.page.scss'],
   standalone: true,
-  imports: [MatButtonModule, CommonModule, MatIconModule, LetModule],
+  imports: [MatButtonModule, CommonModule, MatIconModule, LetModule, AddClassOnClickDirective],
   hostDirectives: [PageLayoutDirective],
 })
 export class TrainPage implements OnInit {
-  section$: Observable<any[]> = of([]);
+  exerciseList$: Observable<GetExerciseResponseDto[]> = of([]);
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly userAppStore: AppStore,
+    private readonly studentHttpService: StudentHttpService,
   ) {}
 
   ngOnInit(): void {
@@ -32,5 +38,20 @@ export class TrainPage implements OnInit {
         .navigate(['/train'], { replaceUrl: true })
         .then(() => this.userAppStore.setAsAuthenticated(accessToken));
     }
+
+    this.exerciseList$ = this.studentHttpService.getExerciseList();
+  }
+
+  getLeftButtonPosition(index: number): number {
+    let multiplicator = index % 4;
+
+    if (multiplicator) {
+      multiplicator--;
+      multiplicator = (multiplicator % 2) + 1;
+    }
+
+    const isLeft = Math.floor(index / 4) % 2 === 0;
+
+    return multiplicator * 44 * (isLeft ? -1 : 1);
   }
 }

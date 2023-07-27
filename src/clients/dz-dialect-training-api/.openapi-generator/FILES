@@ -30,9 +30,12 @@ model/edit-training-dto.ts
 model/exam-copy-state-enum.ts
 model/exam-response-dto.ts
 model/get-exam-copy-response-dto.ts
+model/get-exam-list-training-course-exam-question-response-dto.ts
+model/get-exam-list-training-course-exam-response-dto.ts
 model/get-exam-question-response-dto.ts
 model/get-exam-question-response-response-dto.ts
 model/get-exam-result-response-dto.ts
+model/get-exercise-response-dto.ts
 model/models.ts
 model/paginated-courses-response-dto.ts
 model/paginated-exams-response-dto.ts

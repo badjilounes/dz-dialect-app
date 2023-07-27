@@ -15,11 +15,11 @@ export class BearerTokenInterceptor implements HttpInterceptor {
   constructor(private readonly authenticationTokenService: AuthenticationTokenService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (this.authenticationTokenService.hasToken()) {
-      request = request.clone({
-        setHeaders: { Authorization: `Bearer ${this.authenticationTokenService.token}` },
-      });
-    }
+    request = request.clone({
+      setHeaders: this.authenticationTokenService.hasToken()
+        ? { Authorization: `Bearer ${this.authenticationTokenService.token}` }
+        : { 'x-guest-id': this.authenticationTokenService.guestId },
+    });
 
     return next.handle(request);
   }

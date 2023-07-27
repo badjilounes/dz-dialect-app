@@ -1,28 +1,19 @@
-<ng-container *ngrxLet="section$;let sections">
-  <div *ngFor="let section of sections" class="section">
-    <div class="section-card">
-      <div class="title-container">
-        <h1 class="title">{{section.chapter.name}}</h1>
-        <p class="description">{{section.chapter.description}}</p>
-      </div>
-      <div class="guide-button">
-        <button mat-stroked-button>
-          <mat-icon>library_books</mat-icon>
-          Guide
-        </button>
-      </div>
-    </div>
+<ng-container *ngrxLet="exerciseList$;let exerciseList">
+  <section *ngFor="let exercise of exerciseList">
+    <header class="exercise-header">
+      <h1 class="title">{{exercise.name}}</h1>
+      <p class="description">{{exercise.description}}</p>
+    </header>
 
-    <div class="button-start margin-button">
-      <div class="step-title">
-        <p>COMMENCER !</p>
-      </div>
-      <div class="green-circle">
-        <img
-          draggable="false"
-          src="https://d35aaqx5ub95lt.cloudfront.net/images/path/icons/5e4203031e39fc43d94371565fd0d369.svg"
-        />
-      </div>
+    <div class="exercise-container">
+      <button
+        mat-icon-button
+        class="exercise-button"
+        *ngFor="let exam of exercise.exams; let examIndex = index"
+        appAddClassOnClick
+        classToAddOnClick="button-pressed"
+        [style.left.px]="getLeftButtonPosition(examIndex)"
+      ></button>
     </div>
-  </div>
+  </section>
 </ng-container>
