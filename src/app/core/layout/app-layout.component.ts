@@ -1,7 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { LetModule } from '@ngrx/component';
@@ -11,6 +9,8 @@ import { BuyMeACoffeeService } from 'src/app/core/buy-me-a-coffee/buy-me-a-coffe
 import { LayoutSidenavComponent } from 'src/app/core/layout/components/layout-sidenav/layout-sidenav.component';
 import { ThemeService } from 'src/app/core/theme/theme.service';
 import { LayoutBottomTabsComponent } from './components/layout-bottom-tabs/layout-bottom-tabs.component';
+import { SvgIconModule } from '../../shared/technical/svg-icon/svg-icon.module';
+import { SvgIconService } from '../../shared/technical/svg-icon/svg-icon.service';
 
 @Component({
   selector: 'app-layout',
@@ -24,6 +24,7 @@ import { LayoutBottomTabsComponent } from './components/layout-bottom-tabs/layou
     CommonModule,
     LayoutSidenavComponent,
     LayoutBottomTabsComponent,
+    SvgIconModule,
   ],
 })
 @UntilDestroy()
@@ -34,10 +35,10 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
     private readonly appStore: AppStore,
     private readonly buyMeACoffeeService: BuyMeACoffeeService,
     private readonly themeService: ThemeService,
-    private readonly matIconRegistry: MatIconRegistry,
-    private readonly domSanitizer: DomSanitizer,
+
+    private readonly svgIconService: SvgIconService,
   ) {
-    const images = [
+    this.svgIconService.registerIcons([
       'train',
       'train-active',
       'learn',
@@ -48,14 +49,8 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
       'quest',
       'cog',
       'more',
-    ];
-
-    images.forEach((image) => {
-      this.matIconRegistry.addSvgIcon(
-        image,
-        this.domSanitizer.bypassSecurityTrustResourceUrl(`assets/svg/${image}.svg`),
-      );
-    });
+      'cadena',
+    ]);
   }
 
   ngOnInit(): void {

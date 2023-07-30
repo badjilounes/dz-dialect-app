@@ -51,7 +51,7 @@
   flex-direction: column;
   padding-top: 70px;
   padding-bottom: 35px;
-  gap: 24px;
+  gap: 48px;
   justify-content: center;
   align-items: center;
 }
@@ -59,6 +59,7 @@
 .exercise-button {
   width: 70px;
   height: 57px;
+  z-index: 3;
   background-color: rgb(229, 229, 229);
   border-radius: 50%;
   position: relative;
@@ -144,3 +145,30 @@
     transform: translateY(0);
   }
 }
+.exercise-item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+}
+
+.exercise-spinner {
+  position: absolute;
+  margin-top: 6px;
+  z-index:2;
+}
+
+
+.spinner-buffer{
+  width: 84px;
+  height: 84px;
+  border: solid 8px #e5e5e5;
+  border-radius: 50%;
+  z-index: 1;
+  position: absolute;
+  margin-top: 6px;
+}
+
+

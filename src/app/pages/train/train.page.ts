@@ -12,13 +12,27 @@ import {
   StudentHttpService,
 } from '../../../clients/dz-dialect-training-api';
 import { AddClassOnClickDirective } from '../../shared/technical/behavior/add-class-on-click.directive';
+import { MatLegacyProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
+import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
+import { PreventClickDirective } from '../../shared/technical/behavior/prevent-click.directive';
+import { StopClickPropagationDirective } from '../../shared/technical/behavior/stop-click-propagation.directive';
 
 @Component({
   selector: 'app-train',
   templateUrl: './train.page.html',
   styleUrls: ['./train.page.scss'],
   standalone: true,
-  imports: [MatButtonModule, CommonModule, MatIconModule, LetModule, AddClassOnClickDirective],
+  imports: [
+    MatButtonModule,
+    CommonModule,
+    MatIconModule,
+    LetModule,
+    AddClassOnClickDirective,
+    MatLegacyProgressSpinnerModule,
+    MatLegacyMenuModule,
+    PreventClickDirective,
+    StopClickPropagationDirective,
+  ],
   hostDirectives: [PageLayoutDirective],
 })
 export class TrainPage implements OnInit {
