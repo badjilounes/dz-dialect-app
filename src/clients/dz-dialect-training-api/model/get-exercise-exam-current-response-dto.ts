@@ -11,14 +11,8 @@
  */
 
 
-export interface CreateExamResponseDto { 
-    id: string;
-    name: string;
-    description: string;
-    courseId: string;
-    questions: Array<string>;
-    order: number;
-    createdAt: string;
-    updatedAt: string;
+export interface GetExerciseExamCurrentResponseDto { 
+    questionIndex: number;
+    questionLength: number;
 }
 

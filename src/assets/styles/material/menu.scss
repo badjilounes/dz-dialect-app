@@ -4,6 +4,17 @@
 $small-screen-menu-item-width: 52px;
 $large-screen-menu-item-width: 218px;
 
+.mat-menu-panel.train-context-menu {
+  width: 295px;
+  margin-top: 12px;
+  border-radius: 15px;
+  box-shadow: none;
+
+  .mat-menu-content {
+    padding: 0;
+  }
+}
+
 @mixin menu-theme($theme) {
   $color-config: mat.get-color-config($theme);
   $foreground: map-get($color-config, foreground);

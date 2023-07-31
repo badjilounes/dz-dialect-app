@@ -15,6 +15,7 @@ import { CreateExamQuestionDto } from './create-exam-question-dto';
 export interface CreateExamDto { 
     trainingId: string;
     name: string;
+    description: string;
     courseId: string;
     questions: Array<CreateExamQuestionDto>;
 }

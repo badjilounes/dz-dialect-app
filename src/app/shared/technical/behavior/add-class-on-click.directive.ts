@@ -4,11 +4,14 @@ import { fromEvent, merge, tap } from 'rxjs';
 
 @UntilDestroy()
 @Directive({
-  selector: '[appAddClassOnClick]',
+  selector: '[appAddClassOnPress]',
   standalone: true,
+  exportAs: 'appAddClassOnPress',
 })
-export class AddClassOnClickDirective implements OnInit {
+export class AddClassOnPressDirective implements OnInit {
   @Input() classToAddOnClick = '';
+
+  isPressed = false;
 
   constructor(private readonly element: ElementRef<HTMLButtonElement>) {}
 
@@ -18,7 +21,10 @@ export class AddClassOnClickDirective implements OnInit {
       fromEvent(this.element.nativeElement, 'touchstart'),
     )
       .pipe(
-        tap(() => this.element.nativeElement.classList.add(this.classToAddOnClick)),
+        tap(() => {
+          this.element.nativeElement.classList.add(this.classToAddOnClick);
+          this.isPressed = true;
+        }),
         untilDestroyed(this),
       )
       .subscribe();
@@ -30,7 +36,10 @@ export class AddClassOnClickDirective implements OnInit {
       fromEvent(this.element.nativeElement, 'touchcancel'),
     )
       .pipe(
-        tap(() => this.element.nativeElement.classList.remove(this.classToAddOnClick)),
+        tap(() => {
+          this.element.nativeElement.classList.remove(this.classToAddOnClick);
+          this.isPressed = false;
+        }),
         untilDestroyed(this),
       )
       .subscribe();

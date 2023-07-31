@@ -15,6 +15,7 @@ import { CreateExamResponseQuestionDto } from './create-exam-response-question-d
 export interface ExamResponseDto { 
     id: string;
     name: string;
+    description: string;
     courseId: string;
     questions: Array<CreateExamResponseQuestionDto>;
     order: number;

@@ -16,6 +16,7 @@ export interface EditExamDto {
     trainingId: string;
     examId: string;
     name: string;
+    description: string;
     courseId: string;
     questions: Array<EditExamQuestionDto>;
 }

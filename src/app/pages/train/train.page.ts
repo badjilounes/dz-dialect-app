@@ -11,7 +11,7 @@ import {
   GetExerciseResponseDto,
   StudentHttpService,
 } from '../../../clients/dz-dialect-training-api';
-import { AddClassOnClickDirective } from '../../shared/technical/behavior/add-class-on-click.directive';
+import { AddClassOnPressDirective } from '../../shared/technical/behavior/add-class-on-click.directive';
 import { MatLegacyProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
 import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
 import { PreventClickDirective } from '../../shared/technical/behavior/prevent-click.directive';
@@ -27,7 +27,7 @@ import { StopClickPropagationDirective } from '../../shared/technical/behavior/s
     CommonModule,
     MatIconModule,
     LetModule,
-    AddClassOnClickDirective,
+    AddClassOnPressDirective,
     MatLegacyProgressSpinnerModule,
     MatLegacyMenuModule,
     PreventClickDirective,

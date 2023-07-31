@@ -11,14 +11,14 @@
  */
 
 
-export interface GetExamListTrainingCourseExamQuestionResponseDto { 
+export interface GetExerciseExamQuestionResponseDto { 
     id: string;
-    type: GetExamListTrainingCourseExamQuestionResponseDto.TypeEnum;
+    type: GetExerciseExamQuestionResponseDto.TypeEnum;
     question: string;
     propositions: Array<string>;
     answer: Array<string>;
 }
-export namespace GetExamListTrainingCourseExamQuestionResponseDto {
+export namespace GetExerciseExamQuestionResponseDto {
     export type TypeEnum = 'SINGLE_CHOICE' | 'MULTIPLE_CHOICE' | 'WORD_LIST';
     export const TypeEnum = {
         SINGLE_CHOICE: 'SINGLE_CHOICE' as TypeEnum,

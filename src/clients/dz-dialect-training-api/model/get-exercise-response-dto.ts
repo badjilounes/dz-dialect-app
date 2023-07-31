@@ -9,15 +9,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { GetExamListTrainingCourseExamResponseDto } from './get-exam-list-training-course-exam-response-dto';
+import { GetExerciseCourseResponseDto } from './get-exercise-course-response-dto';
 
 
 export interface GetExerciseResponseDto { 
     id: string;
     name: string;
     description: string;
-    trainingId: boolean;
-    exams: Array<GetExamListTrainingCourseExamResponseDto>;
+    courses: Array<GetExerciseCourseResponseDto>;
     order: number;
     createdAt: string;
     updatedAt: string;

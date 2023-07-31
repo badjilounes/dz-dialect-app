@@ -51,7 +51,6 @@
   flex-direction: column;
   padding-top: 70px;
   padding-bottom: 35px;
-  gap: 48px;
   justify-content: center;
   align-items: center;
 }
@@ -73,95 +72,22 @@
   }
 }
 
-.button-start {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.green-circle {
-  // background: $duolingo-color;
-  border-radius: 50%;
-  width: 6em;
-  height: 6em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  // box-shadow: 0px 0.5em 0 0 $duolingo-shadow-color;
-  cursor: pointer;
-
-  &:active {
-    // box-shadow: 0px 0.2em 0 0 $duolingo-shadow-color;
-    transform: translate(0em, 0.3em);
-  }
-}
-.step-title {
-  animation: moveUpDown 1s ease-in-out infinite;
-  background-color: #ffffff;
-  border-radius: 20px;
-  border: 2px solid #e5e5e5;
-  display: inline-block;
-  padding: 10px 20px;
-  position: relative;
-  color: var(--path-unit-background-color);
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  line-height: 1;
-  text-align: center;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.step-title p {
-  margin: 0;
-  text-align: center;
-}
-
-.step-title:before {
-  content: '';
-  width: 0;
-  height: 0;
-  border-bottom: 10px solid #ffffff;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  position: absolute;
-  bottom: -10px;
-  left: calc(50% - 10px);
-  transform: rotate(180deg);
-  border-bottom: 10px solid #e5e5e5;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-}
-@keyframes moveUpDown {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
 .exercise-item {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
 }
 
 .exercise-spinner {
   position: absolute;
   margin-top: 6px;
-  z-index:2;
+  z-index: 2;
 }
 
-
-.spinner-buffer{
+.spinner-buffer {
   width: 84px;
   height: 84px;
   border: solid 8px #e5e5e5;
@@ -171,4 +97,87 @@
   margin-top: 6px;
 }
 
+.context-menu {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.4;
+  padding: 16px;
+  text-align: center;
+  color: white;
+  background-color: rgb(88, 204, 2);
 
+  &::after {
+    content: '';
+    position: absolute;
+    top: -15px; /* Adjust the value to control the triangle's position on top */
+    left: 50%; /* Center the triangle horizontally */
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid #f0f0f0; /* Change the color to match your dialog background */
+    transform: translateX(-50%);
+    z-index: 1; /* Ensure the triangle appears on top of the dialog content */
+  }
+}
+
+@keyframes moveUpDown {
+  0% {
+    top: -20px; /* Starting position */
+  }
+  50% {
+    top: -32px; /* Middle position (change the value as needed) */
+  }
+  100% {
+    top: -20px; /* Ending position */
+  }
+}
+
+.current-message-container {
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(229, 229, 229);
+  border-radius: 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 4;
+  overflow: visible;
+  animation: moveUpDown 1.5s linear infinite;
+
+  .current-message {
+    color: rgb(88, 204, 2);
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    padding: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .current-message-arrow-container {
+    position: absolute;
+    width: 20px;
+    height: 10px;
+    overflow: hidden;
+    margin: 0 15px;
+    top: calc(100%);
+    left: calc(50% - 15px);
+    transform: translateX(-50%) rotate(180deg);
+
+    .current-message-arrow {
+      box-sizing: border-box;
+      position: absolute;
+      background-color: rgb(255, 255, 255);
+      border: 2px solid rgb(229, 229, 229);
+      border-radius: 2px;
+      content: '';
+      height: 14.14427px;
+      left: 50%;
+      transform: translateZ(0) rotate(45deg);
+      transform-origin: top left;
+      width: 14.14427px;
+    }
+  }
+}
