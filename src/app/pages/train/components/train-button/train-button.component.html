@@ -1,0 +1,51 @@
+<div class="train-button-container" cdkOverlayOrigin #triggerOverlay="cdkOverlayOrigin">
+  <ng-container *ngIf="isCurrentExam">
+    <div class="current-message-container" *ngIf="(menuOpened$ | async) === false">
+      <div class="current-message">{{ buttonDisplay.floatingLabel }}</div>
+      <div class="current-message-arrow-container">
+        <div class="current-message-arrow"></div>
+      </div>
+    </div>
+    <div class="spinner-buffer"></div>
+    <mat-progress-spinner
+      mode="determinate"
+      [diameter]="100"
+      [value]="buttonDisplay.progress"
+      [strokeWidth]="8"
+      class="exercise-spinner"
+      color="primary"
+    ></mat-progress-spinner>
+  </ng-container>
+
+  <button
+    mat-icon-button
+    class="exercise-button"
+    (click)="openMenu()"
+    appIsButtonPressed
+    #button="appIsButtonPressed"
+    [class.button-pressed]="button.isPressed$ | async"
+  >
+    <mat-icon [svgIcon]="buttonDisplay.icon"></mat-icon>
+  </button>
+</div>
+
+<ng-template #menuTemplate>
+  <div
+    class="context-menu"
+    appStopClickPropagation
+    [class.activated]="isCurrentExam"
+    [@openClose]="(menuOpened$ | async) ? 'open' : 'closed'"
+  >
+    <div class="menu-arrow-container"><div class="menu-arrow"></div></div>
+    <h1 class="menu-title">{{ contextMenu.title }}</h1>
+    <p class="menu-description">{{ contextMenu.description }}</p>
+    <button
+      class="context-button-action"
+      [disabled]="contextMenu.disabled"
+      mat-raised-button
+      color="primary"
+    >
+      {{ contextMenu.buttonLabel }}
+    </button>
+  </div>
+</ng-template>

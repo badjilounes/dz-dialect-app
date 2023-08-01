@@ -1,45 +1,48 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { fromEvent, merge, tap } from 'rxjs';
+import { BehaviorSubject, debounceTime, fromEvent, merge, repeat, take, tap } from 'rxjs';
 
 @UntilDestroy()
 @Directive({
-  selector: '[appAddClassOnPress]',
+  selector: '[appIsButtonPressed]',
   standalone: true,
-  exportAs: 'appAddClassOnPress',
+  exportAs: 'appIsButtonPressed',
 })
-export class AddClassOnPressDirective implements OnInit {
-  @Input() classToAddOnClick = '';
-
-  isPressed = false;
+export class IsButtonPressedDirective implements OnInit {
+  isPressed$ = new BehaviorSubject<boolean>(false);
 
   constructor(private readonly element: ElementRef<HTMLButtonElement>) {}
 
   ngOnInit(): void {
-    merge(
-      fromEvent(this.element.nativeElement, 'mousedown'),
-      fromEvent(this.element.nativeElement, 'touchstart'),
-    )
-      .pipe(
-        tap(() => {
-          this.element.nativeElement.classList.add(this.classToAddOnClick);
-          this.isPressed = true;
-        }),
-        untilDestroyed(this),
-      )
-      .subscribe();
-
-    merge(
+    const released$ = merge(
+      fromEvent(this.element.nativeElement, 'mouseup'),
       fromEvent(this.element.nativeElement, 'mouseup'),
       fromEvent(this.element.nativeElement, 'mouseout'),
       fromEvent(this.element.nativeElement, 'touchend'),
       fromEvent(this.element.nativeElement, 'touchcancel'),
-    )
+    );
+
+    const pressed$ = merge(
+      fromEvent(this.element.nativeElement, 'mousedown'),
+      fromEvent(this.element.nativeElement, 'touchstart'),
+    );
+
+    pressed$
       .pipe(
-        tap(() => {
-          this.element.nativeElement.classList.remove(this.classToAddOnClick);
-          this.isPressed = false;
-        }),
+        debounceTime(50),
+        tap(() => this.isPressed$.next(true)),
+        take(1),
+        repeat({ delay: () => released$ }),
+        untilDestroyed(this),
+      )
+      .subscribe();
+
+    released$
+      .pipe(
+        debounceTime(50),
+        tap(() => this.isPressed$.next(false)),
+        take(1),
+        repeat({ delay: () => pressed$ }),
         untilDestroyed(this),
       )
       .subscribe();

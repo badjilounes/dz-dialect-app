@@ -7,56 +7,12 @@
       </header>
 
       <div class="exercise-container">
-        <div
+        <app-train-button
           *ngFor="let exam of course.exams; let examIndex = index"
-          class="exercise-item"
+          [exam]="exam"
           [style.left.px]="getLeftButtonPosition(examIndex)"
-        >
-          <ng-container *ngrxLet="exam.current; let activatedExam">
-            <ng-container *ngIf="activatedExam">
-              <div class="current-message-container" *ngIf="!trigger.menuOpen">
-                <div class="current-message">commencer</div>
-                <div class="current-message-arrow-container">
-                  <div class="current-message-arrow"></div>
-                </div>
-              </div>
-              <div class="spinner-buffer"></div>
-              <mat-progress-spinner
-                mode="determinate"
-                [diameter]="100"
-                [value]="activatedExam.questionIndex * 100 / activatedExam.questionLength"
-                [strokeWidth]="8"
-                class="exercise-spinner"
-                color="primary"
-              ></mat-progress-spinner>
-            </ng-container>
-
-            <button
-              mat-icon-button
-              class="exercise-button"
-              appAddClassOnPress
-              appAddClassOnPress="button-pressed"
-              [matMenuTriggerFor]="menu"
-              [matMenuTriggerData]="{activated: !!activatedExam, exam}"
-              #trigger="matMenuTrigger"
-            >
-              <mat-icon appPreventClick [svgIcon]="activatedExam ? 'home' : 'cadena'"></mat-icon>
-            </button>
-          </ng-container>
-        </div>
+        ></app-train-button>
       </div>
     </section>
   </section>
-
-  <mat-menu #menu="matMenu" [class]="'train-context-menu'">
-    <ng-template matMenuContent let-activated="activated" let-exam="exam">
-      <div class="context-menu" appStopClickPropagation>
-        <h1>{{exam.name}}</h1>
-        <p>{{exam.description}}</p>
-        <button [disabled]="!activated" mat-raised-button color="primary">
-          {{ activated ? 'commencer' : 'pas encore débloqué'}}
-        </button>
-      </div>
-    </ng-template>
-  </mat-menu>
 </ng-container>

@@ -1,7 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LetModule } from '@ngrx/component';
 import { Observable, of } from 'rxjs';
@@ -11,28 +9,14 @@ import {
   GetExerciseResponseDto,
   StudentHttpService,
 } from '../../../clients/dz-dialect-training-api';
-import { AddClassOnPressDirective } from '../../shared/technical/behavior/add-class-on-click.directive';
-import { MatLegacyProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
-import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
-import { PreventClickDirective } from '../../shared/technical/behavior/prevent-click.directive';
-import { StopClickPropagationDirective } from '../../shared/technical/behavior/stop-click-propagation.directive';
+import { TrainButtonComponent } from './components/train-button/train-button.component';
 
 @Component({
   selector: 'app-train',
   templateUrl: './train.page.html',
   styleUrls: ['./train.page.scss'],
   standalone: true,
-  imports: [
-    MatButtonModule,
-    CommonModule,
-    MatIconModule,
-    LetModule,
-    AddClassOnPressDirective,
-    MatLegacyProgressSpinnerModule,
-    MatLegacyMenuModule,
-    PreventClickDirective,
-    StopClickPropagationDirective,
-  ],
+  imports: [CommonModule, LetModule, TrainButtonComponent],
   hostDirectives: [PageLayoutDirective],
 })
 export class TrainPage implements OnInit {
@@ -66,6 +50,6 @@ export class TrainPage implements OnInit {
 
     const isLeft = Math.floor(index / 4) % 2 === 0;
 
-    return multiplicator * 44 * (isLeft ? -1 : 1);
+    return multiplicator * 36 * (isLeft ? -1 : 1);
   }
 }
