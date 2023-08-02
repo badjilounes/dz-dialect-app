@@ -79,9 +79,17 @@ $button-width: 70px;
     height: 10px;
     overflow: hidden;
     margin: 0 15px;
-    top: -10px;
     left: calc(50%);
     transform: translateX(-50%);
+
+    &.top {
+      top: -10px;
+    }
+
+    &.bottom {
+      bottom: -10px;
+      transform: translateX(-50%) rotate(180deg);
+    }
 
     .menu-arrow {
       box-sizing: border-box;

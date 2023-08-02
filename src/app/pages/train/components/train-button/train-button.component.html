@@ -37,7 +37,7 @@
     [class.activated]="configuration.isCurrentExam"
     [@openClose]="(menuOpened$ | async) ? 'open' : 'closed'"
   >
-    <div class="menu-arrow-container" [style.margin-left.px]="configuration.button.offsetX">
+    <div class="menu-arrow-container top" [style.margin-left.px]="configuration.button.offsetX">
       <div class="menu-arrow"></div>
     </div>
     <h1 class="menu-title">{{ configuration.contextMenu.title }}</h1>
@@ -50,5 +50,8 @@
     >
       {{ configuration.contextMenu.buttonLabel }}
     </button>
+    <div class="menu-arrow-container bottom" [style.margin-left.px]="configuration.button.offsetX">
+      <div class="menu-arrow"></div>
+    </div>
   </div>
 </ng-template>

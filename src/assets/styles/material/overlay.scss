@@ -1,3 +1,8 @@
 .cdk-overlay-container {
   z-index: 10000;
 }
+
+.context-menu--top .menu-arrow-container.top,
+.context-menu--bottom .menu-arrow-container.bottom {
+  display: none;
+}

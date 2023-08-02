@@ -12,10 +12,10 @@ import { TemplatePortal } from '@angular/cdk/portal';
 type TrainButtonState = {
   exam: GetExerciseExamResponseDto;
   index: number;
-  viewContainerRef: ViewContainerRef;
-  element: ElementRef<HTMLElement>;
   contextMenu: TemplateRef<HTMLElement>;
   contextMenuOpened: boolean;
+  element: ElementRef<HTMLElement>;
+  viewContainerRef: ViewContainerRef;
 };
 
 @Injectable()
@@ -40,7 +40,7 @@ export class TrainButtonStore extends ComponentStore<TrainButtonState> {
 
   readonly openContextMenu = this.effect((source$: Observable<void>) => {
     return source$.pipe(
-      map(() => this._getOverlayOutsideViewPixel()),
+      map(() => this._getScrollOffsetToDisplayOverlayBelow()),
 
       tap((overflow) => {
         if (overflow > 0) {
@@ -59,15 +59,23 @@ export class TrainButtonStore extends ComponentStore<TrainButtonState> {
     );
   });
 
-  private _getOverlayOutsideViewPixel(): number {
+  private _getScrollOffsetToDisplayOverlayBelow(): number {
     const { element, viewContainerRef, contextMenu } = this.get();
+
     const remaining = this._appStore.isSmallScreen()
       ? window.innerHeight - element.nativeElement.getBoundingClientRect().bottom - 86
       : window.innerHeight - element.nativeElement.getBoundingClientRect().bottom;
 
-    const height = this._templateRefService.getHeight(viewContainerRef, contextMenu);
+    const overlayHeight = this._templateRefService.getHeight(viewContainerRef, contextMenu) + 26;
 
-    return Math.ceil(height + 50 - remaining);
+    const scrollOffset = Math.ceil(Math.abs(remaining - overlayHeight - 24));
+
+    const remainsEnoughHeightBelow = this._appStore.isSmallScreen()
+      ? window.document.body.scrollHeight - element.nativeElement.offsetTop - 86 >
+        overlayHeight + 86 + 24
+      : window.document.body.scrollHeight - element.nativeElement.offsetTop > overlayHeight + 24;
+
+    return remainsEnoughHeightBelow ? scrollOffset : 0;
   }
 
   private _scrollBy(options: ScrollToOptions): Observable<boolean> {
@@ -93,6 +101,15 @@ export class TrainButtonStore extends ComponentStore<TrainButtonState> {
           overlayX: 'center',
           overlayY: 'top',
           offsetY: 14,
+          panelClass: 'context-menu--bottom',
+        },
+        {
+          originX: 'center',
+          originY: 'top',
+          overlayX: 'center',
+          overlayY: 'bottom',
+          offsetY: -14,
+          panelClass: 'context-menu--top',
         },
       ])
       .withGrowAfterOpen(true)
