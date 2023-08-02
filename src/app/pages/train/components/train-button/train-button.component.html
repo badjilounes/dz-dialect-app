@@ -1,7 +1,7 @@
 <div class="train-button-container" cdkOverlayOrigin #triggerOverlay="cdkOverlayOrigin">
-  <ng-container *ngIf="isCurrentExam">
+  <ng-container *ngIf="configuration.isCurrentExam">
     <div class="current-message-container" *ngIf="(menuOpened$ | async) === false">
-      <div class="current-message">{{ buttonDisplay.floatingLabel }}</div>
+      <div class="current-message">{{ configuration.button.floatingLabel }}</div>
       <div class="current-message-arrow-container">
         <div class="current-message-arrow"></div>
       </div>
@@ -10,7 +10,7 @@
     <mat-progress-spinner
       mode="determinate"
       [diameter]="100"
-      [value]="buttonDisplay.progress"
+      [value]="configuration.button.progress"
       [strokeWidth]="8"
       class="exercise-spinner"
       color="primary"
@@ -24,28 +24,31 @@
     appIsButtonPressed
     #button="appIsButtonPressed"
     [class.button-pressed]="button.isPressed$ | async"
+    [style.left]="'calc(50% + ' + configuration.button.offsetX + 'px)'"
   >
-    <mat-icon [svgIcon]="buttonDisplay.icon"></mat-icon>
+    <mat-icon [svgIcon]="configuration.button.icon"></mat-icon>
   </button>
 </div>
 
-<ng-template #menuTemplate>
+<ng-template contextMenu>
   <div
     class="context-menu"
     appStopClickPropagation
-    [class.activated]="isCurrentExam"
+    [class.activated]="configuration.isCurrentExam"
     [@openClose]="(menuOpened$ | async) ? 'open' : 'closed'"
   >
-    <div class="menu-arrow-container"><div class="menu-arrow"></div></div>
-    <h1 class="menu-title">{{ contextMenu.title }}</h1>
-    <p class="menu-description">{{ contextMenu.description }}</p>
+    <div class="menu-arrow-container" [style.margin-left.px]="configuration.button.offsetX">
+      <div class="menu-arrow"></div>
+    </div>
+    <h1 class="menu-title">{{ configuration.contextMenu.title }}</h1>
+    <p class="menu-description">{{ configuration.contextMenu.description }}</p>
     <button
       class="context-button-action"
-      [disabled]="contextMenu.disabled"
+      [disabled]="configuration.contextMenu.disabled"
       mat-raised-button
       color="primary"
     >
-      {{ contextMenu.buttonLabel }}
+      {{ configuration.contextMenu.buttonLabel }}
     </button>
   </div>
 </ng-template>

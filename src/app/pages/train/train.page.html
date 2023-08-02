@@ -10,7 +10,7 @@
         <app-train-button
           *ngFor="let exam of course.exams; let examIndex = index"
           [exam]="exam"
-          [style.left.px]="getLeftButtonPosition(examIndex)"
+          [index]="examIndex"
         ></app-train-button>
       </div>
     </section>

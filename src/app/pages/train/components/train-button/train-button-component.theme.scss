@@ -1,0 +1,15 @@
+@mixin sign-in-theme($theme) {
+  $color-config: mat.get-color-config($theme);
+
+  $background: map-get($color-config, background);
+  $primary: map-get($color-config, primary);
+
+  app-sign-in-page {
+    background-color: mat.get-color-from-palette($background, card);
+
+    .already-have-account span,
+    .no-account-yet span {
+      color: mat.get-color-from-palette($primary, 500);
+    }
+  }
+}

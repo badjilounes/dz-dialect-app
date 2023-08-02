@@ -103,4 +103,8 @@ export class AppStore extends ComponentStore<UserAppStoreState> {
 
     this.initStore();
   }
+
+  isSmallScreen(): boolean {
+    return this.breakpointObserver.isMatched([Breakpoints.Small, Breakpoints.XSmall]);
+  }
 }

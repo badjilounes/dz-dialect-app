@@ -10,14 +10,15 @@ import {
   StudentHttpService,
 } from '../../../clients/dz-dialect-training-api';
 import { TrainButtonComponent } from './components/train-button/train-button.component';
+import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-train',
   templateUrl: './train.page.html',
   styleUrls: ['./train.page.scss'],
   standalone: true,
-  imports: [CommonModule, LetModule, TrainButtonComponent],
-  hostDirectives: [PageLayoutDirective],
+  imports: [CommonModule, LetModule, TrainButtonComponent, ScrollingModule],
+  hostDirectives: [PageLayoutDirective, CdkScrollable],
 })
 export class TrainPage implements OnInit {
   exerciseList$: Observable<GetExerciseResponseDto[]> = of([]);
@@ -38,18 +39,5 @@ export class TrainPage implements OnInit {
     }
 
     this.exerciseList$ = this.studentHttpService.getExerciseList();
-  }
-
-  getLeftButtonPosition(index: number): number {
-    let multiplicator = index % 4;
-
-    if (multiplicator) {
-      multiplicator--;
-      multiplicator = (multiplicator % 2) + 1;
-    }
-
-    const isLeft = Math.floor(index / 4) % 2 === 0;
-
-    return multiplicator * 36 * (isLeft ? -1 : 1);
   }
 }

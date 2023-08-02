@@ -3,7 +3,7 @@ import {
   Component,
   ElementRef,
   Input,
-  TemplateRef,
+  OnInit,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
@@ -13,38 +13,44 @@ import { LetModule } from '@ngrx/component';
 import { IsButtonPressedDirective } from '../../../../shared/technical/behavior/add-class-on-click.directive';
 import { StopClickPropagationDirective } from '../../../../shared/technical/behavior/stop-click-propagation.directive';
 import { GetExerciseExamResponseDto } from '../../../../../clients/dz-dialect-training-api';
-import {
-  MAT_LEGACY_MENU_SCROLL_STRATEGY,
-  MatLegacyMenuModule,
-} from '@angular/material/legacy-menu';
+import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 import { CommonModule } from '@angular/common';
-import { CloseScrollStrategy, Overlay, OverlayModule, OverlayRef } from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject, tap } from 'rxjs';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { UntilDestroy } from '@ngneat/until-destroy';
 import { state, style, transition, animate, trigger } from '@angular/animations';
+import { TemplateRefModule } from '../../../../shared/technical/template-ref/template-ref.module';
+import { ContextMenuDirective } from '../../directives/context-menu/context-menu.directive';
+import { TrainButtonStore } from './train-button.store';
+import { TrainingButtonConfigurationService } from '../../services/training-button-configuration/training-button-configuration.service';
 
 const MenuContextAnimation = [
   trigger('openClose', [
     state('closed', style({ transform: 'scale(0)' })),
     state('open', style({ transform: 'scale(1)' })),
-    transition('open => closed', [animate('1s')]),
+    transition('open => closed', [animate('0.2s')]),
     transition('closed => open', [animate('0.2s')]),
   ]),
 ];
 
-type ContextMenu = {
+export type ContextMenuConfiguration = {
   title: string;
   description: string;
   disabled: boolean;
   buttonLabel: string;
 };
 
-type ButtonDisplay = {
+export type ButtonConfiguration = {
   icon: string;
+  offsetX: number;
   progress?: number;
   floatingLabel?: string;
+};
+
+export type TrainButtonConfiguration = {
+  isCurrentExam: boolean;
+  button: ButtonConfiguration;
+  contextMenu: ContextMenuConfiguration;
 };
 
 @UntilDestroy()
@@ -65,93 +71,40 @@ type ButtonDisplay = {
     OverlayModule,
     MatIconModule,
     StopClickPropagationDirective,
+    TemplateRefModule,
+    ContextMenuDirective,
   ],
-  providers: [
-    {
-      provide: MAT_LEGACY_MENU_SCROLL_STRATEGY,
-      useFactory: (overlay: Overlay): (() => CloseScrollStrategy) => {
-        return () => overlay.scrollStrategies.close();
-      },
-      deps: [Overlay],
-    },
-  ],
+  providers: [TrainingButtonConfigurationService, TrainButtonStore],
 })
-export class TrainButtonComponent {
+export class TrainButtonComponent implements OnInit {
   @Input() exam!: GetExerciseExamResponseDto;
+  @Input() index!: number;
 
-  get isCurrentExam(): boolean {
-    return !!this.exam.current;
-  }
+  configuration!: TrainButtonConfiguration;
+  menuOpened$ = this._store.contextMenuOpened$;
 
-  get buttonDisplay(): ButtonDisplay {
-    return {
-      icon: this.isCurrentExam ? 'home' : 'cadena',
-      progress:
-        this.exam.current &&
-        (this.exam.current.questionIndex * 100) / this.exam.current.questionLength,
-      floatingLabel:
-        this.exam.current && this.exam.current.questionIndex ? 'reprendre' : 'commencer',
-    };
-  }
-
-  get contextMenu(): ContextMenu {
-    return {
-      title: this.exam.name,
-      description: this.exam.description,
-      disabled: !this.isCurrentExam,
-      buttonLabel: this.isCurrentExam ? 'commencer' : 'pas encore débloqué',
-    };
-  }
-
-  menuOpened$ = new BehaviorSubject<boolean>(false);
-
-  @ViewChild('menuTemplate') contextMenuTemplate!: TemplateRef<unknown>;
-
-  private _overlayRef?: OverlayRef;
+  @ViewChild(ContextMenuDirective, { static: true }) contextMenu!: ContextMenuDirective;
 
   constructor(
-    private readonly _overlay: Overlay,
     private readonly _element: ElementRef<HTMLElement>,
     private readonly _viewContainerRef: ViewContainerRef,
+    private readonly _store: TrainButtonStore,
   ) {}
 
-  openMenu(): void {
-    const positionStrategy = this._overlay
-      .position()
-      .flexibleConnectedTo(this._element)
-      .withPositions([
-        {
-          originX: 'center',
-          originY: 'bottom',
-          overlayX: 'center',
-          overlayY: 'top',
-        },
-      ])
-      .withGrowAfterOpen(true)
-      .withTransformOriginOn('.context-menu')
-      .withPush(true);
-
-    this._overlayRef = this._overlay.create({
-      positionStrategy: positionStrategy,
-      scrollStrategy: this._overlay.scrollStrategies.close(),
-      hasBackdrop: true,
-      backdropClass: 'cdk-overlay-transparent-backdrop',
-      width: 295,
+  ngOnInit(): void {
+    this._store.setState({
+      exam: this.exam,
+      index: this.index,
+      viewContainerRef: this._viewContainerRef,
+      element: this._element,
+      contextMenu: this.contextMenu.template,
+      contextMenuOpened: false,
     });
 
-    this._overlayRef
-      .backdropClick()
-      .pipe(
-        tap(() => {
-          this._overlayRef?.dispose();
-          this.menuOpened$.next(false);
-        }),
-        untilDestroyed(this),
-      )
-      .subscribe();
+    this.configuration = this._store.configuration;
+  }
 
-    this._overlayRef.attach(new TemplatePortal(this.contextMenuTemplate, this._viewContainerRef));
-
-    this.menuOpened$.next(true);
+  openMenu(): void {
+    this._store.openContextMenu();
   }
 }
