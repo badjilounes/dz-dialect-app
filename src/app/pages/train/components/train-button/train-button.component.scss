@@ -2,6 +2,11 @@
   display: block;
   position: relative;
   width: 100%;
+
+  .exercise-button ::ng-deep .mat-button-wrapper {
+    position: relative;
+    z-index: -1;
+  }
 }
 
 .train-button-container {
@@ -26,10 +31,6 @@
 
   &.button-pressed {
     top: 8px;
-  }
-
-  .mat-icon {
-    z-index: -1;
   }
 }
 

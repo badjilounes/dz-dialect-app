@@ -11,7 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
 import { LetModule } from '@ngrx/component';
 import { IsButtonPressedDirective } from '../../../../shared/technical/behavior/add-class-on-click.directive';
-import { PreventClickDirective } from '../../../../shared/technical/behavior/prevent-click.directive';
 import { StopClickPropagationDirective } from '../../../../shared/technical/behavior/stop-click-propagation.directive';
 import { GetExerciseExamResponseDto } from '../../../../../clients/dz-dialect-training-api';
 import {
@@ -65,7 +64,6 @@ type ButtonDisplay = {
     MatLegacyButtonModule,
     OverlayModule,
     MatIconModule,
-    PreventClickDirective,
     StopClickPropagationDirective,
   ],
   providers: [

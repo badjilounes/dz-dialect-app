@@ -1,6 +1,6 @@
 import { Directive, ElementRef, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject, debounceTime, fromEvent, merge, repeat, take, tap } from 'rxjs';
+import { BehaviorSubject, fromEvent, merge, repeat, take, tap } from 'rxjs';
 
 @UntilDestroy()
 @Directive({
@@ -15,6 +15,7 @@ export class IsButtonPressedDirective implements OnInit {
 
   ngOnInit(): void {
     const released$ = merge(
+      fromEvent(this.element.nativeElement, 'click'),
       fromEvent(this.element.nativeElement, 'mouseup'),
       fromEvent(this.element.nativeElement, 'mouseup'),
       fromEvent(this.element.nativeElement, 'mouseout'),
@@ -29,7 +30,6 @@ export class IsButtonPressedDirective implements OnInit {
 
     pressed$
       .pipe(
-        debounceTime(50),
         tap(() => this.isPressed$.next(true)),
         take(1),
         repeat({ delay: () => released$ }),
@@ -39,7 +39,6 @@ export class IsButtonPressedDirective implements OnInit {
 
     released$
       .pipe(
-        debounceTime(50),
         tap(() => this.isPressed$.next(false)),
         take(1),
         repeat({ delay: () => pressed$ }),
