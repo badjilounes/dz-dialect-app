@@ -6,6 +6,7 @@ import { Observable, debounceTime, first, fromEvent, map, switchMap, tap } from 
 import { Overlay } from '@angular/cdk/overlay';
 import { TemplateRefService } from '../../../../shared/technical/template-ref/template-ref.service';
 import { TemplatePortal } from '@angular/cdk/portal';
+import { CONTEXT_MENU_ANIMATION_DURATION } from './train-button-context-menu-animation';
 
 type TrainButtonState = {
   data: TrainButtonData;
@@ -91,7 +92,7 @@ export class TrainButtonStore extends ComponentStore<TrainButtonState> {
     window.scrollBy(options);
 
     return fromEvent(window, 'scroll').pipe(
-      debounceTime(100),
+      debounceTime(50),
       first(),
       map(() => true),
     );
@@ -109,7 +110,7 @@ export class TrainButtonStore extends ComponentStore<TrainButtonState> {
           originY: 'bottom',
           overlayX: 'center',
           overlayY: 'top',
-          offsetY: 14,
+          offsetY: 12,
           panelClass: 'context-menu--bottom',
         },
         {
@@ -117,7 +118,7 @@ export class TrainButtonStore extends ComponentStore<TrainButtonState> {
           originY: 'top',
           overlayX: 'center',
           overlayY: 'bottom',
-          offsetY: -14,
+          offsetY: -12,
           panelClass: 'context-menu--top',
         },
       ])
@@ -139,8 +140,8 @@ export class TrainButtonStore extends ComponentStore<TrainButtonState> {
       .backdropClick()
       .pipe(
         tap(() => {
-          overlayRef.dispose();
           this.patchState((state) => ({ contextMenu: { ...state.contextMenu, opened: false } }));
+          setTimeout(() => overlayRef?.dispose(), CONTEXT_MENU_ANIMATION_DURATION);
         }),
       )
       .subscribe();

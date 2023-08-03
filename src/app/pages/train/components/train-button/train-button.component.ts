@@ -18,20 +18,11 @@ import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { state, style, transition, animate, trigger } from '@angular/animations';
 import { TemplateRefModule } from '../../../../shared/technical/template-ref/template-ref.module';
 import { ContextMenuDirective } from '../../directives/context-menu/context-menu.directive';
 import { TrainButtonStore } from './train-button.store';
 import { TrainingButtonDataService } from '../../services/training-button-data/training-button-data.service';
-
-const MenuContextAnimation = [
-  trigger('openClose', [
-    state('closed', style({ transform: 'scale(0)' })),
-    state('open', style({ transform: 'scale(1)' })),
-    transition('open => closed', [animate('0.2s')]),
-    transition('closed => open', [animate('0.2s')]),
-  ]),
-];
+import { ContextMenuAnimation } from './train-button-context-menu-animation';
 
 export type ContextMenuData = {
   title: string;
@@ -60,7 +51,7 @@ export type TrainButtonData = {
   styleUrls: ['./train-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  animations: MenuContextAnimation,
+  animations: ContextMenuAnimation,
   imports: [
     CommonModule,
     LetModule,
