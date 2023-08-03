@@ -14,6 +14,7 @@
 export interface EditCourseDto { 
     name: string;
     description: string;
+    color: string;
     trainingId: string;
 }
 

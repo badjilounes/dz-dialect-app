@@ -49,7 +49,6 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
       'quest',
       'cog',
       'more',
-      'cadena',
     ]);
   }
 

@@ -11,6 +11,7 @@ import {
 } from '../../../clients/dz-dialect-training-api';
 import { TrainButtonComponent } from './components/train-button/train-button.component';
 import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
+import { ThemeService } from '../../core/theme/theme.service';
 
 @Component({
   selector: 'app-train',
@@ -23,21 +24,24 @@ import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
 export class TrainPage implements OnInit {
   exerciseList$: Observable<GetExerciseResponseDto[]> = of([]);
 
+  isThemeDark = this._theme.themeMode$.value === 'dark';
+
   constructor(
-    private readonly route: ActivatedRoute,
-    private readonly router: Router,
-    private readonly userAppStore: AppStore,
-    private readonly studentHttpService: StudentHttpService,
+    private readonly _route: ActivatedRoute,
+    private readonly _router: Router,
+    private readonly _userAppStore: AppStore,
+    private readonly _theme: ThemeService,
+    private readonly _studentHttpService: StudentHttpService,
   ) {}
 
   ngOnInit(): void {
-    const accessToken = this.route.snapshot.queryParams['access_token'];
+    const accessToken = this._route.snapshot.queryParams['access_token'];
     if (accessToken) {
-      this.router
+      this._router
         .navigate(['/train'], { replaceUrl: true })
-        .then(() => this.userAppStore.setAsAuthenticated(accessToken));
+        .then(() => this._userAppStore.setAsAuthenticated(accessToken));
     }
 
-    this.exerciseList$ = this.studentHttpService.getExerciseList();
+    this.exerciseList$ = this._studentHttpService.getExerciseList();
   }
 }

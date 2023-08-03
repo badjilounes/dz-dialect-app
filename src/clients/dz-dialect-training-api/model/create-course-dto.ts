@@ -14,6 +14,7 @@
 export interface CreateCourseDto { 
     name: string;
     description: string;
+    color: string;
     trainingId: string;
 }
 

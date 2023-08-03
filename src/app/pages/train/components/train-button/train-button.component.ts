@@ -23,12 +23,15 @@ import { ContextMenuDirective } from '../../directives/context-menu/context-menu
 import { TrainButtonStore } from './train-button.store';
 import { TrainingButtonDataService } from '../../services/training-button-data/training-button-data.service';
 import { ContextMenuAnimation } from './train-button-context-menu-animation';
+import { SvgIconModule } from '../../../../shared/technical/svg-icon/svg-icon.module';
 
 export type ContextMenuData = {
   title: string;
   description: string;
   disabled: boolean;
   buttonLabel: string;
+  backgroundColor?: string;
+  buttonColor?: string;
 };
 
 export type ButtonData = {
@@ -36,6 +39,9 @@ export type ButtonData = {
   offsetX: number;
   progress?: number;
   floatingLabel?: string;
+  floatingLabelColor: string;
+  backgroundColor?: string;
+  boxShadow?: string;
 };
 
 export type TrainButtonData = {
@@ -64,12 +70,14 @@ export type TrainButtonData = {
     StopClickPropagationDirective,
     TemplateRefModule,
     ContextMenuDirective,
+    SvgIconModule,
   ],
   providers: [TrainingButtonDataService, TrainButtonStore],
 })
 export class TrainButtonComponent implements OnInit {
   @Input() exam!: GetExerciseExamResponseDto;
   @Input() index!: number;
+  @Input() courseColor = '';
 
   data!: TrainButtonData;
   menuOpened$ = this._store.contextMenuOpened$;
@@ -84,7 +92,7 @@ export class TrainButtonComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.data = this._trainButtonDataService.buildData(this.exam, this.index);
+    this.data = this._trainButtonDataService.buildData(this.exam, this.index, this.courseColor);
 
     this._store.setState({
       data: this.data,

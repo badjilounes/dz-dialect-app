@@ -16,6 +16,7 @@ export interface GetExerciseCourseResponseDto {
     id: string;
     name: string;
     description: string;
+    color: string;
     trainingId: boolean;
     exams: Array<GetExerciseExamResponseDto>;
     order: number;

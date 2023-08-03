@@ -15,6 +15,7 @@ export interface CourseResponseDto {
     id: string;
     name: string;
     description: string;
+    color: string;
     trainingId: boolean;
     order: number;
     createdAt: string;

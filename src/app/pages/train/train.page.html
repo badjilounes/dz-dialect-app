@@ -1,7 +1,10 @@
 <ng-container *ngrxLet="exerciseList$;let exerciseList">
   <section *ngFor="let training of exerciseList">
     <section *ngFor="let course of training.courses">
-      <header class="exercise-header">
+      <header
+        class="exercise-header"
+        [style.background-color]="isThemeDark ? 'rgb(32,47,54)' : course.color"
+      >
         <h1 class="title">{{course.name}}</h1>
         <p class="description">{{course.description}}</p>
       </header>
@@ -11,6 +14,7 @@
           *ngFor="let exam of course.exams; let examIndex = index"
           [exam]="exam"
           [index]="examIndex"
+          [courseColor]="course.color"
         ></app-train-button>
       </div>
     </section>

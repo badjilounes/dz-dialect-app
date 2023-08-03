@@ -5,38 +5,62 @@ import {
   ContextMenuData,
   TrainButtonData,
 } from '../../components/train-button/train-button.component';
+import { SvgIconService } from '../../../../shared/technical/svg-icon/svg-icon.service';
 
 @Injectable()
 export class TrainingButtonDataService {
-  buildData(exam: GetExerciseExamResponseDto, index: number): TrainButtonData {
+  constructor(private readonly _svgIconService: SvgIconService) {
+    this._svgIconService.registerIcons(['cadena', 'single-star']);
+  }
+
+  buildData(exam: GetExerciseExamResponseDto, index: number, courseColor: string): TrainButtonData {
     return {
       isCurrentExam: exam.current !== undefined,
-      button: this._buildButtonData(exam, index),
-      contextMenu: this._buildContextMenuData(exam),
+      button: this._buildButtonData(exam, index, courseColor),
+      contextMenu: this._buildContextMenuData(exam, courseColor),
     };
   }
 
-  private _buildContextMenuData(exam: GetExerciseExamResponseDto): ContextMenuData {
-    return {
+  private _buildContextMenuData(
+    exam: GetExerciseExamResponseDto,
+    courseColor: string,
+  ): ContextMenuData {
+    const contextMenuData: ContextMenuData = {
       title: exam.name,
       description: exam.description,
-      disabled: !exam.current,
-      buttonLabel: !!exam.current ? 'commencer' : 'pas encore débloqué',
+      disabled: true,
+      buttonLabel: 'pas encore débloqué',
     };
+
+    if (exam.current) {
+      contextMenuData.disabled = false;
+      contextMenuData.buttonLabel = exam.current.questionIndex ? 'reprendre' : 'commencer';
+      contextMenuData.backgroundColor = courseColor;
+      contextMenuData.buttonColor = courseColor;
+    }
+
+    return contextMenuData;
   }
 
-  private _buildButtonData(exam: GetExerciseExamResponseDto, index: number): ButtonData {
+  private _buildButtonData(
+    exam: GetExerciseExamResponseDto,
+    index: number,
+    courseColor: string,
+  ): ButtonData {
     const buttonConfiguration: ButtonData = {
       icon: 'cadena',
       offsetX: this._calculateOffsetX(index),
       floatingLabel: 'commencer',
+      floatingLabelColor: courseColor,
     };
 
     if (exam.current) {
-      buttonConfiguration.icon = 'home';
+      buttonConfiguration.icon = 'single-star';
       buttonConfiguration.progress =
         (exam.current.questionIndex * 100) / exam.current.questionLength;
       buttonConfiguration.floatingLabel = exam.current.questionIndex ? 'reprendre' : 'commencer';
+      buttonConfiguration.backgroundColor = courseColor;
+      buttonConfiguration.boxShadow = `0 8px 0 rgb(0, 0, 0, 0.2), 0 8px 0 ${courseColor}`;
     }
 
     return buttonConfiguration;
