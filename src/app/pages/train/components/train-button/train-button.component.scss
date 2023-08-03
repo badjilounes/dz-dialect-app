@@ -60,17 +60,20 @@ $button-width: 70px;
 .context-menu {
   display: flex;
   flex-direction: column;
+  width: 295px;
   gap: 8px;
-  width: 100%;
   border-radius: 15px;
   padding: 16px;
 
   .menu-title,
   .menu-description {
     font-size: 19px;
-    font-weight: 700;
-    line-height: 1.4;
+    line-height: 26px;
     margin: 0;
+  }
+
+  .menu-title {
+    font-weight: 700;
   }
 
   .menu-arrow-container {

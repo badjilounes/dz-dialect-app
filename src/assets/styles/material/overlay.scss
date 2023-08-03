@@ -2,7 +2,29 @@
   z-index: 10000;
 }
 
-.context-menu--top .menu-arrow-container.top,
-.context-menu--bottom .menu-arrow-container.bottom {
-  display: none;
+.context-menu-pane {
+  &.context-menu--top .menu-arrow-container.top,
+  &.context-menu--bottom .menu-arrow-container.bottom {
+    display: none;
+  }
+
+  &.small-screen {
+    &.context-menu--bottom {
+      padding-bottom: calc(var(--bottom-bar-height) + 16px);
+    }
+
+    &.context-menu--top {
+      padding-top: calc(var(--bottom-bar-height) + 16px);
+    }
+  }
+
+  &:not(.small-screen) {
+    &.context-menu--bottom {
+      padding-bottom: 16px;
+    }
+
+    &.context-menu--top {
+      padding-top: 16px;
+    }
+  }
 }

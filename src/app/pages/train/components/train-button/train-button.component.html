@@ -1,7 +1,7 @@
 <div class="train-button-container" cdkOverlayOrigin #triggerOverlay="cdkOverlayOrigin">
-  <ng-container *ngIf="configuration.isCurrentExam">
+  <ng-container *ngIf="data.isCurrentExam">
     <div class="current-message-container" *ngIf="(menuOpened$ | async) === false">
-      <div class="current-message">{{ configuration.button.floatingLabel }}</div>
+      <div class="current-message">{{ data.button.floatingLabel }}</div>
       <div class="current-message-arrow-container">
         <div class="current-message-arrow"></div>
       </div>
@@ -10,7 +10,7 @@
     <mat-progress-spinner
       mode="determinate"
       [diameter]="100"
-      [value]="configuration.button.progress"
+      [value]="data.button.progress"
       [strokeWidth]="8"
       class="exercise-spinner"
       color="primary"
@@ -24,33 +24,38 @@
     appIsButtonPressed
     #button="appIsButtonPressed"
     [class.button-pressed]="button.isPressed$ | async"
-    [style.left]="'calc(50% + ' + configuration.button.offsetX + 'px)'"
+    [style.left]="'calc(50% + ' + data.button.offsetX + 'px)'"
   >
-    <mat-icon [svgIcon]="configuration.button.icon"></mat-icon>
+    <mat-icon [svgIcon]="data.button.icon"></mat-icon>
   </button>
 </div>
 
-<ng-template contextMenu>
+<ng-template
+  contextMenu
+  let-isCurrentExam="isCurrentExam"
+  let-buttonData="button"
+  let-contextMenuData="contextMenu"
+>
   <div
     class="context-menu"
     appStopClickPropagation
-    [class.activated]="configuration.isCurrentExam"
+    [class.activated]="isCurrentExam"
     [@openClose]="(menuOpened$ | async) ? 'open' : 'closed'"
   >
-    <div class="menu-arrow-container top" [style.margin-left.px]="configuration.button.offsetX">
+    <div class="menu-arrow-container top" [style.margin-left.px]="buttonData?.offsetX">
       <div class="menu-arrow"></div>
     </div>
-    <h1 class="menu-title">{{ configuration.contextMenu.title }}</h1>
-    <p class="menu-description">{{ configuration.contextMenu.description }}</p>
+    <h1 class="menu-title">{{ contextMenuData?.title }}</h1>
+    <p class="menu-description">{{ contextMenuData?.description }}</p>
     <button
       class="context-button-action"
-      [disabled]="configuration.contextMenu.disabled"
+      [disabled]="contextMenuData?.disabled"
       mat-raised-button
       color="primary"
     >
-      {{ configuration.contextMenu.buttonLabel }}
+      {{ contextMenuData?.buttonLabel }}
     </button>
-    <div class="menu-arrow-container bottom" [style.margin-left.px]="configuration.button.offsetX">
+    <div class="menu-arrow-container bottom" [style.margin-left.px]="buttonData?.offsetX">
       <div class="menu-arrow"></div>
     </div>
   </div>

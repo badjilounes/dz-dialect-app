@@ -22,7 +22,7 @@ import { state, style, transition, animate, trigger } from '@angular/animations'
 import { TemplateRefModule } from '../../../../shared/technical/template-ref/template-ref.module';
 import { ContextMenuDirective } from '../../directives/context-menu/context-menu.directive';
 import { TrainButtonStore } from './train-button.store';
-import { TrainingButtonConfigurationService } from '../../services/training-button-configuration/training-button-configuration.service';
+import { TrainingButtonDataService } from '../../services/training-button-data/training-button-data.service';
 
 const MenuContextAnimation = [
   trigger('openClose', [
@@ -33,24 +33,24 @@ const MenuContextAnimation = [
   ]),
 ];
 
-export type ContextMenuConfiguration = {
+export type ContextMenuData = {
   title: string;
   description: string;
   disabled: boolean;
   buttonLabel: string;
 };
 
-export type ButtonConfiguration = {
+export type ButtonData = {
   icon: string;
   offsetX: number;
   progress?: number;
   floatingLabel?: string;
 };
 
-export type TrainButtonConfiguration = {
+export type TrainButtonData = {
   isCurrentExam: boolean;
-  button: ButtonConfiguration;
-  contextMenu: ContextMenuConfiguration;
+  button: ButtonData;
+  contextMenu: ContextMenuData;
 };
 
 @UntilDestroy()
@@ -74,13 +74,13 @@ export type TrainButtonConfiguration = {
     TemplateRefModule,
     ContextMenuDirective,
   ],
-  providers: [TrainingButtonConfigurationService, TrainButtonStore],
+  providers: [TrainingButtonDataService, TrainButtonStore],
 })
 export class TrainButtonComponent implements OnInit {
   @Input() exam!: GetExerciseExamResponseDto;
   @Input() index!: number;
 
-  configuration!: TrainButtonConfiguration;
+  data!: TrainButtonData;
   menuOpened$ = this._store.contextMenuOpened$;
 
   @ViewChild(ContextMenuDirective, { static: true }) contextMenu!: ContextMenuDirective;
@@ -88,20 +88,22 @@ export class TrainButtonComponent implements OnInit {
   constructor(
     private readonly _element: ElementRef<HTMLElement>,
     private readonly _viewContainerRef: ViewContainerRef,
+    private readonly _trainButtonDataService: TrainingButtonDataService,
     private readonly _store: TrainButtonStore,
   ) {}
 
   ngOnInit(): void {
+    this.data = this._trainButtonDataService.buildData(this.exam, this.index);
+
     this._store.setState({
-      exam: this.exam,
-      index: this.index,
+      data: this.data,
       viewContainerRef: this._viewContainerRef,
       element: this._element,
-      contextMenu: this.contextMenu.template,
-      contextMenuOpened: false,
+      contextMenu: {
+        template: this.contextMenu.template,
+        opened: false,
+      },
     });
-
-    this.configuration = this._store.configuration;
   }
 
   openMenu(): void {

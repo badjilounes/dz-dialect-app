@@ -1,24 +1,22 @@
 import { Injectable } from '@angular/core';
 import { GetExerciseExamResponseDto } from '../../../../../clients/dz-dialect-training-api';
 import {
-  ButtonConfiguration,
-  ContextMenuConfiguration,
-  TrainButtonConfiguration,
+  ButtonData,
+  ContextMenuData,
+  TrainButtonData,
 } from '../../components/train-button/train-button.component';
 
 @Injectable()
-export class TrainingButtonConfigurationService {
-  buildConfiguration(exam: GetExerciseExamResponseDto, index: number): TrainButtonConfiguration {
+export class TrainingButtonDataService {
+  buildData(exam: GetExerciseExamResponseDto, index: number): TrainButtonData {
     return {
       isCurrentExam: exam.current !== undefined,
-      button: this._buildButtonConfiguration(exam, index),
-      contextMenu: this.buildContextMenuConfiguration(exam),
+      button: this._buildButtonData(exam, index),
+      contextMenu: this._buildContextMenuData(exam),
     };
   }
 
-  private buildContextMenuConfiguration(
-    exam: GetExerciseExamResponseDto,
-  ): ContextMenuConfiguration {
+  private _buildContextMenuData(exam: GetExerciseExamResponseDto): ContextMenuData {
     return {
       title: exam.name,
       description: exam.description,
@@ -27,11 +25,8 @@ export class TrainingButtonConfigurationService {
     };
   }
 
-  private _buildButtonConfiguration(
-    exam: GetExerciseExamResponseDto,
-    index: number,
-  ): ButtonConfiguration {
-    const buttonConfiguration: ButtonConfiguration = {
+  private _buildButtonData(exam: GetExerciseExamResponseDto, index: number): ButtonData {
+    const buttonConfiguration: ButtonData = {
       icon: 'cadena',
       offsetX: this._calculateOffsetX(index),
       floatingLabel: 'commencer',
