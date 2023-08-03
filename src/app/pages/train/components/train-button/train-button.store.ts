@@ -77,7 +77,7 @@ export class TrainButtonStore extends ComponentStore<TrainButtonState> {
 
     const scrollTopOffset =
       remainsEnoughHeightBelow && scrollOffset < 0 ? Math.abs(scrollOffset) + margins : 0;
-    const minHeight = overlayHeight + bottomBarHeight;
+    const minHeight = overlayHeight - margins;
 
     this.patchState((state) => ({
       contextMenu: {
