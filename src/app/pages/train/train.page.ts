@@ -11,32 +11,36 @@ import {
 } from '../../../clients/dz-dialect-training-api';
 import { TrainButtonComponent } from './components/train-button/train-button.component';
 import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
-import { ThemeService } from '../../core/theme/theme.service';
 import { TrainToolbarComponent } from './components/train-toolbar/train-toolbar.component';
 import { map } from 'rxjs/operators';
+import { TrainCourseSectionComponent } from './components/train-course-section/train-course-section.component';
 
 @Component({
   selector: 'app-train',
   templateUrl: './train.page.html',
   styleUrls: ['./train.page.scss'],
   standalone: true,
-  imports: [CommonModule, LetModule, TrainButtonComponent, ScrollingModule, TrainToolbarComponent],
+  imports: [
+    CommonModule,
+    LetModule,
+    TrainButtonComponent,
+    ScrollingModule,
+    TrainToolbarComponent,
+    TrainCourseSectionComponent,
+  ],
   hostDirectives: [PageLayoutDirective, CdkScrollable],
 })
 export class TrainPage implements OnInit {
-  isHandset$ = this.appStore.isHandset$;
+  isSmallScreen$ = this._appStore.isSmallScreen$;
   exerciseList$: Observable<GetExerciseResponseDto[]> = of([]);
-
-  isThemeDark = this._theme.themeMode$.value === 'dark';
-  picture$ = this.appStore.user$.pipe(map((user) => user?.imageUrl));
+  picture$ = this._appStore.user$.pipe(map((user) => user?.imageUrl));
 
   constructor(
     private readonly _route: ActivatedRoute,
     private readonly _router: Router,
     private readonly _userAppStore: AppStore,
-    private readonly _theme: ThemeService,
     private readonly _studentHttpService: StudentHttpService,
-    private readonly appStore: AppStore,
+    private readonly _appStore: AppStore,
   ) {}
 
   ngOnInit(): void {

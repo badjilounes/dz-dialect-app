@@ -17,14 +17,15 @@ import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TemplateRefModule } from '../../../../shared/technical/template-ref/template-ref.module';
 import { ContextMenuDirective } from '../../directives/context-menu/context-menu.directive';
 import { TrainButtonStore } from './train-button.store';
-import { TrainingButtonDataService } from '../../services/training-button-data/training-button-data.service';
+import { TrainButtonDataService } from '../../services/train-button-data/train-button-data.service';
 import { ContextMenuAnimation } from './train-button-context-menu-animation';
 import { SvgIconModule } from '../../../../shared/technical/svg-icon/svg-icon.module';
 import { RouterModule } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 export type ContextMenuData = {
   title: string;
@@ -74,27 +75,29 @@ export type TrainButtonData = {
     ContextMenuDirective,
     SvgIconModule,
   ],
-  providers: [TrainingButtonDataService, TrainButtonStore],
+  providers: [TrainButtonDataService, TrainButtonStore],
+  exportAs: 'trainButton',
 })
 export class TrainButtonComponent implements OnInit {
   @Input() exam!: GetExerciseExamResponseDto;
   @Input() index!: number;
-  @Input() courseColor = '';
+  @Input() color = '';
+  @Input() showCurrentTooltip = false;
 
   data!: TrainButtonData;
-  menuOpened$ = this._store.contextMenuOpened$;
+  menuOpened$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   @ViewChild(ContextMenuDirective, { static: true }) contextMenu!: ContextMenuDirective;
 
   constructor(
     private readonly _element: ElementRef<HTMLElement>,
     private readonly _viewContainerRef: ViewContainerRef,
-    private readonly _trainButtonDataService: TrainingButtonDataService,
+    private readonly _trainButtonDataService: TrainButtonDataService,
     private readonly _store: TrainButtonStore,
   ) {}
 
   ngOnInit(): void {
-    this.data = this._trainButtonDataService.buildData(this.exam, this.index, this.courseColor);
+    this.data = this._trainButtonDataService.buildData(this.exam, this.index, this.color);
 
     this._store.setState({
       data: this.data,
@@ -105,6 +108,8 @@ export class TrainButtonComponent implements OnInit {
         opened: false,
       },
     });
+
+    this._store.contextMenuOpened$.pipe(untilDestroyed(this)).subscribe(this.menuOpened$);
   }
 
   openMenu(): void {

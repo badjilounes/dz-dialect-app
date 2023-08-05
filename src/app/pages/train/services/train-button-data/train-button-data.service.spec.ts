@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TrainingButtonDataService } from './training-button-data.service';
+import { TrainButtonDataService } from './train-button-data.service';
 
 describe('TrainingButtonService', () => {
-  let service: TrainingButtonDataService;
+  let service: TrainButtonDataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TrainingButtonDataService);
+    service = TestBed.inject(TrainButtonDataService);
   });
 
   it('should be created', () => {

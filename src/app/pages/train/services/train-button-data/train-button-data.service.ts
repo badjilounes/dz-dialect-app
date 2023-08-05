@@ -8,23 +8,20 @@ import {
 import { SvgIconService } from '../../../../shared/technical/svg-icon/svg-icon.service';
 
 @Injectable()
-export class TrainingButtonDataService {
+export class TrainButtonDataService {
   constructor(private readonly _svgIconService: SvgIconService) {
     this._svgIconService.registerIcons(['cadena', 'single-star', 'done', 'close']);
   }
 
-  buildData(exam: GetExerciseExamResponseDto, index: number, courseColor: string): TrainButtonData {
+  buildData(exam: GetExerciseExamResponseDto, index: number, color: string): TrainButtonData {
     return {
       isCurrentExam: exam.current !== undefined,
-      button: this._buildButtonData(exam, index, courseColor),
-      contextMenu: this._buildContextMenuData(exam, courseColor),
+      button: this._buildButtonData(exam, index, color),
+      contextMenu: this._buildContextMenuData(exam, color),
     };
   }
 
-  private _buildContextMenuData(
-    exam: GetExerciseExamResponseDto,
-    courseColor: string,
-  ): ContextMenuData {
+  private _buildContextMenuData(exam: GetExerciseExamResponseDto, color: string): ContextMenuData {
     const contextMenuData: ContextMenuData = {
       title: exam.name,
       description: exam.description,
@@ -35,15 +32,15 @@ export class TrainingButtonDataService {
     if (exam.current) {
       contextMenuData.disabled = false;
       contextMenuData.buttonLabel = exam.current.questionIndex ? 'reprendre' : 'commencer';
-      contextMenuData.backgroundColor = courseColor;
-      contextMenuData.buttonColor = courseColor;
+      contextMenuData.backgroundColor = color;
+      contextMenuData.buttonColor = color;
     }
 
     if (exam.result) {
       contextMenuData.disabled = false;
       contextMenuData.buttonLabel = "s'entrainer";
-      contextMenuData.backgroundColor = courseColor;
-      contextMenuData.buttonColor = courseColor;
+      contextMenuData.backgroundColor = color;
+      contextMenuData.buttonColor = color;
 
       const success = exam.result.score >= exam.result.maxScore / 2;
       if (success) {
@@ -63,13 +60,13 @@ export class TrainingButtonDataService {
   private _buildButtonData(
     exam: GetExerciseExamResponseDto,
     index: number,
-    courseColor: string,
+    color: string,
   ): ButtonData {
     const buttonConfiguration: ButtonData = {
       icon: 'cadena',
       offsetX: this._calculateOffsetX(index),
       floatingLabel: 'commencer',
-      floatingLabelColor: courseColor,
+      floatingLabelColor: color,
     };
 
     if (exam.current) {
@@ -77,8 +74,8 @@ export class TrainingButtonDataService {
       buttonConfiguration.progress =
         (exam.current.questionIndex * 100) / exam.current.questionLength;
       buttonConfiguration.floatingLabel = exam.current.questionIndex ? 'reprendre' : 'commencer';
-      buttonConfiguration.backgroundColor = courseColor;
-      buttonConfiguration.boxShadow = `0 8px 0 rgb(0, 0, 0, 0.2), 0 8px 0 ${courseColor}`;
+      buttonConfiguration.backgroundColor = color;
+      buttonConfiguration.boxShadow = `0 8px 0 rgb(0, 0, 0, 0.2), 0 8px 0 ${color}`;
     }
 
     if (exam.result) {

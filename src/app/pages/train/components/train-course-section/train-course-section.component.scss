@@ -1,0 +1,49 @@
+:host {
+  display: block;
+}
+
+.exercise-header {
+  display: grid;
+  position: relative;
+  background-color: rgb(88, 204, 2);
+  color: white;
+  overflow: hidden;
+  align-items: center;
+
+  &.small-screen {
+    column-gap: 16px;
+    grid-auto-columns: 1fr min-content;
+    padding: 16px;
+    row-gap: 3px;
+  }
+
+  &:not(.small-screen) {
+    row-gap: 6px;
+    border-radius: 12px;
+    padding: 22px 16px;
+  }
+
+  .title {
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.36;
+    margin: 0;
+  }
+
+  .description {
+    font-size: 19px;
+    line-height: 1.4;
+    margin: 0;
+  }
+}
+
+.exercise-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 70px;
+  padding-bottom: 35px;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  gap: 16px;
+}

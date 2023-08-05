@@ -1,0 +1,20 @@
+<header
+  *ngrxLet="isSmallScreen$; let isSmallScreen"
+  class="exercise-header"
+  [class.small-screen]="isSmallScreen"
+  [style.background-color]="headerBackgroundColor"
+>
+  <h1 class="title">{{ course.name }}</h1>
+  <p class="description">{{ course.description }}</p>
+</header>
+
+<div class="exercise-container">
+  <app-train-button
+    #trainButton="trainButton"
+    *ngFor="let exam of course.exams; let examIndex = index"
+    [exam]="exam"
+    [index]="examIndex"
+    [color]="course.color"
+    [showCurrentTooltip]="!trainButton.menuOpened$.value && !hasButtonWithMenuOpened"
+  ></app-train-button>
+</div>

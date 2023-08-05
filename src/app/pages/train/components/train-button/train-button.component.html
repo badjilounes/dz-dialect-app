@@ -1,8 +1,8 @@
 <div class="train-button-container" cdkOverlayOrigin #triggerOverlay="cdkOverlayOrigin">
   <ng-container *ngIf="data.isCurrentExam">
     <div
+      *ngIf="showCurrentTooltip"
       class="current-message-container"
-      *ngIf="(menuOpened$ | async) === false"
       [style.left.px]="data.button.offsetX - 15"
     >
       <div class="current-message" [style.color]="data.button.floatingLabelColor">
