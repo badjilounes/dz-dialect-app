@@ -1,0 +1,24 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin train-page-theme($theme) {
+  $primary: map-get($theme, primary);
+  $color-config: mat.get-color-config($theme);
+  $is-dark-theme: map.get($color-config, 'is-dark');
+  $foreground: map-get($theme, foreground);
+  $background: map.get($color-config, background);
+
+  app-train {
+    .scroll-top-button.mat-stroked-button[mat-stroked-button]:not(.mat-button-disabled[disabled]).mat-accent {
+
+      @if $is-dark-theme == false {
+        border-color: #e4e4e4;
+        background-color: rgb(255,255,255);
+      }
+      @if $is-dark-theme == true {
+        border-color: rgb(55,70,79);
+        background-color: rgb(19,31,36);
+      }
+    }
+  }
+}

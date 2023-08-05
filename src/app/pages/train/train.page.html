@@ -10,3 +10,8 @@
     </section>
   </section>
 </ng-container>
+<button mat-stroked-button color="accent" class="scroll-top-button" (click)="scrollToTop()"
+        *ngIf="showScrollTopButton$ | async">
+  <mat-icon>arrow_upward_alt</mat-icon>
+</button>
+

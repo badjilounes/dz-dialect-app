@@ -142,6 +142,7 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, foreground, text, r
 @import 'app/pages/settings/settings-page.theme.scss';
 @import 'app/pages/sign-in/sign-in-page.theme.scss';
 @import 'app/pages/train/components/train-button/train-button-component.theme.scss';
+@import 'app/pages/train/train-page.theme.scss';
 
 /* material component mixins*/
 @include bottom-sheet-theme($dz-dialect-app-theme);
@@ -177,6 +178,7 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, foreground, text, r
 @include statistic-list-theme($dz-dialect-app-theme);
 @include user-profile-toolbar-theme($dz-dialect-app-theme);
 @include train-button-theme($dz-dialect-app-theme);
+@include train-page-theme($dz-dialect-app-theme);
 
 .darkMode {
   // Include theme styles for core and each component used in your app.
@@ -264,4 +266,5 @@ $dz-dialect-app-theme: map.set($dz-dialect-app-theme, color, foreground, text, r
   @include statistic-list-theme($dz-dialect-dark-app-theme);
   @include user-profile-toolbar-theme($dz-dialect-dark-app-theme);
   @include train-button-theme($dz-dialect-dark-app-theme);
+  @include train-page-theme($dz-dialect-dark-app-theme);
 }

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LetModule } from '@ngrx/component';
-import { Observable, of } from 'rxjs';
+import { fromEvent, Observable, of } from 'rxjs';
 import { AppStore } from 'src/app/app.store';
 import { PageLayoutDirective } from '../../core/layout/directives/is-page-layout.directive';
 import {
@@ -52,5 +52,13 @@ export class TrainPage implements OnInit {
     }
 
     this.exerciseList$ = this._studentHttpService.getExerciseList();
+
+    this.showScrollTopButton$ = fromEvent(window, 'scroll').pipe(
+      map(() => (document.documentElement.scrollTop || document.body.scrollTop) > 100),
+    );
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
