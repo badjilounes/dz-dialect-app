@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LetModule } from '@ngrx/component';
 import { fromEvent, Observable, of } from 'rxjs';
@@ -14,6 +14,8 @@ import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
 import { TrainToolbarComponent } from './components/train-toolbar/train-toolbar.component';
 import { map } from 'rxjs/operators';
 import { TrainCourseSectionComponent } from './components/train-course-section/train-course-section.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 
 @Component({
   selector: 'app-train',
@@ -23,6 +25,8 @@ import { TrainCourseSectionComponent } from './components/train-course-section/t
   imports: [
     CommonModule,
     LetModule,
+    MatIconModule,
+    MatButtonModule,
     TrainButtonComponent,
     ScrollingModule,
     TrainToolbarComponent,
@@ -31,9 +35,10 @@ import { TrainCourseSectionComponent } from './components/train-course-section/t
   hostDirectives: [PageLayoutDirective, CdkScrollable],
 })
 export class TrainPage implements OnInit {
-  isSmallScreen$ = this._appStore.isSmallScreen$;
   exerciseList$: Observable<GetExerciseResponseDto[]> = of([]);
+  isSmallScreen$ = this._appStore.isSmallScreen$;
   picture$ = this._appStore.user$.pipe(map((user) => user?.imageUrl));
+  showScrollTopButton$!: Observable<boolean>;
 
   constructor(
     private readonly _route: ActivatedRoute,

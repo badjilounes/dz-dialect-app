@@ -10,6 +10,10 @@ $toolbar-top-height: 56px;
 :host.page-screen-layout.small {
   margin: 0;
   padding-top: $toolbar-top-height;
+
+  .scroll-top-button {
+    bottom: 180px;
+  }
 }
 
 .train-toolbar {
@@ -35,8 +39,3 @@ $toolbar-top-height: 56px;
     min-width: 52px;
   }
 }
-
-
-
-
-
