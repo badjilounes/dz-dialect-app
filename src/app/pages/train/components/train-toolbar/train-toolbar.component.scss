@@ -1,0 +1,30 @@
+:host{
+  border-bottom: 2px solid rgba(0,0,0,0.2);
+}
+.training-toolbar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  background-color: #58cc02;
+  align-items: center;
+  height:100%;
+  padding: 0 12px;
+}
+.toolbar-flag {
+  display: block;
+  height:32px;
+  border-radius: 8px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #fff;
+}
+.user-toolbar-picture{
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+

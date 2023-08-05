@@ -12,19 +12,23 @@ import {
 import { TrainButtonComponent } from './components/train-button/train-button.component';
 import { CdkScrollable, ScrollingModule } from '@angular/cdk/scrolling';
 import { ThemeService } from '../../core/theme/theme.service';
+import { TrainToolbarComponent } from './components/train-toolbar/train-toolbar.component';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-train',
   templateUrl: './train.page.html',
   styleUrls: ['./train.page.scss'],
   standalone: true,
-  imports: [CommonModule, LetModule, TrainButtonComponent, ScrollingModule],
+  imports: [CommonModule, LetModule, TrainButtonComponent, ScrollingModule, TrainToolbarComponent],
   hostDirectives: [PageLayoutDirective, CdkScrollable],
 })
 export class TrainPage implements OnInit {
+  isHandset$ = this.appStore.isHandset$;
   exerciseList$: Observable<GetExerciseResponseDto[]> = of([]);
 
   isThemeDark = this._theme.themeMode$.value === 'dark';
+  picture$ = this.appStore.user$.pipe(map((user) => user?.imageUrl));
 
   constructor(
     private readonly _route: ActivatedRoute,
@@ -32,6 +36,7 @@ export class TrainPage implements OnInit {
     private readonly _userAppStore: AppStore,
     private readonly _theme: ThemeService,
     private readonly _studentHttpService: StudentHttpService,
+    private readonly appStore: AppStore,
   ) {}
 
   ngOnInit(): void {

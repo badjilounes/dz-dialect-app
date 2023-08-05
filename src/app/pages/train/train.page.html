@@ -1,3 +1,4 @@
+<app-train-toolbar class="train-toolbar" [picture]="(picture$ | async) ?? undefined" *ngIf="isHandset$ | async"></app-train-toolbar>
 <ng-container *ngrxLet="exerciseList$;let exerciseList">
   <section *ngFor="let training of exerciseList">
     <section *ngFor="let course of training.courses">

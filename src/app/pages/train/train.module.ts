@@ -6,5 +6,6 @@ import { TrainRoutingModule } from './train-routing.module';
 
 @NgModule({
   imports: [CommonModule, TrainRoutingModule, LetModule],
+  declarations: [],
 })
 export class TrainModule {}

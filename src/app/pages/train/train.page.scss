@@ -1,8 +1,10 @@
+$toolbar-top-height: 56px;
 :host {
   display: flex;
   flex-direction: column;
   flex: 1;
   overflow: auto;
+  padding-top: $toolbar-top-height;
 }
 
 :host.page-screen-layout.small {
@@ -55,4 +57,13 @@
   align-items: center;
   overflow: auto;
   gap: 16px;
+}
+
+.train-toolbar {
+  height: $toolbar-top-height;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 10;
 }
