@@ -9,7 +9,6 @@ import { ConfirmDialogModule } from 'src/app/shared/technical/confirm-dialog/con
 import { ConfirmDialogService } from 'src/app/shared/technical/confirm-dialog/confirm-dialog.service';
 import { ExamComponent } from '../../../../shared/business/exam/exam.component';
 import { OverviewStore } from '../../store/overview.store';
-import { GetExamCopyResponseDto } from '../../../../../clients/dz-dialect-training-api';
 import { ThemeService } from '../../../../core/theme/theme.service';
 
 @UntilDestroy()
@@ -28,7 +27,7 @@ import { ThemeService } from '../../../../core/theme/theme.service';
   ],
 })
 export class PresentationComponent implements OnInit {
-  @Input() presentationExamCopy!: GetExamCopyResponseDto;
+  @Input() presentationExamId!: string;
 
   constructor(
     private readonly overviewStore: OverviewStore,
@@ -41,7 +40,7 @@ export class PresentationComponent implements OnInit {
   }
 
   onExamComplete(): void {
-    this.overviewStore.getExamResultsFromExamId(this.presentationExamCopy.examId);
+    this.overviewStore.getExamResultsFromExamId(this.presentationExamId);
   }
 
   onExamSkip(): void {

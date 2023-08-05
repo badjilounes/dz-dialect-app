@@ -11,7 +11,7 @@
  */
 
 
-export interface StartExamDto { 
+export interface GetPresentationExamIdResponseDto { 
     examId: string;
 }
 

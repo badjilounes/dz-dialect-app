@@ -1,6 +1,10 @@
 <div class="train-button-container" cdkOverlayOrigin #triggerOverlay="cdkOverlayOrigin">
   <ng-container *ngIf="data.isCurrentExam">
-    <div class="current-message-container" *ngIf="(menuOpened$ | async) === false">
+    <div
+      class="current-message-container"
+      *ngIf="(menuOpened$ | async) === false"
+      [style.left.px]="data.button.offsetX - 15"
+    >
       <div class="current-message" [style.color]="data.button.floatingLabelColor">
         {{ data.button.floatingLabel }}
       </div>
@@ -8,8 +12,9 @@
         <div class="current-message-arrow"></div>
       </div>
     </div>
-    <div class="spinner-buffer"></div>
+    <div class="spinner-buffer" [style.left.px]="data.button.offsetX"></div>
     <mat-progress-spinner
+      [style.left.px]="data.button.offsetX"
       mode="determinate"
       [diameter]="100"
       [value]="data.button.progress"
@@ -44,7 +49,7 @@
   <div
     class="context-menu"
     appStopClickPropagation
-    [class.activated]="isCurrentExam"
+    [class.activated]="isCurrentExam || exam.result"
     [style.background-color]="contextMenuData?.backgroundColor"
     [@openClose]="(menuOpened$ | async) ? 'open' : 'closed'"
   >
@@ -62,6 +67,7 @@
       mat-raised-button
       [disabled]="contextMenuData?.disabled"
       [style.color]="contextMenuData?.buttonColor"
+      [routerLink]="['/exam', exam.id]"
     >
       {{ contextMenuData?.buttonLabel }}
     </button>

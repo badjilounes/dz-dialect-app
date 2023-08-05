@@ -10,7 +10,7 @@ import { SvgIconService } from '../../../../shared/technical/svg-icon/svg-icon.s
 @Injectable()
 export class TrainingButtonDataService {
   constructor(private readonly _svgIconService: SvgIconService) {
-    this._svgIconService.registerIcons(['cadena', 'single-star']);
+    this._svgIconService.registerIcons(['cadena', 'single-star', 'done', 'close']);
   }
 
   buildData(exam: GetExerciseExamResponseDto, index: number, courseColor: string): TrainButtonData {
@@ -39,6 +39,24 @@ export class TrainingButtonDataService {
       contextMenuData.buttonColor = courseColor;
     }
 
+    if (exam.result) {
+      contextMenuData.disabled = false;
+      contextMenuData.buttonLabel = "s'entrainer";
+      contextMenuData.backgroundColor = courseColor;
+      contextMenuData.buttonColor = courseColor;
+
+      const success = exam.result.score >= exam.result.maxScore / 2;
+      if (success) {
+        const successColor = 'rgb(255,200,0)';
+        contextMenuData.backgroundColor = successColor;
+        contextMenuData.buttonColor = successColor;
+      } else {
+        const failureColor = 'rgb(239, 83, 80)';
+        contextMenuData.backgroundColor = failureColor;
+        contextMenuData.buttonColor = failureColor;
+      }
+    }
+
     return contextMenuData;
   }
 
@@ -61,6 +79,21 @@ export class TrainingButtonDataService {
       buttonConfiguration.floatingLabel = exam.current.questionIndex ? 'reprendre' : 'commencer';
       buttonConfiguration.backgroundColor = courseColor;
       buttonConfiguration.boxShadow = `0 8px 0 rgb(0, 0, 0, 0.2), 0 8px 0 ${courseColor}`;
+    }
+
+    if (exam.result) {
+      const success = exam.result.score >= exam.result.maxScore / 2;
+      if (success) {
+        const successColor = 'rgb(255,200,0)';
+        buttonConfiguration.icon = 'done';
+        buttonConfiguration.backgroundColor = successColor;
+        buttonConfiguration.boxShadow = `0 8px 0 rgb(0, 0, 0, 0.2), 0 8px 0 ${successColor}`;
+      } else {
+        const failureColor = 'rgb(239, 83, 80)';
+        buttonConfiguration.icon = 'close';
+        buttonConfiguration.backgroundColor = failureColor;
+        buttonConfiguration.boxShadow = `0 8px 0 rgb(0, 0, 0, 0.2), 0 8px 0 ${failureColor}`;
+      }
     }
 
     return buttonConfiguration;

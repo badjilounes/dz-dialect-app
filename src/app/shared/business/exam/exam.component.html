@@ -1,10 +1,16 @@
-<div class="exam-container" *ngrxLet="isHandset$; let handset" [ngClass]="{ handset }">
-  <app-exam-progress
-    [cancelOption]="skipOption"
-    [cancelOptionTooltip]="'training.training-presentation.skip-tooltip' | translate"
-  ></app-exam-progress>
-  <app-exam-question></app-exam-question>
-  <app-exam-response></app-exam-response>
-  <mat-divider></mat-divider>
-  <app-exam-actions></app-exam-actions>
-</div>
+<ng-container *ngIf="showLoader$ | async; else exam">
+  <mat-spinner [diameter]="120"></mat-spinner>
+</ng-container>
+
+<ng-template #exam>
+  <div class="exam-container" *ngrxLet="isHandset$; let handset" [ngClass]="{ handset }">
+    <app-exam-progress
+      [showCancel]="skipable"
+      [cancelTooltip]="'training.training-presentation.skip-tooltip' | translate"
+    ></app-exam-progress>
+    <app-exam-question></app-exam-question>
+    <app-exam-response></app-exam-response>
+    <mat-divider></mat-divider>
+    <app-exam-actions></app-exam-actions>
+  </div>
+</ng-template>

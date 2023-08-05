@@ -8,6 +8,7 @@ import { MatLegacyTooltipModule as MatTooltipModule } from '@angular/material/le
 import { LetModule } from '@ngrx/component';
 import { map, Observable, shareReplay } from 'rxjs';
 import { ExamStore } from '../../store/exam.store';
+import { filterUndefined } from '../../../../technical/operators/filter-undefined.operator';
 
 @Component({
   selector: 'app-exam-progress',
@@ -25,10 +26,10 @@ import { ExamStore } from '../../store/exam.store';
   ],
 })
 export class ExamProgressComponent {
-  @Input() cancelOption = false;
-  @Input() cancelOptionTooltip = '';
+  @Input() showCancel = false;
+  @Input() cancelTooltip = '';
 
-  progress$: Observable<number> = this.examStore.progress$;
+  progress$: Observable<number> = this.examStore.progress$.pipe(filterUndefined());
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map((result) => result.matches),

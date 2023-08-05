@@ -27,7 +27,7 @@ export class OverviewPage {
   showPresentation$ = this.overviewStore.showPresentation$;
   showLoader$ = this.overviewStore.showLoader$;
 
-  presentationExamCopy$ = this.overviewStore.presentationExamCopy$;
+  presentationExamId$ = this.overviewStore.presentationExamId$;
   result$ = this.overviewStore.result$;
 
   constructor(private readonly overviewStore: OverviewStore) {}

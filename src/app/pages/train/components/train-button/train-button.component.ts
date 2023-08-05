@@ -24,6 +24,7 @@ import { TrainButtonStore } from './train-button.store';
 import { TrainingButtonDataService } from '../../services/training-button-data/training-button-data.service';
 import { ContextMenuAnimation } from './train-button-context-menu-animation';
 import { SvgIconModule } from '../../../../shared/technical/svg-icon/svg-icon.module';
+import { RouterModule } from '@angular/router';
 
 export type ContextMenuData = {
   title: string;
@@ -60,6 +61,7 @@ export type TrainButtonData = {
   animations: ContextMenuAnimation,
   imports: [
     CommonModule,
+    RouterModule,
     LetModule,
     IsButtonPressedDirective,
     MatLegacyProgressSpinnerModule,

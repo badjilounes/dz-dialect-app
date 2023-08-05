@@ -46,6 +46,11 @@ const routes: Routes = [
   },
 
   {
+    path: 'exam',
+    loadChildren: () => import('./pages/exam/exam.module').then((m) => m.ExamModule),
+  },
+
+  {
     path: 'sign-in',
     canActivate: [UnauthenticatedGuard],
     loadChildren: () => import('./pages/sign-in/sign-in.module').then((m) => m.SignInModule),

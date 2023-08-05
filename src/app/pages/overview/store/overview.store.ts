@@ -7,8 +7,8 @@ import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { Observable, repeat, switchMap, tap } from 'rxjs';
 import { filterUndefined } from 'src/app/shared/technical/operators/filter-undefined.operator';
 import {
-  GetExamCopyResponseDto,
   GetExamResultResponseDto,
+  GetPresentationExamIdResponseDto,
   StudentHttpService,
 } from 'src/clients/dz-dialect-training-api';
 import { OverviewDisplay } from '../overview-display';
@@ -16,7 +16,7 @@ import { OverviewDisplay } from '../overview-display';
 type OverviewState = {
   display: OverviewDisplay;
   isLoading: boolean;
-  presentationExamCopy?: GetExamCopyResponseDto;
+  presentationExamId?: string;
   result?: GetExamResultResponseDto;
 };
 
@@ -38,8 +38,8 @@ export class OverviewStore extends ComponentStore<OverviewState> {
     (state) => state.display === OverviewDisplay.LOADER,
   );
 
-  readonly presentationExamCopy$: Observable<GetExamCopyResponseDto> = this.select(
-    (state) => state.presentationExamCopy,
+  readonly presentationExamId$: Observable<string> = this.select(
+    (state) => state.presentationExamId,
   ).pipe(filterUndefined());
 
   readonly result$: Observable<GetExamResultResponseDto> = this.select(
@@ -80,12 +80,12 @@ export class OverviewStore extends ComponentStore<OverviewState> {
   readonly startPresentation = this.effect((save$: Observable<void>) => {
     return save$.pipe(
       tap(() => this.patchState(() => ({ isLoading: true }))),
-      switchMap(() => this.studentHttpService.startPresentation()),
+      switchMap(() => this.studentHttpService.getPresentationExamId()),
       tapResponse(
-        (presentationExamCopy: GetExamCopyResponseDto) => {
+        ({ examId }: GetPresentationExamIdResponseDto) => {
           this.patchState(() => ({
             display: OverviewDisplay.PRESENTATION,
-            presentationExamCopy,
+            presentationExamId: examId,
             isLoading: false,
           }));
         },

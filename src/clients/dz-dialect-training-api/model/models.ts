@@ -28,6 +28,7 @@ export * from './get-exercise-exam-question-response-dto';
 export * from './get-exercise-exam-response-dto';
 export * from './get-exercise-exam-result-response-dto';
 export * from './get-exercise-response-dto';
+export * from './get-presentation-exam-id-response-dto';
 export * from './paginated-courses-response-dto';
 export * from './paginated-exams-response-dto';
 export * from './paginated-training-response-dto';

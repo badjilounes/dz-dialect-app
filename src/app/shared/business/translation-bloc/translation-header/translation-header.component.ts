@@ -42,7 +42,7 @@ export class TranslationHeaderComponent {
     this.languagesSwapped.emit();
   }
 
-  compareWithValue = (a: Language | null, b: Language | null) => {
+  compareWithValue = (a: Language | null, b: Language | null): boolean => {
     const aValue = a && a.value;
     const bValue = b && b.value;
     return aValue === bValue;

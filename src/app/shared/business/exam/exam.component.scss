@@ -1,4 +1,4 @@
-:host{
+:host {
   display: grid;
 }
 
@@ -10,4 +10,8 @@
   .mat-divider {
     width: 100%;
   }
+}
+
+.mat-progress-spinner {
+  place-self: center;
 }

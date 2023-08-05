@@ -1,6 +1,7 @@
 <app-exam
-  [examCopy]="presentationExamCopy"
-  [skipOption]="true"
+  [examId]="presentationExamId"
+  [skipable]="true"
+  [resumeable]="false"
   (completed)="onExamComplete()"
   (skipped)="onExamSkip()"
 ></app-exam>

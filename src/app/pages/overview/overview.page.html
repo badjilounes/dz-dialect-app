@@ -3,9 +3,10 @@
 </ng-container>
 
 <ng-container *ngIf="showPresentation$ | async">
-  <ng-container *ngrxLet="presentationExamCopy$; let presentationExamCopy">
-    <app-presentation [presentationExamCopy]="presentationExamCopy"></app-presentation>
-  </ng-container>
+  <app-presentation
+    *ngrxLet="presentationExamId$; let presentationExamId"
+    [presentationExamId]="presentationExamId"
+  ></app-presentation>
 </ng-container>
 
 <ng-container *ngIf="showResult$ | async">
