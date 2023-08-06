@@ -4,7 +4,7 @@ import {
   GetExerciseResponseDto,
   StudentHttpService,
 } from '../../../clients/dz-dialect-training-api';
-import { switchMap, tap } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs';
 import { ThemeService } from '../../core/theme/theme.service';
 
 type TrainPageState = {
@@ -37,6 +37,7 @@ export class TrainPageStore extends ComponentStore<TrainPageState> {
 
   readonly setToolbarColor = this.effect<string>((color$) =>
     color$.pipe(
+      map((color) => (this._theme.themeMode$.value === 'dark' ? '#202F36' : color)),
       tap((color) => this.patchState({ toolbarColor: color })),
       tap((color) => this._theme.updateStatusBarColor(color)),
     ),
