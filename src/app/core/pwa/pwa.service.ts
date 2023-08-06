@@ -10,7 +10,9 @@ export class PwaService {
     private readonly swUpdate: SwUpdate,
     private readonly snackBar: MatLegacySnackBar,
     private readonly translateSrv: TranslateService,
-  ) {}
+  ) {
+    this.translateSrv.use('fr');
+  }
 
   init(): void {
     window.addEventListener('beforeinstallprompt', (event) => this._showInstallPwa(event));
