@@ -8,7 +8,7 @@ import { LetModule } from '@ngrx/component';
 import { Observable, map } from 'rxjs';
 import { AppStore } from '../../../../app.store';
 import { filterUndefined } from '../../../../shared/technical/operators/filter-undefined.operator';
-import { ProfileInformation } from '../../../settings/pages/profile-information/profile-information.component';
+import { ProfileInformation } from '../../../settings/components/profile-information/profile-information.component';
 
 @Component({
   selector: 'app-user-profile-information',

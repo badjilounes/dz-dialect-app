@@ -1,6 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
 import { Router } from '@angular/router';
@@ -34,7 +34,7 @@ type TrainingResult = {
     ConfirmDialogModule,
   ],
 })
-export class PresentationResultComponent implements OnInit, OnDestroy {
+export class PresentationResultComponent implements OnInit {
   @Input() result: TrainingResult = { note: 0, total: 0 };
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
@@ -58,10 +58,6 @@ export class PresentationResultComponent implements OnInit, OnDestroy {
     } else {
       this.theme.setStatusBarColor(StatusBarColor.DARK);
     }
-  }
-
-  ngOnDestroy(): void {
-    this.theme.applyThemeToStatusBar();
   }
 
   restartTraining(): void {

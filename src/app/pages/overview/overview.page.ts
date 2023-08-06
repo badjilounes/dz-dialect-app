@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
 import { LetModule } from '@ngrx/component';
 import { OverviewComponent } from 'src/app/pages/overview/components/overview/overview.component';
 import { PresentationResultComponent } from 'src/app/pages/overview/components/presentation-result/presentation-result.component';
 import { PresentationComponent } from 'src/app/pages/overview/components/presentation/presentation.component';
 import { OverviewStore } from 'src/app/pages/overview/store/overview.store';
-import { ThemeService } from '../../core/theme/theme.service';
+import { StatusBarColor, ThemeService } from '../../core/theme/theme.service';
 
 @Component({
   templateUrl: './overview.page.html',
@@ -22,7 +22,7 @@ import { ThemeService } from '../../core/theme/theme.service';
     PresentationResultComponent,
   ],
 })
-export class OverviewPage implements OnDestroy {
+export class OverviewPage implements OnInit {
   showResult$ = this._store.showResult$;
   showOverview$ = this._store.showOverview$;
   showPresentation$ = this._store.showPresentation$;
@@ -33,7 +33,7 @@ export class OverviewPage implements OnDestroy {
 
   constructor(private readonly _store: OverviewStore, private readonly _theme: ThemeService) {}
 
-  ngOnDestroy(): void {
-    this._theme.applyThemeToStatusBar();
+  ngOnInit(): void {
+    this._theme.setStatusBarColor(StatusBarColor.OVERVIEW);
   }
 }

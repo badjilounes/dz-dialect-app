@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { fromEvent, Observable } from 'rxjs';
 import { AppStore } from 'src/app/app.store';
@@ -31,7 +31,7 @@ import { LetModule } from '@ngrx/component';
   providers: [TrainPageStore],
   hostDirectives: [PageLayoutDirective],
 })
-export class TrainPage implements OnInit, OnDestroy {
+export class TrainPage implements OnInit {
   exerciseList$ = this._store.exerciseList$;
   isSmallScreen$ = this._appStore.isSmallScreen$;
   picture$ = this._appStore.user$.pipe(map((user) => user?.imageUrl));
@@ -59,10 +59,6 @@ export class TrainPage implements OnInit, OnDestroy {
     );
 
     this._store.getExerciseList();
-  }
-
-  ngOnDestroy(): void {
-    this._store.resetStatusBarColor();
   }
 
   scrollToTop(): void {

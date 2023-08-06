@@ -12,7 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AppStore } from 'src/app/app.store';
 import { FullLineCardButtonComponent } from 'src/app/shared/design-system/full-line-card-button/full-line-card-button.component';
 import { CardComponent } from '../../../../shared/design-system/card/card.component';
-import { ProfileEditPictureComponent } from '../profile-edit/profile-edit-picture/profile-edit-picture.component';
+import { ProfileEditPictureComponent } from '../../pages/profile-edit/profile-edit-picture/profile-edit-picture.component';
 
 export type ProfileInformation = {
   name: string;

@@ -1,17 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { PageLayoutDirective } from '../../core/layout/directives/is-page-layout.directive';
 import {
   ProfileInformation,
   ProfileInformationComponent,
-} from './pages/profile-information/profile-information.component';
+} from './components/profile-information/profile-information.component';
 import { ProfileEditPictureComponent } from './pages/profile-edit/profile-edit-picture/profile-edit-picture.component';
 import { Observable, map } from 'rxjs';
 import { AppStore } from '../../app.store';
 import { filterUndefined } from '../../shared/technical/operators/filter-undefined.operator';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';
-import { AppearanceComponent } from './pages/appearance/appearance.component';
+import { AppearanceComponent } from './components/appearance/appearance.component';
+import { ThemeService } from '../../core/theme/theme.service';
 
 @Component({
   selector: 'app-settings',
@@ -28,8 +29,8 @@ import { AppearanceComponent } from './pages/appearance/appearance.component';
   ],
   hostDirectives: [PageLayoutDirective],
 })
-export class SettingsPage {
-  userInformation$: Observable<ProfileInformation> = this.appStore.user$.pipe(
+export class SettingsPage implements OnInit {
+  userInformation$: Observable<ProfileInformation> = this._appStore.user$.pipe(
     filterUndefined(),
     map((user) => ({
       name: user.name,
@@ -41,9 +42,17 @@ export class SettingsPage {
     })),
   );
 
-  constructor(private readonly appStore: AppStore, private readonly router: Router) {}
+  constructor(
+    private readonly _appStore: AppStore,
+    private readonly _router: Router,
+    private readonly _theme: ThemeService,
+  ) {}
+
+  ngOnInit(): void {
+    this._theme.applyThemeToStatusBar();
+  }
 
   logOut(): void {
-    this.router.navigate(['/logout']);
+    this._router.navigate(['/logout']);
   }
 }

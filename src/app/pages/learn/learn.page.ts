@@ -36,6 +36,7 @@ import { CardComponent } from 'src/app/shared/design-system/card/card.component'
 import { CapitalizeModule } from 'src/app/shared/technical/capitalize/capitalize.module';
 import { SentenceHttpService, SentenceResponseDto } from 'src/clients/dz-dialect-api';
 import { PageLayoutDirective } from '../../core/layout/directives/is-page-layout.directive';
+import { ThemeService } from '../../core/theme/theme.service';
 
 @Component({
   selector: 'app-learn',
@@ -62,7 +63,7 @@ import { PageLayoutDirective } from '../../core/layout/directives/is-page-layout
   hostDirectives: [PageLayoutDirective],
 })
 export class LearnPage implements OnInit {
-  isHandset$ = this.appStore.isHandset$;
+  isHandset$ = this._appStore.isHandset$;
   loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   sentences$: Observable<SentenceResponseDto[]> = of([]);
   tenses$: Observable<string[]> = of([]);
@@ -75,13 +76,16 @@ export class LearnPage implements OnInit {
   });
 
   constructor(
-    private readonly appStore: AppStore,
-    private readonly sentenceApi: SentenceHttpService,
-    private readonly snackBar: MatSnackBar,
+    private readonly _appStore: AppStore,
+    private readonly _sentenceHttpService: SentenceHttpService,
+    private readonly _snackBar: MatSnackBar,
+    private readonly _theme: ThemeService,
   ) {}
 
-  ngOnInit() {
-    this.verbs$ = this.sentenceApi.getVerbList().pipe(
+  ngOnInit(): void {
+    this._theme.applyThemeToStatusBar();
+
+    this.verbs$ = this._sentenceHttpService.getVerbList().pipe(
       switchMap((verbs) =>
         this.formGroup.controls.verbs.valueChanges.pipe(
           startWith(''),
@@ -90,20 +94,20 @@ export class LearnPage implements OnInit {
       ),
     );
 
-    this.tenses$ = this.sentenceApi.getTenseList();
+    this.tenses$ = this._sentenceHttpService.getTenseList();
   }
 
   generate(): void {
     this.loading$.next(true);
 
     const { verbs, tense, number } = this.formGroup.value;
-    this.sentences$ = this.sentenceApi
+    this.sentences$ = this._sentenceHttpService
       .getSentenceList(number ?? 1, verbs ? [verbs] : undefined, tense ? tense : undefined)
       .pipe(
         tap(() => this.loading$.next(false)),
         catchError((error) => {
           this.loading$.next(false);
-          this.snackBar.open(error.message, 'OK', { duration: 3000 });
+          this._snackBar.open(error.message, 'OK', { duration: 3000 });
           return EMPTY;
         }),
       );
