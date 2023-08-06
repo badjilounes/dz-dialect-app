@@ -45,7 +45,7 @@ export class PwaService {
   private _showInstallPromptForIos(): void {
     // Checks if should display install popup notification:
 
-    this._translate.get('pwa.install-ios').subscribe((message) => {
+    this._translate.get('pwa.install.ios').subscribe((message) => {
       if (this._isIOS() && !this._isInStandaloneMode()) {
         this._snackBar.open(message);
       }
