@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PwaService } from './pwa.service';
-import { TranslateModule } from '@ngx-translate/core';
 import { MatLegacySnackBarModule } from '@angular/material/legacy-snack-bar';
+import { AppTranslateModule } from '../translate/translate.module';
 
 @NgModule({
-  imports: [TranslateModule, MatLegacySnackBarModule],
+  imports: [AppTranslateModule, MatLegacySnackBarModule],
   providers: [PwaService],
 })
 export class PwaModule {

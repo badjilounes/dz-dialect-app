@@ -10,7 +10,10 @@ export class PwaService {
     private readonly _swUpdate: SwUpdate,
     private readonly _snackBar: MatLegacySnackBar,
     private readonly _translate: TranslateService,
-  ) {}
+  ) {
+    this._translate.setDefaultLang('fr');
+    this._translate.use('fr');
+  }
 
   init(): void {
     window.addEventListener('beforeinstallprompt', (event) => this._showInstallPwa(event));
@@ -43,19 +46,19 @@ export class PwaService {
   }
 
   private _showInstallPromptForIos(): void {
-    // Checks if should display install popup notification:
-    if (this._isIOS() && !this._isInStandaloneMode()) {
+    // Detects if device is on iOS
+    const isIOS = (): boolean => {
+      const userAgent = window.navigator.userAgent.toLowerCase();
+      return /iphone|ipad|ipod/.test(userAgent);
+    };
+    // Detects if device is in standalone mode
+    const isInStandaloneMode = (): boolean =>
+      !!('standalone' in window.navigator) && !!window.navigator['standalone'];
+
+    if (isIOS() && !isInStandaloneMode()) {
       this._translate
         .get('pwa.install.ios')
         .subscribe((message) => this._snackBar.open(message, 'OK'));
     }
-  }
-
-  private _isIOS(): boolean {
-    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
-  }
-
-  private _isInStandaloneMode(): boolean {
-    return !!('standalone' in window.navigator) && !!window.navigator['standalone'];
   }
 }
