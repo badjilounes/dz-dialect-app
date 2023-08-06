@@ -31,14 +31,14 @@ export class TrainCourseSectionButtonBuilderService {
   backgroundMap: Map<TrainButtonAppearance, TrainBackgroundResolver> = new Map([
     ['current', (color: string): string => color],
     ['success', (): string => 'rgb(255,200,0)'],
-    ['failure', (): string => 'rgb(239, 83, 80)'],
+    ['failure', (): string => 'RGB(238, 85, 85, 0.8)'],
   ]);
 
   iconMap: Map<TrainButtonAppearance, string> = new Map([
     ['locked', 'cadena'],
     ['current', 'single-star'],
-    ['success', 'done'],
-    ['failure', 'close'],
+    ['success', 'success'],
+    ['failure', 'failure'],
   ]);
 
   tooltipMap: Map<TrainButtonAppearance, TrainTooltipResolver> = new Map([
@@ -139,7 +139,7 @@ export class TrainCourseSectionButtonBuilderService {
   ]);
 
   constructor(private readonly _svgIconService: SvgIconService) {
-    this._svgIconService.registerIcons(['cadena', 'single-star', 'done', 'close']);
+    this._svgIconService.registerIcons(['cadena', 'single-star', 'success', 'failure']);
   }
 
   build(exam: GetExerciseExamResponseDto, index: number, color: string): TrainCourseButton {
