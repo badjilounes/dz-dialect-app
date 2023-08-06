@@ -6,6 +6,7 @@ import { Overlay, OverlayRef, PositionStrategy } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
 import {
   TRAIN_BUTTON_CONTEXT_MENU_DATA,
+  TRAIN_BUTTON_CONTEXT_MENU_OVERLAY_REF,
   TrainButtonContextMenu,
   TrainButtonContextMenuComponent,
 } from '../train-button-context-menu/train-button-context-menu.component';
@@ -165,6 +166,10 @@ export class TrainButtonStore extends ComponentStore<TrainButtonState> {
           {
             provide: TRAIN_BUTTON_CONTEXT_MENU_DATA,
             useValue: contextMenu.data,
+          },
+          {
+            provide: TRAIN_BUTTON_CONTEXT_MENU_OVERLAY_REF,
+            useValue: overlayRef,
           },
         ],
       }),

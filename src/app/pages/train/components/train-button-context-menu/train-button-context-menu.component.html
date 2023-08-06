@@ -20,6 +20,7 @@
     [disabled]="action.disabled"
     [style.color]="action.color"
     [routerLink]="[action.link]"
+    (click)="close()"
   >
     {{ action.text }}
   </button>
