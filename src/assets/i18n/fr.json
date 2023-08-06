@@ -12,6 +12,7 @@
   "generated-sentence.copied-to-clipboard": "Copié dans le presse-papier",
   "generated-sentence.source-language.dz_value": "Dialecte algérien",
   "generated-sentence.source-language.fr_value": "Français",
+  "install": "Installer",
   "learn.explanation.content": "Générer une phrase française aléatoirement et consulter sa traduction en dialecte algérien.",
   "learn.explanation.title": "Apprenez le dialecte algérien facilement",
   "learn.generate-button": "Générer",
@@ -108,5 +109,6 @@
   "training.training-toolbar-links.more": "PLUS",
   "training.training-toolbar-links.profil": "MON PROFIL",
   "training.training-toolbar-links.settings": "PARAMÈTRES",
-  "training.training-toolbar-links.train": "QUÊTES"
+  "training.training-toolbar-links.train": "QUÊTES",
+  "update": "Mettre à jour"
 }
