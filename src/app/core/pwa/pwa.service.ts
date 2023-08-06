@@ -3,49 +3,53 @@ import { MatLegacySnackBar } from '@angular/material/legacy-snack-bar';
 import { MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
 import { TranslateService } from '@ngx-translate/core';
-import { filter } from 'rxjs';
+import { filter, forkJoin } from 'rxjs';
 @Injectable()
 export class PwaService {
   constructor(
-    private readonly swUpdate: SwUpdate,
-    private readonly snackBar: MatLegacySnackBar,
-    private readonly translateSrv: TranslateService,
-  ) {
-    this.translateSrv.use('fr');
-  }
+    private readonly _swUpdate: SwUpdate,
+    private readonly _snackBar: MatLegacySnackBar,
+    private readonly _translate: TranslateService,
+  ) {}
 
   init(): void {
     window.addEventListener('beforeinstallprompt', (event) => this._showInstallPwa(event));
 
     this._showInstallPromptForIos();
 
-    this.swUpdate.versionUpdates
+    this._swUpdate.versionUpdates
       .pipe(filter((evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY'))
       .subscribe(() => this._showAskToUpdate());
   }
 
   private _showAskToUpdate(): void {
-    const snackRef: MatSnackBarRef<SimpleSnackBar> = this.snackBar.open(
-      this.translateSrv.instant('pwa.reload'),
-      this.translateSrv.instant('install'),
-    );
-
-    snackRef.onAction().subscribe(() => window.location.reload());
+    forkJoin({
+      message: this._translate.get('pwa.reload'),
+      action: this._translate.get('update'),
+    }).subscribe(({ message, action }) => {
+      const snackRef: MatSnackBarRef<SimpleSnackBar> = this._snackBar.open(message, action);
+      snackRef.onAction().subscribe(() => window.location.reload());
+    });
   }
 
   private _showInstallPwa(event: any): void {
-    let snackRef: MatSnackBarRef<SimpleSnackBar> = this.snackBar.open(
-      this.translateSrv.instant('pwa.install'),
-      this.translateSrv.instant('install'),
-    );
-    snackRef.onAction().subscribe(() => event.prompt());
+    forkJoin({
+      message: this._translate.get('pwa.install'),
+      action: this._translate.get('install'),
+    }).subscribe(({ message, action }) => {
+      const snackRef: MatSnackBarRef<SimpleSnackBar> = this._snackBar.open(message, action);
+      snackRef.onAction().subscribe(() => event.prompt());
+    });
   }
 
   private _showInstallPromptForIos(): void {
     // Checks if should display install popup notification:
-    if (this._isIOS() && !this._isInStandaloneMode()) {
-      this.snackBar.open(this.translateSrv.instant('pwa.install-ios'), 'OK');
-    }
+
+    this._translate.get('pwa.install-ios').subscribe((message) => {
+      if (this._isIOS() && !this._isInStandaloneMode()) {
+        this._snackBar.open(message);
+      }
+    });
   }
 
   private _isIOS(): boolean {
