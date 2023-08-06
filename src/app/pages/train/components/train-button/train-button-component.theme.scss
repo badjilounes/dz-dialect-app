@@ -19,50 +19,26 @@
       }
     }
 
-    .current-message-container,
-    .current-message-arrow {
-      @if $is-dark-theme == false {
-        background-color: rgb(255, 255, 255);
-        border-color: rgb(229, 229, 229);
-      }
-
-      @if $is-dark-theme == true {
-        background-color: rgb(19, 31, 36);
-        border-color: rgb(55, 70, 79);
-      }
-    }
-
-    .exercise-button {
-      @if $is-dark-theme == false {
-        background-color: rgb(229, 229, 229);
-      }
-
-      @if $is-dark-theme == true {
-        background-color: rgb(55, 70, 79);
-
-        &:not(.current) .mat-icon svg path {
-          fill: rgb(82, 101, 109);
-        }
-
-        &:not(.button-pressed) {
-          box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 0px 0px, rgb(55, 70, 79) 0px 8px 0px 0px;
-        }
-      }
-    }
-  }
-
-  .context-menu-pane .context-menu:not(.activated),
-  .context-menu-pane .context-menu:not(.activated) .menu-arrow {
     @if $is-dark-theme == false {
-      color: rgb(175, 175, 175);
-      background-color: rgb(247, 247, 247);
-      border: 2px solid rgb(229, 229, 229);
+      .exercise-button.train-button-locked .mat-icon svg path {
+        fill: rgb(175, 175, 175);
+      }
+
+      .exercise-button.train-button-locked {
+        background-color: rgb(229, 229, 229);
+        color: rgb(229, 229, 229);
+      }
     }
 
     @if $is-dark-theme == true {
-      background-color: rgb(32, 47, 54);
-      border-color: rgb(55, 70, 79);
-      color: rgb(82, 101, 109);
+      .exercise-button.train-button-locked .mat-icon svg path {
+        fill: rgb(82, 101, 109);
+      }
+
+      .exercise-button.train-button-locked {
+        background-color: rgb(55, 70, 79);
+        color: rgb(55, 70, 79);
+      }
     }
   }
 }

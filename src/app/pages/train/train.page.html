@@ -3,6 +3,7 @@
   [picture]="(picture$ | async) ?? undefined"
   *ngIf="isSmallScreen$ | async"
 ></app-train-toolbar>
+
 <ng-container *ngrxLet="exerciseList$;let exerciseList">
   <section *ngFor="let training of exerciseList">
     <section *ngFor="let course of training.courses">
@@ -10,8 +11,13 @@
     </section>
   </section>
 </ng-container>
-<button mat-stroked-button color="accent" class="scroll-top-button" (click)="scrollToTop()"
-        *ngIf="showScrollTopButton$ | async">
+
+<button
+  mat-stroked-button
+  color="accent"
+  class="scroll-top-button"
+  (click)="scrollToTop()"
+  *ngIf="showScrollTopButton$ | async"
+>
   <mat-icon>arrow_upward_alt</mat-icon>
 </button>
-

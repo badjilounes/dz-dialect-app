@@ -15,17 +15,17 @@ export class IsButtonPressedDirective implements OnInit {
 
   ngOnInit(): void {
     const released$ = merge(
-      fromEvent(this.element.nativeElement, 'click'),
-      fromEvent(this.element.nativeElement, 'mouseup'),
-      fromEvent(this.element.nativeElement, 'mouseup'),
-      fromEvent(this.element.nativeElement, 'mouseout'),
-      fromEvent(this.element.nativeElement, 'touchend'),
-      fromEvent(this.element.nativeElement, 'touchcancel'),
+      fromEvent(this.element.nativeElement, 'click', { passive: true }),
+      fromEvent(this.element.nativeElement, 'mouseup', { passive: true }),
+      fromEvent(this.element.nativeElement, 'mouseup', { passive: true }),
+      fromEvent(this.element.nativeElement, 'mouseout', { passive: true }),
+      fromEvent(this.element.nativeElement, 'touchend', { passive: true }),
+      fromEvent(this.element.nativeElement, 'touchcancel', { passive: true }),
     );
 
     const pressed$ = merge(
-      fromEvent(this.element.nativeElement, 'mousedown'),
-      fromEvent(this.element.nativeElement, 'touchstart'),
+      fromEvent(this.element.nativeElement, 'mousedown', { passive: true }),
+      fromEvent(this.element.nativeElement, 'touchstart', { passive: true }),
     );
 
     pressed$

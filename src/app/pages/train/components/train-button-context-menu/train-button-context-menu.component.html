@@ -1,0 +1,33 @@
+<div
+  class="context-menu"
+  [class.context-menu-locked]="data.appearance === 'locked'"
+  [style.background-color]="data.background"
+  [@openClose]="(menuOpened$ | async) ? 'open' : 'closed'"
+>
+  <div class="menu-arrow-container top" [style.margin-left.px]="data.offsetX">
+    <div
+      class="menu-arrow"
+      [style.background-color]="data.background"
+      [style.border-color]="data.background"
+    ></div>
+  </div>
+  <h1 class="menu-title" [style.color]="data.color">{{ data.title }}</h1>
+  <p class="menu-description" [style.color]="data.color">{{ data.description }}</p>
+  <button
+    *ngFor="let action of data.actions"
+    class="context-button-action"
+    mat-raised-button
+    [disabled]="action.disabled"
+    [style.color]="action.color"
+    [routerLink]="[action.link]"
+  >
+    {{ action.text }}
+  </button>
+  <div class="menu-arrow-container bottom" [style.margin-left.px]="data.offsetX">
+    <div
+      class="menu-arrow"
+      [style.background-color]="data.background"
+      [style.border-color]="data.background"
+    ></div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin train-button-tooltip-theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $is-dark-theme: map.get($color-config, 'is-dark');
+
+  app-train-button-tooltip {
+    .train-button-tooltip-container,
+    .train-button-tooltip-arrow {
+      @if $is-dark-theme == false {
+        background-color: rgb(255, 255, 255);
+        border-color: rgb(229, 229, 229);
+      }
+
+      @if $is-dark-theme == true {
+        background-color: rgb(19, 31, 36);
+        border-color: rgb(55, 70, 79);
+      }
+    }
+  }
+}

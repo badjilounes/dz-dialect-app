@@ -1,0 +1,24 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin train-button-context-menu-theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  $is-dark-theme: map.get($color-config, 'is-dark');
+
+  app-train-button-context-menu {
+    .context-menu.context-menu-locked,
+    .context-menu.context-menu-locked .menu-arrow {
+      @if $is-dark-theme == false {
+        color: rgb(175, 175, 175);
+        background-color: rgb(247, 247, 247);
+        border: 2px solid rgb(229, 229, 229);
+      }
+
+      @if $is-dark-theme == true {
+        background-color: rgb(32, 47, 54);
+        border-color: rgb(55, 70, 79);
+        color: rgb(82, 101, 109);
+      }
+    }
+  }
+}

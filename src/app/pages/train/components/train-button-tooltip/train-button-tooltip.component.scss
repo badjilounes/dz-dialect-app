@@ -1,0 +1,60 @@
+@keyframes moveUpDown {
+  0% {
+    top: -26px; /* Starting position */
+  }
+  50% {
+    top: -36px; /* Middle position (change the value as needed) */
+  }
+  100% {
+    top: -26px; /* Ending position */
+  }
+}
+
+.train-button-tooltip-container {
+  position: absolute;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 4;
+  overflow: visible;
+  animation: moveUpDown 1.5s linear infinite;
+
+  .train-button-tooltip-text {
+    color: rgb(88, 204, 2);
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    padding: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .train-button-tooltip-arrow-container {
+    position: absolute;
+    width: 20px;
+    height: 10px;
+    overflow: hidden;
+    margin: 0 15px;
+    top: calc(100%);
+    left: calc(50% - 15px);
+    transform: translateX(-50%) rotate(180deg);
+
+    .train-button-tooltip-arrow {
+      box-sizing: border-box;
+      position: absolute;
+      border-width: 2px;
+      border-style: solid;
+      border-radius: 2px;
+      content: '';
+      height: 14.14427px;
+      left: 50%;
+      transform: translateZ(0) rotate(45deg);
+      transform-origin: top left;
+      width: 14.14427px;
+    }
+  }
+}

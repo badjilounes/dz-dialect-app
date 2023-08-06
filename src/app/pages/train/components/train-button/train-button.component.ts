@@ -1,55 +1,41 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  Input,
-  OnInit,
-  ViewChild,
-  ViewContainerRef,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
 import { LetModule } from '@ngrx/component';
 import { IsButtonPressedDirective } from '../../../../shared/technical/behavior/add-class-on-click.directive';
-import { StopClickPropagationDirective } from '../../../../shared/technical/behavior/stop-click-propagation.directive';
-import { GetExerciseExamResponseDto } from '../../../../../clients/dz-dialect-training-api';
-import { MatLegacyMenuModule } from '@angular/material/legacy-menu';
 import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 import { CommonModule } from '@angular/common';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { TemplateRefModule } from '../../../../shared/technical/template-ref/template-ref.module';
-import { ContextMenuDirective } from '../../directives/context-menu/context-menu.directive';
+
 import { TrainButtonStore } from './train-button.store';
-import { TrainButtonDataService } from '../../services/train-button-data/train-button-data.service';
-import { ContextMenuAnimation } from './train-button-context-menu-animation';
+import { ContextMenuAnimation } from '../train-button-context-menu/train-button-context-menu-animation';
 import { SvgIconModule } from '../../../../shared/technical/svg-icon/svg-icon.module';
 import { RouterModule } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import {
+  TrainButtonContextMenu,
+  TrainButtonContextMenuComponent,
+} from '../train-button-context-menu/train-button-context-menu.component';
+import {
+  TrainButtonTooltip,
+  TrainButtonTooltipComponent,
+} from '../train-button-tooltip/train-button-tooltip.component';
 
-export type ContextMenuData = {
-  title: string;
-  description: string;
-  disabled: boolean;
-  buttonLabel: string;
-  backgroundColor?: string;
-  buttonColor?: string;
-};
+// export type TrainButtonAppearance = {
+//   icon: string;
+//   background: string;
+//   color: string;
+//   shadow: string;
+// };
 
-export type ButtonData = {
-  icon: string;
+export type TrainButtonAppearance = 'locked' | 'current' | 'success' | 'failure';
+
+export type TrainButton = {
+  appearance: TrainButtonAppearance;
+  background: string;
   offsetX: number;
-  progress?: number;
-  floatingLabel?: string;
-  floatingLabelColor: string;
-  backgroundColor?: string;
-  boxShadow?: string;
-};
-
-export type TrainButtonData = {
-  isCurrentExam: boolean;
-  button: ButtonData;
-  contextMenu: ContextMenuData;
+  icon: string;
 };
 
 @UntilDestroy()
@@ -63,49 +49,42 @@ export type TrainButtonData = {
   imports: [
     CommonModule,
     RouterModule,
-    LetModule,
-    IsButtonPressedDirective,
-    MatLegacyProgressSpinnerModule,
-    MatLegacyMenuModule,
-    MatLegacyButtonModule,
     OverlayModule,
+    LetModule,
+    MatLegacyProgressSpinnerModule,
+    MatLegacyButtonModule,
     MatIconModule,
-    StopClickPropagationDirective,
-    TemplateRefModule,
-    ContextMenuDirective,
     SvgIconModule,
+    IsButtonPressedDirective,
+    TrainButtonContextMenuComponent,
+    TrainButtonTooltipComponent,
   ],
-  providers: [TrainButtonDataService, TrainButtonStore],
+  providers: [TrainButtonStore],
   exportAs: 'trainButton',
 })
 export class TrainButtonComponent implements OnInit {
-  @Input() exam!: GetExerciseExamResponseDto;
-  @Input() index!: number;
-  @Input() color = '';
-  @Input() showCurrentTooltip = false;
+  @Input() appearance!: TrainButtonAppearance;
+  @Input() background!: string;
+  @Input() offsetX!: number;
+  @Input() icon!: string;
 
-  data!: TrainButtonData;
-  menuOpened$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  @Input() contextMenu!: TrainButtonContextMenu;
+  @Input() tooltip?: TrainButtonTooltip;
+  @Input() progress?: number;
 
-  @ViewChild(ContextMenuDirective, { static: true }) contextMenu!: ContextMenuDirective;
+  menuOpened$ = new BehaviorSubject<boolean>(false);
 
   constructor(
     private readonly _element: ElementRef<HTMLElement>,
-    private readonly _viewContainerRef: ViewContainerRef,
-    private readonly _trainButtonDataService: TrainButtonDataService,
     private readonly _store: TrainButtonStore,
   ) {}
 
   ngOnInit(): void {
-    this.data = this._trainButtonDataService.buildData(this.exam, this.index, this.color);
-
     this._store.setState({
-      data: this.data,
-      viewContainerRef: this._viewContainerRef,
       element: this._element,
       contextMenu: {
-        template: this.contextMenu.template,
-        opened: false,
+        component: TrainButtonContextMenuComponent,
+        data: this.contextMenu,
       },
     });
 

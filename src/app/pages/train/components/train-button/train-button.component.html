@@ -1,23 +1,17 @@
-<div class="train-button-container" cdkOverlayOrigin #triggerOverlay="cdkOverlayOrigin">
-  <ng-container *ngIf="data.isCurrentExam">
-    <div
-      *ngIf="showCurrentTooltip"
-      class="current-message-container"
-      [style.left.px]="data.button.offsetX - 15"
-    >
-      <div class="current-message" [style.color]="data.button.floatingLabelColor">
-        {{ data.button.floatingLabel }}
-      </div>
-      <div class="current-message-arrow-container">
-        <div class="current-message-arrow"></div>
-      </div>
-    </div>
-    <div class="spinner-buffer" [style.left.px]="data.button.offsetX"></div>
+<div class="train-button-container">
+  <app-train-button-tooltip
+    [data]="tooltip"
+    [offsetX]="offsetX"
+    *ngIf="tooltip"
+  ></app-train-button-tooltip>
+
+  <ng-container *ngIf="progress !== undefined">
+    <div class="spinner-buffer" [style.left.px]="offsetX"></div>
     <mat-progress-spinner
-      [style.left.px]="data.button.offsetX"
+      [style.left.px]="offsetX"
       mode="determinate"
       [diameter]="100"
-      [value]="data.button.progress"
+      [value]="progress"
       [strokeWidth]="8"
       class="exercise-spinner"
       color="primary"
@@ -30,53 +24,12 @@
     (click)="openMenu()"
     appIsButtonPressed
     #button="appIsButtonPressed"
-    [class.current]="data.isCurrentExam"
+    [class.train-button-locked]="appearance === 'locked'"
     [class.button-pressed]="button.isPressed$ | async"
-    [style.left]="'calc(50% + ' + data.button.offsetX + 'px)'"
-    [style.background-color]="data.button.backgroundColor"
-    [style.box-shadow]="(button.isPressed$ | async) ? '' : data.button.boxShadow"
+    [style.left]="'calc(50% + ' + offsetX + 'px)'"
+    [style.background-color]="background"
+    [style.color]="background"
   >
-    <mat-icon [svgIcon]="data.button.icon"></mat-icon>
+    <mat-icon [svgIcon]="icon"></mat-icon>
   </button>
 </div>
-
-<ng-template
-  contextMenu
-  let-isCurrentExam="isCurrentExam"
-  let-buttonData="button"
-  let-contextMenuData="contextMenu"
->
-  <div
-    class="context-menu"
-    appStopClickPropagation
-    [class.activated]="isCurrentExam || exam.result"
-    [style.background-color]="contextMenuData?.backgroundColor"
-    [@openClose]="(menuOpened$ | async) ? 'open' : 'closed'"
-  >
-    <div class="menu-arrow-container top" [style.margin-left.px]="buttonData?.offsetX">
-      <div
-        class="menu-arrow"
-        [style.background-color]="contextMenuData?.backgroundColor"
-        [style.border-color]="contextMenuData?.backgroundColor"
-      ></div>
-    </div>
-    <h1 class="menu-title">{{ contextMenuData?.title }}</h1>
-    <p class="menu-description">{{ contextMenuData?.description }}</p>
-    <button
-      class="context-button-action"
-      mat-raised-button
-      [disabled]="contextMenuData?.disabled"
-      [style.color]="contextMenuData?.buttonColor"
-      [routerLink]="['/exam', exam.id]"
-    >
-      {{ contextMenuData?.buttonLabel }}
-    </button>
-    <div class="menu-arrow-container bottom" [style.margin-left.px]="buttonData?.offsetX">
-      <div
-        class="menu-arrow"
-        [style.background-color]="contextMenuData?.backgroundColor"
-        [style.border-color]="contextMenuData?.backgroundColor"
-      ></div>
-    </div>
-  </div>
-</ng-template>

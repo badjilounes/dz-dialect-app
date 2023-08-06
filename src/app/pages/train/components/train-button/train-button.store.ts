@@ -1,44 +1,50 @@
-import { ElementRef, Injectable, TemplateRef, ViewContainerRef } from '@angular/core';
+import { ComponentRef, ElementRef, Injectable, Injector, NgZone } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
-import { TrainButtonData } from './train-button.component';
 import { AppStore } from '../../../../app.store';
 import { Observable, debounceTime, first, fromEvent, map, switchMap, tap } from 'rxjs';
-import { Overlay } from '@angular/cdk/overlay';
-import { TemplateRefService } from '../../../../shared/technical/template-ref/template-ref.service';
-import { TemplatePortal } from '@angular/cdk/portal';
-import { CONTEXT_MENU_ANIMATION_DURATION } from './train-button-context-menu-animation';
+import { Overlay, OverlayRef, PositionStrategy } from '@angular/cdk/overlay';
+import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
+import {
+  TRAIN_BUTTON_CONTEXT_MENU_DATA,
+  TrainButtonContextMenu,
+  TrainButtonContextMenuComponent,
+} from '../train-button-context-menu/train-button-context-menu.component';
+import { filterUndefined } from '../../../../shared/technical/operators/filter-undefined.operator';
+import { CONTEXT_MENU_ANIMATION_DURATION } from '../train-button-context-menu/train-button-context-menu-animation';
 
 type TrainButtonState = {
-  data: TrainButtonData;
   element: ElementRef<HTMLElement>;
-  viewContainerRef: ViewContainerRef;
+
   contextMenu: {
-    template: TemplateRef<TrainButtonData>;
-    opened: boolean;
+    component: ComponentType<TrainButtonContextMenuComponent>;
+    data: TrainButtonContextMenu;
+    componentRef?: ComponentRef<TrainButtonContextMenuComponent>;
     scrollTopOffset?: number;
-    minHeight?: number;
   };
 };
 
 @Injectable()
 export class TrainButtonStore extends ComponentStore<TrainButtonState> {
-  readonly contextMenuOpened$ = this.select((state) => state.contextMenu.opened);
+  readonly contextMenuOpened$ = this.select((state) => state.contextMenu.componentRef).pipe(
+    filterUndefined(),
+    switchMap((componentRef) => componentRef.instance.menuOpened$),
+  );
 
   constructor(
     private readonly _overlay: Overlay,
     private readonly _appStore: AppStore,
-    private readonly _templateRefService: TemplateRefService,
+    private readonly _zone: NgZone,
   ) {
     super();
   }
 
   readonly openContextMenu = this.effect((source$: Observable<void>) => {
     return source$.pipe(
-      map(() => this._setContextMenuOverlayConfiguration()),
+      map(() => this._getContextMenuMissingVerticalPixelToFitBelow()),
 
-      tap(() => {
-        if (this.get().contextMenu.scrollTopOffset) {
-          this._openContextMenuWithScroll();
+      tap((missingVerticalPixelToFitBelow) => {
+        if (missingVerticalPixelToFitBelow) {
+          this._openContextMenuWithScroll(missingVerticalPixelToFitBelow);
         } else {
           this._showContextMenu();
         }
@@ -46,22 +52,20 @@ export class TrainButtonStore extends ComponentStore<TrainButtonState> {
     );
   });
 
-  private readonly _openContextMenuWithScroll = this.effect((overflow$: Observable<void>) => {
-    return overflow$.pipe(
-      switchMap(() =>
-        this._scrollBy({ top: this.get().contextMenu.scrollTopOffset, behavior: 'smooth' }),
-      ),
+  private readonly _openContextMenuWithScroll = this.effect((top$: Observable<number>) => {
+    return top$.pipe(
+      switchMap((top) => this._scrollBy({ top, behavior: 'smooth' })),
       tap(() => this._showContextMenu()),
     );
   });
 
-  private _setContextMenuOverlayConfiguration(): void {
-    const { element, viewContainerRef, contextMenu, data } = this.get();
+  private _getContextMenuMissingVerticalPixelToFitBelow(): number {
+    const { element } = this.get();
 
     const bottomBarHeight = this._appStore.isSmallScreen() ? 86 : 0;
-    const margins = 16;
-    const overlayHeight =
-      this._templateRefService.getHeight(viewContainerRef, contextMenu.template, data) + margins;
+
+    const overlayOffsetY = 16;
+    const overlayHeight = this._getContextMenuHeight() + overlayOffsetY;
 
     const remaining =
       window.innerHeight - element.nativeElement.getBoundingClientRect().bottom - bottomBarHeight;
@@ -75,17 +79,9 @@ export class TrainButtonStore extends ComponentStore<TrainButtonState> {
         bottomBarHeight >
       0;
 
-    const scrollTopOffset =
-      remainsEnoughHeightBelow && scrollOffset < 0 ? Math.abs(scrollOffset) + margins : 0;
-    const minHeight = overlayHeight - margins;
-
-    this.patchState((state) => ({
-      contextMenu: {
-        ...state.contextMenu,
-        scrollTopOffset,
-        minHeight,
-      },
-    }));
+    return remainsEnoughHeightBelow && scrollOffset < 0
+      ? Math.abs(scrollOffset) + overlayOffsetY
+      : 0;
   }
 
   private _scrollBy(options: ScrollToOptions): Observable<boolean> {
@@ -99,7 +95,7 @@ export class TrainButtonStore extends ComponentStore<TrainButtonState> {
   }
 
   private _showContextMenu(): void {
-    const { element, viewContainerRef, contextMenu, data } = this.get();
+    const { element } = this.get();
 
     const positionStrategy = this._overlay
       .position()
@@ -125,29 +121,67 @@ export class TrainButtonStore extends ComponentStore<TrainButtonState> {
       .withGrowAfterOpen(true)
       .withTransformOriginOn('.context-menu');
 
+    const { componentRef, overlayRef } = this._attachContextMenu(positionStrategy);
+
+    overlayRef
+      .backdropClick()
+      .pipe(
+        tap(() => {
+          componentRef.instance.close();
+
+          this._zone.runOutsideAngular(() =>
+            setTimeout(() => overlayRef.dispose(), CONTEXT_MENU_ANIMATION_DURATION),
+          );
+        }),
+      )
+      .subscribe();
+
+    this.patchState((state) => ({
+      contextMenu: { ...state.contextMenu, componentRef },
+    }));
+  }
+
+  private _attachContextMenu(positionStrategy: PositionStrategy): {
+    componentRef: ComponentRef<TrainButtonContextMenuComponent>;
+    overlayRef: OverlayRef;
+  } {
+    const { contextMenu } = this.get();
+
     const overlayRef = this._overlay.create({
-      positionStrategy: positionStrategy,
+      positionStrategy,
       scrollStrategy: this._overlay.scrollStrategies.close(),
       hasBackdrop: true,
       backdropClass: 'cdk-overlay-transparent-backdrop',
       panelClass: this._appStore.isSmallScreen()
         ? ['context-menu-pane', 'small-screen']
         : ['context-menu-pane'],
-      minHeight: this.get().contextMenu.minHeight,
     });
 
-    overlayRef
-      .backdropClick()
-      .pipe(
-        tap(() => {
-          this.patchState((state) => ({ contextMenu: { ...state.contextMenu, opened: false } }));
-          setTimeout(() => overlayRef?.dispose(), CONTEXT_MENU_ANIMATION_DURATION);
-        }),
-      )
-      .subscribe();
+    const componentPortal = new ComponentPortal(
+      contextMenu.component,
+      undefined,
+      Injector.create({
+        providers: [
+          {
+            provide: TRAIN_BUTTON_CONTEXT_MENU_DATA,
+            useValue: contextMenu.data,
+          },
+        ],
+      }),
+    );
 
-    overlayRef?.attach(new TemplatePortal(contextMenu.template, viewContainerRef, data));
+    const componentRef = overlayRef?.attach(componentPortal);
+    componentRef.changeDetectorRef.detectChanges();
+    componentRef.instance.open();
 
-    this.patchState((state) => ({ contextMenu: { ...state.contextMenu, opened: true } }));
+    return { componentRef, overlayRef };
+  }
+
+  private _getContextMenuHeight(): number {
+    const hiddenPositionstrategy = this._overlay.position().global().top('-9999px').left('-9999px');
+    const { componentRef, overlayRef } = this._attachContextMenu(hiddenPositionstrategy);
+    const height = componentRef.instance.element.nativeElement.getBoundingClientRect().height;
+    overlayRef.dispose();
+    return height;
   }
 }

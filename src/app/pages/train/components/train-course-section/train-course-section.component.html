@@ -9,12 +9,20 @@
 </header>
 
 <div class="exercise-container">
-  <app-train-button
-    #trainButton="trainButton"
-    *ngFor="let exam of course.exams; let examIndex = index"
-    [exam]="exam"
-    [index]="examIndex"
-    [color]="course.color"
-    [showCurrentTooltip]="!trainButton.menuOpened$.value && !hasButtonWithMenuOpened"
-  ></app-train-button>
+  <ng-container *ngFor="let button of buttonList">
+    <app-train-button
+      #trainButton="trainButton"
+      [appearance]="button.appearance"
+      [background]="button.background"
+      [offsetX]="button.offsetX"
+      [icon]="button.icon"
+      [contextMenu]="button.contextMenu"
+      [tooltip]="
+        (trainButton.menuOpened$ | async) === false && !hasButtonWithMenuOpened
+          ? button.tooltip
+          : undefined
+      "
+      [progress]="button.progress"
+    ></app-train-button>
+  </ng-container>
 </div>
