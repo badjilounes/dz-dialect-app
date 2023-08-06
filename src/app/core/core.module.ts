@@ -10,6 +10,7 @@ import { HTTP_BEARER_TOKEN_INTERCEPTOR_PROVIDER } from './authentication/bearer-
 import { PageLayoutDirective } from './layout/directives/is-page-layout.directive';
 import { RoutingService } from './routing/routing.service';
 import { AppTranslateModule } from './translate/translate.module';
+import { PwaModule } from './pwa/pwa.module';
 
 registerLocaleData(localeFr);
 
@@ -21,6 +22,7 @@ registerLocaleData(localeFr);
     IdentityClientModule,
     TrainingClientModule,
     PageLayoutDirective,
+    PwaModule,
   ],
   providers: [HTTP_BEARER_TOKEN_INTERCEPTOR_PROVIDER, { provide: LOCALE_ID, useValue: 'fr' }],
   exports: [AppTranslateModule],
