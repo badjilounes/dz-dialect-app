@@ -36,7 +36,7 @@ export class PresentationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.theme.setStatusBarColor();
+    this.theme.applyThemeToStatusBar();
   }
 
   onExamComplete(): void {

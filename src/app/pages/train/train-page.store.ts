@@ -39,7 +39,11 @@ export class TrainPageStore extends ComponentStore<TrainPageState> {
     color$.pipe(
       map((color) => (this._theme.themeMode$.value === 'dark' ? '#202F36' : color)),
       tap((color) => this.patchState({ toolbarColor: color })),
-      tap((color) => this._theme.updateStatusBarColor(color)),
+      tap((color) => this._theme.setStatusBarColor(color)),
     ),
+  );
+
+  readonly resetStatusBarColor = this.effect<void>((trigger$) =>
+    trigger$.pipe(tap(() => this._theme.applyThemeToStatusBar())),
   );
 }

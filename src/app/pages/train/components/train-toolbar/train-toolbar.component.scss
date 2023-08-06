@@ -9,9 +9,9 @@
   align-items: center;
   height: 100%;
   padding: 0 12px;
-  transition-duration: 0.2s;
+  transition-duration: 0.1s;
   transition-property: background-color, color;
-  transition-timing-function: linear;
+  transition-timing-function: ease-in-out;
 }
 
 .toolbar-flag {

@@ -26,7 +26,7 @@ export class ThemeService {
   }
   public set themedStatusBar(value) {
     this._themedStatusBar = value;
-    this.setStatusBarColor();
+    this.applyThemeToStatusBar();
   }
 
   @LocaleStorage()
@@ -42,33 +42,33 @@ export class ThemeService {
     }
 
     this.themeMode$ = new BehaviorSubject<ThemeMode>(this.themeMode);
-    this.setThemeMode();
-    this.setStatusBarColor();
+    this._setThemeMode();
+    this.applyThemeToStatusBar();
   }
 
   toggleThemeMode(): void {
     const themeMode = this.themeMode$.getValue() === 'light' ? 'dark' : 'light';
     this.themeMode = themeMode;
     this.themeMode$.next(themeMode);
-    this.setThemeMode();
-    this.setStatusBarColor();
+    this._setThemeMode();
+    this.applyThemeToStatusBar();
   }
 
-  setThemeMode(): void {
-    document.body.classList.toggle('darkMode', this.themeMode === 'dark');
-  }
-
-  setStatusBarColor(): void {
+  applyThemeToStatusBar(): void {
     let color = StatusBarColor.OVERVIEW;
 
     if (this.themedStatusBar) {
       color = this.themeMode$.getValue() === 'light' ? StatusBarColor.LIGHT : StatusBarColor.DARK;
     }
 
-    this.updateStatusBarColor(color);
+    this.setStatusBarColor(color);
   }
 
-  updateStatusBarColor(color: string): void {
+  setStatusBarColor(color: string): void {
     document.getElementById('meta-theme-color')!.setAttribute('content', color);
+  }
+
+  private _setThemeMode(): void {
+    document.body.classList.toggle('darkMode', this.themeMode === 'dark');
   }
 }
