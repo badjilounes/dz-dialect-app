@@ -68,7 +68,7 @@ export class ThemeService {
     this.updateStatusBarColor(color);
   }
 
-  updateStatusBarColor(color: StatusBarColor): void {
+  updateStatusBarColor(color: string): void {
     document.getElementById('meta-theme-color')!.setAttribute('content', color);
   }
 }

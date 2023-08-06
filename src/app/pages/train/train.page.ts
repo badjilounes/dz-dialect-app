@@ -1,14 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LetModule } from '@ngrx/component';
-import { fromEvent, Observable, of } from 'rxjs';
+import { fromEvent, Observable } from 'rxjs';
 import { AppStore } from 'src/app/app.store';
 import { PageLayoutDirective } from '../../core/layout/directives/is-page-layout.directive';
-import {
-  GetExerciseResponseDto,
-  StudentHttpService,
-} from '../../../clients/dz-dialect-training-api';
+
 import { TrainButtonComponent } from './components/train-button/train-button.component';
 import { TrainToolbarComponent } from './components/train-toolbar/train-toolbar.component';
 import { map } from 'rxjs/operators';
@@ -16,6 +12,7 @@ import { TrainCourseSectionComponent } from './components/train-course-section/t
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { TrainPageStore } from './train-page.store';
+import { LetModule } from '@ngrx/component';
 
 @Component({
   selector: 'app-train',
@@ -35,17 +32,18 @@ import { TrainPageStore } from './train-page.store';
   hostDirectives: [PageLayoutDirective],
 })
 export class TrainPage implements OnInit {
+  exerciseList$ = this._store.exerciseList$;
   isSmallScreen$ = this._appStore.isSmallScreen$;
   picture$ = this._appStore.user$.pipe(map((user) => user?.imageUrl));
-  exerciseList$: Observable<GetExerciseResponseDto[]> = of([]);
   showScrollTopButton$!: Observable<boolean>;
+  toolbarColor$ = this._store.toolbarColor$;
 
   constructor(
     private readonly _route: ActivatedRoute,
     private readonly _router: Router,
     private readonly _userAppStore: AppStore,
-    private readonly _studentHttpService: StudentHttpService,
     private readonly _appStore: AppStore,
+    private readonly _store: TrainPageStore,
   ) {}
 
   ngOnInit(): void {
@@ -56,11 +54,11 @@ export class TrainPage implements OnInit {
         .then(() => this._userAppStore.setAsAuthenticated(accessToken));
     }
 
-    this.exerciseList$ = this._studentHttpService.getExerciseList();
-
     this.showScrollTopButton$ = fromEvent(window, 'scroll').pipe(
       map(() => (document.documentElement.scrollTop || document.body.scrollTop) > 100),
     );
+
+    this._store.getExerciseList();
   }
 
   scrollToTop(): void {

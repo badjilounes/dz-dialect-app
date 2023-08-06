@@ -1,8 +1,12 @@
 <app-toolbar>
-  <div class="training-toolbar" toolbar-content>
-      <img src="assets/svg/flag-algeria.svg"  class="toolbar-flag" />
-      <button mat-icon-button >
-        <div class="user-toolbar-picture" [routerLink]="['/profile/me']" [style.background-image]="'url(' + userPicture + ')'"></div>
-      </button>
+  <div class="training-toolbar" toolbar-content [style.background-color]="color">
+    <img src="assets/svg/flag-algeria.svg" class="toolbar-flag" />
+    <button mat-icon-button>
+      <div
+        class="user-toolbar-picture"
+        [routerLink]="['/profile/me']"
+        [style.background-image]="'url(' + userPicture + ')'"
+      ></div>
+    </button>
   </div>
 </app-toolbar>

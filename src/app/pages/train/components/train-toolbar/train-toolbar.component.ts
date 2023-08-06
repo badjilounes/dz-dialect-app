@@ -12,6 +12,7 @@ import { MatLegacyButtonModule } from '@angular/material/legacy-button';
 })
 export class TrainToolbarComponent {
   @Input() picture?: string;
+  @Input() color!: string;
 
   get userPicture(): string {
     return this.picture || '/assets/images/unknown-user.png';

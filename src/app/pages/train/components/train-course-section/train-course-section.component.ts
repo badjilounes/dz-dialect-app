@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChildren } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  ViewChildren,
+} from '@angular/core';
 import { GetExerciseCourseResponseDto } from '../../../../../clients/dz-dialect-training-api';
 import { CommonModule } from '@angular/common';
 import {
@@ -11,6 +18,9 @@ import { LetModule } from '@ngrx/component';
 import { TrainCourseSectionButtonBuilderService } from './train-course-section-button-builder.service';
 import { TrainButtonContextMenu } from '../train-button-context-menu/train-button-context-menu.component';
 import { TrainButtonTooltip } from '../train-button-tooltip/train-button-tooltip.component';
+import { TrainPageStore } from '../../train-page.store';
+import { filter, fromEvent, tap } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 export type TrainCourseButton = {
   appearance: TrainButtonAppearance;
@@ -22,6 +32,7 @@ export type TrainCourseButton = {
   progress?: number;
 };
 
+@UntilDestroy()
 @Component({
   selector: 'app-train-course-section',
   templateUrl: './train-course-section.component.html',
@@ -50,12 +61,26 @@ export class TrainCourseSectionComponent implements OnInit {
 
   constructor(
     private readonly _appStore: AppStore,
-    private readonly _theme: ThemeService,
     private readonly _buttonBuilder: TrainCourseSectionButtonBuilderService,
+    private readonly _element: ElementRef<HTMLElement>,
+    private readonly _theme: ThemeService,
+    private readonly _trainPageStore: TrainPageStore,
   ) {}
 
   ngOnInit(): void {
     const color = this.course.color;
     this.buttonList = this.course.exams.map((e, i) => this._buttonBuilder.build(e, i, color));
+
+    fromEvent(window, 'scroll')
+      .pipe(
+        filter(
+          () =>
+            (document.documentElement.scrollTop || document.body.scrollTop) >=
+            this._element.nativeElement.offsetTop - 56,
+        ),
+        tap(() => this._trainPageStore.setToolbarColor(this.course.color)),
+        untilDestroyed(this),
+      )
+      .subscribe();
   }
 }
